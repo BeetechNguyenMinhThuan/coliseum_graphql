@@ -5,6 +5,7 @@ import {Search} from "components/Search/Search";
 import {Banner} from "components/Banner/Banner";
 import Novel from "../../components/Novel/Novel.tsx";
 import NovelList from "../../components/Novel/NovelList.tsx";
+import { Advertisement } from "components/Advertisement/Advertisement.tsx";
 
 const Home = () => {
     const {t} = useTranslation();
@@ -101,6 +102,7 @@ const Home = () => {
 
                 {/* Novel List  */}
                 <NovelList novels={novels}/>
+                <Advertisement />
             </div>
         </>
     );
