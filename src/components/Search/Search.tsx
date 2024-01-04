@@ -4,7 +4,7 @@ import React from "react";
 export const Search: React.FC = () => {
     const arrTags: Array<string> = ['#XXXXXX', '#XXXXXX', '#XXXXXX', '#XXXXXX'];
   return (
-    <div className="border-2 border-black-500 border-solid min-h-[188px] mt-[10px]">
+    <div className="border-2 border-black-500 border-solid min-h-[188px] mt-[10px] p-2">
         <h2 className="text-center text-3xl">輪スめあ提逮しンぽず返子げ払</h2>
         <form action="" className="px-[20px] mt-[20px]">
             <div className="flex justify-between items-center">
