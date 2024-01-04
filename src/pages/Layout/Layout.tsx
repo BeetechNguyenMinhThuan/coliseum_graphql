@@ -6,6 +6,7 @@ import {Outlet} from "react-router-dom";
 import Header from "./Header/Header";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
+import Sidebar from "../../components/Sidebar/Sidebar.tsx";
 
 export default function Layout(props) {
     const {i18n} = useTranslation();
@@ -27,8 +28,13 @@ export default function Layout(props) {
             <button className={currentLanguage === "vi" ? 'text-orange-500' : ""}
                     onClick={() => handleChangeLanguage("vi")}>Tiếng Việt
             </button>
-            <div id="main-content">
-                <Outlet/>
+            <div className='main-content mt-[104px]'>
+                <div className="l-container">
+                    <div className="flex gap-x-3">
+                        <Sidebar/>
+                        <Outlet/>
+                    </div>
+                </div>
             </div>
             <Footer/>
         </div>
