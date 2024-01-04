@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .scroll-sidebar::-webkit-scrollbar {
+        width: 10px;
+    }
+    .scroll-sidebar::-webkit-scrollbar-thumb {
+        background: rgb(189, 202, 217); 
+    }
+}
+.active{
+    color: red;
+}

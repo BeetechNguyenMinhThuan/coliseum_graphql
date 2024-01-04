@@ -1,0 +1,11 @@
+{
+  "common": {
+    "button": {
+      "search": "検索",
+      "cancel": "キャンセル",
+      "delete": "消去",
+      "save": "保存"
+    },
+    "home": "ホームページ"
+  }
+}
