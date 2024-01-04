@@ -9,7 +9,7 @@ export default function Header(props) {
         });
     };
     return (
-        <header className='bg-green-100 fixed left-0 right-0 '>
+        <header className='bg-green-100 fixed left-0 right-0 top-0 z-10'>
             <div className="header-top-wrap py-2">
                 <div className="l-container">
                     <div className="header-top-right">

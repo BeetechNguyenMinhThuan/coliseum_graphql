@@ -27,14 +27,9 @@ export type Author = {
 export type Book = {
   __typename?: 'Book';
   author?: Maybe<Author>;
-  genre: Scalars['String']['output'];
+  genre?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
-  name: Scalars['String']['output'];
-};
-
-export type Message = {
-  __typename?: 'Message';
-  message?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export type Mutation = {
@@ -42,7 +37,7 @@ export type Mutation = {
   createAuthor?: Maybe<Author>;
   createBook?: Maybe<Book>;
   deleteBook?: Maybe<Book>;
-  editBook?: Maybe<Book>;
+  updateBook?: Maybe<Book>;
 };
 
 
@@ -64,20 +59,18 @@ export type MutationDeleteBookArgs = {
 };
 
 
-export type MutationEditBookArgs = {
+export type MutationUpdateBookArgs = {
   authorId: Scalars['ID']['input'];
   genre?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['ID']['input'];
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  _empty?: Maybe<Scalars['String']['output']>;
   author?: Maybe<Author>;
   authors?: Maybe<Array<Maybe<Author>>>;
   book?: Maybe<Book>;
-  books?: Maybe<Array<Book>>;
+  books?: Maybe<Array<Maybe<Book>>>;
 };
 
 
@@ -92,20 +85,21 @@ export type QueryBookArgs = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  bookCreated?: Maybe<Message>;
+  createBookSub?: Maybe<Book>;
+  deleteBookSub?: Maybe<Book>;
 };
 
 export type GetBooksQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetBooksQueryQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id?: string | null, name: string, genre: string }> | null };
+export type GetBooksQueryQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', id?: string | null, name?: string | null, genre?: string | null } | null> | null };
 
 export type GetSingleBookQueryQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type GetSingleBookQueryQuery = { __typename?: 'Query', book?: { __typename?: 'Book', id?: string | null, name: string, genre: string, author?: { __typename?: 'Author', id: string, name?: string | null, age?: number | null, books?: Array<{ __typename?: 'Book', id?: string | null, name: string, genre: string } | null> | null } | null } | null };
+export type GetSingleBookQueryQuery = { __typename?: 'Query', book?: { __typename?: 'Book', id?: string | null, name?: string | null, genre?: string | null, author?: { __typename?: 'Author', id: string, name?: string | null, age?: number | null, books?: Array<{ __typename?: 'Book', id?: string | null, name?: string | null, genre?: string | null } | null> | null } | null } | null };
 
 
 export const GetBooksQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getBooksQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"books"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"genre"}}]}}]}}]} as unknown as DocumentNode<GetBooksQueryQuery, GetBooksQueryQueryVariables>;

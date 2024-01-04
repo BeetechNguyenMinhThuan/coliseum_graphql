@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {useQuery} from "@apollo/client";
 import {GET_BOOKS} from "graphql-client/book/queries.ts";
-import Sidebar from "../../components/Sidebar/Sidebar.tsx";
+import { Banner } from "components/Banner/Banner";
 
 const Home = () => {
     const {t} = useTranslation();

@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 const Sidebar = () => {
     return (
         <div className='coli-sidebar'>
-            <ul className='flex flex-col gap-y-6'>
+            <ul className='flex flex-col'>
                 <li className='border-2 p-5 text-center'>
                     <NavLink to='/sidebar'>小説投稿サイトに行く</NavLink>
                 </li>
