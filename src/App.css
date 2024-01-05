@@ -38,3 +38,8 @@
 .image-banner{
     cursor: grab;
 }
+
+.image-ads{
+    height: 300px;
+    width: 300px;
+}

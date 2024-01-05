@@ -1,8 +1,10 @@
 import {useTranslation} from "react-i18next";
-import {Search} from "components/Search/Search.tsx";
-import {NovelNewContainer} from "components/Novel";
-import {RankingContainer} from "components/Ranking";
-import {SidebarHome} from "components/SideBar/SideBarHome.tsx";
+import {Search} from "components/Search/Search";
+import { Advertisement } from "components/Advertisement/Advertisement.tsx";
+import { CategoryList } from "components/Category/CategoryList.tsx";
+import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
+import { NovelNewContainer } from "components/Novel/NovelNewContainer.tsx";
+import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
 
 const Home = () => {
     const {t} = useTranslation();
@@ -79,6 +81,55 @@ const Home = () => {
 
         }
     ]
+
+    const arrAds = [
+        's-l1200.webp',
+        'coke-print-ad.jpg',
+        '7_Up_-_You_like_it,_it_likes_you,_1948.jpg',
+    ]
+
+    const categories = [
+        {
+            image: 'assets/advertisement/s-l1200.webp',
+            title: '運営会社 株式会社ウエトマエ',
+            description: '日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
+
+        },
+        {
+            image: 'assets/advertisement/s-l1200.webp',
+            title: '運営会社 株式会社ウエトマエ',
+            description: '日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
+
+        },
+        {
+            image: 'assets/advertisement/s-l1200.webp',
+            title: '運営会社 株式会社ウエトマエ',
+            description: '日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
+
+        },
+        {
+            image: 'assets/advertisement/s-l1200.webp',
+            title: '運営会社 株式会社ウエトマエ',
+            description: '日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
+
+        },
+        {
+            image: 'assets/advertisement/s-l1200.webp',
+            title: '運営会社 株式会社ウエトマエ',
+            description: '日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
+                '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
+
+        },
+    ]
     return (
         <>
             <SidebarHome/>
@@ -102,8 +153,11 @@ const Home = () => {
                 </div>
                 <Search/>
 
+                {/* Novel List  */}
                 <NovelNewContainer novels={novels}/>
                 <RankingContainer/>
+                <Advertisement>{arrAds}</Advertisement>
+                <CategoryList categories={categories}></CategoryList>
             </div>
         </>
     );
