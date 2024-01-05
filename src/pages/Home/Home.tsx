@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {Search} from "components/Search/Search";
 import { Advertisement } from "components/Advertisement/Advertisement.tsx";
-import { CategoryList } from "components/Category/CategoryList.tsx";
+import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { NovelNewContainer } from "components/Novel/NovelNewContainer.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";

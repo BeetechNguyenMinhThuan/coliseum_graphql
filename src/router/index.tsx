@@ -5,6 +5,7 @@ import {createBrowserRouter} from "react-router-dom";
 import {Coliseum} from "../pages/Coliseum/Coliseum.tsx";
 import {Tournament} from "../pages/Tournament/Tournament.tsx";
 import {Author} from "../pages/Author/Author.tsx";
+import MyPage from "pages/MyPage/MyPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: "/author",
                 element: <Author/>,
+            },
+            {
+                path: "/mypage",
+                element: <MyPage/>,
             },
         ],
     },

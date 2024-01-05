@@ -4,10 +4,10 @@
 import {Outlet} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
-import {Banner} from "components/Banner/Banner.tsx";
-import {Footer, Header, Sidebar} from "components/Common";
+import {Banner} from "components/Banner/index";
+import {Footer, Header} from "components/Common";
 
-export default function Layout(props) {
+export default function Layout() {
     const {i18n} = useTranslation();
     const [currentLanguage, setCurrentLanguage] = useState(localStorage.getItem('current_language') || "ja");
     const handleChangeLanguage = (lang: string) => {
