@@ -1,7 +1,6 @@
-import {Link, NavLink} from "react-router-dom";
-import NavBar from "components/NabBar/NavBar.tsx";
+import {NavLink} from "react-router-dom";
 
-export default function Header(props) {
+export function Header() {
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -36,12 +35,10 @@ export default function Header(props) {
             <nav className='header-nav-wrap py-2'>
                 <div className="l-container">
                     <ul className='flex justify-between'>
-                        <li>
-                            <NavLink to='/'>MyPage</NavLink>
-                        </li>
-                        <li><NavLink to='/nav'>MyPage</NavLink></li>
-                        <li><NavLink to='/nav'>MyPage</NavLink></li>
-                        <li><NavLink to='/nav'>MyPage</NavLink></li>
+                        <li><NavLink to='/'>Home</NavLink></li>
+                        <li><NavLink to='/coliseum'>Coliseum</NavLink></li>
+                        <li><NavLink to='/tournament'>Tournament</NavLink></li>
+                        <li><NavLink to='/author'>Author</NavLink></li>
                         <li><NavLink to='/nav'>MyPage</NavLink></li>
                         <li><NavLink to='/nav'>MyPage</NavLink></li>
                         <li><NavLink to='/nav'>MyPage</NavLink></li>

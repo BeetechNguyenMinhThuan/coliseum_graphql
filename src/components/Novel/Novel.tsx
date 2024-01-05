@@ -1,14 +1,12 @@
-import React from 'react';
+import {NovelStatus} from "./NovelStatus.tsx";
 
-const Novel = ({novel}) => {
+export function Novel({novel}) {
     return (
         <div className='novel-item border-t-2 border-gray-300 py-3'>
             <div className="novel-item-top">
                 <div className="flex gap-x-4">
                     <div className="novel-left flex gap-x-3">
-                        <div className="just-posted">
-                            たっ
-                        </div>
+                        <NovelStatus novelItem={novel}></NovelStatus>
                         <div className="novel-image-wrap flex flex-col">
                             <div className="novel-image w-[150px] h-[170px]">
                                 <img className='w-full h-full bg-cover object-cover object-center'
@@ -76,4 +74,3 @@ const Novel = ({novel}) => {
     );
 };
 
-export default Novel;

@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom";
 
-export default function Footer(props) {
-    return <footer>
+export function Footer() {
+    return <footer className='mt-10'>
         <div className="footer-top-wrap">
             <div className="l-container">
                 <ul className='flex gap-x-7 justify-center'>
