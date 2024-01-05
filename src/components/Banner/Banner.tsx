@@ -9,7 +9,14 @@ import 'App.css';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 export const Banner = () => {
-  
+  const arrImage: Array<String> = [
+    'thumbnail1.jpg',
+    'thumbnail-la-gi-1.jpg',
+    'yellow-color-halftone-youtube-thumbnail-background_562076-95.avif',
+    'youtube-01.webp',
+    'thumbnail-la-gi.png',
+    'af44ea07fa5bfd828004747f62f63bc3.jpg'
+  ]
   return (
     <>
       <Swiper
@@ -44,24 +51,13 @@ export const Banner = () => {
           },
         }}
       >
-        <SwiperSlide className="h-[250px] p-4 flex justify-center items-center">
-          <img className='image-banner' src="assets\thumbnail1.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="h-[250px] p-4 flex justify-center items-center">
-          <img className='image-banner' src="assets\thumbnail-la-gi-1.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="h-[250px] p-4 flex justify-center items-center">
-          <img className='image-banner' src="assets\yellow-color-halftone-youtube-thumbnail-background_562076-95.avif" alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="h-[250px] p-4 flex justify-center items-center">
-          <img className='image-banner' src="assets\youtube-01.webp" alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="h-[250px] p-4 flex justify-center items-center">
-          <img className='image-banner' src="assets\thumbnail-la-gi.png" alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="h-[250px] p-4 flex justify-center items-center">
-          <img className='image-banner' src="assets\af44ea07fa5bfd828004747f62f63bc3.jpg" alt="" />
-        </SwiperSlide>
+        {
+          arrImage.map((image, index) => (
+            <SwiperSlide key={index} className="h-[250px] p-4 flex justify-center items-center">
+              <img className='image-banner' src={`assets/${image}`} alt="" />
+            </SwiperSlide>
+          ))
+        }
       </Swiper>
     </>
   );
