@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
+  // const [randomBoolean, setRandomBoolean] = useState();
   const handleLogin = () => {
+    let randomBoolean = Math.random() >= 0.5;
+    let objectToken = {
+      token: "coliseum_token_secret",
+      exprired_token: false
+    }
+    localStorage.setItem("token", JSON.stringify(objectToken));
     navigate("/");
-    localStorage.setItem("token", "coliseum_token_secret");
   };
   return (
     <div>

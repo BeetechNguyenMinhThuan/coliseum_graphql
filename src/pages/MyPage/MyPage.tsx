@@ -6,11 +6,19 @@ import { useEffect } from "react";
 export default function MyPage() {
   const navigate = useNavigate();
   useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
+    const tokenString = localStorage.getItem("token");
+    if(tokenString){
+        let {token, exprired_token} = JSON.parse(tokenString);
+        console.log(token, exprired_token);
+        
+        if (!token || exprired_token) {
+          navigate("/login");
+        }
+    }else{
+        navigate("/login");
     }
-  }, []);
+}, []);
+
   return (
     <>
       <SideBarMyPage />
