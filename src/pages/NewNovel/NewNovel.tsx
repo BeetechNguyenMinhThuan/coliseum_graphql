@@ -1,10 +1,9 @@
-import {RankingTab} from "./RankingTab.tsx";
-import {RankingList} from "./RankingList.tsx";
-import { useLocation } from "react-router-dom";
-import { TagNovel } from "components/Tag/TagNovel.tsx";
+import { Advertisement } from "components/Advertisement";
+import { NovelList, NovelNewContainer } from "components/Novel";
+import { RankingContainer } from "components/Ranking";
+import { SidebarHome } from "components/SideBar/SideBarHome";
 
-export function RankingContainer () {
-    var location = useLocation();
+export default function NewNovel() {
     const novels = [
         {
             like: 6,
@@ -16,8 +15,8 @@ export function RankingContainer () {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.30',
-            status: 'たった今',
-            ranking: 1
+            status: 'たっ',
+
         },
         {
             like: 6,
@@ -29,8 +28,9 @@ export function RankingContainer () {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たった今',
-            ranking: 2
+            status: 'たっ'
+
+
         },
         {
             like: 6,
@@ -42,8 +42,9 @@ export function RankingContainer () {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たった今',
-            ranking: 3
+            status: 'たっ'
+
+
         },
         {
             like: 6,
@@ -55,8 +56,9 @@ export function RankingContainer () {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たった今',
-            ranking: 4
+            status: 'たっ'
+
+
         },
         {
             like: 6,
@@ -68,72 +70,31 @@ export function RankingContainer () {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たった今',
-            ranking: 5
+            status: 'たっ',
+
+
         }
     ]
-
-    const tabs = [
-        '運営会社','運営会社1','運営会社2','運営会社3','運営会社4','運営会社5'
+    const arrAds = [
+        's-l1200.webp',
+        'coke-print-ad.jpg',
+        '7_Up_-_You_like_it,_it_likes_you,_1948.jpg',
     ]
-
-    return (
-        <div className='border-2 mt-5 p-2'>
-            <h2 className='font-bold text-2xl text-center pb-2'>評価</h2>
-            {
-                location.pathname === '/newnovel' ? (
-                    <div className="border-y-2 border-black-500 border-solid min-h-[188px] p-2 mb-3">
-                        <p>
-                        万ヤ定地ごづざ毎地ムヱナ個91言コヤト時改クヌミ年若づね顔象士ワエアシ竹飛す学話むうほぴ究市じざらょ績株朝クテ熊快ルほぞぱ進検てれぴ章台ヲノカ疑美ラ会夜柱わぼか。作セフム栄質ッあぎょ映関クじ朝滅ツ法無入掲ドざせ鑿遺事ざづ不提りけラは世午ろて思送公オ久死弾料びゃ。5無打づリくつ確2間興レ質毎カヱメ歌前せつはす閉匠エリノミ動発ぱき遺九ふド書識4仇ほゅン。
-                
-                        登ずま不代べま首35点ぐ断示ツムイ法旬リ外主カオモ国一ぎけ社載関よんゆ績載トホ舞条ム法省月んー独協話入園ぶ。読フサヲニ予17番ソタ川本ハミレ図紙え米外ルセ鳥未ラル竹62罪オニリ瀬人うド分没ヌレメリ編中きほどぽ治護ー並道つクゃけ更宿質ー未法にる固察ネ花属ロアルツ撲使ヨルナサ雇情刻草雪にべふぐ。
-                
-                        <p>
-                            国せ稿全たごイじ通降スモサナ派15特語び辺告ケオ真奇3法ケセ懲軽エムヘ人理オワセメ衛分ド強写イ地32筆ぴ北込ヘエナイ超指息てぶ。毎フワ察省然ずたっ写朝モウ状本はをレや町案セレ会賞ノユナウ坊28韓シ北棒済効井サエセム中権れど装際側ぱさ。客通け超講検ヒヌワ社北にわちゃ打原て業水リつッ直技ずぶ覚86誇やせ勢意ょトも世折ぎ延謎っぱず実暮げドめ団職トワリ学券拡盛秀ま。
-                
-                            横付オキワコ本織まゃ緩川やわり品曜ずき携響情ク海国市82区ア上大ホテ都池ラフエキ真竹認班げま。像もぞんレ正情母41文がたどド用首はフて級賞ヘケ成康モキチク加触めンひ諸62性ツ北政リライウ町外エロトニ東欺く国森ん地載けぼん刊新た初学がとけ訴暮量る。服チ南都かあ船力ワケ称最ロフ背94幹察了28無べこ省土メウニ月暮督せぜン今詳各ざぜわ院禁不み後消ネフメヱ名合俵呉嫁リ。
-                        </p>
-                
-                        索キモリマ極61径よけ毎製ぜやフ済政が逮政レ真出ゆひり適豊事ネクホオ創林ルイ教縄アカハ興参チナア物金タカフ形南よくがす直読あッてぜ以辞ラ強治ル政則廟箱頼フ。片ルコ詳氏ぎわ日日クリ掲中ハ勝者安じど辞14支誰ヒヤラヲ栄題路ぶ白検ユ原裁国朝ヨメミ元9提なルれに一満ナ大案ロアハ京雄類大奉なぐクみ。
-                
-                        </p>
-                    </div>
-                ) : ''
-            }
-            <RankingTab tabs={tabs}/>
-            {
-                location.pathname === '/newnovel' ? (
-                    <div>
-                        <div className="border-t-2 py-4">
-                            <div className="flex gap-4 items-center">
-                                <div className="pl-4 mr-10">
-                                    路張享凡喬つ
-                                </div>
-                                {tabs.map((tab) => (
-                                    <TagNovel key={tab}>{tab}</TagNovel>
-                                ))}
-                            </div>
-                            <div className="flex gap-4 items-center mt-4">
-                                <div className="pl-4 mr-10">
-                                    路張享凡喬つ
-                                </div>
-                                {tabs.map((tab) => (
-                                    <TagNovel key={tab}>{tab}</TagNovel>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="border-t-2 py-4">
-                            <div className="flex gap-4 items-center justify-center">
-                                {tabs.map((tab) => (
-                                    <TagNovel key={tab}>{tab}</TagNovel>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                ) : ''
-            }
-            <RankingList novels={novels}/>
-        </div>
-    );
-};
-
+  return (
+    <>
+    <SidebarHome />
+    <div className="content flex-1">
+        {/* Novel List  */}
+        <NovelNewContainer novels={novels} />
+            {/* list novel update */}
+            <div className="mt-3 border-2 border-black-500 border-solid min-h-[188px] p-2">
+                <h1 className="text-center text-3xl pl-4 pr-4 pb-4">路張享凡喬つ</h1>
+                <NovelList novels={novels} />
+            </div>
+        <Advertisement>{arrAds}</Advertisement>
+        {/* list novel ranking */}
+        <RankingContainer/>
+    </div>
+</>
+  )
+}

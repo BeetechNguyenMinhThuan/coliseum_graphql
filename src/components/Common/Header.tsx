@@ -40,7 +40,7 @@ export function Header() {
                         <li><NavLink to='/tournament'>Tournament</NavLink></li>
                         <li><NavLink to='/author'>Author</NavLink></li>
                         <li><NavLink to='/mypage'>MyPage</NavLink></li>
-                        <li><NavLink to='/nav'>MyPage</NavLink></li>
+                        <li><NavLink to='/newnovel'>New Novel</NavLink></li>
                         <li><NavLink to='/nav'>MyPage</NavLink></li>
                         <li><NavLink to='/nav'>MyPage</NavLink></li>
                         <li><NavLink to='/nav'>MyPage</NavLink></li>

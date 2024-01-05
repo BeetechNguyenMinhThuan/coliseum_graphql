@@ -6,6 +6,7 @@ import {Coliseum} from "../pages/Coliseum/Coliseum.tsx";
 import {Tournament} from "../pages/Tournament/Tournament.tsx";
 import {Author} from "../pages/Author/Author.tsx";
 import MyPage from "pages/MyPage/MyPage.tsx";
+import NewNovel from "pages/NewNovel/NewNovel.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: "/mypage",
                 element: <MyPage/>,
+            },
+            {
+                path: "/newnovel",
+                element: <NewNovel/>,
             },
         ],
     },

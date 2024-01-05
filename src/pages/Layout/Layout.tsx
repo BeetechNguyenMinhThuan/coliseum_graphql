@@ -31,7 +31,7 @@ export default function Layout() {
                     onClick={() => handleChangeLanguage("vi")}>Tiếng Việt
             </button> */}
             <div className="mt-[108px]">
-                {location.pathname !== '/author' && <Banner/>}
+                {location.pathname !== '/author' && location.pathname !== '/newnovel' ? <Banner/> : ''}
             </div>
             <div className='main-content mt-[20px]'>
                 <div className="l-container">
