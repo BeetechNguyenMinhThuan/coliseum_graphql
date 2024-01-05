@@ -1,22 +1,22 @@
 // Import Swiper React components
-import { Swiper, SwiperSlide, } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'App.css';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "App.css";
 // import required modules
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 export const Banner = () => {
   const arrImage: Array<String> = [
-    'thumbnail1.jpg',
-    'thumbnail-la-gi-1.jpg',
-    'yellow-color-halftone-youtube-thumbnail-background_562076-95.avif',
-    'youtube-01.webp',
-    'thumbnail-la-gi.png',
-    'af44ea07fa5bfd828004747f62f63bc3.jpg'
-  ]
+    "thumbnail1.jpg",
+    "thumbnail-la-gi-1.jpg",
+    "yellow-color-halftone-youtube-thumbnail-background_562076-95.avif",
+    "youtube-01.webp",
+    "thumbnail-la-gi.png",
+    "af44ea07fa5bfd828004747f62f63bc3.jpg",
+  ];
   return (
     <>
       <Swiper
@@ -51,13 +51,14 @@ export const Banner = () => {
           },
         }}
       >
-        {
-          arrImage.map((image, index) => (
-            <SwiperSlide key={index} className="h-[250px] p-4 flex justify-center items-center">
-              <img className='image-banner' src={`assets/${image}`} alt="" />
-            </SwiperSlide>
-          ))
-        }
+        {arrImage.map((image, index) => (
+          <SwiperSlide
+            key={index}
+            className="flex h-[250px] items-center justify-center p-4"
+          >
+            <img className="image-banner" src={`assets/${image}`} alt="" />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );
