@@ -1,13 +1,11 @@
 //Component
-import Footer from "./Footer/Footer";
 
 //packet
 import {Outlet} from "react-router-dom";
-import Header from "./Header/Header";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
-import Sidebar from "../../components/Sidebar/Sidebar.tsx";
-import { Banner } from "components/Banner/Banner.tsx";
+import {Banner} from "components/Banner/Banner.tsx";
+import {Footer, Header, Sidebar} from "components/Common";
 
 export default function Layout(props) {
     const {i18n} = useTranslation();
@@ -22,7 +20,7 @@ export default function Layout(props) {
      */
     return (
         <div id="app">
-            <Header />
+            <Header/>
             {/* <button className={currentLanguage === "ja" ? 'text-orange-500' : ""}
                     onClick={() => handleChangeLanguage("ja")}>Tiếng Nhật
             </button>
@@ -30,12 +28,11 @@ export default function Layout(props) {
                     onClick={() => handleChangeLanguage("vi")}>Tiếng Việt
             </button> */}
             <div className="mt-[105px]">
-                <Banner />
+                <Banner/>
             </div>
             <div className='main-content mt-[20px]'>
                 <div className="l-container">
                     <div className="flex gap-x-3">
-                        <Sidebar/>
                         <Outlet/>
                     </div>
                 </div>

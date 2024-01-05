@@ -1,13 +1,7 @@
-import {useTranslation} from "react-i18next";
-import {Search} from "components/Search/Search.tsx";
-import {NovelNewContainer} from "components/Novel";
-import {RankingContainer} from "components/Ranking";
-import {SidebarHome} from "components/SideBar/SideBarHome.tsx";
+import {RankingTab} from "./RankingTab.tsx";
+import {RankingList} from "./RankingList.tsx";
 
-const Home = () => {
-    const {t} = useTranslation();
-
-
+export function RankingContainer () {
     const novels = [
         {
             like: 6,
@@ -19,8 +13,8 @@ const Home = () => {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.30',
-            status: 'たっ',
-
+            status: 'たった今',
+            ranking: 1
         },
         {
             like: 6,
@@ -32,9 +26,8 @@ const Home = () => {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たっ'
-
-
+            status: 'たった今',
+            ranking: 2
         },
         {
             like: 6,
@@ -46,9 +39,8 @@ const Home = () => {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たっ'
-
-
+            status: 'たった今',
+            ranking: 3
         },
         {
             like: 6,
@@ -60,9 +52,8 @@ const Home = () => {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たっ'
-
-
+            status: 'たった今',
+            ranking: 4
         },
         {
             like: 6,
@@ -74,38 +65,20 @@ const Home = () => {
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n' +
                 '                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色',
             created_at: '2023.11.26',
-            status: 'たっ',
-
-
+            status: 'たった今',
+            ranking: 5
         }
     ]
-    return (
-        <>
-            <SidebarHome/>
-            <div className="content flex-1">
-                {/* Bungo Coliseum tournament  */}
-                <div className="border-2 border-black-500 border-solid min-h-[188px] p-2">
-                    <div className="text-3xl text-center">
-                        球ムヘマタ碁投ヘツ座性スイオ千夜チ港需チ緒動
-                    </div>
-                    <div className="py-5 px-2 sm:ml-[10px] md:ml-[30px]">
-                        <p>
-                            定倫テチヤ権占じぴ選株れねド疑後各す
-                            <br/>
-                            よトぎ必身べさゆむ害受フラヤヌ書彼づぴか円破進るわび竹略キノモ居大でぶ答刊じぽよれ表美包孤湖すまゃよ
-                            <br/>
-                            透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語14拒ノカニ生人むびこ北読列トろけち。
-                            <br/>
-                            握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
-                        </p>
-                    </div>
-                </div>
-                <Search/>
 
-                <NovelNewContainer novels={novels}/>
-                <RankingContainer/>
-            </div>
-        </>
+    const tabs = [
+        '運営会社','運営会社1','運営会社2','運営会社3','運営会社4','運営会社5'
+    ]
+    return (
+        <div className='border-2 mt-5 p-2'>
+            <h2 className='font-bold text-2xl text-center pb-2'>評価</h2>
+            <RankingTab tabs={tabs}/>
+            <RankingList novels={novels}/>
+        </div>
     );
 };
-export default Home;
+
