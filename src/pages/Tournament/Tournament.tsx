@@ -2,10 +2,15 @@ import {useTranslation} from "react-i18next";
 import {SideBarColiseum} from "components/SideBar/SideBarColiseum.tsx";
 import {NavLink} from "react-router-dom";
 import {SideBarTournament} from "../../components/SideBar/SideBarTournament.tsx";
+import {Advertisement} from "components/Advertisement";
 
 export function Tournament() {
     const {t} = useTranslation();
-
+    const arrAds = [
+        's-l1200.webp',
+        'coke-print-ad.jpg',
+        '7_Up_-_You_like_it,_it_likes_you,_1948.jpg',
+    ]
 
     return (
         <>
@@ -71,6 +76,7 @@ export function Tournament() {
                             <h4 className='font-bold text-3xl'>討イリえま波</h4>
                         </div>
                     </div>
+                    <Advertisement>{arrAds}</Advertisement>
 
                 </div>
 

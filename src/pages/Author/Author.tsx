@@ -1,7 +1,6 @@
 import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
 import {SideBarAuthor} from "components/SideBar/SideBarAuthor.tsx";
-
 export function Author() {
     const {t} = useTranslation();
 

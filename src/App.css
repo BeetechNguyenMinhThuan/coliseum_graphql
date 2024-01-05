@@ -10,10 +10,6 @@
 }
 
 @layer base {
-    body {
-        height: 600vh;
-    }
-
     .scroll-sidebar::-webkit-scrollbar {
         width: 10px;
     }
