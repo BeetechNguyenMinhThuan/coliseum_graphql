@@ -32,17 +32,17 @@ export default function Layout() {
             <button className={currentLanguage === "vi" ? 'text-orange-500' : ""}
                     onClick={() => handleChangeLanguage("vi")}>Tiếng Việt
             </button> */}
-      <div className="mt-[108px]">
-        {location.pathname !== "/author" && <Banner />}
-      </div>
-      <div className="main-content mt-[20px]">
-        <div className="l-container">
-          <div className="flex gap-x-3">
-            <Outlet />
-          </div>
+            <div className="mt-[108px]">
+                {location.pathname !== '/author' && location.pathname !== '/newnovel' ? <Banner/> : ''}
+            </div>
+            <div className='main-content mt-[20px]'>
+                <div className="l-container">
+                    <div className="flex gap-x-3">
+                        <Outlet/>
+                    </div>
+                </div>
+            </div>
+            <Footer/>
         </div>
-      </div>
-      <Footer />
-    </div>
-  );
+    );
 }

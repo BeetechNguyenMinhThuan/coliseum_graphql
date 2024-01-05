@@ -8,6 +8,7 @@ import { Author } from "../pages/Author/Author.tsx";
 import MyPage from "pages/MyPage/MyPage.tsx";
 import Login from "../pages/Authentication/Login/Login.tsx";
 import AuthLayout from "../pages/Authentication/Layout/AuthLayout.tsx";
+import NewNovel from "pages/NewNovel/NewNovel.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "/mypage",
         element: <MyPage />,
+      },
+      {
+        path: "/newnovel",
+        element: <NewNovel />,
       },
     ],
   },
