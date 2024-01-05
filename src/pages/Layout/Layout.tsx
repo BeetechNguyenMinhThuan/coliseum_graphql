@@ -4,12 +4,11 @@
 import {Outlet} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
-import {Banner} from "components/Banner/Banner.tsx";
-import {Footer, Header, Sidebar} from "components/Common";import { useLocation } from 'react-router-dom';
+import {Footer, Header} from "components/Common";
+import {Banner} from "components/Banner";
+import {useLocation} from 'react-router-dom';
 
-
-
-export default function Layout(props) {
+export default function Layout() {
     const {i18n} = useTranslation();
     const location = useLocation();
 
@@ -31,8 +30,8 @@ export default function Layout(props) {
             <button className={currentLanguage === "vi" ? 'text-orange-500' : ""}
                     onClick={() => handleChangeLanguage("vi")}>Tiếng Việt
             </button> */}
-            <div className="mt-[105px]">
-                {location.pathname !== '/author' && <Banner />}
+            <div className="mt-[108px]">
+                {location.pathname !== '/author' && <Banner/>}
             </div>
             <div className='main-content mt-[20px]'>
                 <div className="l-container">

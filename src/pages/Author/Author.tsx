@@ -1,9 +1,15 @@
 import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
 import {SideBarAuthor} from "components/SideBar/SideBarAuthor.tsx";
+import { Advertisement } from "components/Advertisement";
+
 export function Author() {
     const {t} = useTranslation();
-
+    const arrAds = [
+        's-l1200.webp',
+        'coke-print-ad.jpg',
+        '7_Up_-_You_like_it,_it_likes_you,_1948.jpg',
+    ]
 
     return (
         <>
@@ -67,6 +73,8 @@ export function Author() {
                     </div>
 
                 </div>
+
+                <Advertisement>{arrAds}</Advertisement>
 
             </div>
         </>

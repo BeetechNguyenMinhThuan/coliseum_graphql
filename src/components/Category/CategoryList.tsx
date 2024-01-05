@@ -1,6 +1,8 @@
 import { RegisterAuthor } from "components/RegisterAuthor/RegisterAuthor"
 import { CategoryItem } from "./CategoryItem"
 import { RegisterLogo } from "components/ResigterLogo/RegisterLogo";
+import CreatorBungo from "components/CreatorBungo/CreatorBungo";
+import { Introduce } from "components/Introduce";
 
 // Khai báo type cho một category
 export interface Category {
@@ -25,6 +27,8 @@ export const CategoryList = ({categories}: CategoryListProps) => {
         ))
       }
       <RegisterLogo></RegisterLogo>
+      <CreatorBungo></CreatorBungo>
+      <Introduce></Introduce>
     </div>
   )
 }
