@@ -7,11 +7,12 @@ import { useState } from "react";
 import { Footer, Header } from "components/Common";
 import { Banner } from "components/Banner";
 import { useLocation } from "react-router-dom";
+import Hero from "../../components/Common/Hero.tsx";
 
 export default function Layout() {
   const { i18n } = useTranslation();
   const location = useLocation();
-
+  const pathName = location.pathname;
   const [currentLanguage, setCurrentLanguage] = useState(
     localStorage.getItem("current_language") || "ja",
   );
@@ -32,17 +33,33 @@ export default function Layout() {
             <button className={currentLanguage === "vi" ? 'text-orange-500' : ""}
                     onClick={() => handleChangeLanguage("vi")}>Tiếng Việt
             </button> */}
-            <div className="mt-[108px]">
-                {location.pathname !== '/author' && location.pathname !== '/newnovel' ? <Banner/> : ''}
-            </div>
-            <div className='main-content mt-[20px]'>
-                <div className="l-container">
-                    <div className="flex gap-x-3">
-                        <Outlet/>
-                    </div>
-                </div>
-            </div>
-            <Footer/>
+
+      {(pathName == "/" ||
+        pathName == "/coliseum" ||
+        pathName == "/tournament") && (
+        <Hero
+          title="選歳ーだ平申1ゅゆ選歳ーだ平申ゅゆ歳ーだ平申ゅゆ"
+          subtitle="選歳ーだ"
+        />
+      )}
+
+      <div className={pathName == "/mypage" ? "mt-[108px]" : ""}>
+        {pathName !== "/author" && pathName !== "/newnovel" ? <Banner /> : ""}
+      </div>
+      <div
+        className={`main-content ${
+          pathName !== "/author" && pathName !== "/newnovel"
+            ? "mt-[20px]"
+            : " mt-[140px]"
+        }`}
+      >
+        <div className="l-container">
+          <div className="flex gap-x-3">
+            <Outlet />
+          </div>
         </div>
-    );
+      </div>
+      <Footer />
+    </div>
+  );
 }
