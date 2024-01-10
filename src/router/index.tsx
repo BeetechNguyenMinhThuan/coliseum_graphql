@@ -1,14 +1,16 @@
-import NotFoundPage from "pages/Error/NotFoundPage";
-import Home from "pages/Home/Home";
-import Layout from "pages/Layout/Layout";
 import { createBrowserRouter } from "react-router-dom";
-import { Coliseum } from "../pages/Coliseum/Coliseum.tsx";
-import { Tournament } from "../pages/Tournament/Tournament.tsx";
-import { Author } from "../pages/Author/Author.tsx";
-import MyPage from "pages/MyPage/MyPage.tsx";
-import Login from "../pages/Authentication/Login/Login.tsx";
-import AuthLayout from "../pages/Authentication/Layout/AuthLayout.tsx";
-import NewNovel from "pages/NewNovel/NewNovel.tsx";
+import Layout from "@/pages/Layout/Layout.tsx";
+import NotFoundPage from "@/pages/Error/NotFoundPage.tsx";
+import Home from "@/pages/Home/Home.tsx";
+import { Coliseum } from "@/pages/Coliseum/Coliseum.tsx";
+import { Tournament } from "@/pages/Tournament/Tournament.tsx";
+import { Author } from "@/pages/Author/Author.tsx";
+import MyPage from "@/pages/MyPage/MyPage.tsx";
+import NewNovel from "@/pages/NewNovel/NewNovel.tsx";
+import AuthLayout from "@/pages/Authentication/Layout/AuthLayout.tsx";
+import Login from "@/pages/Authentication/Login/Login.tsx";
+import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
+
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -37,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "/newnovel",
         element: <NewNovel />,
+      },
+      {
+        path: "/tournament-board",
+        element: <TournamentBoard />,
       },
     ],
   },

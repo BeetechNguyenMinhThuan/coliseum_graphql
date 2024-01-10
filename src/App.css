@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    .l-container {
-        max-width: 1280px;
-        @apply mx-auto px-4
-    }
-}
 
 @layer base {
     .scroll-sidebar::-webkit-scrollbar {
@@ -17,25 +11,109 @@
     .scroll-sidebar::-webkit-scrollbar-thumb {
         background: rgb(189, 202, 217);
     }
+
 }
 
-.active {
-    color: red;
-}
 
-.swiper-button-prev{
-    left: var(--swiper-navigation-sides-offset, 350px);
-}
+@layer components {
+    .l-container {
+        max-width: 1280px;
+        @apply mx-auto px-4
+    }
 
-.swiper-button-next{
-    right: var(--swiper-navigation-sides-offset, 350px);
-}
+    .bread-crumbs {
+        text-align: center;
+    }
 
-.image-banner{
-    cursor: grab;
-}
+    .bread-crumbs ul {
+        display: inline-block;
+    }
 
-.image-ads{
-    height: 300px;
-    width: 300px;
+    .bread-crumbs ul li {
+        display: inline;
+    }
+
+    .bread-crumbs ul li a {
+        background-color: #f3f5fa;
+        padding: 30px 20px 0 60px;
+        position: relative;
+        margin: 0 10px 0 0;
+        float: left;
+        display: block;
+        height: 80px;
+        font-size: 15px;
+        text-decoration: none;
+        color: #8093a7;
+    }
+
+
+    .bread-crumbs ul li a:after {
+        content: "";
+        border-top: 40px solid transparent;
+        border-bottom: 40px solid transparent;
+        border-left: 40px solid #f3f5fa;
+        position: absolute;
+        right: -40px;
+        top: 0;
+        z-index: 1;
+    }
+
+    .bread-crumbs ul li a:before {
+        content: "";
+        border-top: 40px solid transparent;
+        border-bottom: 40px solid transparent;
+        border-left: 40px solid #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .bread-crumbs ul li:first-child a {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .bread-crumbs ul li:first-child a:before {
+        display: none;
+    }
+
+    .bread-crumbs ul li:first-child a {
+        padding-right: 40px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .bread-crumbs ul li:Last-child a:after {
+        display: none;
+    }
+
+    .bread-crumbs ul li a:hover {
+        background: #333;
+    }
+
+    .bread-crumbs ul li a:hover:after {
+        border-left-color: #333;
+        color: #fff
+    }
+
+    .active {
+        color: red;
+    }
+
+    .swiper-button-prev {
+        left: var(--swiper-navigation-sides-offset, 350px);
+    }
+
+    .swiper-button-next {
+        right: var(--swiper-navigation-sides-offset, 350px);
+    }
+
+    .image-banner {
+        cursor: grab;
+    }
+
+    .image-ads {
+        height: 300px;
+        width: 300px;
+    }
 }

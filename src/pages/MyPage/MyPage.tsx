@@ -2,13 +2,13 @@ import NovelListUpload from "components/NovelUpload/NovelListUpload";
 import { SideBarMyPage } from "components/SideBar/SideBarMyPage";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { Advertisement } from "../../components/Advertisement";
 
 // import Button from "../../components/Button/Button.tsx";
 
 import { Title } from "../../components/Common";
 import { Button } from "flowbite-react";
 import Accordition from "components/Accordition/Accordition.tsx";
+import { Advertisement } from "@/components/Advertisement";
 
 export default function MyPage() {
   const navigate = useNavigate();

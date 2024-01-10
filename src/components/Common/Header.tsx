@@ -75,7 +75,7 @@ export function Header() {
               <NavLink to="/newnovel">New Novel</NavLink>
             </li>
             <li>
-              <NavLink to="/nav">MyPage</NavLink>
+              <NavLink to="/tournament-board">Tournament Board</NavLink>
             </li>
             <li>
               <NavLink to="/nav">MyPage</NavLink>
