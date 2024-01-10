@@ -36,7 +36,8 @@ export default function Layout() {
 
       {(pathName == "/" ||
         pathName == "/coliseum" ||
-        pathName == "/tournament") && (
+        pathName == "/tournament" ||
+        pathName == "/tournament-board") && (
         <Hero
           title="選歳ーだ平申1ゅゆ選歳ーだ平申ゅゆ歳ーだ平申ゅゆ"
           subtitle="選歳ーだ"

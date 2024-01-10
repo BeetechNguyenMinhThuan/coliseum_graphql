@@ -25,22 +25,18 @@
         text-align: center;
     }
 
-    .bread-crumbs ul {
-        display: inline-block;
-    }
-
     .bread-crumbs ul li {
         display: inline;
     }
 
     .bread-crumbs ul li a {
         background-color: #f3f5fa;
-        padding: 30px 20px 0 60px;
+        padding: 15px 50px 0 60px;
         position: relative;
         margin: 0 10px 0 0;
         float: left;
         display: block;
-        height: 80px;
+        height: 50px;
         font-size: 15px;
         text-decoration: none;
         color: #8093a7;
@@ -49,8 +45,8 @@
 
     .bread-crumbs ul li a:after {
         content: "";
-        border-top: 40px solid transparent;
-        border-bottom: 40px solid transparent;
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
         border-left: 40px solid #f3f5fa;
         position: absolute;
         right: -40px;
@@ -60,17 +56,12 @@
 
     .bread-crumbs ul li a:before {
         content: "";
-        border-top: 40px solid transparent;
-        border-bottom: 40px solid transparent;
-        border-left: 40px solid #fff;
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 36px solid #fff;
         position: absolute;
         left: 0;
         top: 0;
-    }
-
-    .bread-crumbs ul li:first-child a {
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
     }
 
     .bread-crumbs ul li:first-child a:before {
@@ -79,8 +70,6 @@
 
     .bread-crumbs ul li:first-child a {
         padding-right: 40px;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
     }
 
     .bread-crumbs ul li:Last-child a:after {
@@ -116,4 +105,52 @@
         height: 300px;
         width: 300px;
     }
+
+    .progressbar-one {
+        position: relative;
+        max-width: 146px;
+        background: white;
+        border: 1px solid #000;
+        border-left: none; /* Remove the right border */
+        margin-bottom: 13px;
+        margin-top: 40px;
+    }
+
+    .final-result::before{
+        content: "";
+        border-color: black;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        width: 36px;
+        position: absolute;
+        transform: translateY(12px) translateX(-38px);
+    }
+
+    .player-two::after{
+        content: "";
+        border-color: black;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        width: 221px;
+        position: absolute;
+        transform: translateY(0px) translateX(369px) rotate3d(1, 0, 0, 180deg);
+        height: 15px;
+    }
+
+    .player-one::after{
+        content: "";
+        border-color: black;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        width: 221px;
+        position: absolute;
+        transform: translateY(12px) translateX(369px);
+        height: 15px;
+    }
+
+    .active-result{
+        background-color: red;
+    }
+
+
 }
