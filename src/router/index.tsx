@@ -10,6 +10,7 @@ import NewNovel from "@/pages/NewNovel/NewNovel.tsx";
 import AuthLayout from "@/pages/Authentication/Layout/AuthLayout.tsx";
 import Login from "@/pages/Authentication/Login/Login.tsx";
 import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
+import { Test } from "@/pages/Test/Test.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/tournament-board",
         element: <TournamentBoard />,
+      },
+      {
+        path: "/test-coli",
+        element: <Test />,
       },
     ],
   },

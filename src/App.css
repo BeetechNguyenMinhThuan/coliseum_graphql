@@ -13,7 +13,9 @@
     }
 
 }
-
+.active {
+    color: red;
+}
 
 @layer components {
     .l-container {
@@ -85,9 +87,7 @@
         color: #fff
     }
 
-    .active {
-        color: red;
-    }
+
 
     .swiper-button-prev {
         left: var(--swiper-navigation-sides-offset, 350px);

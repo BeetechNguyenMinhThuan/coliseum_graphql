@@ -1,10 +1,26 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { ja, vi } from "date-fns/locale";
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+registerLocale("ja", ja);
+registerLocale("vi", vi);
 
 export function Header() {
   const navigate = useNavigate();
   const [randomNumber, setRandomNumber] = useState(1);
+  const { t, i18n } = useTranslation();
 
+  const [currentLanguage, setCurrentLanguage] = useState(
+    localStorage.getItem("current_language") || "ja",
+  );
+  const handleChangeLanguage = async (lang: string) => {
+    setCurrentLanguage(lang);
+    await i18n.changeLanguage(lang);
+    localStorage.setItem("current_language", lang);
+  };
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -36,6 +52,22 @@ export function Header() {
               </li>
               <li>
                 <NavLink to="/test">Hello, Coliseum</NavLink>
+              </li>
+              <li>
+                <button
+                  className={currentLanguage === "ja" ? "text-orange-500" : ""}
+                  onClick={() => handleChangeLanguage("ja")}
+                >
+                  Tiếng Nhật
+                </button>
+              </li>
+              <li>
+                <button
+                  className={currentLanguage === "vi" ? "text-orange-500" : ""}
+                  onClick={() => handleChangeLanguage("vi")}
+                >
+                  Tiếng Việt
+                </button>
               </li>
             </ul>
           </div>
@@ -78,7 +110,7 @@ export function Header() {
               <NavLink to="/tournament-board">Tournament Board</NavLink>
             </li>
             <li>
-              <NavLink to="/nav">MyPage</NavLink>
+              <NavLink to="/test-coli">Test</NavLink>
             </li>
             <li>
               <NavLink to="/nav">MyPage</NavLink>

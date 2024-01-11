@@ -6,9 +6,9 @@ import { useEffect } from "react";
 // import Button from "../../components/Button/Button.tsx";
 
 import { Title } from "../../components/Common";
-import { Button } from "flowbite-react";
 import Accordition from "components/Accordition/Accordition.tsx";
 import { Advertisement } from "@/components/Advertisement";
+import Button from "@/components/Button/Button.tsx";
 
 export default function MyPage() {
   const navigate = useNavigate();
