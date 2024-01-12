@@ -13,8 +13,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n    query getBooksQuery {\n        books{\n            id\n            name\n            genre\n        }\n    }\n": types.GetBooksQueryDocument,
-    "\n    query getSingleBookQuery($id: ID!)  {\n        book(id: $id){\n            id\n            name\n            genre\n            author{\n                id\n                name\n                age\n                books{\n                    id\n                    name\n                    genre\n                }\n            }\n        }\n    }\n": types.GetSingleBookQueryDocument,
+    "\nmutation CreateRound($input: RoundInput!) {\n  createRound(input: $input) {\n    round_id\n    ulid\n    round_name\n    round_start_at\n    round_type\n\n  }\n}\n": types.CreateRoundDocument,
+    "\n        query GetUsers($page: Int!, $limit: Int!) {\n            getUsersPaginate(page: $page, limit: $limit) {\n                users {\n                    user_id\n                    name\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    ": types.GetUsersDocument,
+    "\n       query Rounds {\n          rounds {\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    ": types.RoundsDocument,
 };
 
 /**
@@ -34,11 +35,15 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query getBooksQuery {\n        books{\n            id\n            name\n            genre\n        }\n    }\n"): (typeof documents)["\n    query getBooksQuery {\n        books{\n            id\n            name\n            genre\n        }\n    }\n"];
+export function gql(source: "\nmutation CreateRound($input: RoundInput!) {\n  createRound(input: $input) {\n    round_id\n    ulid\n    round_name\n    round_start_at\n    round_type\n\n  }\n}\n"): (typeof documents)["\nmutation CreateRound($input: RoundInput!) {\n  createRound(input: $input) {\n    round_id\n    ulid\n    round_name\n    round_start_at\n    round_type\n\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n    query getSingleBookQuery($id: ID!)  {\n        book(id: $id){\n            id\n            name\n            genre\n            author{\n                id\n                name\n                age\n                books{\n                    id\n                    name\n                    genre\n                }\n            }\n        }\n    }\n"): (typeof documents)["\n    query getSingleBookQuery($id: ID!)  {\n        book(id: $id){\n            id\n            name\n            genre\n            author{\n                id\n                name\n                age\n                books{\n                    id\n                    name\n                    genre\n                }\n            }\n        }\n    }\n"];
+export function gql(source: "\n        query GetUsers($page: Int!, $limit: Int!) {\n            getUsersPaginate(page: $page, limit: $limit) {\n                users {\n                    user_id\n                    name\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    "): (typeof documents)["\n        query GetUsers($page: Int!, $limit: Int!) {\n            getUsersPaginate(page: $page, limit: $limit) {\n                users {\n                    user_id\n                    name\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n       query Rounds {\n          rounds {\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    "): (typeof documents)["\n       query Rounds {\n          rounds {\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    "];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
