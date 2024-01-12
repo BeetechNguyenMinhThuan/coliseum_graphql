@@ -11,6 +11,7 @@ import AuthLayout from "@/pages/Authentication/Layout/AuthLayout.tsx";
 import Login from "@/pages/Authentication/Login/Login.tsx";
 import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
 import { Test } from "@/pages/Test/Test.tsx";
+import AddNovel from "@/pages/AddNovel/AddNovel";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/test-coli",
         element: <Test />,
+      },
+      {
+        path: "/add-novel",
+        element: <AddNovel />,
       },
     ],
   },
