@@ -12,3 +12,10 @@ mutation CreateRound($input: RoundInput!) {
   }
 }
 `);
+export const EXPORT_CSV_MUTATION = gql(`
+mutation exportCSV($modelName: String) {
+  exportCSV(modelName: $modelName) {
+   downloadUrl
+  }
+}
+`);

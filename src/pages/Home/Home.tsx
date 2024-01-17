@@ -5,9 +5,34 @@ import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { NovelNewContainer } from "components/Novel/NovelNewContainer.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
+import { useMutation } from "@apollo/client";
+import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
 
 const Home = () => {
   const { t } = useTranslation();
+  const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
+  const handleExportCSV = async () => {
+    try {
+      const { data } = await exportCSVMutation({
+        variables: { modelName: "User" },
+      });
+      const fileData = JSON.stringify(data.exportCSV);
+
+      // Tạo Blob từ dữ liệu CSV
+      const blob = new Blob([fileData], { type: "text/csv" });
+
+      // Tạo URL tạm thời cho Blob
+      const url = URL.createObjectURL(blob);
+
+      // Tải file CSV
+      window.open(url, "_blank");
+
+      // Hoặc sử dụng thư viện file-saver để tải file
+      // require('file-saver').saveAs(url, 'exportedFile.csv');
+    } catch (error) {
+      console.error("Error exporting CSV:", error);
+    }
+  };
 
   const novels = [
     {
@@ -129,6 +154,7 @@ const Home = () => {
     <>
       <SidebarHome />
       <div className="content flex-1">
+        <button onClick={handleExportCSV}>Export CSV</button>
         {/* Bungo Coliseum tournament  */}
         <div className="border-black-500 min-h-[188px] border-2 border-solid p-2">
           <div className="text-center text-3xl">

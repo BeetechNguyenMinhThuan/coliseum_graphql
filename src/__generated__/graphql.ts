@@ -85,6 +85,38 @@ export type Event = {
   updated_at?: Maybe<Scalars['DateTime']['output']>;
 };
 
+export type EventComment = {
+  __typename?: 'EventComment';
+  comment?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['String']['output']>;
+  deleted_at?: Maybe<Scalars['String']['output']>;
+  event_comment_id: Scalars['ID']['output'];
+  event_id: Scalars['Int']['output'];
+  is_official_allow?: Maybe<Scalars['Boolean']['output']>;
+  response_comment_id?: Maybe<Scalars['Int']['output']>;
+  score?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['String']['output']>;
+  user_id: Scalars['Int']['output'];
+};
+
+export type EventCommentInputCreate = {
+  comment?: InputMaybe<Scalars['String']['input']>;
+  event_id: Scalars['Int']['input'];
+  is_official_allow?: InputMaybe<Scalars['Boolean']['input']>;
+  response_comment_id?: InputMaybe<Scalars['Int']['input']>;
+  score?: InputMaybe<Scalars['Int']['input']>;
+  user_id: Scalars['Int']['input'];
+};
+
+export type EventCommentInputUpdate = {
+  comment?: InputMaybe<Scalars['String']['input']>;
+  event_id: Scalars['Int']['input'];
+  is_official_allow?: InputMaybe<Scalars['Boolean']['input']>;
+  response_comment_id?: InputMaybe<Scalars['Int']['input']>;
+  score?: InputMaybe<Scalars['Int']['input']>;
+  user_id: Scalars['Int']['input'];
+};
+
 export type EventInput = {
   current_round_id?: InputMaybe<Scalars['Int']['input']>;
   current_round_name?: InputMaybe<Scalars['String']['input']>;
@@ -115,6 +147,20 @@ export type EventInput = {
   tag_id?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type EventParticipant = {
+  __typename?: 'EventParticipant';
+  created_at?: Maybe<Scalars['DateTime']['output']>;
+  deleted_at?: Maybe<Scalars['DateTime']['output']>;
+  event_id?: Maybe<Scalars['Int']['output']>;
+  novel_id?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type ExportCsvSuccess = {
+  __typename?: 'ExportCSVSuccess';
+  downloadUrl?: Maybe<Scalars['String']['output']>;
+};
+
 export type Match = {
   __typename?: 'Match';
   created_at?: Maybe<Scalars['String']['output']>;
@@ -129,36 +175,101 @@ export type Match = {
   winner_type?: Maybe<Scalars['Int']['output']>;
 };
 
+export type MatchNovel = {
+  __typename?: 'MatchNovel';
+  created_at?: Maybe<Scalars['DateTime']['output']>;
+  deleted_at?: Maybe<Scalars['DateTime']['output']>;
+  is_post?: Maybe<Scalars['Boolean']['output']>;
+  match_id?: Maybe<Scalars['Int']['output']>;
+  novel_id?: Maybe<Scalars['Int']['output']>;
+  result_type?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['DateTime']['output']>;
+  vote_count?: Maybe<Scalars['Int']['output']>;
+};
+
+export type MatchNovelCreate = {
+  is_post?: InputMaybe<Scalars['Boolean']['input']>;
+  match_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+  result_type?: InputMaybe<Scalars['Int']['input']>;
+  vote_count?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type MatchNovelUpdate = {
+  is_post?: InputMaybe<Scalars['Boolean']['input']>;
+  result_type?: InputMaybe<Scalars['Int']['input']>;
+  vote_count?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type MatchVote = {
+  __typename?: 'MatchVote';
+  created_at?: Maybe<Scalars['DateTime']['output']>;
+  deleted_at?: Maybe<Scalars['DateTime']['output']>;
+  is_titaling?: Maybe<Scalars['Boolean']['output']>;
+  match_vote_id?: Maybe<Scalars['Int']['output']>;
+  novel_id?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['DateTime']['output']>;
+  vote_count?: Maybe<Scalars['Int']['output']>;
+};
+
+export type MatchVoteCreate = {
+  is_titaling?: InputMaybe<Scalars['Boolean']['input']>;
+  match_vote_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+  vote_count?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type MatchVoteUpdate = {
+  is_titaling?: InputMaybe<Scalars['Boolean']['input']>;
+  vote_count?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createEpisode?: Maybe<Episode>;
   createEvent?: Maybe<Event>;
+  createEventComment?: Maybe<EventComment>;
+  createEventParticipant?: Maybe<EventParticipant>;
   createMatch?: Maybe<Match>;
+  createMatchNovel?: Maybe<MatchNovel>;
+  createMatchVote?: Maybe<MatchVote>;
   createNovel?: Maybe<Novel>;
+  createNovelComment?: Maybe<NovelComment>;
   createOfficialBadge?: Maybe<OfficialBadge>;
   createOfficialTag?: Maybe<OfficialTag>;
   createRound?: Maybe<Round>;
   createUser: CreateUserResponse;
   createUserBadge?: Maybe<UserBadges>;
+  createUserBookmark?: Maybe<UserBookmark>;
   createUserLike?: Maybe<UserLike>;
   deleteEpisode?: Maybe<Scalars['String']['output']>;
   deleteEvent?: Maybe<Scalars['String']['output']>;
+  deleteEventComment?: Maybe<Scalars['String']['output']>;
+  deleteEventParticipant?: Maybe<Scalars['String']['output']>;
   deleteMatch?: Maybe<Match>;
+  deleteMatchNovel?: Maybe<Scalars['String']['output']>;
+  deleteMatchVote?: Maybe<Scalars['String']['output']>;
   deleteNovel?: Maybe<Scalars['String']['output']>;
+  deleteNovelComment?: Maybe<NovelComment>;
   deleteOfficialBadge?: Maybe<Scalars['String']['output']>;
   deleteOfficialTag?: Maybe<Scalars['String']['output']>;
   deleteRound?: Maybe<Scalars['String']['output']>;
   deleteUserBadge?: Maybe<UserBadges>;
+  deleteUserBookmark?: Maybe<Scalars['String']['output']>;
   deleteUserLike?: Maybe<Scalars['String']['output']>;
+  exportCSV?: Maybe<ExportCsvSuccess>;
   updateEpisode?: Maybe<Episode>;
   updateEvent?: Maybe<Event>;
+  updateEventComment?: Maybe<EventComment>;
   updateMatch?: Maybe<Array<Maybe<Match>>>;
+  updateMatchNovel?: Maybe<MatchNovel>;
+  updateMatchVote?: Maybe<MatchVote>;
   updateMultipleRound?: Maybe<Scalars['String']['output']>;
   updateNovel?: Maybe<Novel>;
+  updateNovelComment?: Maybe<Array<Maybe<NovelComment>>>;
   updateOfficialBadge?: Maybe<OfficialBadge>;
   updateOfficialTag?: Maybe<OfficialTag>;
   updateRound?: Maybe<Round>;
-  updateUserBadge?: Maybe<UserBadges>;
 };
 
 
@@ -172,6 +283,17 @@ export type MutationCreateEventArgs = {
 };
 
 
+export type MutationCreateEventCommentArgs = {
+  input?: InputMaybe<EventCommentInputCreate>;
+};
+
+
+export type MutationCreateEventParticipantArgs = {
+  event_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
 export type MutationCreateMatchArgs = {
   match_name: Scalars['String']['input'];
   match_uuid: Scalars['String']['input'];
@@ -182,8 +304,30 @@ export type MutationCreateMatchArgs = {
 };
 
 
+export type MutationCreateMatchNovelArgs = {
+  input?: InputMaybe<MatchNovelCreate>;
+};
+
+
+export type MutationCreateMatchVoteArgs = {
+  input?: InputMaybe<MatchVoteCreate>;
+};
+
+
 export type MutationCreateNovelArgs = {
   input: NovelInput;
+};
+
+
+export type MutationCreateNovelCommentArgs = {
+  comment?: InputMaybe<Scalars['String']['input']>;
+  episode_id?: InputMaybe<Scalars['Int']['input']>;
+  is_official_allow?: InputMaybe<Scalars['Int']['input']>;
+  is_publish?: InputMaybe<Scalars['Int']['input']>;
+  novel_id: Scalars['Int']['input'];
+  response_comment_id?: InputMaybe<Scalars['Int']['input']>;
+  score?: InputMaybe<Scalars['Int']['input']>;
+  user_id: Scalars['Int']['input'];
 };
 
 
@@ -220,8 +364,14 @@ export type MutationCreateUserBadgeArgs = {
 };
 
 
-export type MutationCreateUserLikeArgs = {
+export type MutationCreateUserBookmarkArgs = {
   novel_id?: InputMaybe<Scalars['Int']['input']>;
+  user_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type MutationCreateUserLikeArgs = {
+  novel_id?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   user_id?: InputMaybe<Scalars['Int']['input']>;
 };
 
@@ -236,13 +386,41 @@ export type MutationDeleteEventArgs = {
 };
 
 
+export type MutationDeleteEventCommentArgs = {
+  event_comment_id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteEventParticipantArgs = {
+  event_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
 export type MutationDeleteMatchArgs = {
   match_id: Scalars['ID']['input'];
 };
 
 
+export type MutationDeleteMatchNovelArgs = {
+  match_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type MutationDeleteMatchVoteArgs = {
+  match_vote_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
 export type MutationDeleteNovelArgs = {
   novel_id: Scalars['Int']['input'];
+};
+
+
+export type MutationDeleteNovelCommentArgs = {
+  novel_comment_id: Scalars['ID']['input'];
 };
 
 
@@ -267,9 +445,20 @@ export type MutationDeleteUserBadgeArgs = {
 };
 
 
+export type MutationDeleteUserBookmarkArgs = {
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+  user_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
 export type MutationDeleteUserLikeArgs = {
   novel_id?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   user_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type MutationExportCsvArgs = {
+  modelName?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -285,8 +474,28 @@ export type MutationUpdateEventArgs = {
 };
 
 
+export type MutationUpdateEventCommentArgs = {
+  event_comment_id?: InputMaybe<Scalars['Int']['input']>;
+  input: EventCommentInputUpdate;
+};
+
+
 export type MutationUpdateMatchArgs = {
   updates: Array<UpdateMatchInput>;
+};
+
+
+export type MutationUpdateMatchNovelArgs = {
+  input?: InputMaybe<MatchNovelUpdate>;
+  match_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type MutationUpdateMatchVoteArgs = {
+  input?: InputMaybe<MatchVoteUpdate>;
+  match_vote_id?: InputMaybe<Scalars['Int']['input']>;
+  novel_id?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -299,6 +508,11 @@ export type MutationUpdateMultipleRoundArgs = {
 export type MutationUpdateNovelArgs = {
   input: NovelInput;
   novel_id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateNovelCommentArgs = {
+  updates: Array<NovelCommentInput>;
 };
 
 
@@ -326,12 +540,6 @@ export type MutationUpdateRoundArgs = {
   round_id: Scalars['Int']['input'];
 };
 
-
-export type MutationUpdateUserBadgeArgs = {
-  badges_id?: InputMaybe<Scalars['String']['input']>;
-  user_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
 export type Novel = {
   __typename?: 'Novel';
   afterword_url?: Maybe<Scalars['String']['output']>;
@@ -350,13 +558,44 @@ export type Novel = {
   is_publish?: Maybe<Scalars['Boolean']['output']>;
   is_ranking_visible?: Maybe<Scalars['Boolean']['output']>;
   note_url?: Maybe<Scalars['String']['output']>;
+  novel_badges?: Maybe<Array<Maybe<OfficialBadge>>>;
+  novel_comments?: Maybe<Array<Maybe<NovelComment>>>;
   novel_id?: Maybe<Scalars['Int']['output']>;
+  novel_tag?: Maybe<Array<Maybe<OfficialTag>>>;
   novel_ulid?: Maybe<Scalars['String']['output']>;
   setting_url?: Maybe<Scalars['String']['output']>;
   synopsis?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['DateTime']['output']>;
   user_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type NovelComment = {
+  __typename?: 'NovelComment';
+  comment?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['String']['output']>;
+  deleted_at?: Maybe<Scalars['String']['output']>;
+  episode_id?: Maybe<Scalars['Int']['output']>;
+  is_official_allow?: Maybe<Scalars['Int']['output']>;
+  is_publish?: Maybe<Scalars['Int']['output']>;
+  novel_comment_id: Scalars['ID']['output'];
+  novel_id: Scalars['Int']['output'];
+  response_comment_id?: Maybe<Scalars['Int']['output']>;
+  score?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['String']['output']>;
+  user_id: Scalars['Int']['output'];
+};
+
+export type NovelCommentInput = {
+  episode_id?: InputMaybe<Scalars['Int']['input']>;
+  is_official_allow?: InputMaybe<Scalars['Int']['input']>;
+  is_publish?: InputMaybe<Scalars['Int']['input']>;
+  match_name?: InputMaybe<Scalars['String']['input']>;
+  novel_comment_id: Scalars['ID']['input'];
+  novel_id: Scalars['Int']['input'];
+  response_comment_id?: InputMaybe<Scalars['Int']['input']>;
+  score?: InputMaybe<Scalars['Int']['input']>;
+  user_id: Scalars['Int']['input'];
 };
 
 export type NovelInput = {
@@ -415,11 +654,19 @@ export type Query = {
   getAllMatches?: Maybe<Array<Maybe<Match>>>;
   getAllOfficialBadges?: Maybe<Array<Maybe<OfficialBadge>>>;
   getAllOfficialTags?: Maybe<Array<Maybe<OfficialTag>>>;
+  getEventComment?: Maybe<Array<Maybe<EventComment>>>;
+  getEventCommentById?: Maybe<EventComment>;
+  getEventParticipant?: Maybe<Array<Maybe<EventParticipant>>>;
   getMatchById?: Maybe<Match>;
+  getMatchNovel?: Maybe<Array<Maybe<MatchNovel>>>;
+  getMatchVote?: Maybe<Array<Maybe<MatchVote>>>;
+  getNovelComment?: Maybe<Array<Maybe<NovelComment>>>;
+  getNovelCommentById?: Maybe<NovelComment>;
   getOfficialBadgeById?: Maybe<OfficialBadge>;
   getOfficialTagById?: Maybe<OfficialTag>;
-  getUserAndBadge?: Maybe<UserBadges>;
-  getUserLike?: Maybe<UserLike>;
+  getUserAndBadge?: Maybe<Array<UserBadges>>;
+  getUserBookmark?: Maybe<Array<Maybe<UserBookmark>>>;
+  getUserLike?: Maybe<Array<Maybe<UserLike>>>;
   getUsers?: Maybe<Array<Maybe<User>>>;
   getUsersPaginate?: Maybe<UserPagination>;
   novel?: Maybe<Novel>;
@@ -439,8 +686,18 @@ export type QueryEventArgs = {
 };
 
 
+export type QueryGetEventCommentByIdArgs = {
+  novel_comment_id: Scalars['ID']['input'];
+};
+
+
 export type QueryGetMatchByIdArgs = {
   match_id: Scalars['ID']['input'];
+};
+
+
+export type QueryGetNovelCommentByIdArgs = {
+  novel_comment_id: Scalars['ID']['input'];
 };
 
 
@@ -529,18 +786,29 @@ export type User = {
   first_login_at: Scalars['DateTime']['output'];
   last_login_at: Scalars['DateTime']['output'];
   name: Scalars['String']['output'];
+  novel_bookmark?: Maybe<Array<Maybe<Novel>>>;
   novel_like?: Maybe<Array<Maybe<Novel>>>;
   s3_url: Scalars['String']['output'];
   updated_at?: Maybe<Scalars['DateTime']['output']>;
+  user_badges?: Maybe<Array<Maybe<OfficialBadge>>>;
   user_id: Scalars['ID']['output'];
   user_uuid: Scalars['String']['output'];
 };
 
 export type UserBadges = {
   __typename?: 'UserBadges';
-  badge_id?: Maybe<Scalars['String']['output']>;
+  badges_id?: Maybe<Scalars['Int']['output']>;
   created_at?: Maybe<Scalars['DateTime']['output']>;
   deleted_at?: Maybe<Scalars['DateTime']['output']>;
+  updated_at?: Maybe<Scalars['DateTime']['output']>;
+  user_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type UserBookmark = {
+  __typename?: 'UserBookmark';
+  created_at?: Maybe<Scalars['DateTime']['output']>;
+  deleted_at?: Maybe<Scalars['DateTime']['output']>;
+  novel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['DateTime']['output']>;
   user_id?: Maybe<Scalars['Int']['output']>;
 };
@@ -556,7 +824,7 @@ export type UserLike = {
 
 export type UserLikeNovel = {
   __typename?: 'UserLikeNovel';
-  novel_id: Scalars['Int']['output'];
+  novel_id: Array<Maybe<Scalars['Int']['output']>>;
   user_id: Scalars['Int']['output'];
 };
 
@@ -583,6 +851,13 @@ export type CreateRoundMutationVariables = Exact<{
 
 export type CreateRoundMutation = { __typename?: 'Mutation', createRound?: { __typename?: 'Round', round_id?: number | null, ulid?: string | null, round_name?: string | null, round_start_at?: any | null, round_type?: number | null } | null };
 
+export type ExportCsvMutationVariables = Exact<{
+  modelName?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type ExportCsvMutation = { __typename?: 'Mutation', exportCSV?: { __typename?: 'ExportCSVSuccess', downloadUrl?: string | null } | null };
+
 export type GetUsersQueryVariables = Exact<{
   page: Scalars['Int']['input'];
   limit: Scalars['Int']['input'];
@@ -598,5 +873,6 @@ export type RoundsQuery = { __typename?: 'Query', rounds?: Array<{ __typename?: 
 
 
 export const CreateRoundDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateRound"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RoundInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createRound"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"round_id"}},{"kind":"Field","name":{"kind":"Name","value":"ulid"}},{"kind":"Field","name":{"kind":"Name","value":"round_name"}},{"kind":"Field","name":{"kind":"Name","value":"round_start_at"}},{"kind":"Field","name":{"kind":"Name","value":"round_type"}}]}}]}}]} as unknown as DocumentNode<CreateRoundMutation, CreateRoundMutationVariables>;
+export const ExportCsvDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"exportCSV"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"modelName"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"exportCSV"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"modelName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"modelName"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"downloadUrl"}}]}}]}}]} as unknown as DocumentNode<ExportCsvMutation, ExportCsvMutationVariables>;
 export const GetUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUsers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUsersPaginate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user_id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"totalItems"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}}]}}]}}]} as unknown as DocumentNode<GetUsersQuery, GetUsersQueryVariables>;
 export const RoundsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Rounds"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rounds"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"round_name"}},{"kind":"Field","name":{"kind":"Name","value":"round_start_at"}},{"kind":"Field","name":{"kind":"Name","value":"round_type"}}]}}]}}]} as unknown as DocumentNode<RoundsQuery, RoundsQueryVariables>;

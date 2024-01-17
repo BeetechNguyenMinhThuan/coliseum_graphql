@@ -89,7 +89,9 @@ export function Header() {
         <div className="l-container">
           <ul className="flex justify-between">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">
+                <h1>{t("common.home")}</h1>
+              </NavLink>
             </li>
             <li>
               <NavLink to="/coliseum">Coliseum</NavLink>
