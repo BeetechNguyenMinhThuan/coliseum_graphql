@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\nmutation CreateRound($input: RoundInput!) {\n  createRound(input: $input) {\n    round_id\n    ulid\n    round_name\n    round_start_at\n    round_type\n\n  }\n}\n": types.CreateRoundDocument,
-    "\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   downloadUrl\n  }\n}\n": types.ExportCsvDocument,
+    "\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   getCSVBlob\n  }\n}\n": types.ExportCsvDocument,
     "\n        query GetUsers($page: Int!, $limit: Int!) {\n            getUsersPaginate(page: $page, limit: $limit) {\n                users {\n                    user_id\n                    name\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    ": types.GetUsersDocument,
     "\n       query Rounds {\n          rounds {\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    ": types.RoundsDocument,
 };
@@ -40,7 +40,7 @@ export function gql(source: "\nmutation CreateRound($input: RoundInput!) {\n  cr
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   downloadUrl\n  }\n}\n"): (typeof documents)["\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   downloadUrl\n  }\n}\n"];
+export function gql(source: "\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   getCSVBlob\n  }\n}\n"): (typeof documents)["\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   getCSVBlob\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

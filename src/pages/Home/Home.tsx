@@ -7,30 +7,26 @@ import { NovelNewContainer } from "components/Novel/NovelNewContainer.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
 import { useMutation } from "@apollo/client";
 import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
+import { downloadFileFromContentBinary } from "@/utils/helper.ts";
 
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
+
   const handleExportCSV = async () => {
     try {
       const { data } = await exportCSVMutation({
-        variables: { modelName: "User" },
+        variables: { modelName: "User1" },
       });
-      const fileData = JSON.stringify(data.exportCSV);
-
-      // Tạo Blob từ dữ liệu CSV
-      const blob = new Blob([fileData], { type: "text/csv" });
-
-      // Tạo URL tạm thời cho Blob
-      const url = URL.createObjectURL(blob);
-
-      // Tải file CSV
-      window.open(url, "_blank");
-
-      // Hoặc sử dụng thư viện file-saver để tải file
-      // require('file-saver').saveAs(url, 'exportedFile.csv');
-    } catch (error) {
-      console.error("Error exporting CSV:", error);
+      console.log(data);
+      if (data && data?.exportCSV?.getCSVBlob) {
+        const csvDataString = data.exportCSV.getCSVBlob;
+        console.log(data);
+        console.log(csvDataString);
+        downloadFileFromContentBinary(csvDataString, "user_server.csv");
+      }
+    } catch (error: any) {
+      alert(`Export failed: ${error.message}`);
     }
   };
 
