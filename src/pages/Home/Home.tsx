@@ -16,14 +16,15 @@ const Home = () => {
   const handleExportCSV = async () => {
     try {
       const { data } = await exportCSVMutation({
-        variables: { modelName: "User1" },
+        variables: { modelName: "User" },
       });
       console.log(data);
-      if (data && data?.exportCSV?.getCSVBlob) {
-        const csvDataString = data.exportCSV.getCSVBlob;
+      if (data && data?.exportCSV) {
+        const csvDataString = data.exportCSV.csvString;
+        const fileName = data.exportCSV.fileName;
         console.log(data);
         console.log(csvDataString);
-        downloadFileFromContentBinary(csvDataString, "user_server.csv");
+        downloadFileFromContentBinary(csvDataString, fileName);
       }
     } catch (error: any) {
       alert(`Export failed: ${error.message}`);
