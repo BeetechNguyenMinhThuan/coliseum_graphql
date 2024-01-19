@@ -5,9 +5,28 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { GET_ROUNDS, GET_USERS } from "@/graphql-client/round/queries.ts";
 import { CREATE_ROUND } from "@/graphql-client/round/mutations.ts";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+import { Input, Typography } from "@material-tailwind/react";
+
+type Inputs = {
+  example: string;
+  exampleRequired: string;
+};
+
+interface IFormInput {
+  event_id: number;
+  ulid: string;
+  round_name: string;
+  round_start_at: Date;
+  round_type: number;
+}
 
 export function Test() {
   const { t, i18n } = useTranslation();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
   const [roundInput, setRoundInput] = useState({
     event_id: 123,
     ulid: "",
@@ -27,12 +46,36 @@ export function Test() {
     data: roundsData,
     refetch: roundsRefetch,
   } = useQuery(GET_ROUNDS);
-  console.log(roundsData);
+
+  const [
+    createRound,
+    { data: rounds, loading: roundLoading, error: roundError },
+  ] = useMutation(CREATE_ROUND);
+
   const handlePageChange = async (newPage: number) => {
     setCurrentPage(newPage);
     await refetch({ page: newPage, limit: limit });
   };
-  const handleChange = (name, value) => {
+
+  const handleFormSubmit = async () => {
+    try {
+      const submissionData = {
+        ...roundInput,
+        round_start_at: roundInput.round_start_at.toISOString(),
+        round_type: parseInt(roundInput.round_type), // Chuyển đổi ngày sang chuỗi ISO 8601
+      };
+      await createRound({
+        variables: { input: submissionData },
+      });
+      await roundsRefetch();
+      // ...
+    } catch (error) {
+      // Xử lý lỗi
+      console.log(error);
+    }
+  };
+
+  const handleInputChange = (name, value) => {
     setRoundInput({ ...roundInput, [name]: value });
   };
 
@@ -47,20 +90,23 @@ export function Test() {
     <>
       <SideBarTournament />
       <div className="content flex-1">
-        {data?.getUsersPaginate?.users?.map((user) => <div>{user.name}</div>)}
+        {data?.getUsersPaginate?.users?.map((user) => (
+          <div key={user.user_id}>{user.name}</div>
+        ))}
         <PaginationButtons
           currentPage={currentPage}
           totalPages={data?.getUsersPaginate?.totalPages}
           onPageChange={handlePageChange}
         />
+
         <h2 className="mb-5 text-center text-2xl font-bold">
           Form Create Round
         </h2>
 
         <FormCreateRound
           roundInput={roundInput}
-          handleChange={handleChange}
-          refetchRound={roundsRefetch}
+          onFormSubmit={handleFormSubmit}
+          onInputChange={handleInputChange}
         />
         <RoundList data={roundsData} />
       </div>
@@ -89,85 +135,88 @@ const PaginationButtons = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
-function FormCreateRound({ roundInput, handleChange, refetchRound }) {
-  const [
-    createRound,
-    { data: rounds, loading: roundLoading, error: roundError },
-  ] = useMutation(CREATE_ROUND);
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    try {
-      const submissionData = {
-        ...roundInput,
-        round_start_at: roundInput.round_start_at.toISOString(),
-        round_type: parseInt(roundInput.round_type), // Chuyển đổi ngày sang chuỗi ISO 8601
-      };
-      await createRound({
-        variables: { input: submissionData },
-      });
-      await refetchRound();
-      // ...
-    } catch (error) {
-      // Xử lý lỗi
-      console.log(error);
-    }
+function FormCreateRound({ roundInput, onFormSubmit, onInputChange }) {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm<IFormInput>();
+
+  const onSubmit = () => {
+    onFormSubmit();
   };
   return (
-    <form
-      action=""
-      className="mb-5 grid grid-cols-2 gap-x-3"
-      onSubmit={handleSubmit}
-    >
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="label-text">Ulid</span>
+    <>
+      <form
+        action=""
+        className="mb-5 grid grid-cols-2 gap-x-3"
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="mb-1 flex flex-col gap-6">
+          <Typography variant="h6" color="blue-gray" className="-mb-3">
+            Ulid
+          </Typography>
+          <Input
+            size="lg"
+            type="text"
+            placeholder="Type here"
+            {...register("ulid", { required: "Ulid is required" })}
+            value={roundInput.ulid}
+            onChange={(e) => onInputChange("ulid", e.target.value)}
+            className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
+          />
+          <p className="error">{errors.ulid?.message}</p>
         </div>
-        <input
-          type="text"
-          placeholder="Type here"
-          name="ulid"
-          value={roundInput.ulid}
-          onChange={(e) => handleChange("ulid", e.target.value)}
-          className="input input-bordered  input-md w-full"
-        />
-      </label>
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="label-text">Round name</span>
+        <div className="mb-1 flex flex-col gap-6">
+          <Typography variant="h6" color="blue-gray" className="-mb-3">
+            Round name
+          </Typography>
+          <Input
+            size="lg"
+            type="text"
+            placeholder="Type here"
+            {...register("round_name")}
+            value={roundInput.round_name}
+            onChange={(e) => onInputChange("round_name", e.target.value)}
+            className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
+          />
+          <p>{errors.round_name?.message}</p>
         </div>
-        <input
-          type="text"
-          placeholder="Type here"
-          name="round_name"
-          value={roundInput.round_name}
-          onChange={(e) => handleChange("round_name", e.target.value)}
-          className="input input-bordered  input-md w-full"
-        />
-      </label>
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="label-text">Round Start</span>
-        </div>
-        <MyDatePicker onInputChangeDate={handleChange} />
-      </label>
-      <label className="form-control w-full">
-        <div className="label">
-          <span className="label-text">Round Type</span>
-        </div>
-        <select
-          name="round_type"
-          onChange={(e) => handleChange("round_type", e.target.value)}
-          value={roundInput.round_type}
-          className="select select-bordered w-full"
-        >
-          <option value="1">Active</option>
-          <option value="2">Unactive</option>
-        </select>
-      </label>
-      <button type="submit" className="btn w-full">
-        Submit
-      </button>
-    </form>
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Round Start</span>
+          </div>
+          <MyDatePicker onInputChangeDate={onInputChange} />
+        </label>
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Round Type</span>
+          </div>
+          <select
+            name="round_type"
+            onChange={(e) => onInputChange("round_type", e.target.value)}
+            value={roundInput.round_type}
+            className="select select-bordered w-full"
+          >
+            <option value="1">Active</option>
+            <option value="2">Unactive</option>
+          </select>
+        </label>
+        <button type="submit" className="btn w-full">
+          Submit
+        </button>
+      </form>
+      <DevTool control={control} />
+    </>
   );
 }
 

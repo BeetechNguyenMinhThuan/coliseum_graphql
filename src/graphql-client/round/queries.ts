@@ -17,6 +17,7 @@ export const GET_USERS = gql(`
 export const GET_ROUNDS = gql(`
        query Rounds {
           rounds {
+            round_id
             round_name
             round_start_at
             round_type
