@@ -8,7 +8,6 @@ mutation CreateRound($input: RoundInput!) {
     round_name
     round_start_at
     round_type
-
   }
 }
 `);
@@ -18,5 +17,11 @@ mutation exportCSV($modelName: String) {
    csvString
    fileName
   }
+}
+`);
+
+export const DELETE_ROUND = gql(`
+mutation DeleteRound($roundId: Int!) {
+  deleteRound(round_id: $roundId)
 }
 `);

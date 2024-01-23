@@ -4,10 +4,15 @@ import { MyDatePicker } from "@/components/DatePicker/MyDatePicker.tsx";
 import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { GET_ROUNDS, GET_USERS } from "@/graphql-client/round/queries.ts";
-import { CREATE_ROUND } from "@/graphql-client/round/mutations.ts";
-import { useForm, SubmitHandler } from "react-hook-form";
+import {
+  CREATE_ROUND,
+  DELETE_ROUND,
+} from "@/graphql-client/round/mutations.ts";
+import { useForm, useController } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { Input, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 type Inputs = {
   example: string;
@@ -22,10 +27,14 @@ interface IFormInput {
   round_type: number;
 }
 
+interface FormCreateRoundProps {
+  roundInput: IFormInput;
+  onFormSubmit: () => void;
+  onInputChange: () => void;
+}
+
 export function Test() {
   const { t, i18n } = useTranslation();
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   const [roundInput, setRoundInput] = useState({
     event_id: 123,
@@ -52,17 +61,27 @@ export function Test() {
     { data: rounds, loading: roundLoading, error: roundError },
   ] = useMutation(CREATE_ROUND);
 
+  const [deleteRound] = useMutation(DELETE_ROUND);
+
   const handlePageChange = async (newPage: number) => {
     setCurrentPage(newPage);
     await refetch({ page: newPage, limit: limit });
   };
 
-  const handleFormSubmit = async () => {
+  const handleDeleteRound = async (roundId) => {
+    await deleteRound({
+      variables: { roundId: roundId },
+    });
+    await roundsRefetch();
+  };
+
+  const handleFormSubmit = async (data) => {
     try {
       const submissionData = {
-        ...roundInput,
-        round_start_at: roundInput.round_start_at.toISOString(),
-        round_type: parseInt(roundInput.round_type), // Chuyển đổi ngày sang chuỗi ISO 8601
+        ...data,
+        event_id: 123,
+        // round_start_at: data.round_start_at.toISOString(),
+        round_type: parseInt(data.round_type), // Chuyển đổi ngày sang chuỗi ISO 8601
       };
       await createRound({
         variables: { input: submissionData },
@@ -108,7 +127,7 @@ export function Test() {
           onFormSubmit={handleFormSubmit}
           onInputChange={handleInputChange}
         />
-        <RoundList data={roundsData} />
+        <RoundList data={roundsData} onDeleteRound={handleDeleteRound} />
       </div>
     </>
   );
@@ -134,18 +153,35 @@ const PaginationButtons = ({ currentPage, totalPages, onPageChange }) => {
     </div>
   );
 };
+const schema = yup
+  .object({
+    ulid: yup.string().required().max(10),
+    round_name: yup.string().required(),
+    round_type: yup.string().required(),
+  })
+  .required();
 
-function FormCreateRound({ roundInput, onFormSubmit, onInputChange }) {
+function FormCreateRound({
+  onFormSubmit,
+  onInputChange,
+}: FormCreateRoundProps) {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     control,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const onSubmit = () => {
-    onFormSubmit();
+  const onSubmit = (data) => {
+    console.log(data);
+    onFormSubmit(data);
+    reset({
+      round_name: "",
+      ulid: "",
+    });
   };
   return (
     <>
@@ -156,79 +192,91 @@ function FormCreateRound({ roundInput, onFormSubmit, onInputChange }) {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mb-1 flex flex-col gap-6">
-          <Typography variant="h6" color="blue-gray" className="-mb-3">
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="-mb-3"
+            placeholder={undefined}
+          >
             Ulid
           </Typography>
           <Input
+            crossOrigin={undefined}
             size="lg"
             type="text"
             placeholder="Type here"
-            {...register("ulid", { required: "Ulid is required" })}
-            value={roundInput.ulid}
-            onChange={(e) => onInputChange("ulid", e.target.value)}
+            {...register("ulid")}
             className="!border-t-blue-gray-200 focus:!border-t-gray-900"
             labelProps={{
               className: "before:content-none after:content-none",
             }}
           />
-          <p className="error">{errors.ulid?.message}</p>
+          <p className="text-red-500">{errors.ulid?.message}</p>
         </div>
         <div className="mb-1 flex flex-col gap-6">
-          <Typography variant="h6" color="blue-gray" className="-mb-3">
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="-mb-3"
+            placeholder=""
+          >
             Round name
           </Typography>
           <Input
+            crossOrigin={undefined}
             size="lg"
             type="text"
             placeholder="Type here"
             {...register("round_name")}
-            value={roundInput.round_name}
-            onChange={(e) => onInputChange("round_name", e.target.value)}
+            defaultValue=""
             className="!border-t-blue-gray-200 focus:!border-t-gray-900"
             labelProps={{
               className: "before:content-none after:content-none",
             }}
           />
-          <p>{errors.round_name?.message}</p>
+          <p className="text-red-500">{errors.round_name?.message}</p>
         </div>
         <label className="form-control w-full">
           <div className="label">
             <span className="label-text">Round Start</span>
           </div>
-          <MyDatePicker onInputChangeDate={onInputChange} />
+          <MyDatePicker
+            name="round_start_at"
+            control={control}
+            onInputChangeDate={onInputChange}
+          />
         </label>
         <label className="form-control w-full">
           <div className="label">
             <span className="label-text">Round Type</span>
           </div>
           <select
-            name="round_type"
-            onChange={(e) => onInputChange("round_type", e.target.value)}
-            value={roundInput.round_type}
+            {...register("round_type")}
             className="select select-bordered w-full"
           >
             <option value="1">Active</option>
             <option value="2">Unactive</option>
           </select>
         </label>
-        <button type="submit" className="btn w-full">
+
+        <Button type="submit" className="mx-auto mt-5 w-full" placeholder="">
           Submit
-        </button>
+        </Button>
       </form>
-      <DevTool control={control} />
+      {/*<DevTool control={control} />*/}
     </>
   );
 }
 
-function RoundList({ data }) {
+function RoundList({ data, onDeleteRound }) {
   return (
     <div>
       <h1>List of Rounds</h1>
 
       <ul className="mt-2 grid grid-cols-2 gap-6">
-        {data.rounds.map((round) => (
+        {data.rounds.map((round: any) => (
           <li key={round.round_id}>
-            <div className="card w-96 bg-primary text-primary-content">
+            <div className="text-primary-content w-96 bg-amber-300 p-2">
               <div className="card-body">
                 <h2 className="card-title">{round.round_name}</h2>
                 <p>{round.round_start_at}</p>
@@ -237,11 +285,32 @@ function RoundList({ data }) {
                     {round.round_type == 1 ? "Active" : "UnActive"}
                   </button>
                 </div>
+                <div
+                  className="button inline-block cursor-pointer bg-red-400 p-2 text-white"
+                  onClick={() => onDeleteRound(round.round_id)}
+                >
+                  Remove
+                </div>
               </div>
             </div>
           </li>
         ))}
       </ul>
     </div>
+  );
+}
+
+function MyInput({ control, ...props }) {
+  const { field } = useController({
+    control,
+    name: props.name,
+    defaultValue: "",
+  });
+  return (
+    <input
+      className="rounded-md border border-gray-300 p-4"
+      {...field}
+      {...props}
+    />
   );
 }

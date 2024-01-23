@@ -15,7 +15,7 @@ export default function Layout() {
    * render template
    */
   return (
-    <div id="app">
+    <div id="app" className="mt-[108px]">
       <Header />
 
       {(pathName == "/" ||
@@ -28,7 +28,7 @@ export default function Layout() {
         />
       )}
 
-      <div className={pathName == "/mypage" ? "mt-[108px]" : ""}>
+      <div>
         {pathName !== "/author" && pathName !== "/newnovel" ? <Banner /> : ""}
       </div>
       <div
