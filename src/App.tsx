@@ -4,6 +4,8 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 import "./App.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000",
@@ -15,6 +17,7 @@ const App = () => {
       {/*<Provider store={store}>*/}
       <ApolloProvider client={client}>
         <RouterProvider router={router} />
+        <ToastContainer />
       </ApolloProvider>
       {/*</Provider>*/}
     </I18nextProvider>

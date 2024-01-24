@@ -16,7 +16,7 @@ export function Coliseum() {
             <SideBarColiseum/>
             <div className="content flex-1">
                 <div className="border-2 border-black-500 border-solid min-h-[188px] p-2">
-                    <div className="text-3xl text-center">
+                    <div className="text-3xl text-center ">
                         球ムヘマタ碁投ヘツ座性スイオ千夜チ港需チ緒動
                     </div>
                     <div className="py-5 px-2 sm:ml-[10px] md:ml-[30px] border-b-2">
