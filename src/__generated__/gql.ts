@@ -16,6 +16,8 @@ const documents = {
     "\nmutation CreateRound($input: RoundInput!) {\n  createRound(input: $input) {\n    round_id\n    ulid\n    round_name\n    round_start_at\n    round_type\n  }\n}\n": types.CreateRoundDocument,
     "\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   csvString\n   fileName\n  }\n}\n": types.ExportCsvDocument,
     "\nmutation DeleteRound($roundId: Int!) {\n  deleteRound(round_id: $roundId)\n}\n": types.DeleteRoundDocument,
+    "\nmutation UpdateRound($roundId: Int!, $input: RoundInput!) {\n  updateRound(round_id: $roundId, input: $input) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n": types.UpdateRoundDocument,
+    "\nquery Round($roundId: Int!) {\n  round(round_id: $roundId) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_type\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n": types.RoundDocument,
     "\n        query GetUsers($page: Int!, $limit: Int!) {\n            getUsersPaginate(page: $page, limit: $limit) {\n                users {\n                    user_id\n                    name\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    ": types.GetUsersDocument,
     "\n       query Rounds {\n          rounds {\n            round_id\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    ": types.RoundsDocument,
 };
@@ -46,6 +48,14 @@ export function gql(source: "\nmutation exportCSV($modelName: String) {\n  expor
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\nmutation DeleteRound($roundId: Int!) {\n  deleteRound(round_id: $roundId)\n}\n"): (typeof documents)["\nmutation DeleteRound($roundId: Int!) {\n  deleteRound(round_id: $roundId)\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nmutation UpdateRound($roundId: Int!, $input: RoundInput!) {\n  updateRound(round_id: $roundId, input: $input) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n"): (typeof documents)["\nmutation UpdateRound($roundId: Int!, $input: RoundInput!) {\n  updateRound(round_id: $roundId, input: $input) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nquery Round($roundId: Int!) {\n  round(round_id: $roundId) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_type\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n"): (typeof documents)["\nquery Round($roundId: Int!) {\n  round(round_id: $roundId) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_type\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
