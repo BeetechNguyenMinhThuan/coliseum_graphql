@@ -25,6 +25,7 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns";
 import Radio from "@/components/checkbox/Radio.tsx";
+import { CircularPagination } from "@/components/Pagination/Pagination.tsx";
 
 interface IFormInput {
   event_id?: number;
@@ -41,16 +42,14 @@ interface FormCreateRoundProps {
 
 export function Test() {
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 2; // Giả sử mỗi trang có 10 items
-
-  const { loading, error, data, refetch } = useQuery(GET_USERS, {
-    variables: { page: currentPage, limit: limit },
-  });
+  const limit = 4; // Giả sử mỗi trang có 10 items
   const {
     loading: roundsLoading,
     data: roundsData,
     refetch: roundsRefetch,
-  } = useQuery(GET_ROUNDS);
+  } = useQuery(GET_ROUNDS, {
+    variables: { page: currentPage, limit: limit },
+  });
 
   const [
     createRound,
@@ -59,10 +58,6 @@ export function Test() {
 
   const [deleteRound] = useMutation(DELETE_ROUND);
 
-  const handlePageChange = async (newPage: number) => {
-    setCurrentPage(newPage);
-    await refetch({ page: newPage, limit: limit });
-  };
   const handleDeleteRound = async (roundId: number) => {
     try {
       Swal.fire({
@@ -114,57 +109,30 @@ export function Test() {
     }
   };
 
-  if (loading || roundsLoading)
-    return <span className="loading loading-spinner loading-lg"></span>;
-  if (error) return <p>Error :(</p>;
-  if (data?.getUsersPaginate?.users?.length === 0) {
-    return null;
-  }
-
+  const handlePageChange = async (newPage: number) => {
+    setCurrentPage(newPage);
+    await roundsRefetch({ page: newPage, limit: limit });
+  };
   return (
     <>
       <SideBarTournament />
       <div className="content flex-1">
-        {data?.getUsersPaginate?.users?.map((user) => (
-          <div key={user.user_id}>{user.name}</div>
-        ))}
-        <PaginationButtons
-          currentPage={currentPage}
-          totalPages={data?.getUsersPaginate?.totalPages}
-          onPageChange={handlePageChange}
-        />
-
         <h2 className="mb-5 text-center text-2xl font-bold">
           Form Create Round
         </h2>
 
         <FormCreateRound onFormSubmit={handleFormSubmit} />
-        <RoundList data={roundsData} onDeleteRound={handleDeleteRound} />
+        <RoundList
+          onDeleteRound={handleDeleteRound}
+          data={roundsData}
+          currentPage={currentPage}
+          onHandlePageChange={handlePageChange}
+        />
       </div>
     </>
   );
 }
 
-const PaginationButtons = ({ currentPage, totalPages, onPageChange }) => {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-
-  return (
-    <div className="join">
-      {pages.map((page) => (
-        <button
-          key={page}
-          disabled={currentPage === page}
-          onClick={() => onPageChange(page)}
-          className={`btn join-item  ${
-            currentPage === page ? "btn-active" : ""
-          }`}
-        >
-          {page}
-        </button>
-      ))}
-    </div>
-  );
-};
 const schema = yup
   .object({
     ulid: yup.string().required().max(10),
@@ -252,6 +220,7 @@ function FormCreateRound({ onFormSubmit }: FormCreateRoundProps) {
             crossOrigin={undefined}
             size="lg"
             type="text"
+            disabled={!watch("ulid")}
             placeholder="Type here"
             {...register("round_name")}
             defaultValue=""
@@ -543,13 +512,13 @@ function FormEditRound(props: any) {
 }
 
 function RoundList(props: any) {
-  const { data, onDeleteRound } = props;
+  const { data, onDeleteRound, onHandlePageChange } = props;
   return (
     <div>
       <h1 className="my-10 text-center text-4xl font-bold">List of Rounds</h1>
 
       <ul className="mt-2 grid grid-cols-2 gap-6">
-        {data.rounds.map((round: any) => (
+        {data?.getRoundsPaginate?.rounds.map((round: any) => (
           <li key={round.round_id}>
             <div className="text-primary-content w-96 bg-amber-300 p-2">
               <div className="card-body">
@@ -572,6 +541,10 @@ function RoundList(props: any) {
           </li>
         ))}
       </ul>
+      <CircularPagination
+        totalPages={data?.getRoundsPaginate?.totalPages}
+        onPageChange={onHandlePageChange}
+      />
     </div>
   );
 }

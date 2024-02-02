@@ -115,7 +115,10 @@ export function Header() {
               <NavLink to="/test-coli">Test</NavLink>
             </li>
             <li>
-              <NavLink to="/nav">MyPage</NavLink>
+              <NavLink to="/test-coli2">Test 2</NavLink>
+            </li>
+            <li>
+              <NavLink to="/test-coli3">Test 3</NavLink>
             </li>
             <li>
               <NavLink to="/nav">MyPage</NavLink>

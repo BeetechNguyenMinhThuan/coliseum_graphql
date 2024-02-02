@@ -19,7 +19,9 @@ const documents = {
     "\nmutation UpdateRound($roundId: Int!, $input: RoundInput!) {\n  updateRound(round_id: $roundId, input: $input) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n": types.UpdateRoundDocument,
     "\nquery Round($roundId: Int!) {\n  round(round_id: $roundId) {\n    round_id\n    event_id\n    ulid\n    round_name\n    round_type\n    round_order\n    round_start_at\n    round_finish_at\n    vote_start_at\n    vote_finish_at\n    round_type\n    is_current\n    winner_count\n    min_word_count\n    max_word_count\n    tag\n    created_at\n    updated_at\n    deleted_at\n  }\n}\n": types.RoundDocument,
     "\n        query GetUsers($page: Int!, $limit: Int!) {\n            getUsersPaginate(page: $page, limit: $limit) {\n                users {\n                    user_id\n                    name\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    ": types.GetUsersDocument,
+    "\nquery GetUsersBase {\n  getUsers {\n    user_id\n    user_uuid\n    name\n    s3_url\n    first_login_at\n    last_login_at\n    created_at\n    updated_at\n    deleted_at\n    isSpaceShipPassenger @client\n  }\n}\n": types.GetUsersBaseDocument,
     "\n       query Rounds {\n          rounds {\n            round_id\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    ": types.RoundsDocument,
+    "\n        query GetRounds($page: Int!, $limit: Int!) {\n            getRoundsPaginate(page: $page, limit: $limit) {\n                rounds {\n                   round_id\n                   round_name\n                   round_start_at\n                   round_type\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    ": types.GetRoundsDocument,
 };
 
 /**
@@ -63,7 +65,15 @@ export function gql(source: "\n        query GetUsers($page: Int!, $limit: Int!)
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "\nquery GetUsersBase {\n  getUsers {\n    user_id\n    user_uuid\n    name\n    s3_url\n    first_login_at\n    last_login_at\n    created_at\n    updated_at\n    deleted_at\n    isSpaceShipPassenger @client\n  }\n}\n"): (typeof documents)["\nquery GetUsersBase {\n  getUsers {\n    user_id\n    user_uuid\n    name\n    s3_url\n    first_login_at\n    last_login_at\n    created_at\n    updated_at\n    deleted_at\n    isSpaceShipPassenger @client\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "\n       query Rounds {\n          rounds {\n            round_id\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    "): (typeof documents)["\n       query Rounds {\n          rounds {\n            round_id\n            round_name\n            round_start_at\n            round_type\n          }\n        }\n    "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n        query GetRounds($page: Int!, $limit: Int!) {\n            getRoundsPaginate(page: $page, limit: $limit) {\n                rounds {\n                   round_id\n                   round_name\n                   round_start_at\n                   round_type\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    "): (typeof documents)["\n        query GetRounds($page: Int!, $limit: Int!) {\n            getRoundsPaginate(page: $page, limit: $limit) {\n                rounds {\n                   round_id\n                   round_name\n                   round_start_at\n                   round_type\n                }\n                totalItems\n                totalPages\n                currentPage\n            }\n        }\n    "];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

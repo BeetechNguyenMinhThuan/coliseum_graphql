@@ -11,6 +11,8 @@ import AuthLayout from "@/pages/Authentication/Layout/AuthLayout.tsx";
 import Login from "@/pages/Authentication/Login/Login.tsx";
 import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
 import { Test } from "@/pages/Test/Test.tsx";
+import Test2 from "@/pages/Test/Test2.tsx";
+import Test3 from "@/pages/Test/Test3.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ export const router = createBrowserRouter([
       {
         path: "/test-coli",
         element: <Test />,
+      },
+      {
+        path: "/test-coli2",
+        element: <Test2 />,
+      },
+      {
+        path: "/test-coli3",
+        element: <Test3 />,
       },
     ],
   },

@@ -1,6 +1,6 @@
 import NovelListUpload from "components/NovelUpload/NovelListUpload";
 import { SideBarMyPage } from "components/SideBar/SideBarMyPage";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 
 // import Button from "../../components/Button/Button.tsx";
