@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { SideBarAuthor } from "components/SideBar/SideBarAuthor.tsx";
 import { Advertisement } from "components/Advertisement";
-import Button from "components/Button/Button.tsx";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList, NovelNewContainer } from "../../components/Novel";
 
 export function Author() {
@@ -90,7 +90,7 @@ export function Author() {
             <div className="flex justify-between pb-2 pt-5">
               <h3 className="text-2xl font-bold">球ムヘマタ碁投ヘツID碁投</h3>
               <div>
-                <Button>
+                <ButtonCommon>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -108,7 +108,7 @@ export function Author() {
                   <span className="font-extrabold">
                     球ムヘマ球ム球ムヘマ球ム
                   </span>
-                </Button>
+                </ButtonCommon>
                 <div className="mt-1 flex items-center justify-end gap-x-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

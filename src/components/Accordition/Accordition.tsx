@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../Button/Button.tsx";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { IoTriangle } from "react-icons/io5";
 import { TagNovel } from "../Tag/TagNovel.tsx";
 
@@ -8,9 +8,12 @@ function Accordition() {
   return (
     <div className="border-b-2 py-2">
       <div className="flex">
-        <Button onClick={() => setIsOpen(!isOpen)} className="border-none ">
+        <ButtonCommon
+          onClick={() => setIsOpen(!isOpen)}
+          className="border-none "
+        >
           <IoTriangle className={isOpen ? "rotate-180" : "rotate-90"} />
-        </Button>
+        </ButtonCommon>
         <div className="flex-1">
           <div className="flex gap-x-2">
             <span className="border-2 px-2">選歳ー</span>

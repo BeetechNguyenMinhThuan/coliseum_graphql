@@ -45,10 +45,10 @@ export function Header() {
           <div className="header-top-right">
             <ul className="flex justify-end gap-x-6">
               <li>
-                <NavLink to="/test">Login</NavLink>
+                <NavLink to="/login">Login</NavLink>
               </li>
               <li>
-                <NavLink to="/test">Register</NavLink>
+                <NavLink to="/register">Register</NavLink>
               </li>
               <li>
                 <NavLink to="/test">Hello, Coliseum</NavLink>
@@ -119,6 +119,9 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/test-coli3">Test 3</NavLink>
+            </li>{" "}
+            <li>
+              <NavLink to="/test-coli4">Test 4</NavLink>
             </li>
             <li>
               <NavLink to="/nav">MyPage</NavLink>

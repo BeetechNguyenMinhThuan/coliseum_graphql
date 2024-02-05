@@ -17,7 +17,7 @@ import {
   convertToHalfWidth,
   convertToKanaFullWidth,
 } from "../../utils/inputHelper";
-import ButtonCommon from "../button/ButtonCommon";
+import ButtonCommonFake from "@/components/button/ButtonCommonFake.tsx";
 import { disabledEnterKey } from "../../utils/helper";
 import { EMAIL } from "../../constants/validation";
 import {
@@ -64,7 +64,7 @@ interface IProps {
   isEmailMultiple?: boolean;
   onCustomChange?: (e: any) => void;
 }
-const InputCommon = (props: IProps) => {
+const InputFake = (props: IProps) => {
   const {
     id,
     keyInput = 0,
@@ -401,7 +401,7 @@ const InputCommon = (props: IProps) => {
             />
           </div>
           {buttonName && (
-            <ButtonCommon
+            <ButtonCommonFake
               disabled={disabledActionButton}
               loadingSubmit={isLoading}
               className={`input-common__button ml-1 w-40 ${classNameButton}`}
@@ -410,7 +410,7 @@ const InputCommon = (props: IProps) => {
               }
             >
               {buttonName}
-            </ButtonCommon>
+            </ButtonCommonFake>
           )}
         </div>
       </div>
@@ -422,4 +422,4 @@ const InputCommon = (props: IProps) => {
   );
 };
 
-export default InputCommon;
+export default InputFake;

@@ -7,5 +7,13 @@
       "save": "Lưu"
     },
     "home": "Trang chủ"
+  },
+  "validate": {
+    "required": "{{field}} là bắt buộc"
+  },
+  "pages": {
+    "register": {
+      "password": "Mật khẩu"
+    }
   }
 }

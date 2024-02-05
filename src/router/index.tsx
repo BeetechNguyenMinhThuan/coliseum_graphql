@@ -8,11 +8,15 @@ import { Author } from "@/pages/Author/Author.tsx";
 import MyPage from "@/pages/MyPage/MyPage.tsx";
 import NewNovel from "@/pages/NewNovel/NewNovel.tsx";
 import AuthLayout from "@/pages/Authentication/Layout/AuthLayout.tsx";
-import Login from "@/pages/Authentication/Login/Login.tsx";
 import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
 import { Test } from "@/pages/Test/Test.tsx";
 import Test2 from "@/pages/Test/Test2.tsx";
 import Test3 from "@/pages/Test/Test3.tsx";
+import Test4 from "@/pages/Test/Test4.tsx";
+
+import { lazy } from "react";
+const Login = lazy(() => import("@/pages/login/Login.tsx"));
+const Register = lazy(() => import("@/pages/register/Register.tsx"));
 
 export const router = createBrowserRouter([
   {
@@ -59,16 +63,28 @@ export const router = createBrowserRouter([
         path: "/test-coli3",
         element: <Test3 />,
       },
-    ],
-  },
-  {
-    element: <AuthLayout />,
-    errorElement: <NotFoundPage />,
-    children: [
+      {
+        path: "/test-coli4",
+        element: <Test4 />,
+      },
       {
         path: "/login",
         element: <Login />,
       },
+      {
+        path: "/register",
+        element: <Register />,
+      },
     ],
   },
+  // {
+  //   element: <AuthLayout />,
+  //   errorElement: <NotFoundPage />,
+  //   children: [
+  //     {
+  //       path: "/login",
+  //       element: <Login />,
+  //     },
+  //   ],
+  // },
 ]);

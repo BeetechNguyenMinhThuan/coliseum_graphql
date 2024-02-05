@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading/Loading.tsx";
 import { AnyObject } from "@/models/Common.ts";
 
-export default function ButtonCommon(props: any) {
+export default function ButtonCommonFake(props: any) {
   const { children, loadingSubmit } = props;
   const buttonRef = useRef<any>(null);
 

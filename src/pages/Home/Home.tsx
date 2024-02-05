@@ -8,7 +8,7 @@ import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
 import { useMutation } from "@apollo/client";
 import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
 import { downloadFileFromContentBinary } from "@/utils/helper.ts";
-import Button from "@/components/Button/Button.tsx";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -152,7 +152,7 @@ const Home = () => {
     <>
       <SidebarHome />
       <div className="content flex-1">
-        <Button onClick={handleExportCSV}>Export CSV</Button>
+        <ButtonCommon onClick={handleExportCSV}>Export CSV</ButtonCommon>
         {/* Bungo Coliseum tournament  */}
         <div className="border-black-500 min-h-[188px] border-2 border-solid p-2">
           <div className="text-center text-3xl">
