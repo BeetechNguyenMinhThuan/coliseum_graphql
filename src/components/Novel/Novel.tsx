@@ -2,7 +2,7 @@ import { NovelStatus } from "./NovelStatus.tsx";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { Banner } from "../Banner";
-import Button from "../Button/Button.tsx";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 
 export function Novel({ novel }) {
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ export function Novel({ novel }) {
               </div>
             </div>
             {location.pathname == "/author" && (
-              <Button className="mt-2 w-full gap-x-1">
+              <ButtonCommon className="mt-2 w-full gap-x-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -56,7 +56,7 @@ export function Novel({ novel }) {
                 <span className="text-[16px] font-extrabold">
                   球ムマ球ム球球球ム
                 </span>
-              </Button>
+              </ButtonCommon>
             )}
           </div>
           <div className="novel-right flex-1">

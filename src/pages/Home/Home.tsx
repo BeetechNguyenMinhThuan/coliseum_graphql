@@ -5,9 +5,32 @@ import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { NovelNewContainer } from "components/Novel/NovelNewContainer.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
+import { useMutation } from "@apollo/client";
+import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
+import { downloadFileFromContentBinary } from "@/utils/helper.ts";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 
 const Home = () => {
   const { t } = useTranslation();
+  const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
+
+  const handleExportCSV = async () => {
+    try {
+      const { data } = await exportCSVMutation({
+        variables: { modelName: "User" },
+      });
+      console.log(data);
+      if (data && data?.exportCSV) {
+        const csvDataString = data.exportCSV.csvString;
+        const fileName = data.exportCSV.fileName;
+        console.log(data);
+        console.log(csvDataString);
+        downloadFileFromContentBinary(csvDataString, fileName);
+      }
+    } catch (error: any) {
+      alert(`Export failed: ${error.message}`);
+    }
+  };
 
   const novels = [
     {
@@ -129,6 +152,7 @@ const Home = () => {
     <>
       <SidebarHome />
       <div className="content flex-1">
+        <ButtonCommon onClick={handleExportCSV}>Export CSV</ButtonCommon>
         {/* Bungo Coliseum tournament  */}
         <div className="border-black-500 min-h-[188px] border-2 border-solid p-2">
           <div className="text-center text-3xl">

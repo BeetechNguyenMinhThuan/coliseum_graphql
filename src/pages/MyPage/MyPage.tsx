@@ -1,6 +1,6 @@
 import NovelListUpload from "components/NovelUpload/NovelListUpload";
 import { SideBarMyPage } from "components/SideBar/SideBarMyPage";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 
 // import Button from "../../components/Button/Button.tsx";
@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Title } from "../../components/Common";
 import Accordition from "components/Accordition/Accordition.tsx";
 import { Advertisement } from "@/components/Advertisement";
-import Button from "@/components/Button/Button.tsx";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 
 export default function MyPage() {
   const navigate = useNavigate();
@@ -168,7 +168,7 @@ export default function MyPage() {
                       <h3 className="text-2xl font-bold">
                         春には桜の花が咲き春には桜の花が咲き
                       </h3>
-                      <Button>春には桜の</Button>
+                      <ButtonCommon>春には桜の</ButtonCommon>
                     </div>
                     <div className="flex items-center justify-between">
                       <h4>春には桜</h4>
@@ -210,7 +210,7 @@ export default function MyPage() {
                       </div>
                     </div>
                     <div className="flex gap-x-3">
-                      <Button>
+                      <ButtonCommon>
                         <span className="">球ムヘマ球ム球</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -226,8 +226,8 @@ export default function MyPage() {
                             d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
                           />
                         </svg>
-                      </Button>
-                      <Button>
+                      </ButtonCommon>
+                      <ButtonCommon>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -244,7 +244,7 @@ export default function MyPage() {
                         </svg>
 
                         <span className="">球ムヘマ球ム球ムヘマ球</span>
-                      </Button>
+                      </ButtonCommon>
                     </div>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export default function MyPage() {
                       <h3 className="text-2xl font-bold">
                         春には桜の花が咲き春には桜の花が咲き
                       </h3>
-                      <Button>春には桜の</Button>
+                      <ButtonCommon>春には桜の</ButtonCommon>
                     </div>
                     <div className="flex items-center justify-between">
                       <h4>春には桜</h4>
@@ -298,7 +298,7 @@ export default function MyPage() {
                       </div>
                     </div>
                     <div className="flex gap-x-3">
-                      <Button>
+                      <ButtonCommon>
                         <span className="">球ムヘマ球ム球</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -314,8 +314,8 @@ export default function MyPage() {
                             d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
                           />
                         </svg>
-                      </Button>
-                      <Button>
+                      </ButtonCommon>
+                      <ButtonCommon>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -332,7 +332,7 @@ export default function MyPage() {
                         </svg>
 
                         <span className="">球ムヘマ球ム球ムヘマ球</span>
-                      </Button>
+                      </ButtonCommon>
                     </div>
                   </div>
                 </div>
@@ -371,7 +371,7 @@ export default function MyPage() {
                       <h3 className="text-2xl font-bold">
                         春には桜の花が咲き春には桜の花が咲き
                       </h3>
-                      <Button>春には桜の</Button>
+                      <ButtonCommon>春には桜の</ButtonCommon>
                     </div>
                     <div className="flex items-center justify-between">
                       <h4>春には桜</h4>
@@ -413,7 +413,7 @@ export default function MyPage() {
                       </div>
                     </div>
                     <div className="flex gap-x-3">
-                      <Button>
+                      <ButtonCommon>
                         <span className="">球ムヘマ球ム球</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -429,8 +429,8 @@ export default function MyPage() {
                             d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
                           />
                         </svg>
-                      </Button>
-                      <Button>
+                      </ButtonCommon>
+                      <ButtonCommon>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -447,7 +447,7 @@ export default function MyPage() {
                         </svg>
 
                         <span className="">球ムヘマ球ム球ムヘマ球</span>
-                      </Button>
+                      </ButtonCommon>
                     </div>
                   </div>
                 </div>
@@ -459,7 +459,7 @@ export default function MyPage() {
                       <h3 className="text-2xl font-bold">
                         春には桜の花が咲き春には桜の花が咲き
                       </h3>
-                      <Button>春には桜の</Button>
+                      <ButtonCommon>春には桜の</ButtonCommon>
                     </div>
                     <div className="flex items-center justify-between">
                       <h4>春には桜</h4>
@@ -501,7 +501,7 @@ export default function MyPage() {
                       </div>
                     </div>
                     <div className="flex gap-x-3">
-                      <Button>
+                      <ButtonCommon>
                         <span className="">球ムヘマ球ム球</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -517,8 +517,8 @@ export default function MyPage() {
                             d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
                           />
                         </svg>
-                      </Button>
-                      <Button>
+                      </ButtonCommon>
+                      <ButtonCommon>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -535,7 +535,7 @@ export default function MyPage() {
                         </svg>
 
                         <span className="">球ムヘマ球ム球ムヘマ球</span>
-                      </Button>
+                      </ButtonCommon>
                     </div>
                   </div>
                 </div>

@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
+
+    body{
+        font-family: "Poppins", sans-serif;
+    }
     .scroll-sidebar::-webkit-scrollbar {
         width: 10px;
     }
@@ -12,6 +17,17 @@
         background: rgb(189, 202, 217);
     }
 
+}
+.hidden-input {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
 }
 .active {
     color: red;
@@ -88,7 +104,6 @@
     }
 
 
-
     .swiper-button-prev {
         left: var(--swiper-navigation-sides-offset, 350px);
     }
@@ -116,7 +131,7 @@
         margin-top: 40px;
     }
 
-    .final-result::before{
+    .final-result::before {
         content: "";
         border-color: black;
         border-style: solid;
@@ -126,7 +141,7 @@
         transform: translateY(12px) translateX(-38px);
     }
 
-    .player-two::after{
+    .player-two::after {
         content: "";
         border-color: black;
         border-style: solid;
@@ -137,7 +152,7 @@
         height: 15px;
     }
 
-    .player-one::after{
+    .player-one::after {
         content: "";
         border-color: black;
         border-style: solid;
@@ -148,7 +163,7 @@
         height: 15px;
     }
 
-    .active-result{
+    .active-result {
         background-color: red;
     }
 
