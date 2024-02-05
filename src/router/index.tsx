@@ -7,15 +7,12 @@ import {Tournament} from "@/pages/Tournament/Tournament.tsx";
 import {Author} from "@/pages/Author/Author.tsx";
 import MyPage from "@/pages/MyPage/MyPage.tsx";
 import NewNovel from "@/pages/NewNovel/NewNovel.tsx";
-import AuthLayout from "@/pages/Authentication/Layout/AuthLayout.tsx";
 import {TournamentBoard} from "@/pages/TournamentBoard/TournamentBoard.tsx";
 import {Test} from "@/pages/Test/Test.tsx";
 import Test2 from "@/pages/Test/Test2.tsx";
 import Test3 from "@/pages/Test/Test3.tsx";
 import Test4 from "@/pages/Test/Test4.tsx";
-
 import {lazy} from "react";
-
 import {AuthorJoinTourament} from "@/pages/AuthorJoinTourament/AuthorJoinTourament";
 import {ResultTourament} from "@/pages/ResultTourament/ResultTourament";
 import {HallTourament} from "@/pages/HallTourament/HallTourament";
@@ -26,8 +23,9 @@ import {Comment} from "@/pages/comment/Comment";
 import {Recruitment} from "@/pages/recruitment/Recruitment";
 import {TopTourament} from "@/pages/topTourament/TopTourament";
 
-const Login = lazy(() => import("@/pages/login/Login.tsx"));
-const Register = lazy(() => import("@/pages/register/Register.tsx"));
+export const Login = lazy(() => import("@/pages/login/Login.tsx"));
+export const Register = lazy(() => import("@/pages/register/Register.tsx"));
+
 export const router = createBrowserRouter([
     {
         element: <Layout/>,
@@ -123,14 +121,4 @@ export const router = createBrowserRouter([
             },
         ],
     },
-    // {
-    //   element: <AuthLayout />,
-    //   errorElement: <NotFoundPage />,
-    //   children: [
-    //     {
-    //       path: "/login",
-    //       element: <Login />,
-    //     },
-    //   ],
-    // },
 ]);

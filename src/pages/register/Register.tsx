@@ -20,6 +20,7 @@ interface IRegisterForm {
   email: string;
   password: string;
   confirm_password: string;
+  accept_term?: boolean;
 }
 
 // rule validate register
@@ -46,6 +47,7 @@ const schema = yup
       .string()
       .required()
       .oneOf([yup.ref("password")], "Passwords must match"),
+    accept_term: yup.boolean(),
   })
   .required();
 
@@ -62,8 +64,6 @@ function Register() {
   const { value: showPassword, handleToggleValue: handleShowPassword } =
     useToggleValue(false);
   const { value: showRePassword, handleToggleValue: handleShowRePassword } =
-    useToggleValue(false);
-  const { value: acceptTerm, handleToggleValue: handleAcceptTerm } =
     useToggleValue(false);
 
   const arrAds = [
@@ -214,11 +214,7 @@ function Register() {
             <div className="">
               <p> 夜チ港需チ緒動需チ 夜チ港需チ緒動需チ</p>
               <p> 夜チ港需チ緒動需チ 夜チ港需チ緒動需チ</p>
-              <CheckboxCommon
-                name="accept_term"
-                checked={acceptTerm}
-                onClick={handleAcceptTerm}
-              >
+              <CheckboxCommon name="accept_term" control={control}>
                 夜チ港需チ緒動需チ
               </CheckboxCommon>
             </div>

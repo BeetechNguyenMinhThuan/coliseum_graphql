@@ -1,5 +1,5 @@
 import { useLazyQuery, useQuery, useReactiveVar } from "@apollo/client";
-import { spaceshipPassengerVar } from "@/main.tsx";
+import { spaceshipPassengerVar } from "@/App.tsx";
 import { GET_USER_BASE } from "@/graphql-client/round/queries.ts";
 
 function Test3(props) {
