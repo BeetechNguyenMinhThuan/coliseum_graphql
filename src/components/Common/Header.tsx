@@ -87,7 +87,7 @@ export function Header() {
       </div>
       <nav className="header-nav-wrap py-2">
         <div className="l-container">
-          <ul className="flex justify-between">
+          <ul className="flex justify-between flex-wrap gap-x-4">
             <li>
               <NavLink to="/">
                 <h1>{t("common.home")}</h1>
