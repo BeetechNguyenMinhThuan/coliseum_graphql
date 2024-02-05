@@ -17,6 +17,15 @@ import Test4 from "@/pages/Test/Test4.tsx";
 import { lazy } from "react";
 const Login = lazy(() => import("@/pages/login/Login.tsx"));
 const Register = lazy(() => import("@/pages/register/Register.tsx"));
+import { AuthorJoinTourament } from "@/pages/AuthorJoinTourament/AuthorJoinTourament";
+import { ResultTourament } from "@/pages/ResultTourament/ResultTourament";
+import { HallTourament } from "@/pages/HallTourament/HallTourament";
+import { FanPage } from "@/pages/fanPage/FanPage";
+import { UserManual } from "@/pages/userManual/UserManual";
+import { TopComment } from "@/pages/topComment/TopComment";
+import { Comment } from "@/pages/comment/Comment";
+import { Recruitment } from "@/pages/recruitment/Recruitment";
+import { TopTourament } from "@/pages/topTourament/TopTourament";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +76,48 @@ export const router = createBrowserRouter([
         path: "/test-coli4",
         element: <Test4 />,
       },
+      {
+        path: "/author-join-tourament",
+        element: <AuthorJoinTourament />,
+      },
+      {
+        path: "/result-tourament",
+        element: <ResultTourament />,
+      },
+      {
+        path: "hall-tourament",
+        element: <HallTourament/>
+      },
+      {
+        path: "/fan-page",
+        element: <FanPage/>
+      },
+      {
+        path: "/user-manual",
+        element: <UserManual/>
+      },
+      {
+        path: "/top-comment",
+        element: <TopComment/>
+      },
+      {
+        path: "/comment",
+        element: <Comment/>
+      },
+      {
+        path: "/recruitment",
+        element: <Recruitment/>
+      },
+      {
+        path: "/top-tourament",
+        element: <TopTourament/>
+      },
+    ],
+  },
+  {
+    element: <AuthLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
       {
         path: "/login",
         element: <Login />,

@@ -124,7 +124,31 @@ export function Header() {
               <NavLink to="/test-coli4">Test 4</NavLink>
             </li>
             <li>
-              <NavLink to="/nav">MyPage</NavLink>
+              <NavLink to="/author-join-tourament">AuthorJoinTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/result-tourament">ResultTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/hall-tourament">ResultTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/fan-page">FanPage</NavLink>
+            </li>
+            <li>
+              <NavLink to="/user-manual">UserManual</NavLink>
+            </li>
+            <li>
+              <NavLink to="/top-comment">TopComment</NavLink>
+            </li>
+            <li>
+              <NavLink to="/comment">Comment</NavLink>
+            </li>
+            <li>
+              <NavLink to="/recruitment">Recruitment</NavLink>
+            </li>
+            <li>
+              <NavLink to="/top-tourament">TopTourament</NavLink>
             </li>
           </ul>
         </div>
