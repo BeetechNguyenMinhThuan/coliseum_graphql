@@ -1,171 +1,177 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  body {
+    font-family: "Poppins", sans-serif;
+  }
+  .scroll-sidebar::-webkit-scrollbar {
+    width: 10px;
+  }
 
-    body{
-        font-family: "Poppins", sans-serif;
-    }
-    .scroll-sidebar::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    .scroll-sidebar::-webkit-scrollbar-thumb {
-        background: rgb(189, 202, 217);
-    }
-
+  .scroll-sidebar::-webkit-scrollbar-thumb {
+    background: rgb(189, 202, 217);
+  }
 }
 .hidden-input {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
 .active {
-    color: red;
+  color: red;
 }
 
 @layer components {
-    .l-container {
-        max-width: 1280px;
-        @apply mx-auto px-4
-    }
+  .l-container {
+    max-width: 1280px;
+    @apply mx-auto px-4;
+  }
 
-    .bread-crumbs {
-        text-align: center;
-    }
+  .bread-crumbs {
+    text-align: center;
+  }
 
-    .bread-crumbs ul li {
-        display: inline;
-    }
+  .bread-crumbs ul li {
+    display: inline;
+  }
 
-    .bread-crumbs ul li a {
-        background-color: #f3f5fa;
-        padding: 15px 50px 0 60px;
-        position: relative;
-        margin: 0 10px 0 0;
-        float: left;
-        display: block;
-        height: 50px;
-        font-size: 15px;
-        text-decoration: none;
-        color: #8093a7;
-    }
+  .bread-crumbs ul li a {
+    background-color: #f3f5fa;
+    padding: 15px 50px 0 60px;
+    position: relative;
+    margin: 0 10px 0 0;
+    float: left;
+    display: block;
+    height: 50px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #8093a7;
+  }
 
+  .bread-crumbs ul li a:after {
+    content: "";
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 40px solid #f3f5fa;
+    position: absolute;
+    right: -40px;
+    top: 0;
+    z-index: 1;
+  }
 
-    .bread-crumbs ul li a:after {
-        content: "";
-        border-top: 25px solid transparent;
-        border-bottom: 25px solid transparent;
-        border-left: 40px solid #f3f5fa;
-        position: absolute;
-        right: -40px;
-        top: 0;
-        z-index: 1;
-    }
+  .bread-crumbs ul li a:before {
+    content: "";
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 36px solid #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
-    .bread-crumbs ul li a:before {
-        content: "";
-        border-top: 25px solid transparent;
-        border-bottom: 25px solid transparent;
-        border-left: 36px solid #fff;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+  .bread-crumbs ul li:first-child a:before {
+    display: none;
+  }
 
-    .bread-crumbs ul li:first-child a:before {
-        display: none;
-    }
+  .bread-crumbs ul li:first-child a {
+    padding-right: 40px;
+  }
 
-    .bread-crumbs ul li:first-child a {
-        padding-right: 40px;
-    }
+  .bread-crumbs ul li:last-child a:after {
+    display: none;
+  }
 
-    .bread-crumbs ul li:Last-child a:after {
-        display: none;
-    }
+  .bread-crumbs ul li a:hover {
+    background: #333;
+  }
 
-    .bread-crumbs ul li a:hover {
-        background: #333;
-    }
+  .bread-crumbs ul li a:hover:after {
+    border-left-color: #333;
+    color: #fff;
+  }
 
-    .bread-crumbs ul li a:hover:after {
-        border-left-color: #333;
-        color: #fff
-    }
+  .swiper-button-prev {
+    left: var(--swiper-navigation-sides-offset, 350px);
+  }
 
+  .swiper-button-next {
+    right: var(--swiper-navigation-sides-offset, 350px);
+  }
 
-    .swiper-button-prev {
-        left: var(--swiper-navigation-sides-offset, 350px);
-    }
+  .image-banner {
+    cursor: grab;
+  }
 
-    .swiper-button-next {
-        right: var(--swiper-navigation-sides-offset, 350px);
-    }
+  .image-ads {
+    height: 300px;
+    width: 300px;
+  }
 
-    .image-banner {
-        cursor: grab;
-    }
+  .progressbar-one {
+    position: relative;
+    max-width: 146px;
+    background: white;
+    border: 1px solid #000;
+    border-left: none; /* Remove the right border */
+    margin-bottom: 13px;
+    margin-top: 40px;
+  }
 
-    .image-ads {
-        height: 300px;
-        width: 300px;
-    }
+  .final-result::before {
+    content: "";
+    border-color: black;
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    width: 36px;
+    position: absolute;
+    transform: translateY(12px) translateX(-38px);
+  }
 
-    .progressbar-one {
-        position: relative;
-        max-width: 146px;
-        background: white;
-        border: 1px solid #000;
-        border-left: none; /* Remove the right border */
-        margin-bottom: 13px;
-        margin-top: 40px;
-    }
+  .player-two::after {
+    content: "";
+    border-color: black;
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    width: 221px;
+    position: absolute;
+    transform: translateY(0px) translateX(369px) rotate3d(1, 0, 0, 180deg);
+    height: 15px;
+  }
 
-    .final-result::before {
-        content: "";
-        border-color: black;
-        border-style: solid;
-        border-width: 2px 2px 0 0;
-        width: 36px;
-        position: absolute;
-        transform: translateY(12px) translateX(-38px);
-    }
+  .player-one::after {
+    content: "";
+    border-color: black;
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    width: 221px;
+    position: absolute;
+    transform: translateY(12px) translateX(369px);
+    height: 15px;
+  }
 
-    .player-two::after {
-        content: "";
-        border-color: black;
-        border-style: solid;
-        border-width: 2px 2px 0 0;
-        width: 221px;
-        position: absolute;
-        transform: translateY(0px) translateX(369px) rotate3d(1, 0, 0, 180deg);
-        height: 15px;
-    }
+  .active-result {
+    background-color: red;
+  }
+}
 
-    .player-one::after {
-        content: "";
-        border-color: black;
-        border-style: solid;
-        border-width: 2px 2px 0 0;
-        width: 221px;
-        position: absolute;
-        transform: translateY(12px) translateX(369px);
-        height: 15px;
-    }
+/* AuthorJoinTouramant */
 
-    .active-result {
-        background-color: red;
-    }
-
-
+.item:nth-child(odd)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 96%;
+    width: 1px;
+    background-color: #ccc;
 }

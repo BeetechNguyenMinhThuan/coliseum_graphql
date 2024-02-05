@@ -88,7 +88,7 @@ export function Header() {
       <nav className="header-nav-wrap py-2">
         <div className="l-container">
           <ul className="flex justify-between">
-            <li>
+            {/* <li>
               <NavLink to="/">
                 <h1>{t("common.home")}</h1>
               </NavLink>
@@ -119,9 +119,36 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/test-coli3">Test 3</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/nav">MyPage</NavLink>
+            </li>
+            <li>
+              <NavLink to="/author-join-tourament">AuthorJoinTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/result-tourament">ResultTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/hall-tourament">ResultTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/fan-page">FanPage</NavLink>
+            </li>
+            <li>
+              <NavLink to="/user-manual">UserManual</NavLink>
+            </li>
+            <li>
+              <NavLink to="/top-comment">TopComment</NavLink>
+            </li>
+            <li>
+              <NavLink to="/comment">Comment</NavLink>
+            </li>
+            <li>
+              <NavLink to="/recruitment">Recruitment</NavLink>
+            </li>
+            <li>
+              <NavLink to="/top-tourament">TopTourament</NavLink>
             </li>
           </ul>
         </div>

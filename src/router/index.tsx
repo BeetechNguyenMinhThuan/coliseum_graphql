@@ -13,6 +13,15 @@ import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
 import { Test } from "@/pages/Test/Test.tsx";
 import Test2 from "@/pages/Test/Test2.tsx";
 import Test3 from "@/pages/Test/Test3.tsx";
+import { AuthorJoinTourament } from "@/pages/AuthorJoinTourament/AuthorJoinTourament";
+import { ResultTourament } from "@/pages/ResultTourament/ResultTourament";
+import { HallTourament } from "@/pages/HallTourament/HallTourament";
+import { FanPage } from "@/pages/fanPage/FanPage";
+import { UserManual } from "@/pages/userManual/UserManual";
+import { TopComment } from "@/pages/topComment/TopComment";
+import { Comment } from "@/pages/comment/Comment";
+import { Recruitment } from "@/pages/recruitment/Recruitment";
+import { TopTourament } from "@/pages/topTourament/TopTourament";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +67,42 @@ export const router = createBrowserRouter([
       {
         path: "/test-coli3",
         element: <Test3 />,
+      },
+      {
+        path: "/author-join-tourament",
+        element: <AuthorJoinTourament />,
+      },
+      {
+        path: "/result-tourament",
+        element: <ResultTourament />,
+      },
+      {
+        path: "hall-tourament",
+        element: <HallTourament/>
+      },
+      {
+        path: "/fan-page",
+        element: <FanPage/>
+      },
+      {
+        path: "/user-manual",
+        element: <UserManual/>
+      },
+      {
+        path: "/top-comment",
+        element: <TopComment/>
+      },
+      {
+        path: "/comment",
+        element: <Comment/>
+      },
+      {
+        path: "/recruitment",
+        element: <Recruitment/>
+      },
+      {
+        path: "/top-tourament",
+        element: <TopTourament/>
       },
     ],
   },
