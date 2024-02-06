@@ -6,7 +6,7 @@ interface InputCommonProps {
   control: any;
   name: string;
   type: string;
-  className: string;
+  className?: string;
   error?: string;
   children?: ReactNode;
   placeholder?: string;

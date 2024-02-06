@@ -1,5 +1,7 @@
+import { twMerge } from "tailwind-merge";
+
 export default function classNames(...args: any[]) {
-  return args
+  const strClass = args
     .reduce((acc, val) => {
       if (typeof val === "string") {
         return acc.concat(val.split(" "));
@@ -7,4 +9,5 @@ export default function classNames(...args: any[]) {
       return acc.concat(Object.values(val));
     }, [])
     .join(" ");
+  return twMerge(strClass);
 }

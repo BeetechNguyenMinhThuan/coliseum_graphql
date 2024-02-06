@@ -1,15 +1,26 @@
-import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ja, vi } from "date-fns/locale";
 import { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+} from "react-scroll";
+import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 
 registerLocale("ja", ja);
 registerLocale("vi", vi);
 
 export function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [randomNumber, setRandomNumber] = useState(1);
   const { t, i18n } = useTranslation();
 
@@ -22,22 +33,9 @@ export function Header() {
     localStorage.setItem("current_language", lang);
   };
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // Tùy chọn này tạo hiệu ứng cuộn mượt mà
-    });
+    scroll.scrollToTop();
   };
-  //   function getRandomNumber() {
-  //     return Math.floor(Math.random() * 11);
-  //   }
-  //   const handleRandom = () => {
-  //     setRandomNumber(getRandomNumber);
-  //   };
-  //   useEffect(() => {
-  //     if (randomNumber > 5) {
-  //       navigate("/login");
-  //     }
-  //   }, [randomNumber]);
+
   return (
     <header className="fixed left-0 right-0 top-0 z-10 bg-green-100">
       <div className="header-top-wrap py-2">
@@ -76,18 +74,23 @@ export function Header() {
       <div className="header-mid-wrap">
         <div className="l-container">
           <div className="flex justify-between">
-            <ul className="flex gap-x-6">
-              <li>Test 1</li>
-              <li>Test 2</li>
-              <li>Test 3</li>
-            </ul>
+            {location.pathname == "/" ? (
+              <ul className="flex gap-x-6">
+                <li>Test 1</li>
+                <li>Test 2</li>
+                <li>Test 3</li>
+              </ul>
+            ) : (
+              <Breadcrumbs />
+            )}
+
             <button onClick={scrollToTop}>TOP</button>
           </div>
         </div>
       </div>
       <nav className="header-nav-wrap py-2">
         <div className="l-container">
-          <ul className="flex justify-between flex-wrap gap-x-4">
+          <ul className="flex flex-wrap justify-between gap-x-4">
             <li>
               <NavLink to="/">
                 <h1>{t("common.home")}</h1>
@@ -119,7 +122,7 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/test-coli3">Test 3</NavLink>
-            </li>{" "}
+            </li>
             <li>
               <NavLink to="/test-coli4">Test 4</NavLink>
             </li>
@@ -149,6 +152,24 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/top-tourament">TopTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/add-novel">Upload Novel</NavLink>
+            </li>
+            <li>
+              <NavLink to="/add-chapter">Add Chapter</NavLink>
+            </li>
+            <li>
+              <Link
+                activeClass="active"
+                to="coliseum_noti"
+                spy={true}
+                smooth={true}
+                offset={-190}
+                duration={500}
+              >
+                お知らせ
+              </Link>
             </li>
           </ul>
         </div>

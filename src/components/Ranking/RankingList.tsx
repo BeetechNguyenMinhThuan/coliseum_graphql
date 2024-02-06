@@ -1,10 +1,9 @@
-import {NovelList} from "components/Novel";
+import { NovelList } from "components/novel";
 
-export function RankingList({novels}) {
-    return (
-        <div>
-            <NovelList novels={novels}/>
-        </div>
-    );
-};
-
+export function RankingList({ novels }) {
+  return (
+    <div>
+      <NovelList novels={novels} />
+    </div>
+  );
+}

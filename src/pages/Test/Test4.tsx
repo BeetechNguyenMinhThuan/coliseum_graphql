@@ -10,16 +10,17 @@ function Test4() {
   const [acceptTerm, setAcceptTerm] = useState(false);
   return (
     <div>
-      <LabelCommon htmlFor="first_name">FirstName</LabelCommon>
-      <InputCommon control={control} name="first_name" type="text" />
-      <ButtonCommon type="button">Submit</ButtonCommon>
-      <CheckboxCommon
-        name="accept_term"
-        checked={acceptTerm}
-        onClick={() => setAcceptTerm(!acceptTerm)}
-      >
-        Hello Sir
-      </CheckboxCommon>
+      {/*<LabelCommon htmlFor="first_name">FirstName</LabelCommon>*/}
+      {/*<InputCommon control={control} name="first_name" type="text" />*/}
+      {/*<ButtonCommon type="button">Submit</ButtonCommon>*/}
+      {/*<CheckboxCommon*/}
+      {/*  name="accept_term"*/}
+      {/*  checked={acceptTerm}*/}
+      {/*  onClick={() => setAcceptTerm(!acceptTerm)}*/}
+      {/*>*/}
+      {/*  Hello Sir*/}
+      {/*</CheckboxCommon>*/}
+      Hello Sir
     </div>
   );
 }

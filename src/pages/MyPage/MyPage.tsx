@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 // import Button from "../../components/Button/Button.tsx";
 
-import { Title } from "../../components/Common";
+import { Title } from "../../components/common";
 import Accordition from "components/Accordition/Accordition.tsx";
 import { Advertisement } from "@/components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
