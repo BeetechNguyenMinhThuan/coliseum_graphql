@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { SideBarColiseum } from "components/SideBar/SideBarColiseum.tsx";
 import { Advertisement } from "components/Advertisement";
 import "./userManual.scss";
-export function UserManual() {
+function UserManual() {
   const { t } = useTranslation();
 
   const arrAds = [
@@ -21,6 +21,7 @@ export function UserManual() {
             </div>
             <div className="my-3 flex">
               <img
+                className=" h-[140px] w-[140px]"
                 src="https://png.pngtree.com/thumb_back/fh260/background/20201009/pngtree-black-friday-sale-horizontal-banner-with-red-background-with-place-for-image_405375.jpg"
                 alt=""
               />
@@ -50,7 +51,7 @@ export function UserManual() {
             </div>
             <div className="my-3 flex">
               <img
-                className="border-2"
+                className="h-[140px] w-[140px] border-2"
                 src="https://lh4.googleusercontent.com/a8Inr0Fg78O9k_BUPg8zrQFFK_Qr7mt5MUid6Gn2IKGuzkMlG1o4zPPCkGMP8VrNGq19NLW6Xp7UzobQsWH2vWQ=w16383"
                 alt=""
               />
@@ -71,7 +72,7 @@ export function UserManual() {
             </div>
             <div className="my-3 flex">
               <img
-                className="border-2"
+                className="h-[140px] w-[140px] border-2"
                 src="https://lh4.googleusercontent.com/a8Inr0Fg78O9k_BUPg8zrQFFK_Qr7mt5MUid6Gn2IKGuzkMlG1o4zPPCkGMP8VrNGq19NLW6Xp7UzobQsWH2vWQ=w16383"
                 alt=""
               />
@@ -155,7 +156,7 @@ export function UserManual() {
               透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語
             </div>
 
-            <div className="mb-4 border-b-2 border-dashed pb-3 text-center text-2xl font-bold mt-3">
+            <div className="mb-4 mt-3 border-b-2 border-dashed pb-3 text-center text-2xl font-bold">
               ユーザーマニュアル
             </div>
             <div className=" px-8 pb-4">
@@ -168,3 +169,4 @@ export function UserManual() {
     </>
   );
 }
+export default UserManual;
