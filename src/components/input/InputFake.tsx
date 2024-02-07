@@ -12,19 +12,15 @@ import {
   FieldValues,
   useFormContext,
 } from "react-hook-form";
-import { AnyObject } from "../../models/Common";
+import { AnyObject } from "@/models/Common";
 import {
   convertToHalfWidth,
   convertToKanaFullWidth,
-} from "../../utils/inputHelper";
+} from "@/utils/inputHepler.ts";
 import ButtonCommonFake from "@/components/button/ButtonCommonFake.tsx";
-import { disabledEnterKey } from "../../utils/helper";
-import { EMAIL } from "../../constants/validation";
-import {
-  CME00004,
-  CME00006,
-  CME00027,
-} from "../../assets/locales/validateMessage";
+import { disabledEnterKey } from "@/utils/helper";
+import { EMAIL } from "@/constants/validation";
+import { CME00004, CME00006, CME00027 } from "@/assets/locales/validateMessage";
 
 interface IProps {
   id?: string;
@@ -64,6 +60,7 @@ interface IProps {
   isEmailMultiple?: boolean;
   onCustomChange?: (e: any) => void;
 }
+
 const InputFake = (props: IProps) => {
   const {
     id,

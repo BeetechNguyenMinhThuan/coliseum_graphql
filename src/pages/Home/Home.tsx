@@ -3,7 +3,6 @@ import { Search } from "components/Search/Search";
 import { Advertisement } from "components/Advertisement/Advertisement.tsx";
 import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
-import { NovelNewContainer } from "@/components/novel/NovelNewContainer.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
 import { useMutation } from "@apollo/client";
 import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
@@ -11,7 +10,6 @@ import { downloadFileFromContentBinary } from "@/utils/helper.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
-
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);

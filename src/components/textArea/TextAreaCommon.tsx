@@ -33,7 +33,7 @@ function TextAreaCommon(props: TextAreaCommonProps) {
         {...rest}
         maxLength={maxLength}
         onChange={handleChange}
-        className={classNames(`h-[250px] w-full border-2 p-2`)}
+        className={classNames(`h-[250px] w-full border-2 p-2 outline-none`)}
       ></textarea>
 
       {maxLength && (

@@ -7,13 +7,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import IconEyeToggle from "@/components/icons/IconEyeToggle.tsx";
-import useToggleValue from "@/hooks/useToggleValue.ts";
 import FormGroup from "@/components/formGroup/FormGroup.tsx";
 import i18n from "@/i18n";
 import { useNavigate } from "react-router-dom";
-import CheckboxCommon from "@/components/checkbox/CheckboxCommon.tsx";
 import TextAreaCommon from "@/components/textArea/TextAreaCommon.tsx";
+import {
+  Dropdown,
+  DropdownList,
+  DropdownOption,
+  DropdownSelect,
+} from "@/components/dropdown";
 
 interface IUploadNovelForm {}
 
@@ -23,20 +26,21 @@ const schema = yup
     bungo_id: yup.string().required(),
     user_name: yup.string().required(),
     email: yup.string().required().email(),
-    password: yup.string().required(
-      i18n.t("validate.required", {
-        field: i18n.t("pages.register.password"),
-      }),
-    ),
-    // .min(3)
-    // .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-    // .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-    // .matches(/\d/, "Password must contain at least one digit")
-    // .matches(
-    //   /[!@#$%^&*(),.?":{}|<>]/,
-    //   "Password must contain at least one special character",
-    // ),
-
+    password: yup
+      .string()
+      .required(
+        i18n.t("validate.required", {
+          field: i18n.t("pages.register.password"),
+        }),
+      )
+      .min(3)
+      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .matches(/\d/, "Password must contain at least one digit")
+      .matches(
+        /[!@#$%^&*(),.?":{}|<>]/,
+        "Password must contain at least one special character",
+      ),
     confirm_password: yup
       .string()
       .required()
@@ -156,23 +160,18 @@ function AddNovel() {
               <span>チ港需チ緒夜チ港需チ</span>
             </div>
             <div className="mt-5 border-2 px-12 py-2">
-              <h3 className="mb-5 border-b-2 pb-2 font-bold">千夜チ港需*</h3>
-              <ButtonCommon className="flex w-fit items-center" type="button">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 512 512"
-                  className="rotate-180"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M464 464H48a16 16 0 0 1-14.07-23.62l208-384a16 16 0 0 1 28.14 0l208 384A16 16 0 0 1 464 464z"></path>
-                </svg>
-                <span>千夜チ港需夜チ港需チ緒夜チ港需チ緒</span>
-              </ButtonCommon>
-              <span>チ港需チ緒夜チ港需チ</span>
+              <FormGroup>
+                <LabelCommon htmlFor="category" isRequired>
+                  千夜チ港需
+                </LabelCommon>
+                <Dropdown>
+                  <DropdownSelect placeholder="Select Category"></DropdownSelect>
+                  <DropdownList>
+                    <DropdownOption>Ctype</DropdownOption>
+                    <DropdownOption>Architect</DropdownOption>
+                  </DropdownList>
+                </Dropdown>
+              </FormGroup>
             </div>
             <div className="mt-5 border-2 px-12 py-2">
               <h3 className="mb-5 border-b-2 pb-2 font-bold">千夜チ港需*</h3>

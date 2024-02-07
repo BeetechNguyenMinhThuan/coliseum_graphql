@@ -1,6 +1,6 @@
 import React from "react";
-import { twMerge } from "tailwind-merge";
 import classNames from "@/utils/classNames.ts";
+import { Link } from "react-router-dom";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -8,6 +8,8 @@ interface ButtonProps {
   onClick?: () => void;
   type: "button" | "submit" | "reset" | undefined;
   isLoading?: boolean;
+  href?: string;
+  kind?: string;
 }
 
 function ButtonCommon(props: ButtonProps) {
@@ -16,6 +18,7 @@ function ButtonCommon(props: ButtonProps) {
     type = "button",
     isLoading,
     className = "",
+    href,
     ...rest
   } = props;
   const child = isLoading ? (
@@ -23,12 +26,33 @@ function ButtonCommon(props: ButtonProps) {
   ) : (
     children
   );
+
+  let defaultClass =
+    "flex items-center justify-center gap-x-2 border-2 bg-primary px-5 py-1 font-semibold";
+
+  switch (rest.kind) {
+    case "primary":
+      defaultClass += "bg-primary text-white";
+      break;
+    case "secondary":
+      defaultClass += "bg-secondary text-white";
+      break;
+    default:
+      break;
+  }
+
+  if (href) {
+    return (
+      <Link className={classNames(defaultClass, className)} to={href}></Link>
+    );
+  }
+
   return (
     <button
       type={type}
       {...rest}
       className={classNames(
-        `flex gap-x-2 border-2 bg-teal-300 px-5 py-1`,
+        defaultClass,
         isLoading ? "pointer-events-none opacity-50" : "",
         className,
       )}

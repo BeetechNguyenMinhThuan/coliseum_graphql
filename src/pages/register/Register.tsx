@@ -8,7 +8,7 @@ import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IconEyeToggle from "@/components/icons/IconEyeToggle.tsx";
-import useToggleValue from "@/hooks/useToggleValue.ts";
+import useToggleValue from "@/hooks/useToggleValue.tsx";
 import FormGroup from "@/components/formGroup/FormGroup.tsx";
 import i18n from "@/i18n";
 import { useNavigate } from "react-router-dom";
