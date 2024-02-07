@@ -150,6 +150,9 @@ export function Header() {
             <li>
               <NavLink to="/top-tourament">TopTourament</NavLink>
             </li>
+            <li>
+              <NavLink to="/test5">TEST5</NavLink>
+            </li>
           </ul>
         </div>
       </nav>

@@ -196,6 +196,29 @@ export function TournamentBoard() {
     },
   ];
 
+  const createNewRoundsData = (numRounds) => {
+    const newRounds = [];
+    for (let i = 0; i <= numRounds; i++) {
+      const numMatches = Math.pow(2, numRounds - i);
+      const roundData = [];
+      for (let j = 0; j < numMatches; j++) {
+        roundData.push({
+          name: `match ${j +1} - round ${i + 1 }`,
+          a: { name: "", vote: 0 },
+          b: { name: "", vote: 0 },
+        });
+      }
+      newRounds.push(roundData);
+    }
+    return newRounds;
+  };
+
+  // Sử dụng hàm với tham số là số vòng muốn tạo
+  const numRounds = Math.log2(resultRound.length);
+  const newRounds = createNewRoundsData(numRounds);
+
+  console.log(newRounds);
+
   return (
     <>
       <SideBarTournamentBoard />

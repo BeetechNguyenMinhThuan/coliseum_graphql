@@ -21,6 +21,7 @@ import {TopComment} from "@/pages/topComment/TopComment";
 import {Comment} from "@/pages/comment/Comment";
 import {Recruitment} from "@/pages/recruitment/Recruitment";
 import {TopTourament} from "@/pages/topTourament/TopTourament";
+import Test5 from "@/pages/Test/test5";
 
 export const Login = lazy(() => import("@/pages/login/Login.tsx"));
 export const Register = lazy(() => import("@/pages/register/Register.tsx"));
@@ -118,6 +119,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register/>,
+            },
+            {
+                path: "/test5",
+                element: <Test5/>,
             },
         ],
     },

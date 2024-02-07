@@ -1,5 +1,4 @@
 export default function Matchup({ result }: any) {
-  console.log(result.a.vote);
 
   return (
     <div className="mt-[20px]">
@@ -36,5 +35,7 @@ export default function Matchup({ result }: any) {
         </div>
       </div>
     </div>
+
+    
   );
 }

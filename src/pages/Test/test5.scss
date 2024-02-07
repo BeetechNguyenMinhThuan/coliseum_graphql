@@ -1,0 +1,89 @@
+/* CSS */
+.abcc{
+    display: grid;
+    grid-auto-columns: 10rem;
+    grid-auto-flow: column;
+    grid-column-gap: 13rem;
+    overflow-x: auto;
+}
+// .roundd:nth-child(odd) .line::after {
+//     content: "";
+//     position: absolute;
+   
+//     transform: translateY(-50%) rotate(90deg);
+//     height: 1px;
+//     background-color: red;
+// }
+
+// .roundd:nth-child(even) .line::after {
+//     content: "";
+//     position: absolute;
+    
+//     transform: translateY(-50%) rotate(90deg);
+//     height: 1px;
+//     background-color: black;
+// }
+
+
+
+// .round-1 .line::after {
+//     width: 56px;
+//     top: 28px;
+//     right: -27px;
+// }
+
+// .round-1:nth-child(even) .line::after {
+//     width: 56px;
+//     top: -26px;
+//     right: -27px;
+// }   
+
+// .round-2 .line::after {
+//     width: 112px;
+//     right: -55px;
+//     top: 56px;
+// }
+
+// .round-2:nth-child(even) .line::after {
+//     top: -54px;
+//     right: -55px;
+// }
+
+// .round-3 .line::after {
+//     width: 224px;
+//     right: -111px;
+//     top: 112px;
+// }
+// .round-3:nth-child(even) .line::after {
+//     right: -111px;
+//     top: -110px;
+// }
+// .round-4 .line::after {
+//     width: 448px;
+//     left: -75px;
+//     top: 224px;
+// }
+
+// .round-4:nth-child(even) .line::after {
+//     left: -75px;
+//     top: -224px;
+// }
+
+.column-1 .roundd{
+    margin: 12px 0;
+}
+
+.roundd .relative::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -150px;
+    background-color: black;
+    width: 2px;
+    height: 50%;
+}
+
+.roundd .relative:nth-child(odd)::after{
+    top: 50%;
+    // transform:  rotate(-180deg);
+}
