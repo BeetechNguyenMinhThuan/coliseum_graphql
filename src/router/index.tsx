@@ -11,7 +11,6 @@ import { Test } from "@/pages/Test/Test.tsx";
 import Test2 from "@/pages/Test/Test2.tsx";
 import Test3 from "@/pages/Test/Test3.tsx";
 import Test4 from "@/pages/Test/Test4.tsx";
-import { lazy } from "react";
 import { AuthorJoinTourament } from "@/pages/AuthorJoinTourament/AuthorJoinTourament";
 import { ResultTourament } from "@/pages/ResultTourament/ResultTourament";
 import { HallTourament } from "@/pages/HallTourament/HallTourament";
@@ -24,79 +23,76 @@ import { TopTourament } from "@/pages/topTourament/TopTourament";
 import AddNovel from "@/pages/addNovel/AddNovel.tsx";
 import AddChapter from "@/pages/AddChapter/AddChapter.tsx";
 import ProtectedRoute from "@/router/ProtectedRoute.tsx";
-
-export const Login = lazy(() => import("@/pages/login/Login.tsx"));
-export const MyPage = lazy(() => import("@/pages/MyPage/MyPage.tsx"));
-export const Register = lazy(() => import("@/pages/register/Register.tsx"));
+import { action as logoutAction } from "@/pages/Authentication/Logout";
+import { Login, MyPage, Register } from "@/router/pages";
+import { checkAuthLoader, checkAuthLoginLoader } from "@/utils/auth";
 
 export const router = createBrowserRouter([
   {
+    path: "/",
     element: <Layout />,
     errorElement: <NotFoundPage />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
-        path: "/coliseum",
+        path: "coliseum",
         element: <Coliseum />,
       },
       {
-        path: "/tournament",
+        path: "tournament",
         element: <Tournament />,
       },
 
       {
-        path: "/author",
+        path: "author",
         element: <Author />,
       },
       {
-        path: "/author/rule",
+        path: "author/rule",
         element: <Test4 />,
       },
       {
-        path: "/mypage",
-        element: (
-          <ProtectedRoute>
-            <MyPage />
-          </ProtectedRoute>
-        ),
+        path: "mypage",
+        element: <MyPage />,
+        loader: checkAuthLoader,
       },
       {
-        path: "/mypage/add-novel",
+        path: "mypage/add-novel",
         element: <AddNovel />,
       },
       {
-        path: "/newnovel",
+        path: "newnovel",
         element: <NewNovel />,
       },
       {
-        path: "/tournament-board",
+        path: "tournament-board",
         element: <TournamentBoard />,
       },
       {
-        path: "/test-coli",
+        path: "test-coli",
         element: <Test />,
       },
       {
-        path: "/test-coli2",
+        path: "test-coli2",
         element: <Test2 />,
       },
       {
-        path: "/test-coli3",
+        path: "test-coli3",
         element: <Test3 />,
       },
       {
-        path: "/test-coli4",
+        path: "test-coli4",
         element: <Test4 />,
       },
       {
-        path: "/author-join-tourament",
+        path: "author-join-tourament",
         element: <AuthorJoinTourament />,
       },
       {
-        path: "/result-tourament",
+        path: "result-tourament",
         element: <ResultTourament />,
       },
       {
@@ -104,44 +100,50 @@ export const router = createBrowserRouter([
         element: <HallTourament />,
       },
       {
-        path: "/fan-page",
+        path: "fan-page",
         element: <FanPage />,
       },
       {
-        path: "/user-manual",
+        path: "user-manual",
         element: <UserManual />,
       },
       {
-        path: "/top-comment",
+        path: "top-comment",
         element: <TopComment />,
       },
       {
-        path: "/comment",
+        path: "comment",
         element: <Comment />,
       },
       {
-        path: "/recruitment",
+        path: "recruitment",
         element: <Recruitment />,
       },
       {
-        path: "/top-tourament",
+        path: "top-tourament",
         element: <TopTourament />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
+        loader: checkAuthLoginLoader,
+
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register />,
       },
       {
-        path: "/add-novel",
+        path: "add-novel",
         element: <AddNovel />,
       },
       {
-        path: "/add-chapter",
+        path: "add-chapter",
         element: <AddChapter />,
+      },
+      {
+        path: "logout",
+        action: logoutAction,
       },
     ],
   },

@@ -1,3 +1,5 @@
+import { getAuthToken } from "./auth";
+
 export interface User {
   id: string;
   type: string;
@@ -74,9 +76,9 @@ export const saveItemSessionStorage = (name: string, parameter: any) => {
 };
 
 export const parseJwt = (token: string) => {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
     window
       .atob(base64)
       .split("")
@@ -89,7 +91,7 @@ export const parseJwt = (token: string) => {
 };
 
 export const getUserInfo = (): User => {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const accessToken = getAuthToken();
   if (accessToken) {
     try {
       return parseJwt(accessToken);

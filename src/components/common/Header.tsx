@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Form, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ja, vi } from "date-fns/locale";
 import { registerLocale } from "react-datepicker";
@@ -51,15 +51,9 @@ export function Header() {
                     <NavLink to="/test">Hello, {user?.user?.name}</NavLink>
                   </li>
                   <li>
-                    <ButtonCommon
-                      onClick={() => {
-                        localStorage.removeItem(ACCESS_TOKEN);
-                        navigate("/");
-                      }}
-                      type="button"
-                    >
-                      Logout
-                    </ButtonCommon>
+                    <Form action="/logout" method="post">
+                      <ButtonCommon type="submit">Logout</ButtonCommon>
+                    </Form>
                   </li>
                 </>
               ) : (
