@@ -22,6 +22,8 @@ import {Comment} from "@/pages/comment/Comment";
 import {Recruitment} from "@/pages/recruitment/Recruitment";
 import {TopTourament} from "@/pages/topTourament/TopTourament";
 import Test5 from "@/pages/Test/test5";
+import { UseRegulations } from "@/pages/useRegulations/UseRegulations";
+import { ProtectionPolicy } from "@/pages/protectionPolicy/ProtectionPolicy";
 
 export const Login = lazy(() => import("@/pages/login/Login.tsx"));
 export const Register = lazy(() => import("@/pages/register/Register.tsx"));
@@ -124,6 +126,16 @@ export const router = createBrowserRouter([
                 path: "/test5",
                 element: <Test5/>,
             },
+            {
+                path: "/use-regulations",
+                element: <UseRegulations/>,
+            },
+            {
+                path: "/protection-policy",
+                element: <ProtectionPolicy/>,
+            },
+           
+          
         ],
     },
 ]);

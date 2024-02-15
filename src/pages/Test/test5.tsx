@@ -7,11 +7,11 @@ const rounds = [
     {
       name: "round 1",
       a: {
-        name: "【四方世界へ】世界中を旅したバカだけど何か質問がありますか？ [さあ行こう]",
+        name: "【四方世界へ【四方世界へ】【四方世界へ】】",
         vote: "",
       },
       b: {
-        name: "",
+        name: "【四方世界へ【四方世界へ",
         vote: "",
       },
     },
@@ -275,7 +275,7 @@ const rounds = [
     {
       name: "round 1",
       a: {
-        name: "ádasdasdasdasádasdas dasdasádasdasdasdasádasdasdasdasádasdas dasdasádasdasdasdasádasdasdasdasádasdas dasdasádasdasdasdasádasdasdasdasádasdas dasdasádasdasdasdasádasdasdasdasádasdas dasdasádasdasdasdasádasdasdasdasádasdas dasdasádasdasdasdas",
+        name: "sdas",
         vote: "",
       },
       b: {
@@ -365,7 +365,6 @@ const rounds = [
   ],
 ];
 
-console.log(rounds);
 export default function Test5() {
   return (
     <div className="abcc w-full ">
@@ -376,16 +375,15 @@ export default function Test5() {
         >
           {round.map((match, matchIndex) => (
             <div
-              className={` roundd relative round-${roundIndex + 1}  flex flex-1 flex-col `}
+              className={` roundd relative round-${roundIndex + 1}  flex flex-1  flex-col `}
               key={`match-${matchIndex}`}
             >
               {roundIndex + 1 == rounds.length ? (
                 <Fragment>
-                   
-                <div className=" relative flex flex-1 items-center w-[300px] ">
+                <div className=" relative flex flex-1 items-center w-[300px]  ">
                     <div className="w-full relative">
                     <div className="absolute bottom-10">CHAMPION</div>
-                    <div className=" w-full border-2 ">
+                    <div className=" w-full border-2 namee">
                     {match.a.name} - {match.a.vote}
                   </div>
                     </div>
@@ -396,8 +394,8 @@ export default function Test5() {
                 </div>
                 </Fragment>
               ) : (
-                <div className=" relative flex flex-1 items-center after:w-[2px] w-[300px]">
-                  <div className=" w-full border-2">
+                <div className=" relative flex flex-1 items-center after:w-[2px] w-[300px] py-1">
+                  <div className=" w-full border-2 namee">
                     {match.a.name} - {match.a.vote}
                   </div>
 
@@ -415,7 +413,7 @@ export default function Test5() {
 
               {roundIndex !== 5 && (
                 <div className=" relative flex flex-1 items-center after:w-[2px] w-[300px]">
-                  <div className=" w-full  border-2">
+                  <div className=" w-full border-2 namee">
                     {match?.b?.name} - {match?.b?.vote}
                   </div>
                   <div
