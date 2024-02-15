@@ -5,7 +5,6 @@ import Home from "@/pages/Home/Home.tsx";
 import { Coliseum } from "@/pages/Coliseum/Coliseum.tsx";
 import { Tournament } from "@/pages/Tournament/Tournament.tsx";
 import { Author } from "@/pages/Author/Author.tsx";
-import MyPage from "@/pages/MyPage/MyPage.tsx";
 import NewNovel from "@/pages/NewNovel/NewNovel.tsx";
 import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
 import { Test } from "@/pages/Test/Test.tsx";
@@ -24,8 +23,10 @@ import { Recruitment } from "@/pages/recruitment/Recruitment";
 import { TopTourament } from "@/pages/topTourament/TopTourament";
 import AddNovel from "@/pages/addNovel/AddNovel.tsx";
 import AddChapter from "@/pages/AddChapter/AddChapter.tsx";
+import ProtectedRoute from "@/router/ProtectedRoute.tsx";
 
 export const Login = lazy(() => import("@/pages/login/Login.tsx"));
+export const MyPage = lazy(() => import("@/pages/MyPage/MyPage.tsx"));
 export const Register = lazy(() => import("@/pages/register/Register.tsx"));
 
 export const router = createBrowserRouter([
@@ -56,7 +57,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/mypage",
-        element: <MyPage />,
+        element: (
+          <ProtectedRoute>
+            <MyPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/mypage/add-novel",

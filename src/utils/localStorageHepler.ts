@@ -90,11 +90,9 @@ export const parseJwt = (token: string) => {
 
 export const getUserInfo = (): User => {
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
-
   if (accessToken) {
     try {
-      const user = parseJwt(accessToken);
-      return user;
+      return parseJwt(accessToken);
       // eslint-disable-next-line no-empty
     } catch (e) {}
   }

@@ -17,10 +17,12 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
-export type CreateUserResponse = {
-  __typename?: 'CreateUserResponse';
-  message?: Maybe<Scalars['String']['output']>;
+export type CreateUserMutationResponse = MutationResponse & {
+  __typename?: 'CreateUserMutationResponse';
+  code: Scalars['String']['output'];
+  message: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
+  user?: Maybe<User>;
 };
 
 export type Episode = {
@@ -162,6 +164,16 @@ export type ExportCsvSuccess = {
   fileName?: Maybe<Scalars['String']['output']>;
 };
 
+export type LoginInput = {
+  account_id?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type LoginResponse = {
+  __typename?: 'LoginResponse';
+  token?: Maybe<Scalars['String']['output']>;
+};
+
 export type Match = {
   __typename?: 'Match';
   created_at?: Maybe<Scalars['String']['output']>;
@@ -239,7 +251,7 @@ export type Mutation = {
   createOfficialBadge?: Maybe<OfficialBadge>;
   createOfficialTag?: Maybe<OfficialTag>;
   createRound?: Maybe<Round>;
-  createUser: CreateUserResponse;
+  createUser: CreateUserMutationResponse;
   createUserBadge?: Maybe<UserBadges>;
   createUserBookmark?: Maybe<UserBookmark>;
   createUserLike?: Maybe<UserLike>;
@@ -541,6 +553,12 @@ export type MutationUpdateRoundArgs = {
   round_id: Scalars['Int']['input'];
 };
 
+export type MutationResponse = {
+  code: Scalars['String']['output'];
+  message: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
 export type Novel = {
   __typename?: 'Novel';
   afterword_url?: Maybe<Scalars['String']['output']>;
@@ -671,10 +689,12 @@ export type Query = {
   getUserLike?: Maybe<Array<Maybe<UserLike>>>;
   getUsers?: Maybe<Array<Maybe<User>>>;
   getUsersPaginate?: Maybe<UserPagination>;
+  login?: Maybe<LoginResponse>;
   novel?: Maybe<Novel>;
   novels?: Maybe<Array<Maybe<Novel>>>;
   round?: Maybe<Round>;
   rounds?: Maybe<Array<Maybe<Round>>>;
+  verifyToken: VerifyTokenResponse;
 };
 
 
@@ -725,6 +745,11 @@ export type QueryGetUsersPaginateArgs = {
 };
 
 
+export type QueryLoginArgs = {
+  input: LoginInput;
+};
+
+
 export type QueryNovelArgs = {
   novel_id: Scalars['Int']['input'];
 };
@@ -732,6 +757,11 @@ export type QueryNovelArgs = {
 
 export type QueryRoundArgs = {
   round_id: Scalars['Int']['input'];
+};
+
+
+export type QueryVerifyTokenArgs = {
+  token: Scalars['String']['input'];
 };
 
 export type Round = {
@@ -853,6 +883,12 @@ export type UserPagination = {
   users?: Maybe<Array<User>>;
 };
 
+export type VerifyTokenResponse = {
+  __typename?: 'VerifyTokenResponse';
+  message?: Maybe<Scalars['String']['output']>;
+  success: Scalars['Boolean']['output'];
+};
+
 export type CreateUserInput = {
   first_login_at: Scalars['DateTime']['input'];
   last_login_at: Scalars['DateTime']['input'];
@@ -860,6 +896,27 @@ export type CreateUserInput = {
   s3_url: Scalars['String']['input'];
   user_uuid: Scalars['String']['input'];
 };
+
+export type LoginQueryVariables = Exact<{
+  input: LoginInput;
+}>;
+
+
+export type LoginQuery = { __typename?: 'Query', login?: { __typename?: 'LoginResponse', token?: string | null } | null };
+
+export type VerifyTokenQueryVariables = Exact<{
+  token: Scalars['String']['input'];
+}>;
+
+
+export type VerifyTokenQuery = { __typename?: 'Query', verifyToken: { __typename?: 'VerifyTokenResponse', success: boolean, message?: string | null } };
+
+export type MutationMutationVariables = Exact<{
+  input: NovelInput;
+}>;
+
+
+export type MutationMutation = { __typename?: 'Mutation', createNovel?: { __typename?: 'Novel', novel_id?: number | null, novel_ulid?: string | null, user_id?: number | null, title?: string | null, synopsis?: string | null, cover_picture_url?: string | null, foreword_url?: string | null, afterword_url?: string | null, setting_url?: string | null, note_url?: string | null, dictionary_url?: string | null, is_anonymous?: boolean | null, is_publish?: boolean | null, is_ranking_visible?: boolean | null, is_completed?: boolean | null, is_comment?: boolean | null, is_comment_publish?: boolean | null, first_novel_publish_at?: any | null, first_name_publish_at?: any | null, first_completed_at?: any | null, created_at?: any | null, updated_at?: any | null, deleted_at?: any | null } | null };
 
 export type CreateRoundMutationVariables = Exact<{
   input: RoundInput;
@@ -924,6 +981,9 @@ export type GetRoundsQueryVariables = Exact<{
 export type GetRoundsQuery = { __typename?: 'Query', getRoundsPaginate?: { __typename?: 'RoundPagination', totalItems?: number | null, totalPages?: number | null, currentPage?: number | null, rounds?: Array<{ __typename?: 'Round', round_id?: number | null, round_name?: string | null, round_start_at?: any | null, round_type?: number | null }> | null } | null };
 
 
+export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<LoginQuery, LoginQueryVariables>;
+export const VerifyTokenDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"VerifyToken"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"token"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyToken"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"token"},"value":{"kind":"Variable","name":{"kind":"Name","value":"token"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<VerifyTokenQuery, VerifyTokenQueryVariables>;
+export const MutationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Mutation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NovelInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createNovel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"novel_id"}},{"kind":"Field","name":{"kind":"Name","value":"novel_ulid"}},{"kind":"Field","name":{"kind":"Name","value":"user_id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"synopsis"}},{"kind":"Field","name":{"kind":"Name","value":"cover_picture_url"}},{"kind":"Field","name":{"kind":"Name","value":"foreword_url"}},{"kind":"Field","name":{"kind":"Name","value":"afterword_url"}},{"kind":"Field","name":{"kind":"Name","value":"setting_url"}},{"kind":"Field","name":{"kind":"Name","value":"note_url"}},{"kind":"Field","name":{"kind":"Name","value":"dictionary_url"}},{"kind":"Field","name":{"kind":"Name","value":"is_anonymous"}},{"kind":"Field","name":{"kind":"Name","value":"is_publish"}},{"kind":"Field","name":{"kind":"Name","value":"is_ranking_visible"}},{"kind":"Field","name":{"kind":"Name","value":"is_completed"}},{"kind":"Field","name":{"kind":"Name","value":"is_comment"}},{"kind":"Field","name":{"kind":"Name","value":"is_comment_publish"}},{"kind":"Field","name":{"kind":"Name","value":"first_novel_publish_at"}},{"kind":"Field","name":{"kind":"Name","value":"first_name_publish_at"}},{"kind":"Field","name":{"kind":"Name","value":"first_completed_at"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"deleted_at"}}]}}]}}]} as unknown as DocumentNode<MutationMutation, MutationMutationVariables>;
 export const CreateRoundDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateRound"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RoundInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createRound"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"round_id"}},{"kind":"Field","name":{"kind":"Name","value":"ulid"}},{"kind":"Field","name":{"kind":"Name","value":"round_name"}},{"kind":"Field","name":{"kind":"Name","value":"round_start_at"}},{"kind":"Field","name":{"kind":"Name","value":"round_type"}}]}}]}}]} as unknown as DocumentNode<CreateRoundMutation, CreateRoundMutationVariables>;
 export const ExportCsvDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"exportCSV"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"modelName"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"exportCSV"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"modelName"},"value":{"kind":"Variable","name":{"kind":"Name","value":"modelName"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"csvString"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}}]}}]}}]} as unknown as DocumentNode<ExportCsvMutation, ExportCsvMutationVariables>;
 export const DeleteRoundDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteRound"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"roundId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteRound"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"round_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"roundId"}}}]}]}}]} as unknown as DocumentNode<DeleteRoundMutation, DeleteRoundMutationVariables>;

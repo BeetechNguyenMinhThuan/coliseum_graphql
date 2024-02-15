@@ -13,6 +13,9 @@ import {
   scrollSpy,
 } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
+import useAuth from "@/hooks/useAuth.tsx";
+import { ACCESS_TOKEN } from "@/utils/localStorageHepler.ts";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 
 registerLocale("ja", ja);
 registerLocale("vi", vi);
@@ -20,8 +23,8 @@ registerLocale("vi", vi);
 export function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const user = useAuth();
 
-  const [randomNumber, setRandomNumber] = useState(1);
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState(
@@ -42,15 +45,34 @@ export function Header() {
         <div className="l-container">
           <div className="header-top-right">
             <ul className="flex justify-end gap-x-6">
-              <li>
-                <NavLink to="/login">Login</NavLink>
-              </li>
-              <li>
-                <NavLink to="/register">Register</NavLink>
-              </li>
-              <li>
-                <NavLink to="/test">Hello, Coliseum</NavLink>
-              </li>
+              {user.isAuth ? (
+                <>
+                  <li>
+                    <NavLink to="/test">Hello, {user?.user?.name}</NavLink>
+                  </li>
+                  <li>
+                    <ButtonCommon
+                      onClick={() => {
+                        localStorage.removeItem(ACCESS_TOKEN);
+                        navigate("/");
+                      }}
+                      type="button"
+                    >
+                      Logout
+                    </ButtonCommon>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/register">Register</NavLink>
+                  </li>
+                </>
+              )}
+
               <li>
                 <button
                   className={currentLanguage === "ja" ? "text-orange-500" : ""}

@@ -26,6 +26,7 @@ import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns";
 import Radio from "@/components/checkbox/Radio.tsx";
 import { CircularPagination } from "@/components/Pagination/Pagination.tsx";
+import useAuth from "@/hooks/useAuth.tsx";
 
 interface IFormInput {
   event_id?: number;
@@ -113,6 +114,9 @@ export function Test() {
     setCurrentPage(newPage);
     await roundsRefetch({ page: newPage, limit: limit });
   };
+  if (roundsLoading) {
+    return <p>Loading...</p>;
+  }
   return (
     <>
       <SideBarTournament />
@@ -512,6 +516,8 @@ function FormEditRound(props: any) {
 
 function RoundList(props: any) {
   const { data, onDeleteRound, onHandlePageChange } = props;
+  const { user } = useAuth();
+
   return (
     <div>
       <h1 className="my-10 text-center text-4xl font-bold">List of Rounds</h1>
@@ -528,12 +534,14 @@ function RoundList(props: any) {
                     {round.round_type == 1 ? "Active" : "UnActive"}
                   </button>
                 </div>
-                <div
-                  className="button inline-block cursor-pointer bg-red-400 p-2 text-white"
-                  onClick={() => onDeleteRound(round.round_id)}
-                >
-                  Remove
-                </div>
+                {user.role === "admin" && (
+                  <div
+                    className="button inline-block cursor-pointer bg-red-400 p-2 text-white"
+                    onClick={() => onDeleteRound(round.round_id)}
+                  >
+                    Remove
+                  </div>
+                )}
                 <ModalEditRound roundId={round.round_id} />
               </div>
             </div>

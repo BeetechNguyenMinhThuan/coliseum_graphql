@@ -9,6 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IconEyeToggle from "@/components/icons/IconEyeToggle.tsx";
 import useToggleValue from "@/hooks/useToggleValue.tsx";
+import { useLazyQuery } from "@apollo/client";
+import { LOG_IN } from "@/graphql-client/auth/queries.ts";
+import { Navigate, useNavigate } from "react-router-dom";
+import { ACCESS_TOKEN, saveItemStorage } from "@/utils/localStorageHepler.ts";
+import useAuth from "@/hooks/useAuth.tsx";
+import { toast } from "react-toastify";
 
 interface ILoginForm {
   account_id: string;
@@ -24,11 +30,16 @@ const schema = yup
 
 function Login() {
   const { t } = useTranslation();
+  const user = useAuth();
+
   const {
     handleSubmit,
     control,
     formState: { isValid, isSubmitting, errors },
   } = useForm({ resolver: yupResolver(schema) });
+  const navigate = useNavigate();
+
+  const [login, { loading, error, data }] = useLazyQuery(LOG_IN);
 
   const { value: showPassword, handleToggleValue: handleShowPassword } =
     useToggleValue(false);
@@ -39,9 +50,25 @@ function Login() {
     "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
   ];
 
-  const handleLogin: SubmitHandler<ILoginForm> = (values) => {
-    console.log(values);
+  const handleLogin: SubmitHandler<ILoginForm> = async (values) => {
+    try {
+      const res = await login({ variables: { input: values } });
+      if (res.error?.message) {
+        toast.error(res.error?.message);
+      }
+      const token = res.data?.login?.token;
+      if (token) {
+        saveItemStorage(ACCESS_TOKEN, token);
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  if (user.isAuth) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <>
@@ -95,7 +122,8 @@ function Login() {
             <div className="logo-coli mx-auto w-[350px]">
               <div className="relative h-full">
                 <img
-                  src="https://lh3.googleusercontent.com/gOyv3_b-31UY4te-HRdRixeC3UQbBYohXV31Wx7Sfiea5_q30_ySJBmkjjY9WxT1R0n-ilI985EK6fynCawi38oRPTCbtvbavm47ZI7YWtZ7E_ExxX0xJh2F34YvEVqPfg=w1280"
+                  className="h-[450px]"
+                  src="https://jwt.io/img/pic_logo.svg"
                   alt=""
                 />
                 <ButtonCommon
