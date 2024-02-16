@@ -151,7 +151,7 @@ export function Header() {
               <NavLink to="/top-tourament">TopTourament</NavLink>
             </li>
             <li>
-              <NavLink to="/test5">TEST5</NavLink>
+              <NavLink to="/test5">Tourament</NavLink>
             </li>
             <li>
               <NavLink to="/use-regulations">useRegulations</NavLink>
