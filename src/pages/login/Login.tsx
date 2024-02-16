@@ -69,7 +69,6 @@ function Login() {
   if (user.isAuth) {
     return <Navigate to="/" replace />;
   }
-
   return (
     <>
       <SideBarColiseum />
@@ -96,6 +95,11 @@ function Login() {
                   className="h-[35px] w-2/3"
                 />
               </div>
+              <pre>
+                {error?.graphQLErrors.map(({ message }, i) => (
+                  <span key={i}>{message}</span>
+                ))}
+              </pre>
             </div>
             <div className="mt-5 border-2 p-2">
               <div className="flex flex-col gap-y-3">

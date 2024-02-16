@@ -1,20 +1,15 @@
-import {
-  NetworkStatus,
-  useLazyQuery,
-  useQuery,
-  useReactiveVar,
-} from "@apollo/client";
+import { NetworkStatus, useLazyQuery, useQuery } from "@apollo/client";
 import {
   GET_ROUNDS_BASE,
   GET_USER_BASE,
 } from "@/graphql-client/round/queries.ts";
-import { passengersVar } from "@/main.tsx";
 
 function Test2(props) {
   const { loading, error, data, refetch, networkStatus } = useQuery(
     GET_ROUNDS_BASE,
     {
-      // pollInterval: 500,
+      pollInterval: 1000,
+      fetchPolicy:'network-only'
       // notifyOnNetworkStatusChange: true,
     },
   );
@@ -25,8 +20,6 @@ function Test2(props) {
   if (networkStatus === NetworkStatus.refetch) return "Refetching!";
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-
-  // const passengers = useReactiveVar(passengersVar);
 
   return (
     <>

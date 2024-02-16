@@ -25,8 +25,13 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns";
 import Radio from "@/components/checkbox/Radio.tsx";
-import { CircularPagination } from "@/components/Pagination/Pagination.tsx";
+import {
+  CircularPagination,
+  Pagination,
+} from "@/components/pagination/Pagination";
 import useAuth from "@/hooks/useAuth.tsx";
+import PaginatedItems from "@/components/pagination/PaginatedItems";
+import ReactPaginate from "react-paginate";
 
 interface IFormInput {
   event_id?: number;
@@ -43,7 +48,7 @@ interface FormCreateRoundProps {
 
 export function Test() {
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 4; // Giả sử mỗi trang có 10 items
+  const limit = 10; // Giả sử mỗi trang có 10 items
   const {
     loading: roundsLoading,
     data: roundsData,
@@ -111,7 +116,7 @@ export function Test() {
   };
 
   const handlePageChange = async (newPage: number) => {
-    setCurrentPage(newPage);
+    // setCurrentPage(newPage);
     await roundsRefetch({ page: newPage, limit: limit });
   };
   if (roundsLoading) {
@@ -128,7 +133,6 @@ export function Test() {
         <RoundList
           onDeleteRound={handleDeleteRound}
           data={roundsData}
-          currentPage={currentPage}
           onHandlePageChange={handlePageChange}
         />
       </div>
@@ -516,14 +520,18 @@ function FormEditRound(props: any) {
 
 function RoundList(props: any) {
   const { data, onDeleteRound, onHandlePageChange } = props;
+  const { getRoundsPaginate } = data;
   const { user } = useAuth();
+
+  const handlePageClick = (event: any) => {
+    onHandlePageChange(event.selected + 1);
+  };
 
   return (
     <div>
       <h1 className="my-10 text-center text-4xl font-bold">List of Rounds</h1>
-
       <ul className="mt-2 grid grid-cols-2 gap-6">
-        {data?.getRoundsPaginate?.rounds.map((round: any) => (
+        {getRoundsPaginate?.rounds.map((round: any) => (
           <li key={round.round_id}>
             <div className="text-primary-content w-96 bg-amber-300 p-2">
               <div className="card-body">
@@ -548,9 +556,10 @@ function RoundList(props: any) {
           </li>
         ))}
       </ul>
-      <CircularPagination
-        totalPages={data?.getRoundsPaginate?.totalPages}
-        onPageChange={onHandlePageChange}
+
+      <Pagination
+        totalPages={getRoundsPaginate?.totalPages}
+        onPageChange={handlePageClick}
       />
     </div>
   );
