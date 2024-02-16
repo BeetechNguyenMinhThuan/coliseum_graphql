@@ -1,9 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  useLocation,
+  useMatch,
+  useMatches,
+} from "react-router-dom";
 import { SideBarAuthor } from "components/SideBar/SideBarAuthor.tsx";
 import { Advertisement } from "components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
-import { NovelList, NovelNewContainer } from "../../components/Novel";
+import { Novel, NovelList } from "../../components/novel";
 
 export function Author() {
   const { t } = useTranslation();
@@ -80,7 +86,8 @@ export function Author() {
       status: "たっ",
     },
   ];
-
+  let location = useLocation();
+  console.log(location.pathname);
   return (
     <>
       <SideBarAuthor />
@@ -88,9 +95,11 @@ export function Author() {
         <div className="border-black-500 min-h-[188px]">
           <div className="px-7">
             <div className="flex justify-between pb-2 pt-5">
-              <h3 className="text-2xl font-bold">球ムヘマタ碁投ヘツID碁投</h3>
+              <Link to="rule" className="text-2xl font-bold">
+                球ムヘマタ碁投ヘツID碁投
+              </Link>
               <div>
-                <ButtonCommon>
+                <ButtonCommon type="button">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -141,7 +150,9 @@ export function Author() {
             </div>
           </div>
           <div className="mt-5">
-            <NovelList novels={novels} />
+            {novels.map((novel) => (
+              <Novel isFavorite novel={novel} />
+            ))}
           </div>
         </div>
 

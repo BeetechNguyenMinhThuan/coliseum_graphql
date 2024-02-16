@@ -1,35 +1,20 @@
 import NovelListUpload from "components/NovelUpload/NovelListUpload";
 import { SideBarMyPage } from "components/SideBar/SideBarMyPage";
-import { NavLink, useNavigate, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
-// import Button from "../../components/Button/Button.tsx";
-
-import { Title } from "../../components/Common";
+import { Title } from "@/components/common";
 import Accordition from "components/Accordition/Accordition.tsx";
 import { Advertisement } from "@/components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
+import useAuth from "@/hooks/useAuth.tsx";
 
 export default function MyPage() {
-  const navigate = useNavigate();
+  const user = useAuth();
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
     "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
   ];
-  useEffect(() => {
-    const tokenString = localStorage.getItem("token");
-    if (tokenString) {
-      let { token, exprired_token } = JSON.parse(tokenString);
-      console.log(token, exprired_token);
-
-      if (!token || exprired_token) {
-        navigate("/login");
-      }
-    } else {
-      navigate("/login");
-    }
-  }, []);
 
   return (
     <>

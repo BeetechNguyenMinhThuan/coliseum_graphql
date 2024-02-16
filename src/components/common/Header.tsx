@@ -1,16 +1,30 @@
-import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Form, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ja, vi } from "date-fns/locale";
 import { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+} from "react-scroll";
+import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
+import useAuth from "@/hooks/useAuth.tsx";
+import { ACCESS_TOKEN } from "@/utils/localStorageHepler.ts";
+import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 
 registerLocale("ja", ja);
 registerLocale("vi", vi);
 
 export function Header() {
   const navigate = useNavigate();
-  const [randomNumber, setRandomNumber] = useState(1);
+  const location = useLocation();
+  const user = useAuth();
+
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState(
@@ -22,37 +36,37 @@ export function Header() {
     localStorage.setItem("current_language", lang);
   };
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // Tùy chọn này tạo hiệu ứng cuộn mượt mà
-    });
+    scroll.scrollToTop();
   };
-  //   function getRandomNumber() {
-  //     return Math.floor(Math.random() * 11);
-  //   }
-  //   const handleRandom = () => {
-  //     setRandomNumber(getRandomNumber);
-  //   };
-  //   useEffect(() => {
-  //     if (randomNumber > 5) {
-  //       navigate("/login");
-  //     }
-  //   }, [randomNumber]);
+
   return (
     <header className="fixed left-0 right-0 top-0 z-10 bg-green-100">
       <div className="header-top-wrap py-2">
         <div className="l-container">
           <div className="header-top-right">
             <ul className="flex justify-end gap-x-6">
-              <li>
-                <NavLink to="/login">Login</NavLink>
-              </li>
-              <li>
-                <NavLink to="/register">Register</NavLink>
-              </li>
-              <li>
-                <NavLink to="/test">Hello, Coliseum</NavLink>
-              </li>
+              {user.isAuth ? (
+                <>
+                  <li>
+                    <NavLink to="/test">Hello, {user?.user?.name}</NavLink>
+                  </li>
+                  <li>
+                    <Form action="/logout" method="post">
+                      <ButtonCommon type="submit">Logout</ButtonCommon>
+                    </Form>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/register">Register</NavLink>
+                  </li>
+                </>
+              )}
+
               <li>
                 <button
                   className={currentLanguage === "ja" ? "text-orange-500" : ""}
@@ -76,11 +90,16 @@ export function Header() {
       <div className="header-mid-wrap">
         <div className="l-container">
           <div className="flex justify-between">
-            <ul className="flex gap-x-6">
-              <li>Test 1</li>
-              <li>Test 2</li>
-              <li>Test 3</li>
-            </ul>
+            {location.pathname == "/" ? (
+              <ul className="flex gap-x-6">
+                <li>Test 1</li>
+                <li>Test 2</li>
+                <li>Test 3</li>
+              </ul>
+            ) : (
+              <Breadcrumbs />
+            )}
+
             <button onClick={scrollToTop}>TOP</button>
           </div>
         </div>
@@ -119,7 +138,7 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/test-coli3">Test 3</NavLink>
-            </li>{" "}
+            </li>
             <li>
               <NavLink to="/test-coli4">Test 4</NavLink>
             </li>
@@ -149,6 +168,24 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/top-tourament">TopTourament</NavLink>
+            </li>
+            <li>
+              <NavLink to="/add-novel">Upload Novel</NavLink>
+            </li>
+            <li>
+              <NavLink to="/add-chapter">Add Chapter</NavLink>
+            </li>
+            <li>
+              <Link
+                activeClass="active"
+                to="coliseum_noti"
+                spy={true}
+                smooth={true}
+                offset={-190}
+                duration={500}
+              >
+                お知らせ
+              </Link>
             </li>
             <li>
               <NavLink to="/test5">Tourament</NavLink>
