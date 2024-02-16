@@ -1,0 +1,33 @@
+/* CSS */
+.abcc{
+    display: grid;
+    grid-auto-columns: 10rem;
+    grid-auto-flow: column;
+    grid-column-gap: 21.9rem;
+    overflow-x: auto;
+}
+
+.column-1 .roundd{
+    margin: 12px 0;
+}
+
+.roundd .relative::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -150px;
+    // width: 2px;
+    background-color: black;
+    height: 50%;
+}
+
+.roundd .relative:nth-child(odd)::after{
+    top: 50%;
+}
+
+.namee{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}

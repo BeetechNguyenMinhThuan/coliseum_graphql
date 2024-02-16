@@ -16,80 +16,208 @@ export function TournamentBoard() {
   const resultRound = [
     {
       name: "round 1",
-      a: 100,
-      b: 10
+      a: {
+        name: "SideBarTournamentdd",
+        vote: 100,
+      },
+      b: {
+        name: "SideBarTournntBoard",
+        vote: 50,
+      },
     },
+
     {
       name: "round 2",
-      a: 59,
-      b: 50
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
+
     {
       name: "round 3",
-      a: 29,
-      b: 60
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
+
     {
       name: "round 4",
-      a: 40,
-      b: 46
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
+    },
+
+    {
+      name: "round 5",
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 6",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 7",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 8",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 9",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 10",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 11",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 12",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 13",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 14",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 15",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
     },
     {
       name: "round 16",
-      a: 90,
-      b: 56
+      a: {
+        name: "d",
+        vote: 100,
+      },
+      b: {
+        name: "u",
+        vote: 50,
+      },
+    },
+  ];
+
+  const createNewRoundsData = (numRounds) => {
+    const newRounds = [];
+    for (let i = 0; i <= numRounds; i++) {
+      const numMatches = Math.pow(2, numRounds - i);
+      const roundData = [];
+      for (let j = 0; j < numMatches; j++) {
+        roundData.push({
+          name: `match ${j +1} - round ${i + 1 }`,
+          a: { name: "", vote: 0 },
+          b: { name: "", vote: 0 },
+        });
+      }
+      newRounds.push(roundData);
     }
-  ]
+    return newRounds;
+  };
+
+  // Sử dụng hàm với tham số là số vòng muốn tạo
+  const numRounds = Math.log2(resultRound.length);
+  const newRounds = createNewRoundsData(numRounds);
+
+  console.log(newRounds);
 
   return (
     <>
@@ -114,11 +242,9 @@ export function TournamentBoard() {
             </li>
           </ul>
         </div>
-        {
-          resultRound.map((result, index) => (
-            <Matchup key={index} result={result}></Matchup>
-          ))
-        }
+        {resultRound.map((result, index) => (
+          <Matchup key={index} result={result}></Matchup>
+        ))}
       </div>
     </>
   );

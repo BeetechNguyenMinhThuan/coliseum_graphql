@@ -1,0 +1,12 @@
+.ranking-list-enter {
+  opacity: 0;
+}
+
+.ranking-list-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.ranking-list-exit-active {
+  opacity: 0;
+}
