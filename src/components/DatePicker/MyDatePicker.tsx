@@ -1,6 +1,12 @@
 import { useTranslation } from "react-i18next";
 import ReactDatePicker from "react-datepicker";
 import { Controller } from "react-hook-form";
+import { ja, vi } from "date-fns/locale";
+import { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+registerLocale("ja", ja);
+registerLocale("vi", vi);
 
 export function MyDatePicker({ control, ...props }) {
   const { i18n } = useTranslation();

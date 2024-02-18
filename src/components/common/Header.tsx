@@ -1,27 +1,13 @@
 import { useState } from "react";
-import { Form, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Form, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ja, vi } from "date-fns/locale";
-import { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import {
-  Link,
-  Button,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-} from "react-scroll";
+import { Link, animateScroll as scroll } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
-import { ACCESS_TOKEN } from "@/utils/localStorageHepler.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 
-registerLocale("ja", ja);
-registerLocale("vi", vi);
 
 export function Header() {
-  const navigate = useNavigate();
   const location = useLocation();
   const user = useAuth();
 
@@ -113,7 +99,12 @@ export function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/coliseum">Coliseum</NavLink>
+              <NavLink
+                to="/coliseum"
+                className={({ isActive }) => (isActive ? "text-primary" : "")}
+              >
+                Coliseum
+              </NavLink>
             </li>
             <li>
               <NavLink to="/tournament">Tournament</NavLink>
@@ -177,7 +168,6 @@ export function Header() {
             </li>
             <li>
               <Link
-                activeClass="active"
                 to="coliseum_noti"
                 spy={true}
                 smooth={true}
