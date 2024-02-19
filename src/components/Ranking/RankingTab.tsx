@@ -154,7 +154,7 @@ export function RankingTab({ tabs, setNovel, hideRankingList }) {
     };
 
     setNovel(novelsByTab[tab]);
-    hideRankingList(false)
+    hideRankingList()
     setActiveTab(tab);
 };
   return (
