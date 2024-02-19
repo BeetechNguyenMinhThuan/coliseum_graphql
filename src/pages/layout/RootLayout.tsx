@@ -16,7 +16,7 @@ export default function Layout() {
    * render template
    */
   return (
-    <Suspense>
+    <Suspense fallback={<></>}>
       <div id="app" className="mt-[108px]">
         <Header />
         {(pathName == "/" ||

@@ -7,14 +7,19 @@ interface IPaginationProps {
 
 export function Pagination(props: IPaginationProps) {
   const { totalPages, onPageChange } = props;
+
+  const handlePageClick = (event: any) => {
+    onPageChange(event.selected + 1);
+  };
+
   return (
     <ReactPaginate
       className="mt-4 flex justify-center gap-x-3"
       breakLabel="..."
       nextLabel="next >"
-      onPageChange={onPageChange}
+      onPageChange={handlePageClick}
       pageRangeDisplayed={5}
-      pageCount={totalPages}
+      pageCount={totalPages ?? 0}
       previousLabel="< previous"
       renderOnZeroPageCount={null}
       activeClassName="active"

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "@/pages/Layout/Layout.tsx";
 import NotFoundPage from "@/pages/Error/NotFoundPage.tsx";
-import Home from "@/pages/Home/Home.tsx";
+import Home from "@/pages/home/Home";
 import { Coliseum } from "@/pages/Coliseum/Coliseum.tsx";
 import { Tournament } from "@/pages/Tournament/Tournament.tsx";
 import { Author } from "@/pages/Author/Author.tsx";
@@ -24,16 +23,16 @@ import AddChapter from "@/pages/AddChapter/AddChapter.tsx";
 import Test5 from "@/pages/Test/test5";
 import { UseRegulations } from "@/pages/useRegulations/UseRegulations";
 import { ProtectionPolicy } from "@/pages/protectionPolicy/ProtectionPolicy";
-import ProtectedRoute from "@/router/ProtectedRoute.tsx";
-import { action as logoutAction } from "@/pages/Authentication/Logout";
+import { action as logoutAction } from "@/pages/auth/logout/Logout";
 import { Login, MyPage, Register } from "@/router/pages";
 import { checkAuthLoader, checkAuthLoginLoader } from "@/utils/auth";
 import UserManual from "@/pages/userManual/UserManual";
+import RootLayout from "@/pages/layout/RootLayout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <RootLayout />,
     errorElement: <NotFoundPage />,
     children: [
       {
@@ -130,24 +129,24 @@ export const router = createBrowserRouter([
         path: "login",
         element: <Login />,
         loader: checkAuthLoginLoader,
-
       },
       {
         path: "register",
         element: <Register />,
+        loader: checkAuthLoginLoader,
       },
-        {
-            path: "/test5",
-            element: <Test5/>,
-        },
-        {
-            path: "/use-regulations",
-            element: <UseRegulations/>,
-        },
-        {
-            path: "/protection-policy",
-            element: <ProtectionPolicy/>,
-        },
+      {
+        path: "/test5",
+        element: <Test5 />,
+      },
+      {
+        path: "/use-regulations",
+        element: <UseRegulations />,
+      },
+      {
+        path: "/protection-policy",
+        element: <ProtectionPolicy />,
+      },
       {
         path: "add-novel",
         element: <AddNovel />,
