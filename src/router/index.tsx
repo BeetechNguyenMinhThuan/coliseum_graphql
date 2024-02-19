@@ -130,24 +130,24 @@ export const router = createBrowserRouter([
         path: "login",
         element: <Login />,
         loader: checkAuthLoginLoader,
-
       },
       {
         path: "register",
         element: <Register />,
+        loader: checkAuthLoginLoader,
       },
-        {
-            path: "/test5",
-            element: <Test5/>,
-        },
-        {
-            path: "/use-regulations",
-            element: <UseRegulations/>,
-        },
-        {
-            path: "/protection-policy",
-            element: <ProtectionPolicy/>,
-        },
+      {
+        path: "/test5",
+        element: <Test5 />,
+      },
+      {
+        path: "/use-regulations",
+        element: <UseRegulations />,
+      },
+      {
+        path: "/protection-policy",
+        element: <ProtectionPolicy />,
+      },
       {
         path: "add-novel",
         element: <AddNovel />,
