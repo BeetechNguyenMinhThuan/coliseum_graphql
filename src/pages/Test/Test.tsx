@@ -1,9 +1,8 @@
-import { useTranslation } from "react-i18next";
 import { SideBarTournament } from "@/components/SideBar/SideBarTournament.tsx";
 import { MyDatePicker } from "@/components/DatePicker/MyDatePicker.tsx";
-import { useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { SetStateAction, useEffect, useState } from "react";
-import { GET_ROUNDS, GET_USERS } from "@/graphql-client/round/queries.ts";
+import { GET_ROUNDS } from "@/graphql-client/round/queries.ts";
 import Swal from "sweetalert2";
 import {
   CREATE_ROUND,
@@ -25,13 +24,9 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns";
 import Radio from "@/components/checkbox/Radio.tsx";
-import {
-  CircularPagination,
-  Pagination,
-} from "@/components/pagination/Pagination";
+import { Pagination } from "@/components/pagination/Pagination";
 import useAuth from "@/hooks/useAuth.tsx";
-import PaginatedItems from "@/components/pagination/PaginatedItems";
-import ReactPaginate from "react-paginate";
+import useDebounce from "@/hooks/useDebounce";
 
 interface IFormInput {
   event_id?: number;
@@ -48,13 +43,20 @@ interface FormCreateRoundProps {
 
 export function Test() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filter, setFilter] = useState("");
+  const filterDebounce = useDebounce(filter,1000)
+
   const limit = 10; // Giả sử mỗi trang có 10 items
   const {
     loading: roundsLoading,
     data: roundsData,
     refetch: roundsRefetch,
   } = useQuery(GET_ROUNDS, {
-    variables: { page: currentPage, limit: limit },
+    variables: { page: currentPage, limit: limit, search: filter },
+  });
+
+  const [getRoundsPaginate, { loading, data }] = useLazyQuery(GET_ROUNDS,{
+    fetchPolicy: "cache-and-network"
   });
 
   const [
@@ -63,6 +65,15 @@ export function Test() {
   ] = useMutation(CREATE_ROUND);
 
   const [deleteRound] = useMutation(DELETE_ROUND);
+
+  const handleSearchRound = async (e) => {
+    setFilter(e.target.value);
+    if (filterDebounce) {
+      getRoundsPaginate({
+        variables: { page: currentPage, limit: limit, search: filterDebounce },
+      });
+    }
+  };
 
   const handleDeleteRound = async (roundId: number) => {
     try {
@@ -134,6 +145,8 @@ export function Test() {
           onDeleteRound={handleDeleteRound}
           data={roundsData}
           onHandlePageChange={handlePageChange}
+          handleSearchRound={handleSearchRound}
+          filter={filter}
         />
       </div>
     </>
@@ -519,19 +532,22 @@ function FormEditRound(props: any) {
 }
 
 function RoundList(props: any) {
-  const { data, onDeleteRound, onHandlePageChange } = props;
-  const { getRoundsPaginate } = data;
+  const { data, onDeleteRound, onHandlePageChange, handleSearchRound, filter } =
+    props;
   const { user } = useAuth();
-
-  const handlePageClick = (event: any) => {
-    onHandlePageChange(event.selected + 1);
-  };
 
   return (
     <div>
       <h1 className="my-10 text-center text-4xl font-bold">List of Rounds</h1>
+      <input
+        type="text"
+        placeholder="search..."
+        className="border-2"
+        value={filter}
+        onChange={handleSearchRound}
+      />
       <ul className="mt-2 grid grid-cols-2 gap-6">
-        {getRoundsPaginate?.rounds.map((round: any) => (
+        {data?.getRoundsPaginate?.rounds.map((round: any) => (
           <li key={round.round_id}>
             <div className="text-primary-content w-96 bg-amber-300 p-2">
               <div className="card-body">
@@ -558,8 +574,8 @@ function RoundList(props: any) {
       </ul>
 
       <Pagination
-        totalPages={getRoundsPaginate?.totalPages}
-        onPageChange={handlePageClick}
+        totalPages={data?.getRoundsPaginate?.totalPages}
+        onPageChange={onHandlePageChange}
       />
     </div>
   );
