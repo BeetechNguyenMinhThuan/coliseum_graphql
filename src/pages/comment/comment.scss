@@ -1,0 +1,12 @@
+.info-enter {
+  opacity: 0;
+}
+
+.info-enter-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.info-exit-active {
+  opacity: 0;
+}
