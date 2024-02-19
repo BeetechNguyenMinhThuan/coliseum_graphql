@@ -32,8 +32,8 @@ query GetUsersBase {
 `);
 
 export const GET_ROUNDS_BASE = gql(`
-       query Rounds {
-          rounds {
+       query Rounds($search:String) {
+          rounds(search: $search) {
             round_id
             round_name
             round_start_at

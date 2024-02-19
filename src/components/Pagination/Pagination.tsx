@@ -1,8 +1,8 @@
 import ReactPaginate from "react-paginate";
 
 interface IPaginationProps {
-  totalPages: number;
-  onPageChange: (selectedItem: { selected: number }) => void;
+  totalPages: number | undefined | null;
+  onPageChange: (newPage: number) => void;
 }
 
 export function Pagination(props: IPaginationProps) {
