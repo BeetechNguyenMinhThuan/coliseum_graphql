@@ -3,8 +3,8 @@ import { gql } from "@/__generated__/gql";
 
 
 export const GET_ROUNDS_BASE = gql(`
-       query Rounds {
-          rounds {
+       query Rounds($search:String) {
+          rounds(search: $search) {
             round_id
             round_name
             round_start_at
@@ -14,8 +14,8 @@ export const GET_ROUNDS_BASE = gql(`
     `);
 
 export const GET_ROUNDS = gql(`
-        query GetRounds($page: Int!, $limit: Int!, $search:String) {
-            getRoundsPaginate(page: $page, limit: $limit, search: $search) {
+        query GetRounds($page: Int!, $limit: Int!, $filter:filterRound) {
+            getRoundsPaginate(page: $page, limit: $limit, filter: $filter) {
                 rounds {
                    round_id
                    round_name

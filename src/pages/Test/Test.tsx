@@ -44,7 +44,7 @@ interface FormCreateRoundProps {
 export function Test() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
-  const filterDebounce = useDebounce(filter,1000)
+  const filterDebounce = useDebounce(filter, 1000);
 
   const limit = 10; // Giả sử mỗi trang có 10 items
   const {
@@ -53,10 +53,6 @@ export function Test() {
     refetch: roundsRefetch,
   } = useQuery(GET_ROUNDS, {
     variables: { page: currentPage, limit: limit, search: filter },
-  });
-
-  const [getRoundsPaginate, { loading, data }] = useLazyQuery(GET_ROUNDS,{
-    fetchPolicy: "cache-and-network"
   });
 
   const [
@@ -69,9 +65,7 @@ export function Test() {
   const handleSearchRound = async (e) => {
     setFilter(e.target.value);
     if (filterDebounce) {
-      getRoundsPaginate({
-        variables: { page: currentPage, limit: limit, search: filterDebounce },
-      });
+      roundsRefetch();
     }
   };
 
