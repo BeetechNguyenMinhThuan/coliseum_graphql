@@ -106,7 +106,6 @@ export function RankingContainer() {
       <h2 className="pb-2 text-center text-2xl font-bold">評価</h2>
       {location.pathname === "/newnovel" ? (
         <div className="border-black-500 mb-3 min-h-[188px] border-y-2 border-solid p-2">
-          <p>...</p>
         </div>
       ) : (
         ""
@@ -120,11 +119,8 @@ export function RankingContainer() {
       {location.pathname === "/newnovel" ? (
         <div>
           <div className="border-t-2 py-4">
-            <div className="flex items-center gap-4">...</div>
-            <div className="mt-4 flex items-center gap-4">...</div>
           </div>
           <div className="border-t-2 py-4">
-            <div className="flex items-center justify-center gap-4">...</div>
           </div>
         </div>
       ) : (

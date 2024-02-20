@@ -28,6 +28,8 @@ import { Login, MyPage, Register } from "@/router/pages";
 import { checkAuthLoader, checkAuthLoginLoader } from "@/utils/auth";
 import UserManual from "@/pages/userManual/UserManual";
 import RootLayout from "@/pages/layout/RootLayout";
+import Test6 from "@/pages/Test/test6";
+import { SearchNovel } from "@/pages/searchNovel/searchNovel";
 
 export const router = createBrowserRouter([
   {
@@ -158,6 +160,14 @@ export const router = createBrowserRouter([
       {
         path: "logout",
         action: logoutAction,
+      },
+      {
+        path: "/test6",
+        element: <Test6 />,
+      },
+      {
+        path: "/search-novel",
+        element: <SearchNovel/>,
       },
     ],
   },

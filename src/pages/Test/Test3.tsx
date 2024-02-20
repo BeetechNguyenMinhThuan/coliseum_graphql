@@ -1,5 +1,5 @@
+import { GET_USER_BASE } from "@/graphql-client/user/queries";
 import { useLazyQuery, useQuery } from "@apollo/client";
-import { GET_USER_BASE } from "@/graphql-client/round/queries.ts";
 
 function Test3(props) {
   const { loading, error, data } = useQuery(GET_USER_BASE);
