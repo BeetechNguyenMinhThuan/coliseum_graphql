@@ -22,9 +22,8 @@ function Test4() {
     setFilter({ ...filter, searchValue: "" });
   };
   const { loading, data, error, refetch } = useQuery(GET_ROUNDS, {
-    variables: { page: 1, limit: 100, search: search },
+    variables: { page: 1, limit: 100, filter: filter },
   });
-  console.log(filter);
 
   return (
     <>
