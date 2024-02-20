@@ -1,7 +1,5 @@
 import { gql } from "@/__generated__/gql";
 
-
-
 export const GET_ROUNDS_BASE = gql(`
        query Rounds($search:String) {
           rounds(search: $search) {

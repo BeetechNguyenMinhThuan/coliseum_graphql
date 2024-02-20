@@ -1,10 +1,20 @@
 import { GET_USER_BASE } from "@/graphql-client/user/queries";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 
 function Test6() {
-    const { loading, error, data } = useQuery(GET_USER_BASE);
+  const [getUsers, { loading, error, data }] = useLazyQuery(GET_USER_BASE);
 
-  return <div>Hello Sir</div>;
+  if (loading) return "Đang tải...";
+  if (error) return "Có lỗi xảy ra.";
+
+  return (
+    <div>
+      <button onClick={getUsers}>Hiển thị</button>
+      {data?.getUsers.map((user, index) => (
+        <div key={user.id}>{user.name}</div>
+      ))}   
+    </div>
+  );
 }
 
 export default Test6;

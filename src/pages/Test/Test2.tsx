@@ -1,8 +1,8 @@
 import { NetworkStatus, useLazyQuery, useQuery } from "@apollo/client";
 import {
   GET_ROUNDS_BASE,
-  GET_USER_BASE,
 } from "@/graphql-client/round/queries.ts";
+import { GET_USER_BASE } from "@/graphql-client/user/queries";
 
 function Test2(props) {
   const { loading, error, data, refetch, networkStatus } = useQuery(

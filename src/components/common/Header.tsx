@@ -189,6 +189,9 @@ export function Header() {
             <li>
               <NavLink to="/test6">TESST6</NavLink>
             </li>
+            <li>
+              <NavLink to="/search-novel">SearchNovel</NavLink>
+            </li>
           </ul>
         </div>
       </nav>
