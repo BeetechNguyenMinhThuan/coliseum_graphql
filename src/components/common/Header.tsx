@@ -186,6 +186,9 @@ export function Header() {
             <li>
               <NavLink to="/protection-policy">ProtectionPolicy</NavLink>
             </li>
+            <li>
+              <NavLink to="/test6">TESST6</NavLink>
+            </li>
           </ul>
         </div>
       </nav>
