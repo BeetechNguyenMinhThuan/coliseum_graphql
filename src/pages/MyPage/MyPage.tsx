@@ -6,10 +6,9 @@ import { Title } from "@/components/common";
 import Accordition from "components/Accordition/Accordition.tsx";
 import { Advertisement } from "@/components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
-import useAuth from "@/hooks/useAuth.tsx";
 
 export default function MyPage() {
-  const user = useAuth();
+  
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",

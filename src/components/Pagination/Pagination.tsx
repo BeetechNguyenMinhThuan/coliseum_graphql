@@ -1,12 +1,13 @@
 import ReactPaginate from "react-paginate";
 
 interface IPaginationProps {
+  currentPage?:number;
   totalPages: number | undefined | null;
   onPageChange: (newPage: number) => void;
 }
 
 export function Pagination(props: IPaginationProps) {
-  const { totalPages, onPageChange } = props;
+  const { totalPages, onPageChange,currentPage } = props;
 
   const handlePageClick = (event: any) => {
     onPageChange(event.selected + 1);
@@ -23,6 +24,7 @@ export function Pagination(props: IPaginationProps) {
       previousLabel="< previous"
       renderOnZeroPageCount={null}
       activeClassName="active"
+      initialPage={currentPage}
     />
   );
 }

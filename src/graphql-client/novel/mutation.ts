@@ -29,3 +29,15 @@ mutation Mutation($input: NovelInput!) {
     }
   }
 `);
+
+export const TOGGLE_LIKE_NOVEL = gql(`
+mutation ToggleUserLike($novelId: Int!) {
+  toggleUserLike(novelId: $novelId) {
+    success
+    message
+    novel_id
+    likedCount
+    isFavorite
+  }
+}
+`);

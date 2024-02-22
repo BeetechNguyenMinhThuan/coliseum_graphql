@@ -1,7 +1,7 @@
-import { gql } from "__generated__/gql.ts";
+import { gql } from "@/__generated__/gql";
 
-export const GET_NOVELS = gql(`
-query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
+export const GET_NOVELS_PAGINATE = gql(`
+ query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
   getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {
     novels {
       novel_id
@@ -33,6 +33,7 @@ query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
       novel_comments {
         comment
       }
+      user_like
       first_novel_publish_at
       first_name_publish_at
       first_completed_at

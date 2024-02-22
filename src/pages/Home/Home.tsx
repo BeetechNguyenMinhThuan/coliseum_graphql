@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { Search } from "components/Search/Search";
 import { Advertisement } from "components/Advertisement/Advertisement.tsx";
 import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
@@ -10,7 +9,8 @@ import { downloadFileFromContentBinary } from "@/utils/helper.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
-import { GET_NOVELS } from "@/graphql-client/novel/queries";
+import Search from "@/components/Search/Search";
+import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
@@ -33,91 +33,17 @@ const Home = () => {
     }
   };
 
-  const {loading, error, data} = useQuery(GET_NOVELS,{
+  const {loading, error, data, refetch} = useQuery(GET_NOVELS_PAGINATE,{
     variables: {
         "page": 1,
-        "limit": 100,
+        "limit": 1,
         "filter": null,
     }
   })
 
   if(loading) return "Đang load";
-  if(error) console.error(error); 
-  console.log(data);
+  if(error) return "Có lỗi xảy ra"; 
   
-
-
-  const novels = [
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/Thumbnail-YouTube-la-gi-1-1-1-750x420.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.30",
-      updated_at: "2023.12.25",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/thumbnail-la-gi-1.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      updated_at: "2023.12.15",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/thumbnail1.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      updated_at: "2024.12.6",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/Thumbnail-YouTube-la-gi-1-1-1-750x420.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/Thumbnail-YouTube-la-gi-1-1-1-750x420.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      status: "たっ",
-    },
-  ];
-
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
@@ -214,7 +140,7 @@ const Home = () => {
           <h2 className="pb-2 text-center text-2xl font-bold">
             新しく出版された小説
           </h2>
-          <NovelList novels={novels} />
+          <NovelList novels={data} refetch={refetch} />
         </div>
 
         <RankingContainer />

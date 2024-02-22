@@ -1,4 +1,4 @@
-import { NovelList } from "components/novel";
+import { NovelList } from "@/components/novel";
 
 export function RankingList({ novels }) {
   return (
