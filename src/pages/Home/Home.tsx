@@ -4,12 +4,13 @@ import { Advertisement } from "components/Advertisement/Advertisement.tsx";
 import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
 import { downloadFileFromContentBinary } from "@/utils/helper.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
+import { GET_NOVELS } from "@/graphql-client/novel/queries";
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
@@ -31,6 +32,20 @@ const Home = () => {
       alert(`Export failed: ${error.message}`);
     }
   };
+
+  const {loading, error, data} = useQuery(GET_NOVELS,{
+    variables: {
+        "page": 1,
+        "limit": 100,
+        "filter": null,
+    }
+  })
+
+  if(loading) return "Đang load";
+  if(error) console.error(error); 
+  console.log(data);
+  
+
 
   const novels = [
     {

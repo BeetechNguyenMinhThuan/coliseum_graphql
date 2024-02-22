@@ -1,15 +1,11 @@
 import { gql } from "__generated__/gql.ts";
 
-export const GET_NOVELS = gql(`
-query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
-  getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {
-    novels {
+export const ADD_NOVEL = gql(`
+mutation Mutation($input: NovelInput!) {
+    createNovel(input: $input) {
       novel_id
       novel_ulid
       user_id
-      user {
-        name
-      }
       title
       synopsis
       cover_picture_url
@@ -24,28 +20,12 @@ query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
       is_completed
       is_comment
       is_comment_publish
-      novel_tag {
-        tag
-      }
-      novel_badges {
-        badges_name
-      }
-      novel_comments {
-        comment
-      }
       first_novel_publish_at
       first_name_publish_at
       first_completed_at
-      total_likes
-      total_badges
-      total_bookmarks
       created_at
       updated_at
       deleted_at
     }
-    totalItems
-    totalPages
-    currentPage
   }
-}
 `);
