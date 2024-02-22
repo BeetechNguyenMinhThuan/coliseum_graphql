@@ -40,7 +40,7 @@ function Login() {
   const navigate = useNavigate();
 
   const [login, { loading, error, data }] = useLazyQuery(LOG_IN);
-
+  console.log(error?.graphQLErrors)
   const { value: showPassword, handleToggleValue: handleShowPassword } =
     useToggleValue(false);
 
@@ -97,7 +97,7 @@ function Login() {
               </div>
               <pre>
                 {error?.graphQLErrors.map(({ message }, i) => (
-                  <span key={i}>{message}</span>
+                  <p key={i}>{message}</p>
                 ))}
               </pre>
             </div>

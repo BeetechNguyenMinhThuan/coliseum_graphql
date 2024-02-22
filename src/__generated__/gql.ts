@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n      query Login($input: LoginInput!) {\n          login(input: $input) {\n            token\n          }\n}\n    ": types.LoginDocument,
     "\n       query VerifyToken($token: String!) {\n          verifyToken(token: $token) {\n            success\n            message\n          }\n        }\n    ": types.VerifyTokenDocument,
+    "\n  query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {\n    getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {\n      novels {\n        novel_id\n        user_id\n        user {\n          name\n        }\n        title\n        synopsis\n        cover_picture_url\n        created_at\n        updated_at\n      }\n      totalItems\n      totalPages\n      currentPage\n    }\n  }\n": types.GetNovelsPaginateDocument,
     "\nmutation Mutation($input: NovelInput!) {\n    createNovel(input: $input) {\n      novel_id\n      novel_ulid\n      user_id\n      title\n      synopsis\n      cover_picture_url\n      foreword_url\n      afterword_url\n      setting_url\n      note_url\n      dictionary_url\n      is_anonymous\n      is_publish\n      is_ranking_visible\n      is_completed\n      is_comment\n      is_comment_publish\n      first_novel_publish_at\n      first_name_publish_at\n      first_completed_at\n      created_at\n      updated_at\n      deleted_at\n    }\n  }\n": types.MutationDocument,
     "\nmutation CreateRound($input: RoundInput!) {\n  createRound(input: $input) {\n    round_id\n    ulid\n    round_name\n    round_start_at\n    round_type\n  }\n}\n": types.CreateRoundDocument,
     "\nmutation exportCSV($modelName: String) {\n  exportCSV(modelName: $modelName) {\n   csvString\n   fileName\n  }\n}\n": types.ExportCsvDocument,
@@ -49,6 +50,10 @@ export function gql(source: "\n      query Login($input: LoginInput!) {\n       
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n       query VerifyToken($token: String!) {\n          verifyToken(token: $token) {\n            success\n            message\n          }\n        }\n    "): (typeof documents)["\n       query VerifyToken($token: String!) {\n          verifyToken(token: $token) {\n            success\n            message\n          }\n        }\n    "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {\n    getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {\n      novels {\n        novel_id\n        user_id\n        user {\n          name\n        }\n        title\n        synopsis\n        cover_picture_url\n        created_at\n        updated_at\n      }\n      totalItems\n      totalPages\n      currentPage\n    }\n  }\n"): (typeof documents)["\n  query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {\n    getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {\n      novels {\n        novel_id\n        user_id\n        user {\n          name\n        }\n        title\n        synopsis\n        cover_picture_url\n        created_at\n        updated_at\n      }\n      totalItems\n      totalPages\n      currentPage\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

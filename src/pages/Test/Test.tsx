@@ -43,7 +43,11 @@ interface FormCreateRoundProps {
 
 export function Test() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState({
+    searchValue: "",
+    isColiseum: false,
+    isLeageMatch: false,
+  });
   const filterDebounce = useDebounce(filter, 1000);
 
   const limit = 10; // Giả sử mỗi trang có 10 items
@@ -52,7 +56,7 @@ export function Test() {
     data: roundsData,
     refetch: roundsRefetch,
   } = useQuery(GET_ROUNDS, {
-    variables: { page: currentPage, limit: limit, search: filter },
+    variables: { page: currentPage, limit: limit, filter: filter },
   });
 
   const [

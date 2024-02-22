@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { Search } from "components/Search/Search";
 import { Advertisement } from "components/Advertisement/Advertisement.tsx";
 import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
@@ -10,6 +9,7 @@ import { downloadFileFromContentBinary } from "@/utils/helper.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
+import Search from "@/components/Search/Search";
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
