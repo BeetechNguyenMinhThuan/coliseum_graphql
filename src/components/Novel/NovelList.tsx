@@ -4,7 +4,7 @@ import { Novel } from "./Novel.tsx";
 export function NovelList({ novels, refetch }) {
   const handlePageChange = async (newPage: number) => {
     // setCurrentPage(newPage);
-    await refetch({ page: newPage, limit: 100 });
+    await refetch({ page: newPage, limit: 1 });
   };
   return (
     <div>

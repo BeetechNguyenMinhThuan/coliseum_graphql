@@ -34,6 +34,7 @@ export const GET_NOVELS_PAGINATE = gql(`
         comment
       }
       user_like
+      user_bookmarks
       first_novel_publish_at
       first_name_publish_at
       first_completed_at

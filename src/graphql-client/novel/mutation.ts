@@ -41,3 +41,12 @@ mutation ToggleUserLike($novelId: Int!) {
   }
 }
 `);
+
+export const TOGGLE_BOOKMARKS_NOVEL = gql(`
+mutation ToggleUserBookmark($novelId: Int!) {
+  toggleUserBookmark(novelId: $novelId) {
+    success
+    message
+    isBookmark
+  }
+}`);
