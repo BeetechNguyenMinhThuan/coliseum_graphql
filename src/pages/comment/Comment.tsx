@@ -2,10 +2,13 @@ import { useTranslation } from "react-i18next";
 import { SideBarColiseum } from "components/SideBar/SideBarColiseum.tsx";
 import { Advertisement } from "components/Advertisement";
 import { CSSTransition } from "react-transition-group";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./comment.scss";
 export function Comment() {
   const { t } = useTranslation();
+  const [show, setShow] = useState(true);
+  const [activeBook, setActiveBook] = useState();
+  const [content, setContent] = useState();
 
   const arrAds = [
     "s-l1200.webp",
@@ -13,60 +16,42 @@ export function Comment() {
     "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
   ];
 
-  const [show, setShow] = useState(true);
-  const [activeBook, setActiveBook] = useState();
+  const bookList = useMemo(
+    () => [
+      {
+        id: 1,
+        name: "Tác phẩm 1",
+        content: "Đây là content 1",
+        created_at: "20-12-2023",
+      },
+      {
+        id: 2,
+        name: "Tác phẩm 2",
+        content: "Đây là content 2",
+        created_at: "20-12-2023",
+      },
+      {
+        id: 3,
+        name: "Tác phẩm 3",
+        content: "Đây là content 3",
+        created_at: "20-12-2023",
+      },
+    ],
+    [],
+  );
 
-  const bookList = [
-    {
-      id: 1,
-      name: "Tác phẩm 1",
-      created_at: "20-12-2023",
-    },
-    {
-      id: 2,
-      name: "Tác phẩm 2",
-      created_at: "20-12-2023",
-    },
-    {
-      id: 3,
-      name: "Tác phẩm 3",
-      created_at: "20-12-2023",
-    },
-  ];
-
-  const contens = [
-    {
-      book_id: 1,
-      content: "Đây là content 1",
-    },
-    {
-      book_id: 2,
-      content: "Đây là content 2",
-    },
-    {
-      book_id: 3,
-      content: "Đây là content 3",
-    },
-  ];
-
-  const [content, setContent] = useState();
-
-  const hideInfo = () => {
+  const handleInfo = (book: any) => {
+    setActiveBook(book.id);
     setShow(false);
+    setContent(book.content);
   };
 
-  const setshowInfo = () => {
-    setShow(true);
-  };
-
-  const handleInfo = (id) => {
-    setActiveBook(id);
-    const selectedContent = contens.find((content) => content.book_id === id);
-    hideInfo();
-    if (selectedContent) {
-      setContent(selectedContent.content);
+  useEffect(() => {
+    if (!activeBook) {
+      handleInfo(bookList[0]);
     }
-  };
+  }, [activeBook, bookList]);
+
   return (
     <>
       <SideBarColiseum />
@@ -87,7 +72,7 @@ export function Comment() {
                   <div
                     key={index}
                     className="mb-3 cursor-pointer border-2 border-black px-3"
-                    onClick={() => handleInfo(book.id)}
+                    onClick={() => handleInfo(book)}
                     style={
                       book.id === activeBook
                         ? { backgroundColor: "rgb(243 241 241)" }
@@ -112,7 +97,7 @@ export function Comment() {
             in={show}
             timeout={150}
             classNames="info"
-            onExited={setshowInfo}
+            onExited={() => setShow(true)}
           >
             {/* <div className="px-8 py-4 leading-8">
               <div className="px-8 py-4 leading-8">
