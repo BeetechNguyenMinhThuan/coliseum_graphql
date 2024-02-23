@@ -2,14 +2,14 @@ import { useTranslation } from "react-i18next";
 import { SideBarColiseum } from "components/SideBar/SideBarColiseum.tsx";
 import { Advertisement } from "components/Advertisement";
 import { CSSTransition } from "react-transition-group";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./comment.scss";
 export function Comment() {
   const { t } = useTranslation();
   const [show, setShow] = useState(true);
   const [activeBook, setActiveBook] = useState();
   const [content, setContent] = useState();
-
+  const nodeRef = useRef(null);
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
@@ -97,6 +97,7 @@ export function Comment() {
             in={show}
             timeout={150}
             classNames="info"
+            nodeRef={nodeRef}
             onExited={() => setShow(true)}
           >
             {/* <div className="px-8 py-4 leading-8">
@@ -162,7 +163,7 @@ export function Comment() {
                 </div>
               </div>
             </div> */}
-            <div>{content}</div>
+            <div ref={nodeRef}>{content}</div>
           </CSSTransition>
         </div>
         <Advertisement>{arrAds}</Advertisement>
