@@ -75,8 +75,6 @@ export default function MyPage() {
         <NovelListUpload />
         <div className="mt-10">
           <Accordition />
-          <Accordition />
-          <Accordition />
         </div>
 
         <Advertisement>{arrAds}</Advertisement>

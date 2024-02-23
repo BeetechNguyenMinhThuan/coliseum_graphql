@@ -14,7 +14,6 @@ import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
-
   const handleExportCSV = async () => {
     try {
       const { data } = await exportCSVMutation({

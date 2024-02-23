@@ -1,4 +1,3 @@
-import { NovelStatus } from "./NovelStatus.tsx";
 import { useTranslation } from "react-i18next";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import NovelAvatar from "@/components/novel/NovelAvatar.tsx";
@@ -10,11 +9,9 @@ import NovelIconTournament from "@/components/novel/NovelIconTournament.tsx";
 import moment from "moment";
 import { TagNovel } from "../Tag/TagNovel.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
-import { useCallback, useEffect, useState } from "react";
-import { useMutation } from "@apollo/client";
-import { TOGGLE_BOOKMARKS_NOVEL, TOGGLE_LIKE_NOVEL } from "@/graphql-client/novel/mutation.ts";
-import { toast } from "react-toastify";
-import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries.ts";
+
+import LikeButton from "../button/LikeButton.tsx";
+import BookMarkButton from "../button/BookMarkButton.tsx";
 
 interface NovelProps {
   novel: AnyObject;
@@ -25,72 +22,6 @@ export function Novel(props: NovelProps) {
   const { user } = useAuth();
   const { novel, isFavorite } = props;
   const { t } = useTranslation();
-  const [checkLike, setCheckLike] = useState(false);
-  const [checkBookmark, setCheckBookmark] = useState(false);
-
-
-  const [toggleUserLike, { data, loading, error }] =
-    useMutation(TOGGLE_LIKE_NOVEL);
-    const [toggleUserBookmark, { data: dataBookMark, loading: loadingBookMark, error: errorBookMark }] =
-    useMutation(TOGGLE_BOOKMARKS_NOVEL);
-
-  const checkUserLike = useCallback(() => {
-    if (novel.user_like && Array.isArray(novel.user_like)) {
-      const result = novel.user_like.includes(user.id);
-      return result;
-    }
-    return false;
-  }, [novel.user_like, user.id]);
-
-  useEffect(() => {
-    const isLiked = checkUserLike();
-    setCheckLike(isLiked);
-  }, [checkUserLike, novel]);
-
-  if (error) console.log(error);  
-
-  const handleLikeChange = () => {
-    toggleUserLike({
-      variables: { novelId: novel.novel_id },
-      onCompleted: (data) => {
-        const isFavorite = data?.toggleUserLike?.isFavorite;
-        setCheckLike(isFavorite);
-        const toastAlert = isFavorite ? "Đã Like" : "Đã hủy like";
-        toast.success(toastAlert);
-      },
-      refetchQueries: [GET_NOVELS_PAGINATE, "GetNovelsPaginate"],
-    });
-  };
-
-
-  const checkUserBookMark = useCallback(() => {
-    if (novel.user_bookmarks && Array.isArray(novel.user_bookmarks)) {
-      const result = novel.user_bookmarks.includes(user.id);
-      return result;
-    }
-    return false;
-  }, [novel.user_bookmarks, user.id]);
-
-  useEffect(() => {
-    const isBookMark = checkUserBookMark();
-    setCheckBookmark(isBookMark);
-    console.log(isBookMark);
-  }, [checkUserBookMark, novel]);
-
-  if (error) console.log(error);  
-
-  const handleBookMarksChange = () => {
-    toggleUserBookmark({
-      variables: { novelId: novel.novel_id },
-      onCompleted: (dataBookMark) => {
-        const isBookmark = dataBookMark?.toggleUserBookmark?.isBookmark;
-        setCheckBookmark(isBookmark);
-        const toastAlert = isBookmark ? "Đã Ghim" : "Đã hủy Ghim";
-        toast.success(toastAlert);
-      },
-      refetchQueries: [GET_NOVELS_PAGINATE, "GetNovelsPaginate"],
-    });
-  };
 
   return (
     <div className="novel-item border-t-2 border-gray-300 py-3">
@@ -103,20 +34,18 @@ export function Novel(props: NovelProps) {
                 <NovelAvatar image={novel.cover_picture_url} />
                 <div className="flex gap-x-6">
                   <div className="vote">
-                    <input
+                    {/* <input
                       type="checkbox"
                       checked={checkLike}
                       onChange={handleLikeChange}
-                    />
-                    <span className="pl-1">{novel.total_likes}</span>
+                    /> */}
+                    {/* <span className="pl-1">{novel.total_likes}</span> */}
+                    <LikeButton user={user} novel={novel} />
                   </div>
                   <div className="vote">
-                  <input
-                      type="checkbox"
-                      checked={checkBookmark}
-                      onChange={handleBookMarksChange}
-                    />
-                     <span className="pl-1">{novel.total_bookmarks} </span>
+                    <BookMarkButton user={user} novel={novel}>
+                      {" "}
+                    </BookMarkButton>
                   </div>
                 </div>
                 <NovelIconTournament type="球球球ム" />
