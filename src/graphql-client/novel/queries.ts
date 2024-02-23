@@ -1,33 +1,15 @@
 import { gql } from "@/__generated__/gql";
 
 export const GET_NOVELS_PAGINATE = gql(`
-  query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
-    getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {
-      novels {
-        novel_id
-        user_id
-        user {
-          name
-        }
-        title
-        synopsis
-        cover_picture_url
-        created_at
-        updated_at
-      }
-      totalItems
-      totalPages
-      currentPage
-    }
-  }
-`);
-
-export const ADD_NOVEL = gql(`
-mutation Mutation($input: NovelInput!) {
-    createNovel(input: $input) {
+ query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
+  getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {
+    novels {
       novel_id
       novel_ulid
       user_id
+      user {
+        name
+      }
       title
       synopsis
       cover_picture_url
@@ -42,12 +24,30 @@ mutation Mutation($input: NovelInput!) {
       is_completed
       is_comment
       is_comment_publish
+      novel_tag {
+        tag
+      }
+      novel_badges {
+        badges_name
+      }
+      novel_comments {
+        comment
+      }
+      user_like
+      user_bookmarks
       first_novel_publish_at
       first_name_publish_at
       first_completed_at
+      total_likes
+      total_badges
+      total_bookmarks
       created_at
       updated_at
       deleted_at
     }
+    totalItems
+    totalPages
+    currentPage
   }
+}
 `);

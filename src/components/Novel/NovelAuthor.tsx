@@ -4,7 +4,7 @@ function NovelAuthor(props: { author: string }) {
   const { author } = props;
   return (
     <div>
-      <span>{author}</span>
+      <span>{author.name}</span>
     </div>
   );
 }

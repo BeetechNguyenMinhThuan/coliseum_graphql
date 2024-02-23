@@ -1,5 +1,5 @@
 import { Advertisement } from "components/Advertisement";
-import { NovelList } from "components/novel";
+import { NovelList } from "@/components/novel";
 import { RankingContainer } from "components/Ranking";
 import { SidebarHome } from "components/SideBar/SideBarHome";
 

@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "author",
+        path: "author/:userId",
         element: <Author />,
       },
       {

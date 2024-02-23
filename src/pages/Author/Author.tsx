@@ -5,11 +5,14 @@ import {
   useLocation,
   useMatch,
   useMatches,
+  useParams,
 } from "react-router-dom";
 import { SideBarAuthor } from "components/SideBar/SideBarAuthor.tsx";
 import { Advertisement } from "components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { Novel, NovelList } from "../../components/novel";
+import { useQuery } from "@apollo/client";
+import { GET_DETAIL_USER } from "@/graphql-client/user/queries";
 
 export function Author() {
   const { t } = useTranslation();
@@ -18,76 +21,17 @@ export function Author() {
     "coke-print-ad.jpg",
     "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
   ];
-  const novels = [
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/Thumbnail-YouTube-la-gi-1-1-1-750x420.jpg",
-      author: "ウエトマエ",
-      title:
-        "運営会社 株式会社ウエトマエ運営会社 株式会社ウエトマエ運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.30",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/thumbnail-la-gi-1.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/thumbnail1.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/Thumbnail-YouTube-la-gi-1-1-1-750x420.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      status: "たっ",
-    },
-    {
-      like: 6,
-      dislike: 0,
-      image: "/assets/Thumbnail-YouTube-la-gi-1-1-1-750x420.jpg",
-      author: "ウエトマエ",
-      title: "運営会社 株式会社ウエトマエ",
-      description:
-        "日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色が見られることもあります。日本の文化は古くからの伝統と現代の技術が融合していて、訪れる人々に深い印象を与えます。日本料理も世界中で人気があり、寿司や天ぷらなどは多くの人に愛されています。\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色\n" +
-        "                            日本は四季がはっきりしていて、それぞれの季節に美しい自然が楽しめます。春には桜の花が咲き、夏には緑が豊かになります。秋は紅葉が美しく、冬には雪景色",
-      created_at: "2023.11.26",
-      status: "たっ",
-    },
-  ];
-  let location = useLocation();
-  console.log(location.pathname);
+  let { userId } = useParams();
+  console.log(userId);
+
+  const { loading, error, data } = useQuery(GET_DETAIL_USER, {
+    variables: { userId: parseInt(userId) },
+  });
+  if (loading) return "Đang load";
+  if (error) return "Có lỗi";
+
+  console.log(data);
+
   return (
     <>
       <SideBarAuthor />
@@ -150,9 +94,7 @@ export function Author() {
             </div>
           </div>
           <div className="mt-5">
-            {novels.map((novel) => (
-              <Novel isFavorite novel={novel} />
-            ))}
+            {data?.user?.novels.map((novel, index) => <Novel novel={novel} />)}
           </div>
         </div>
 
