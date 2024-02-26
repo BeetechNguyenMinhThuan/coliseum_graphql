@@ -1,24 +1,47 @@
-import { GET_USER_BASE } from "@/graphql-client/user/queries";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import classNames from "@/utils/classNames";
+import React, { useState } from "react";
 
-function Test3(props) {
-  const { loading, error, data } = useQuery(GET_USER_BASE);
-  if (loading) return <p>Loading...</p>;
-  if (error) {
-    console.log(error);
-    return <p>Error : {error.message}</p>;
-  }
+const contents = [
+  {
+    id: 1,
+    name: "ken",
+    tab: "tab1",
+  },
+  {
+    id: 2,
+    name: "baby",
+    tab: "tab2",
+  },
+  {
+    id: 3,
+    name: "solider",
+    tab: "tab3",
+  },
+];
+const tabs = ["tab1", "tab2", "tab3"];
+export default function Test3() {
+  const [activeTab, setActiveTab] = useState("tab1");
+
   return (
-    <div>
-      <div>
-        <h2>Space List</h2>
-      </div>
-      <div className="Player">
-        <h2>Player</h2>
-        <div className="flex gap-x-6"></div>
+    <div className="flex gap-x-3">
+      {tabs.map((tab) => (
+        <div
+          onClick={() => {
+            setActiveTab(tab);
+          }}
+          className={classNames(
+            "btn cursor-pointer px-3",
+            tab === activeTab ? "bg-yellow-500" : "",
+          )}
+        >
+          {tab}
+        </div>
+      ))}
+      <div className="content">
+        {contents.map((item) => (
+          <p>{item.tab === activeTab ? item.name : ""}</p>
+        ))}
       </div>
     </div>
   );
 }
-
-export default Test3;
