@@ -1,8 +1,9 @@
 import { GET_OFFICIAL_TAGS } from "@/graphql-client/tags/queries";
 import { useQuery } from "@apollo/client";
 import { TagNovel } from "components/Tag/TagNovel";
-import React from "react";
+import React, { useState } from "react";
 import { ChangeEvent, FormEvent, MouseEventHandler } from "react";
+import { useNavigate } from "react-router";
 
 interface ISearchProps {
   filter?: {
@@ -12,12 +13,35 @@ interface ISearchProps {
   handleSearch?: (
     e: FormEvent<HTMLFormElement> | MouseEventHandler<HTMLButtonElement>,
   ) => void;
+  setTest?: (value: string) => void;
 }
 
 export const Search: React.FC = (props: ISearchProps) => {
-  const { filter, handleChange, handleSearch } = props;
-
+  const { setTest } = props;
+  const navigate = useNavigate();
   const { loading, error, data } = useQuery(GET_OFFICIAL_TAGS);
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const keyword = urlParams.get("keyword");
+  const [filter, setFilter] = useState({
+    searchValue: keyword,
+  });
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFilter({ ...filter, searchValue: event.target.value });
+  };
+
+  const handleSearch = (
+    e: FormEvent<HTMLFormElement> | MouseEventHandler<HTMLButtonElement>,
+  ) => {
+    if ("preventDefault" in e) {
+      e.preventDefault();
+    }
+    if (setTest) {
+      setTest(filter?.searchValue ?? "");
+    }
+    navigate(`/search-novel?keyword=${filter?.searchValue ?? ""}`);
+  };
 
   if (loading) return "Đang load";
   if (error) return "có lỗi";
@@ -30,12 +54,12 @@ export const Search: React.FC = (props: ISearchProps) => {
           <input
             type="text"
             placeholder="検索..."
-            value={filter?.searchValue}
+            value={filter?.searchValue ?? ""}
             onChange={handleChange}
             className="flex-grow rounded-lg border-2 border-gray-200 p-2"
           />
           <button
-            onClick={handleSearch}
+            onClick={(e) => handleSearch(e)}
             className="rounded-lg border-2 border-yellow-500 bg-yellow-400 px-4 py-2 text-white hover:bg-yellow-300"
           >
             検索
@@ -48,16 +72,6 @@ export const Search: React.FC = (props: ISearchProps) => {
               <TagNovel key={tag?.tag_id}>{tag?.tag}</TagNovel>
             ))}
           </div>
-          {/* <div className="flex items-center">
-                    <label className="mr-2">人気タグ:</label>
-                    <select className="border-2 border-gray-200 rounded-lg p-2 mr-4">
-                    <option>ギアスタジオ</option>
-                    <option>機能</option>
-                    </select>
-                    {arrTags.map((tag) => (
-                        <TagNovel key={tag}>{tag}</TagNovel>
-                    ))}
-                </div> */}
         </div>
       </form>
     </div>

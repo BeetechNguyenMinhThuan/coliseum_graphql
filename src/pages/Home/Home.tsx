@@ -9,7 +9,7 @@ import { downloadFileFromContentBinary } from "@/utils/helper.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
-import Search from "@/components/Search/Search";
+import { Search } from "@/components/Search/Search";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
 const Home = () => {
   const { t } = useTranslation();
@@ -32,17 +32,17 @@ const Home = () => {
     }
   };
 
-  const {loading, error, data, refetch} = useQuery(GET_NOVELS_PAGINATE,{
+  const { loading, error, data, refetch } = useQuery(GET_NOVELS_PAGINATE, {
     variables: {
-        "page": 1,
-        "limit": 1,
-        "filter": null,
-    }
-  })
+      page: 1,
+      limit: 1,
+      filter: null,
+    },
+  });
 
-  if(loading) return "Đang load";
-  if(error) return "Có lỗi xảy ra"; 
-  
+  if (loading) return "Đang load";
+  if (error) return "Có lỗi xảy ra";
+
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
