@@ -32,7 +32,7 @@ const LikeButton = ({ user, novel }) => {
         const toastAlert = isFavorite ? "Đã Like" : "Đã hủy like";
         toast.success(toastAlert);
       },
-      refetchQueries: [GET_NOVELS_PAGINATE, GET_DETAIL_USER,GET_NOVELS_PAGINATE_RANKING],
+      refetchQueries: [GET_NOVELS_PAGINATE, GET_DETAIL_USER, GET_NOVELS_PAGINATE_RANKING],
     });
   };
 

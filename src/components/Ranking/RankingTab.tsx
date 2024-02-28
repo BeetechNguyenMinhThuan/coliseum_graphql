@@ -2,15 +2,24 @@ import { useState } from "react";
 
 export function RankingTab({
   tabs,
-  getNovelsRanking,
-  hideRankingList
+  hideRankingList,
+  getRanking
 }) {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const handleUpdateRanking = (tab) => {
+    getRanking({
+      variables: {
+        page: 1,
+        limit: 3,
+        filter: {
+          searchValue: null,
+        },
+        type: tab,
+      },
+    })
     setActiveTab(tab)
     hideRankingList()
-    getNovelsRanking(tab)
   };
   return (
     <div>

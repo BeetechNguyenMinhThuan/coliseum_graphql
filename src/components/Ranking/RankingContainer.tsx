@@ -1,13 +1,13 @@
 import { RankingTab } from "./RankingTab.tsx";
 import { RankingList } from "./RankingList.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./index.scss";
-import {  useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { GET_NOVELS_PAGINATE_RANKING } from "@/graphql-client/novel/queries.ts";
 export function RankingContainer() {
-  const tabs = ["", "hot", "weekly"];
-  const [type, setType] = useState("");
+  const tabs = ["", "hot", "weekly", "new"];
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const { loading, error, data, refetch } = useQuery(
     GET_NOVELS_PAGINATE_RANKING,
@@ -18,21 +18,24 @@ export function RankingContainer() {
         filter: {
           searchValue: null,
         },
-        type: type,
+        type: activeTab,
       },
     },
   );
 
-  const getNovelsRanking = (type) => {
-    setType(type);
+  const handleUpdateRanking = (tab) => {
+    hideRankingList();
+    setActiveTab(tab);
   };
+  useEffect(() => {
+    refetch();
+  }, [activeTab]);
   const [showRankingList, setShowRankingList] = useState(true);
 
   const hideRankingList = () => {
     setShowRankingList(false);
   };
 
-  // Hàm để hiển thị RankingList
   const showRankingListAgain = () => {
     setShowRankingList(true);
   };
@@ -45,7 +48,19 @@ export function RankingContainer() {
       ) : (
         ""
       )}
-      <RankingTab tabs={tabs} getNovelsRanking={getNovelsRanking} hideRankingList={hideRankingList}/>
+      <div>
+        <ul className="mb-2 flex justify-between">
+          {tabs.map((tab, index) => (
+            <li
+              key={index}
+              className={`cursor-pointer border-2 px-7 hover:bg-gray-200 ${activeTab === tab ? "bg-gray-200" : ""}`}
+              onClick={() => handleUpdateRanking(tab)}
+            >
+              <span>{tab}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {location.pathname === "/newnovel" ? (
         <div>
@@ -62,7 +77,7 @@ export function RankingContainer() {
         classNames="ranking-list"
         onExited={showRankingListAgain}
       >
-      <RankingList novels={data} refetch={refetch} />
+        <RankingList novels={data} refetch={refetch} />
       </CSSTransition>
     </div>
   );

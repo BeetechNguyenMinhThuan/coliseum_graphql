@@ -11,6 +11,7 @@ import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
 import { Search } from "@/components/Search/Search";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
+import { useEffect } from "react";
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
@@ -39,9 +40,12 @@ const Home = () => {
       type: "",
     },
   });
+  useEffect(() => {
+    console.log("Data changed:", data);
+  }, [data]);
   if (loading) return "Đang load";
   if (error) return "Có lỗi xảy ra";
-
+ 
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
