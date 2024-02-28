@@ -60,9 +60,9 @@ query User($userId: Int!) {
       is_completed
       is_comment
       is_comment_publish
-      novel_tag {
-        tag
-      }
+      # novel_tag {
+      #   tag
+      # }
       novel_badges {
         badges_name
       }
@@ -72,9 +72,9 @@ query User($userId: Int!) {
       first_novel_publish_at
       first_name_publish_at
       first_completed_at
-      total_likes
-      total_badges
-      total_bookmarks
+      likes
+      # total_badges
+      bookmarks
       user_like
       user_bookmarks
       created_at

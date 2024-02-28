@@ -69,13 +69,13 @@ function Accordition() {
                   <button className="border-2 px-3">申ゅゆ選歳ゆ選歳</button>
                 </div>
               </div>
-              <div className="mt-3 flex justify-between">
+              {/* <div className="mt-3 flex justify-between">
                 {novel?.novel_tag?.map(((tag,index) => (
                     <TagNovel>{tag?.tag}</TagNovel>
                 ))
 
                 )}
-              </div>
+              </div> */}
               <div
                 className={`mt-3 grid overflow-hidden text-sm transition-all duration-500 ease-in-out ${
                   isOpenArray[index]

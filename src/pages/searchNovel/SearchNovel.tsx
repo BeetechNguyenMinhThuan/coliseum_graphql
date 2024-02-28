@@ -62,7 +62,7 @@ export function SearchNovel() {
                     <div className="mb-2 font-bold ">{novel.title}</div>
                     <div className=" flex">
                       <div className="min-w[80px] border-2 px-3">Huy hiệu</div>
-                      <div className=" mx-3">{novel.user?.name}</div>
+                      <div className=" mx-3">{novel?.author}</div>
                     </div>
                   </div>
                 </div>

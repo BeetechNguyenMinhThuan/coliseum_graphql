@@ -7,7 +7,7 @@ interface IPaginationProps {
 }
 
 export function Pagination(props: IPaginationProps) {
-  const { totalPages, onPageChange,currentPage } = props;
+  const { totalPages, onPageChange, currentPage } = props;
 
   const handlePageClick = (event: any) => {
     onPageChange(event.selected + 1);

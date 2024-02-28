@@ -19,12 +19,9 @@ const Home = () => {
       const { data } = await exportCSVMutation({
         variables: { modelName: "User" },
       });
-      console.log(data);
       if (data && data?.exportCSV) {
         const csvDataString = data.exportCSV.csvString;
         const fileName = data.exportCSV.fileName;
-        console.log(data);
-        console.log(csvDataString);
         downloadFileFromContentBinary(csvDataString, fileName);
       }
     } catch (error: any) {
@@ -35,11 +32,13 @@ const Home = () => {
   const { loading, error, data, refetch } = useQuery(GET_NOVELS_PAGINATE, {
     variables: {
       page: 1,
-      limit: 1,
-      filter: null,
+      limit: 3,
+      filter: {
+        searchValue: null,
+      },
+      type: "",
     },
   });
-
   if (loading) return "Đang load";
   if (error) return "Có lỗi xảy ra";
 

@@ -13,9 +13,9 @@ const BookMarkButton = ({ user, novel }) => {
   ] = useMutation(TOGGLE_BOOKMARKS_NOVEL);
 
   const checkUserBookMark = useCallback(() => {
-    if (novel.user_bookmarks && Array.isArray(novel.user_bookmarks)) {
-      const result = novel.user_bookmarks.includes(user.id);
-      return result;
+    if (novel.user_bookmarks) {
+      const arrUserId = novel.user_bookmarks.map(item => parseInt(item.user_id)).filter(id => typeof id === 'number' && !isNaN(id));
+      return arrUserId.includes(user.id);
     }
     return false;
   }, [novel.user_bookmarks, user.id]);
@@ -45,7 +45,7 @@ const BookMarkButton = ({ user, novel }) => {
         checked={checkBookmark}
         onChange={handleBookMarksChange}
       />
-      <span className="pl-1">{novel.total_bookmarks} </span>
+      <span className="pl-1">{novel.bookmarks} </span>
     </div>
   );
 };
