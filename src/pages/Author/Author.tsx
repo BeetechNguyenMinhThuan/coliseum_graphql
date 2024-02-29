@@ -26,11 +26,7 @@ export function Author() {
   ];
   let { userId } = useParams();
 
-  const { loading, error, data } = useQuery(GET_DETAIL_USER, {
-    variables: { userId: parseInt(userId) },
-  });
-
-  const { data: dataNovelsByUser, refetch } = useQuery(GET_NOVELS_BY_USER, {
+  const {loading, error, data: dataNovelsByUser, refetch } = useQuery(GET_NOVELS_BY_USER, {
     variables: { userId: parseInt(userId), page: 1, limit: 3 },
   });
 
@@ -47,7 +43,7 @@ export function Author() {
           <div className="px-7">
             <div className="flex justify-between pb-2 pt-5">
               <Link to="rule" className="text-2xl font-bold">
-                {data?.user?.name}
+                {dataNovelsByUser?.user?.name}
               </Link>
               <div>
                 <ButtonCommon type="button">

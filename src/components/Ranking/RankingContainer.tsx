@@ -55,11 +55,11 @@ export function RankingContainer() {
       >
         <div>
           {loading ? (
-            <div style={{ height: "1000px" }}>
+            <div className="" style={{ height: "500px" }}>
               <Loading />
             </div>
           ) : (
-            <RankingList novels={data} refetch={refetch} />
+            <RankingList novels={data?.getNovelsPaginate} refetch={refetch} />
           )}
         </div>
       </CSSTransition>

@@ -85,4 +85,3 @@ query Query($page: Int, $limit: Int, $type: String, $filter: FilterNovel) {
 }
 
 `);
-
