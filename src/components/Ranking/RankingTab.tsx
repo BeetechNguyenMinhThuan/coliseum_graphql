@@ -1,26 +1,29 @@
-import { useState } from "react";
+import { useEffect } from "react";
+
+interface RankingTabProps {
+  tabs: string[];
+  setActiveTab: (tab: string) => void;
+  activeTab: string;
+  hideRankingList: () => void;
+  refetch: () => void;
+}
 
 export function RankingTab({
   tabs,
+  setActiveTab,
+  activeTab,
   hideRankingList,
-  getRanking
-}) {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-
-  const handleUpdateRanking = (tab) => {
-    getRanking({
-      variables: {
-        page: 1,
-        limit: 3,
-        filter: {
-          searchValue: null,
-        },
-        type: tab,
-      },
-    })
-    setActiveTab(tab)
-    hideRankingList()
+  refetch,
+}: RankingTabProps) {
+  const handleSwitchRanking = (tab: string) => {
+    hideRankingList();
+    setActiveTab(tab);
   };
+
+  useEffect(() => {
+    refetch();
+  }, [activeTab, refetch]);
+
   return (
     <div>
       <ul className="mb-2 flex justify-between">
@@ -28,7 +31,7 @@ export function RankingTab({
           <li
             key={index}
             className={`cursor-pointer border-2 px-7 hover:bg-gray-200 ${activeTab === tab ? "bg-gray-200" : ""}`}
-            onClick={() => handleUpdateRanking(tab)}
+            onClick={() => handleSwitchRanking(tab)}
           >
             <span>{tab}</span>
           </li>

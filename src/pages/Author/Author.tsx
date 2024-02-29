@@ -12,7 +12,10 @@ import { Advertisement } from "components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { Novel, NovelList } from "../../components/novel";
 import { useQuery } from "@apollo/client";
-import { GET_DETAIL_USER } from "@/graphql-client/user/queries";
+import {
+  GET_DETAIL_USER,
+  GET_NOVELS_BY_USER,
+} from "@/graphql-client/user/queries";
 
 export function Author() {
   const { t } = useTranslation();
@@ -22,15 +25,19 @@ export function Author() {
     "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
   ];
   let { userId } = useParams();
-  console.log(userId);
 
   const { loading, error, data } = useQuery(GET_DETAIL_USER, {
     variables: { userId: parseInt(userId) },
   });
+
+  const { data: dataNovelsByUser, refetch } = useQuery(GET_NOVELS_BY_USER, {
+    variables: { userId: parseInt(userId), page: 1, limit: 3 },
+  });
+
+  console.log(dataNovelsByUser);
+
   if (loading) return "Đang load";
   if (error) return "Có lỗi";
-
-  console.log(data);
 
   return (
     <>
@@ -40,7 +47,7 @@ export function Author() {
           <div className="px-7">
             <div className="flex justify-between pb-2 pt-5">
               <Link to="rule" className="text-2xl font-bold">
-                球ムヘマタ碁投ヘツID碁投
+                {data?.user?.name}
               </Link>
               <div>
                 <ButtonCommon type="button">
@@ -94,7 +101,10 @@ export function Author() {
             </div>
           </div>
           <div className="mt-5">
-            {data?.user?.novels.map((novel, index) => <Novel novel={novel} />)}
+            <NovelList
+              novels={dataNovelsByUser?.getNovelsByAuthor}
+              refetch={refetch}
+            />
           </div>
         </div>
 

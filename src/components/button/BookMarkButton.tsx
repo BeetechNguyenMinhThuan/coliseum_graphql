@@ -1,6 +1,6 @@
 import { TOGGLE_BOOKMARKS_NOVEL } from "@/graphql-client/novel/mutation";
-import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
-import { GET_DETAIL_USER } from "@/graphql-client/user/queries";
+import { GET_NOVELS_PAGINATE, NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries";
+import { GET_DETAIL_USER, GET_NOVELS_BY_USER } from "@/graphql-client/user/queries";
 import { useMutation } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -25,6 +25,13 @@ const BookMarkButton = ({ user, novel }) => {
     setCheckBookmark(isBookMark);
   }, [checkUserBookMark, novel]);
 
+  const arrQueries = [
+    GET_NOVELS_PAGINATE,
+    GET_DETAIL_USER,
+    NOVELS_FILTER_BY_RANKING,
+    GET_NOVELS_BY_USER,
+  ];
+
   const handleBookMarksChange = () => {
     toggleUserBookmark({
       variables: { novelId: novel.novel_id },
@@ -33,7 +40,7 @@ const BookMarkButton = ({ user, novel }) => {
         const toastAlert = isBookmark ? "Đã Ghim" : "Đã hủy Ghim";
         toast.success(toastAlert);
       },
-      refetchQueries: [GET_NOVELS_PAGINATE, GET_DETAIL_USER],
+      refetchQueries: arrQueries,
 
     });
   };

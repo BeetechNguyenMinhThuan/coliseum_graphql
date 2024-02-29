@@ -1,44 +1,27 @@
 import { RankingTab } from "./RankingTab.tsx";
 import { RankingList } from "./RankingList.tsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./index.scss";
-import { useLazyQuery, useQuery } from "@apollo/client";
-import { GET_NOVELS_PAGINATE_RANKING } from "@/graphql-client/novel/queries.ts";
+import { useQuery } from "@apollo/client";
+import { NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries.ts";
+import Loading from "../Loading/Loading.tsx";
+
 export function RankingContainer() {
   const tabs = ["", "hot", "weekly", "new"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
-
-  const { loading, error, data, refetch } = useQuery(
-    GET_NOVELS_PAGINATE_RANKING,
-    {
-      variables: {
-        page: 1,
-        limit: 3,
-        filter: {
-          searchValue: null,
-        },
-        type: activeTab,
-      },
-    },
-  );
-
-  const handleUpdateRanking = (tab) => {
-    hideRankingList();
-    setActiveTab(tab);
-  };
-  useEffect(() => {
-    refetch();
-  }, [activeTab]);
   const [showRankingList, setShowRankingList] = useState(true);
 
-  const hideRankingList = () => {
-    setShowRankingList(false);
-  };
-
-  const showRankingListAgain = () => {
-    setShowRankingList(true);
-  };
+  const { loading, data, refetch } = useQuery(NOVELS_FILTER_BY_RANKING, {
+    variables: {
+      page: 1,
+      limit: 3,
+      filter: {
+        searchValue: null,
+      },
+      type: activeTab,
+    },
+  });
 
   return (
     <div className="mt-5 border-2 p-2">
@@ -48,19 +31,13 @@ export function RankingContainer() {
       ) : (
         ""
       )}
-      <div>
-        <ul className="mb-2 flex justify-between">
-          {tabs.map((tab, index) => (
-            <li
-              key={index}
-              className={`cursor-pointer border-2 px-7 hover:bg-gray-200 ${activeTab === tab ? "bg-gray-200" : ""}`}
-              onClick={() => handleUpdateRanking(tab)}
-            >
-              <span>{tab}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <RankingTab
+        tabs={tabs}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        hideRankingList={() => setShowRankingList(false)}
+        refetch={refetch}
+      ></RankingTab>
 
       {location.pathname === "/newnovel" ? (
         <div>
@@ -70,14 +47,21 @@ export function RankingContainer() {
       ) : (
         ""
       )}
-
       <CSSTransition
         in={showRankingList}
         timeout={150}
         classNames="ranking-list"
-        onExited={showRankingListAgain}
+        onExited={() => setShowRankingList(true)}
       >
-        <RankingList novels={data} refetch={refetch} />
+        <div>
+          {loading ? (
+            <div style={{ height: "1000px" }}>
+              <Loading />
+            </div>
+          ) : (
+            <RankingList novels={data} refetch={refetch} />
+          )}
+        </div>
       </CSSTransition>
     </div>
   );

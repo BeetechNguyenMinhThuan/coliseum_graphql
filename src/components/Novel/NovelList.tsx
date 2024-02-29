@@ -7,11 +7,11 @@ export function NovelList({ novels, refetch }) {
   };
   return (
     <div>
-      {novels?.getNovelsPaginate?.novels.map((novel) => (
+      {novels?.novels?.map((novel) => (
         <Novel key={novel.novel_id} novel={novel} />
-      ))}
+      ))} 
        <Pagination
-        totalPages={novels?.getNovelsPaginate?.totalPages}
+        totalPages={novels?.totalPages}
         onPageChange={handlePageChange}
       />
     </div>

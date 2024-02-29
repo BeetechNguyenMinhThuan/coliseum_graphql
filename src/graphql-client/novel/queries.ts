@@ -43,7 +43,7 @@ query Query($page: Int, $limit: Int, $type: String, $filter: FilterNovel) {
 
 `);
 
-export const GET_NOVELS_PAGINATE_RANKING = gql(`
+export const NOVELS_FILTER_BY_RANKING = gql(`
 query Query($page: Int, $limit: Int, $type: String, $filter: FilterNovel) {
   getNovelsPaginate(page: $page, limit: $limit, type: $type, filter: $filter) {
     novels {

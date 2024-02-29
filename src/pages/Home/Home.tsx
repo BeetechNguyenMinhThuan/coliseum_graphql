@@ -142,7 +142,7 @@ const Home = () => {
           <h2 className="pb-2 text-center text-2xl font-bold">
             新しく出版された小説
           </h2>
-          <NovelList novels={data} refetch={refetch} />
+          <NovelList novels={data?.getNovelsPaginate} refetch={refetch} />
         </div>
 
         <RankingContainer />
