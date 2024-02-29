@@ -40,9 +40,10 @@ query User($userId: Int!) {
     last_login_at
     s3_url
     novels {
-      user{
+      user {
         name
       }
+      user_like
       novel_id
       novel_ulid
       user_id
@@ -60,7 +61,7 @@ query User($userId: Int!) {
       is_completed
       is_comment
       is_comment_publish
-      novel_tag {
+      tags {
         tag
       }
       novel_badges {
@@ -72,14 +73,14 @@ query User($userId: Int!) {
       first_novel_publish_at
       first_name_publish_at
       first_completed_at
-      total_likes
-      total_badges
-      total_bookmarks
-      user_like
+      likes
+      badges
+      bookmarks
       user_bookmarks
       created_at
       updated_at
       deleted_at
+      user_like
     }
     updated_at
     user_badges {
@@ -93,3 +94,45 @@ query User($userId: Int!) {
   }
   }
 `);
+
+export const GET_NOVELS_BY_USER = gql(`
+query getNovelsPaginate($userId: Int!, $limit: Int, $page: Int) {
+getNovelsByAuthor(userId: $userId, limit: $limit, page: $page) {
+  totalPages
+  totalItems
+  novels {
+    novel_id
+    novel_ulid
+    title
+    synopsis
+    cover_picture_url
+    user_uuid
+    author
+    first_novel_publish_at
+    max_updated_at
+    episode_count
+    likes
+    bookmarks
+    comments
+    is_completed
+    rank {
+      hot
+    }
+    user_likes {
+      user_id
+      name
+    }
+    user_bookmarks {
+      user_id
+    }
+    created_at
+    badges {
+      badges_name
+    }
+    tags {
+      tag
+    }
+  }
+  currentPage
+}
+}`);

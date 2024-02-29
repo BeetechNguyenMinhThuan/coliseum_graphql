@@ -6,8 +6,11 @@ import { Title } from "@/components/common";
 import Accordition from "components/Accordition/Accordition.tsx";
 import { Advertisement } from "@/components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
+import useAuth from "@/hooks/useAuth";
 
 export default function MyPage() {
+  const {user} = useAuth();
+  console.log(user);
   
   const arrAds = [
     "s-l1200.webp",
@@ -17,7 +20,7 @@ export default function MyPage() {
 
   return (
     <>
-      <SideBarMyPage />
+      <SideBarMyPage user={user}  />
       <div className="content flex-1 ">
         {/* edit profile */}
         <div className="grid grid-cols-[2fr_3fr_1fr] gap-7 border-2 p-4">
@@ -26,11 +29,11 @@ export default function MyPage() {
             <p>増部1公</p>
           </div>
           <div className="flex items-center text-2xl">
-            <p>日もん健滅ヨミ盗97百</p>
+            <p>{user?.name}</p>
           </div>
           <div className="flex items-center">
             <NavLink
-              className={"rounded-xl border-2 py-1"}
+              className={" border-2 py-1 px-2"}
               to={"/edit-profile"}
             >
               ドーつ室芸
@@ -47,7 +50,7 @@ export default function MyPage() {
           </div>
           <div className="flex items-center">
             <NavLink
-              className={"rounded-xl border-2 py-1"}
+              className={" border-2 py-1 px-2"}
               to={"/edit-profile"}
             >
               ドーつ室芸
@@ -64,7 +67,7 @@ export default function MyPage() {
           </div>
           <div className="flex items-center">
             <NavLink
-              className={"rounded-xl border-2 py-1"}
+              className={" border-2 py-1 px-2"}
               to={"/edit-profile"}
             >
               ドーつ室芸

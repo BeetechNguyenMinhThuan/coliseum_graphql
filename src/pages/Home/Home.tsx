@@ -9,8 +9,9 @@ import { downloadFileFromContentBinary } from "@/utils/helper.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
-import Search from "@/components/Search/Search";
+import { Search } from "@/components/Search/Search";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
+import { useEffect } from "react";
 const Home = () => {
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
@@ -19,12 +20,9 @@ const Home = () => {
       const { data } = await exportCSVMutation({
         variables: { modelName: "User" },
       });
-      console.log(data);
       if (data && data?.exportCSV) {
         const csvDataString = data.exportCSV.csvString;
         const fileName = data.exportCSV.fileName;
-        console.log(data);
-        console.log(csvDataString);
         downloadFileFromContentBinary(csvDataString, fileName);
       }
     } catch (error: any) {
@@ -32,17 +30,22 @@ const Home = () => {
     }
   };
 
-  const {loading, error, data, refetch} = useQuery(GET_NOVELS_PAGINATE,{
+  const { loading, error, data, refetch } = useQuery(GET_NOVELS_PAGINATE, {
     variables: {
-        "page": 1,
-        "limit": 1,
-        "filter": null,
-    }
-  })
-
-  if(loading) return "Đang load";
-  if(error) return "Có lỗi xảy ra"; 
-  
+      page: 1,
+      limit: 3,
+      filter: {
+        searchValue: null,
+      },
+      type: "",
+    },
+  });
+  useEffect(() => {
+    console.log("Data changed:", data);
+  }, [data]);
+  if (loading) return "Đang load";
+  if (error) return "Có lỗi xảy ra";
+ 
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
@@ -139,7 +142,7 @@ const Home = () => {
           <h2 className="pb-2 text-center text-2xl font-bold">
             新しく出版された小説
           </h2>
-          <NovelList novels={data} refetch={refetch} />
+          <NovelList novels={data?.getNovelsPaginate} refetch={refetch} />
         </div>
 
         <RankingContainer />

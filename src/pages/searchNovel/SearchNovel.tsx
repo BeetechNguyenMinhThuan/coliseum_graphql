@@ -10,19 +10,9 @@ import { useState } from "react";
 
 export function SearchNovel() {
   const { t } = useTranslation();
-  const [filter, setFilter] = useState({
-    searchValue: "",
-  });
-  const [search, setSearch] = useState("");
-
-  const handleChange = (event) => {
-    setFilter({ ...filter, searchValue: event.target.value });
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearch(filter.searchValue);
-  };
+  const urlParams = new URLSearchParams(window.location.search);
+  const keyword = urlParams.get("keyword");
+  const [test, setTest] = useState(keyword);
 
   const arrAds = [
     "s-l1200.webp",
@@ -34,7 +24,7 @@ export function SearchNovel() {
     variables: {
       page: 1,
       limit: 2,
-      filter: { ...filter, searchValue: search },
+      filter: { searchValue: test },
     },
   });
 
@@ -50,11 +40,7 @@ export function SearchNovel() {
       <SideBarColiseum />
       <div className="content flex-1">
         <div className="border-black-500 min-h-[188px] border-2 border-l-0 border-solid p-2">
-          <Search
-            filter={filter}
-            handleChange={handleChange}
-            handleSearch={handleSearch}
-          />
+          <Search setTest={setTest} />
           <div className="my-3 px-2 ">
             <span>
               Kết quả tìm kiếm{" "}
@@ -76,7 +62,7 @@ export function SearchNovel() {
                     <div className="mb-2 font-bold ">{novel.title}</div>
                     <div className=" flex">
                       <div className="min-w[80px] border-2 px-3">Huy hiệu</div>
-                      <div className=" mx-3">{novel.user?.name}</div>
+                      <div className=" mx-3">{novel?.author}</div>
                     </div>
                   </div>
                 </div>

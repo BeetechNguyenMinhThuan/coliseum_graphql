@@ -1,8 +1,7 @@
 import useAuth from "@/hooks/useAuth.tsx";
 
 import { NavLink } from "react-router-dom";
-export function SideBarMyPage() {
-const {user} = useAuth();
+export function SideBarMyPage({user}) {
   return (
     <div className="coli-sidebar flex-grow-0 basis-[270px]">
       <ul className="flex flex-col">

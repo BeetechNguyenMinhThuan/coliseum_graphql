@@ -3,16 +3,15 @@ import { Novel } from "./Novel.tsx";
 
 export function NovelList({ novels, refetch }) {
   const handlePageChange = async (newPage: number) => {
-    // setCurrentPage(newPage);
-    await refetch({ page: newPage, limit: 1 });
+    await refetch({ page: newPage, limit: 3 });
   };
   return (
     <div>
-      {novels?.getNovelsPaginate?.novels.map((novel) => (
-        <Novel novel={novel} />
-      ))}
+      {novels?.novels?.map((novel) => (
+        <Novel key={novel.novel_id} novel={novel} />
+      ))} 
        <Pagination
-        totalPages={novels?.getNovelsPaginate?.totalPages}
+        totalPages={novels?.totalPages}
         onPageChange={handlePageChange}
       />
     </div>

@@ -1,53 +1,88 @@
 import { gql } from "@/__generated__/gql";
 
 export const GET_NOVELS_PAGINATE = gql(`
- query GetNovelsPaginate($page: Int, $limit: Int, $filter: filterNovel) {
-  getNovelsPaginate(page: $page, limit: $limit, filter: $filter) {
+query Query($page: Int, $limit: Int, $type: String, $filter: FilterNovel) {
+  getNovelsPaginate(page: $page, limit: $limit, type: $type, filter: $filter) {
     novels {
       novel_id
       novel_ulid
-      user_id
-      user {
-        name
-      }
       title
       synopsis
       cover_picture_url
-      foreword_url
-      afterword_url
-      setting_url
-      note_url
-      dictionary_url
-      is_anonymous
-      is_publish
-      is_ranking_visible
+      user_uuid
+      author
+      first_novel_publish_at
+      max_updated_at
+      episode_count
+      likes
+      bookmarks
+      comments
       is_completed
-      is_comment
-      is_comment_publish
-      novel_tag {
-        tag
+      rank {
+        daily
       }
-      novel_badges {
+      user_likes {
+        user_id
+      }
+      created_at
+      badges {
         badges_name
       }
-      novel_comments {
-        comment
+      tags {
+        tag
       }
-      user_like
-      user_bookmarks
-      first_novel_publish_at
-      first_name_publish_at
-      first_completed_at
-      total_likes
-      total_badges
-      total_bookmarks
-      created_at
-      updated_at
-      deleted_at
+      user_bookmarks {
+        user_id
+      }
     }
     totalItems
     totalPages
     currentPage
   }
 }
+
 `);
+
+export const NOVELS_FILTER_BY_RANKING = gql(`
+query Query($page: Int, $limit: Int, $type: String, $filter: FilterNovel) {
+  getNovelsPaginate(page: $page, limit: $limit, type: $type, filter: $filter) {
+    novels {
+      novel_id
+      novel_ulid
+      title
+      synopsis
+      cover_picture_url
+      user_uuid
+      author
+      first_novel_publish_at
+      max_updated_at
+      episode_count
+      likes
+      bookmarks
+      comments
+      is_completed
+      rank {
+        daily
+      }
+      user_likes {
+        user_id
+      }
+      created_at
+      badges {
+        badges_name
+      }
+      tags {
+        tag
+      }
+      user_bookmarks {
+        user_id
+      }
+    }
+    totalItems
+    totalPages
+    currentPage
+  }
+}
+
+`);
+
