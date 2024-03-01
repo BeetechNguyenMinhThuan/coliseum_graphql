@@ -2,8 +2,10 @@ import { useTranslation } from "react-i18next";
 import { SideBarColiseum } from "components/SideBar/SideBarColiseum.tsx";
 import { NavLink } from "react-router-dom";
 import { Advertisement } from "components/Advertisement";
+import { setDefaultTitle } from "@/utils/helper";
 
 export function Coliseum() {
+  setDefaultTitle("Coliseum")
   const { t } = useTranslation();
 
   const arrAds = [

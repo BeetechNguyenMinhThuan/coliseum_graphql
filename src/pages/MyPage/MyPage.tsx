@@ -7,10 +7,11 @@ import Accordition from "components/Accordition/Accordition.tsx";
 import { Advertisement } from "@/components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import useAuth from "@/hooks/useAuth";
+import { setDefaultTitle } from "@/utils/helper";
 
 export default function MyPage() {
+  setDefaultTitle("Trang cá nhân")
   const {user} = useAuth();
-  console.log(user);
   
   const arrAds = [
     "s-l1200.webp",

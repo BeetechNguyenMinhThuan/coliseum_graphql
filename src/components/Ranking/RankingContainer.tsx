@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import "./index.scss";
 import { useQuery } from "@apollo/client";
 import { NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries.ts";
-import Loading from "../Loading/Loading.tsx";
+import Loading, { NovelLoading } from "../Loading/Loading.tsx";
 
 export function RankingContainer() {
   const tabs = ["", "hot", "weekly", "new"];
@@ -55,8 +55,10 @@ export function RankingContainer() {
       >
         <div>
           {loading ? (
-            <div className="" style={{ height: "500px" }}>
-              <Loading />
+            <div className="flex flex-col gap-3">
+              <NovelLoading />
+              <NovelLoading />
+              <NovelLoading />
             </div>
           ) : (
             <RankingList novels={data?.getNovelsPaginate} refetch={refetch} />

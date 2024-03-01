@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Form, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Link, animateScroll as scroll } from "react-scroll";
@@ -10,7 +10,7 @@ import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 export function Header() {
   const location = useLocation();
   const user = useAuth();
-
+  const headerRef = useRef()
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState(
@@ -26,7 +26,7 @@ export function Header() {
   };
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-10 bg-green-100">
+    <header ref={headerRef} className="fixed left-0 right-0 top-0 z-10 bg-green-100">
       <div className="header-top-wrap py-2">
         <div className="l-container">
           <div className="header-top-right">
@@ -94,7 +94,7 @@ export function Header() {
         <div className="l-container">
           <ul className="flex flex-wrap justify-between gap-x-4">
             <li>
-              <NavLink to="/">
+              <NavLink to="/" title="Home">
                 <h1>{t("common.home")}</h1>
               </NavLink>
             </li>
@@ -108,9 +108,6 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/tournament">Tournament</NavLink>
-            </li>
-            <li>
-              <NavLink to="/author">Author</NavLink>
             </li>
             <li>
               <NavLink to="/mypage">MyPage</NavLink>
@@ -185,9 +182,6 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/protection-policy">ProtectionPolicy</NavLink>
-            </li>
-            <li>
-              <NavLink to="/test6">TESST6</NavLink>
             </li>
             <li>
               <NavLink to="/search-novel">SearchNovel</NavLink>

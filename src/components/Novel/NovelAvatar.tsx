@@ -8,7 +8,7 @@ interface NovelAvatarProps {
 function NovelAvatar(props: NovelAvatarProps) {
   const { image, className = "" } = props;
   return (
-    <div className={classNames(`novel-image h-[170px] w-[150px] ${className}`)}>
+    <div className={classNames(`novel-image h-[300px] w-[300px] ${className}`)}>
       <img
         className="h-full w-full bg-cover object-cover object-center"
         src={image}

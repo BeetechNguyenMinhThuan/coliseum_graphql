@@ -5,14 +5,18 @@ import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
 import { useMutation, useQuery } from "@apollo/client";
 import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
-import { downloadFileFromContentBinary } from "@/utils/helper.ts";
+import { downloadFileFromContentBinary, setDefaultTitle } from "@/utils/helper.ts";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { NovelList } from "@/components/novel";
 import { Element } from "react-scroll";
 import { Search } from "@/components/Search/Search";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import "./index.scss"
+import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 const Home = () => {
+  setDefaultTitle("Trang chủ")
+  const parentRef = useRef(null)
   const { t } = useTranslation();
   const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
   const handleExportCSV = async () => {
@@ -43,7 +47,7 @@ const Home = () => {
   useEffect(() => {
     console.log("Data changed:", data);
   }, [data]);
-  if (loading) return "Đang load";
+  if (loading) return <LoadingSpiner/>  ;
   if (error) return "Có lỗi xảy ra";
  
   const arrAds = [
@@ -97,6 +101,7 @@ const Home = () => {
   return (
     <>
       <SidebarHome />
+      
       <div className="content flex-1">
         <ButtonCommon type="button" onClick={handleExportCSV}>
           Export CSV
@@ -138,11 +143,11 @@ const Home = () => {
         <Search />
 
         {/* Novel List  */}
-        <div className="border-2 p-2">
+        <div className="border-2 p-2"  ref={parentRef}>
           <h2 className="pb-2 text-center text-2xl font-bold">
             新しく出版された小説
           </h2>
-          <NovelList novels={data?.getNovelsPaginate} refetch={refetch} />
+          <NovelList novels={data?.getNovelsPaginate} refetch={refetch }  />
         </div>
 
         <RankingContainer />

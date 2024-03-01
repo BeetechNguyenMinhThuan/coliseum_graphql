@@ -6,11 +6,16 @@ import { Footer, Header } from "components/common";
 import { Banner } from "components/Banner";
 import { useLocation } from "react-router-dom";
 import Hero from "@/components/common/Hero.tsx";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 export default function Layout() {
   const location = useLocation();
   const pathName = location.pathname;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // document.title = pathName
+  }, [pathName]);
 
   /**
    * render template

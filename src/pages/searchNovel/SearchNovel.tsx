@@ -7,8 +7,11 @@ import { useQuery } from "@apollo/client";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
 import { Pagination } from "@/components/pagination/Pagination";
 import { useState } from "react";
+import { setDefaultTitle } from "@/utils/helper";
+import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 
 export function SearchNovel() {
+  setDefaultTitle("Trang tìm kiếm")
   const { t } = useTranslation();
   const urlParams = new URLSearchParams(window.location.search);
   const keyword = urlParams.get("keyword");
@@ -32,7 +35,8 @@ export function SearchNovel() {
     await refetch({ page: newPage, limit: 2 });
   };
 
-  if (loading) return "Loading...";
+  if (loading) return <LoadingSpiner/>  ;
+
   if (error) return `Error! ${error.message}`;
 
   return (

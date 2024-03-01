@@ -167,7 +167,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/search-novel",
-        element: <SearchNovel/>,
+        element: <SearchNovel />,
       },
     ],
   },

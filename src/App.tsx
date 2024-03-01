@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import { setContext } from "@apollo/client/link/context";
 import { ACCESS_TOKEN, getItemStorage } from "@/utils/localStorageHepler.ts";
 import "react-toastify/dist/ReactToastify.css";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 const endpoint = "http://localhost:5000";
 
@@ -46,14 +47,16 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ThemeProvider>
-      <I18nextProvider i18n={i18n}>
-        <ApolloProvider client={client}>
-          <RouterProvider router={router} />
-          <ToastContainer />
-        </ApolloProvider>
-      </I18nextProvider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider>
+        <I18nextProvider i18n={i18n}>
+          <ApolloProvider client={client}>
+            <RouterProvider router={router} />
+            <ToastContainer />
+          </ApolloProvider>
+        </I18nextProvider>
+      </ThemeProvider>
+    </>
   );
 }
 

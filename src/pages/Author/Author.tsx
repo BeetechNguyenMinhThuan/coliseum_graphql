@@ -13,11 +13,13 @@ import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { Novel, NovelList } from "../../components/novel";
 import { useQuery } from "@apollo/client";
 import {
-  GET_DETAIL_USER,
   GET_NOVELS_BY_USER,
 } from "@/graphql-client/user/queries";
+import { setDefaultTitle } from "@/utils/helper";
+import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 
 export function Author() {
+  setDefaultTitle("Trang tác giả")
   const { t } = useTranslation();
   const arrAds = [
     "s-l1200.webp",
@@ -30,9 +32,8 @@ export function Author() {
     variables: { userId: parseInt(userId), page: 1, limit: 3 },
   });
 
-  console.log(dataNovelsByUser);
 
-  if (loading) return "Đang load";
+  if (loading) return <LoadingSpiner/>  ;
   if (error) return "Có lỗi";
 
   return (
