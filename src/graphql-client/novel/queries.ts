@@ -93,3 +93,63 @@ query Query($page: Int, $limit: Int, $type: String, $filter: FilterNovel) {
 }
 
 `);
+
+export const GET_DETAIL_NOVEL = gql(`
+query Novel($novelId: Int!) {
+  novel(novel_id: $novelId) {
+    novel_id
+    novel_ulid
+    user_id
+    user {
+      name
+      user_id
+    }
+    author
+    title
+    cover_picture_url
+    foreword_url
+    afterword_url
+    setting_url
+    note_url
+    dictionary_url
+    is_anonymous
+    is_publish
+    is_ranking_visible
+    is_completed
+    is_comment
+    synopsis
+    is_comment_publish
+    tags {
+       tag
+    }
+    novel_badges {
+      badges_name
+    }
+    novel_comments {
+      user_id
+      novel_id
+    }
+    first_novel_publish_at
+    first_name_publish_at
+    first_completed_at
+    likes
+    badges
+    bookmarks
+    comments
+    episode_count
+    user_like
+    user_bookmarks
+    rank {
+      hot
+    }
+    created_at
+    updated_at
+    deleted_at
+    episodes {
+      episode_title
+      first_novel_publish_at
+      updated_at
+    }
+  }
+}
+`);

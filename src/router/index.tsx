@@ -30,6 +30,7 @@ import UserManual from "@/pages/userManual/UserManual";
 import RootLayout from "@/pages/layout/RootLayout";
 import Test6 from "@/pages/Test/test6";
 import { SearchNovel } from "@/pages/searchNovel/searchNovel";
+import NovelDetail from "@/pages/novelDetail/NovelDetail";
 
 export const router = createBrowserRouter([
   {
@@ -168,6 +169,10 @@ export const router = createBrowserRouter([
       {
         path: "/search-novel",
         element: <SearchNovel />,
+      },
+      {
+        path: "novel/:novelId",
+        element: <NovelDetail />,
       },
     ],
   },

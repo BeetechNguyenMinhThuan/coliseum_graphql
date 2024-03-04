@@ -10,7 +10,8 @@ import { TagNovel } from "../Tag/TagNovel.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
 import LikeButton from "../button/LikeButton.tsx";
 import BookMarkButton from "../button/BookMarkButton.tsx";
-import "./index.scss"
+import "./index.scss";
+import { Link, NavLink } from "react-router-dom";
 
 interface NovelProps {
   novel: AnyObject;
@@ -80,9 +81,12 @@ export function Novel(props: NovelProps) {
             )}
           </div>
           <div className="novel-right flex-1">
-            <div className="flex justify-center ">
+            <Link
+              to={`/novel/${novel.novel_id}`}
+              className="flex justify-center "
+            >
               <NovelTitle title={novel.title} />
-            </div>
+            </Link>
             <div className="flex justify-between border-b-2 border-dashed">
               <NovelAuthor author={novel.user ?? ""} />
               <div className="novel-time flex gap-x-5">
@@ -98,7 +102,9 @@ export function Novel(props: NovelProps) {
                 </div>
               </div>
             </div>
-            <p className="font-xl my-2 text-justify synopsis">{novel.synopsis}</p>
+            <p className="font-xl synopsis my-2 text-justify">
+              {novel.synopsis}
+            </p>
           </div>
         </div>
       </div>

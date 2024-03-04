@@ -8,7 +8,7 @@ import { NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries.ts";
 import Loading, { NovelLoading } from "../Loading/Loading.tsx";
 
 export function RankingContainer() {
-  const tabs = ["", "hot", "weekly", "new"];
+  const tabs = ["", "hot", "weekly", "new","latest"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [showRankingList, setShowRankingList] = useState(true);
 
