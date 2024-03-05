@@ -724,3 +724,8 @@ export const blockBackslash = (name: string, method: any) => {
     method.setValue(name, value.replace(/[\\＼]/g, ""));
   }
 };
+
+export const setDefaultTitle = (title) => {
+  document.title = title;
+};
+

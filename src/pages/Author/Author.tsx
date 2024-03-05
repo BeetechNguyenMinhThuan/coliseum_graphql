@@ -13,11 +13,13 @@ import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { Novel, NovelList } from "../../components/novel";
 import { useQuery } from "@apollo/client";
 import {
-  GET_DETAIL_USER,
   GET_NOVELS_BY_USER,
 } from "@/graphql-client/user/queries";
+import { setDefaultTitle } from "@/utils/helper";
+import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 
 export function Author() {
+  setDefaultTitle("Trang tác giả")
   const { t } = useTranslation();
   const arrAds = [
     "s-l1200.webp",
@@ -26,17 +28,12 @@ export function Author() {
   ];
   let { userId } = useParams();
 
-  const { loading, error, data } = useQuery(GET_DETAIL_USER, {
-    variables: { userId: parseInt(userId) },
-  });
-
-  const { data: dataNovelsByUser, refetch } = useQuery(GET_NOVELS_BY_USER, {
+  const {loading, error, data: dataNovelsByUser, refetch } = useQuery(GET_NOVELS_BY_USER, {
     variables: { userId: parseInt(userId), page: 1, limit: 3 },
   });
 
-  console.log(dataNovelsByUser);
 
-  if (loading) return "Đang load";
+  if (loading) return <LoadingSpiner/>  ;
   if (error) return "Có lỗi";
 
   return (
@@ -47,7 +44,7 @@ export function Author() {
           <div className="px-7">
             <div className="flex justify-between pb-2 pt-5">
               <Link to="rule" className="text-2xl font-bold">
-                {data?.user?.name}
+                {dataNovelsByUser?.user?.name}
               </Link>
               <div>
                 <ButtonCommon type="button">

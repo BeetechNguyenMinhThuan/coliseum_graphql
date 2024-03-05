@@ -6,10 +6,12 @@ import NovelAuthor from "@/components/novel/NovelAuthor.tsx";
 import { AnyObject } from "@/models/Common.ts";
 import IconHearth from "@/components/icons/IconHearth.tsx";
 import moment from "moment";
-// import { TagNovel } from "../Tag/TagNovel.tsx";
+import { TagNovel } from "../Tag/TagNovel.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
 import LikeButton from "../button/LikeButton.tsx";
 import BookMarkButton from "../button/BookMarkButton.tsx";
+import "./index.scss";
+import { Link, NavLink } from "react-router-dom";
 
 interface NovelProps {
   novel: AnyObject;
@@ -20,7 +22,6 @@ export function Novel(props: NovelProps) {
   const { user } = useAuth();
   const { novel, isFavorite } = props;
   const { t } = useTranslation();
-
   return (
     <div className="novel-item border-t-2 border-gray-300 py-3">
       <div className="novel-item-top">
@@ -80,9 +81,12 @@ export function Novel(props: NovelProps) {
             )}
           </div>
           <div className="novel-right flex-1">
-            <div className="flex justify-center ">
+            <Link
+              to={`/novel/${novel.novel_id}`}
+              className="flex justify-center "
+            >
               <NovelTitle title={novel.title} />
-            </div>
+            </Link>
             <div className="flex justify-between border-b-2 border-dashed">
               <NovelAuthor author={novel.user ?? ""} />
               <div className="novel-time flex gap-x-5">
@@ -98,18 +102,19 @@ export function Novel(props: NovelProps) {
                 </div>
               </div>
             </div>
-            <p className="font-xl py-2 text-justify">{novel.synopsis}</p>
+            <p className="font-xl synopsis my-2 text-justify">
+              {novel.synopsis}
+            </p>
           </div>
         </div>
       </div>
       <div className="novel-item-bottom my-2 border-t-2 border-dashed">
         <ul className="flex flex-wrap items-center gap-x-4 pt-2">
-          tag
-          {/* {novel.novel_tag.map((tag) => (
+          {novel.tags.map((tag) => (
             <TagNovel>
               <li>{tag.tag}</li>
             </TagNovel>
-          ))} */}
+          ))}
         </ul>
       </div>
       <div className="novel-item-bottom"></div>

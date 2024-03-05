@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Form, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Link, animateScroll as scroll } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
-
+import Search from "../Search/Search";
 
 export function Header() {
   const location = useLocation();
   const user = useAuth();
 
+  const headerRef = useRef();
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState(
@@ -26,8 +27,11 @@ export function Header() {
   };
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-10 bg-green-100">
-      <div className="header-top-wrap py-2">
+    <header
+      ref={headerRef}
+      className="fixed left-0 right-0 top-0 z-10 bg-green-100"
+    >
+      <div className="header-top-wrap pt-2">
         <div className="l-container">
           <div className="header-top-right">
             <ul className="flex justify-end gap-x-6">
@@ -49,6 +53,9 @@ export function Header() {
                   </li>
                   <li>
                     <NavLink to="/register">Register</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/user-manual">UserManual</NavLink>
                   </li>
                 </>
               )}
@@ -78,9 +85,7 @@ export function Header() {
           <div className="flex justify-between">
             {location.pathname == "/" ? (
               <ul className="flex gap-x-6">
-                <li>Test 1</li>
-                <li>Test 2</li>
-                <li>Test 3</li>
+                <li>Trang chủ</li>
               </ul>
             ) : (
               <Breadcrumbs />
@@ -94,10 +99,23 @@ export function Header() {
         <div className="l-container">
           <ul className="flex flex-wrap justify-between gap-x-4">
             <li>
-              <NavLink to="/">
+              <NavLink to="/" title="Home">
                 <h1>{t("common.home")}</h1>
               </NavLink>
             </li>
+            {/* <li>
+              <NavLink to="/tournament">Tournament</NavLink>
+            </li> */}
+            {user.isAuth && (
+              <Fragment>
+                <li>
+                  <NavLink to="/mypage">MyPage</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/search-novel">SearchNovel</NavLink>
+                </li>
+              </Fragment>
+            )}
             <li>
               <NavLink
                 to="/coliseum"
@@ -107,31 +125,22 @@ export function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/tournament">Tournament</NavLink>
+              <a href="https://www.bungo-coliseum.jp/creation" target="blank">創作論</a>
             </li>
             <li>
-              <NavLink to="/author">Author</NavLink>
-            </li>
-            <li>
-              <NavLink to="/mypage">MyPage</NavLink>
+              <a href="https://www.bungo-coliseum.jp/recommend" target="blank">推し事</a>
             </li>
             <li>
               <NavLink to="/newnovel">New Novel</NavLink>
             </li>
             <li>
+              <NavLink to="/use-regulations">useRegulations</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Thông báo</NavLink>
+            </li>
+            {/* <li>
               <NavLink to="/tournament-board">Tournament Board</NavLink>
-            </li>
-            <li>
-              <NavLink to="/test-coli">Test</NavLink>
-            </li>
-            <li>
-              <NavLink to="/test-coli2">Test 2</NavLink>
-            </li>
-            <li>
-              <NavLink to="/test-coli3">Test 3</NavLink>
-            </li>
-            <li>
-              <NavLink to="/test-coli4">Test 4</NavLink>
             </li>
             <li>
               <NavLink to="/author-join-tourament">AuthorJoinTourament</NavLink>
@@ -180,19 +189,12 @@ export function Header() {
             <li>
               <NavLink to="/test5">Tourament</NavLink>
             </li>
-            <li>
-              <NavLink to="/use-regulations">useRegulations</NavLink>
-            </li>
-            <li>
+             */}
+            {/* <li>
               <NavLink to="/protection-policy">ProtectionPolicy</NavLink>
-            </li>
-            <li>
-              <NavLink to="/test6">TESST6</NavLink>
-            </li>
-            <li>
-              <NavLink to="/search-novel">SearchNovel</NavLink>
-            </li>
+            </li> */}
           </ul>
+          {/* <Search/> */}
         </div>
       </nav>
     </header>

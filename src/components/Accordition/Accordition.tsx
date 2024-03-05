@@ -4,19 +4,27 @@ import { IoTriangle } from "react-icons/io5";
 import { TagNovel } from "../Tag/TagNovel.tsx";
 import { useQuery } from "@apollo/client";
 import useAuth from "@/hooks/useAuth.tsx";
-import { GET_DETAIL_USER } from "@/graphql-client/user/queries.ts";
+import { GET_NOVELS_BY_USER } from "@/graphql-client/user/queries.ts";
 import LikeButton from "../button/LikeButton.tsx";
 import BookMarkButton from "../button/BookMarkButton.tsx";
+import { Pagination } from "../pagination/Pagination.tsx";
 
 function Accordition() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
-  
+
   const [isOpenArray, setIsOpenArray] = useState([]);
 
-  const { loading, error, data } = useQuery(GET_DETAIL_USER, {
-    variables: { userId: user.id },
+  const { loading, error, data, refetch } = useQuery(GET_NOVELS_BY_USER, {
+    variables: { userId: parseInt(user.id), page: 1, limit: 3 },
   });
+
+  const handlePageChange = async (newPage: number) => {
+    await refetch({ page: newPage, limit: 3 });
+  };
+
+  console.log(data);
+
   if (loading) return "Đang load";
   if (error) return "Có lỗi xảy ra";
 
@@ -27,14 +35,16 @@ function Accordition() {
   };
   return (
     <>
-      {data?.user?.novels.map((novel, index) => (
+      {data?.getNovelsByAuthor?.novels.map((novel, index) => (
         <div className="border-b-2 py-2">
           <div className="flex">
             <ButtonCommon
               onClick={() => toggleAccordion(index)}
               className="border-none "
             >
-              <IoTriangle  className={`transition-transform duration-500 ${isOpenArray[index] ? 'rotate-180' : 'rotate-90'}`}  />
+              <IoTriangle
+                className={`transition-transform duration-500 ${isOpenArray[index] ? "rotate-180" : "rotate-90"}`}
+              />
             </ButtonCommon>
             <div className="flex-1 ">
               <div className="flex gap-x-2">
@@ -43,7 +53,7 @@ function Accordition() {
                   onClick={() => toggleAccordion(index)}
                   className="font-2xl cursor-pointer font-bold"
                 >
-                {novel.title}
+                  {novel.title}
                 </h3>
               </div>
               <div className="flex justify-between">
@@ -60,10 +70,13 @@ function Accordition() {
                   </div>
                   <div className="flex gap-x-2">
                     <div className="flex items-center">
-                    <LikeButton user={user} novel={novel}></LikeButton>
+                      <LikeButton user={user} novel={novel}></LikeButton>
                     </div>
                     <div className="flex items-center">
-                    <BookMarkButton user={user} novel={novel}></BookMarkButton>
+                      <BookMarkButton
+                        user={user}
+                        novel={novel}
+                      ></BookMarkButton>
                     </div>
                   </div>
                   <button className="border-2 px-3">申ゅゆ選歳ゆ選歳</button>
@@ -136,6 +149,10 @@ function Accordition() {
           </div>
         </div>
       ))}
+      <Pagination
+        totalPages={data?.getNovelsByAuthor?.totalPages}
+        onPageChange={handlePageChange}
+      />
     </>
   );
 }

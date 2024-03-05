@@ -135,4 +135,12 @@ getNovelsByAuthor(userId: $userId, limit: $limit, page: $page) {
   }
   currentPage
 }
+user(userId: $userId) {
+    name
+    user_id
+    created_at
+    first_login_at
+    last_login_at
+    s3_url
+  }
 }`);

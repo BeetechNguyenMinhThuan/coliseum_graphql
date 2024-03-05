@@ -1,10 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function NovelAuthor(props: { author: string }) {
   const { author } = props;
   return (
     <div>
-      <span>{author.name}</span>
+      <NavLink to={`/author/${author.user_id}`} >{author.name}</NavLink>
     </div>
   );
 }
