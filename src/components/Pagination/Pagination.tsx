@@ -23,7 +23,7 @@ export function Pagination(props: IPaginationProps) {
       pageCount={totalPages ?? 0}
       previousLabel="< previous"
       renderOnZeroPageCount={null}
-      activeClassName="active"
+      activeClassName="text-primary" 
       initialPage={currentPage}
     />
   );

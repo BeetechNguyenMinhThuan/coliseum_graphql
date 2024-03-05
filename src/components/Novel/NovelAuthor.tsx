@@ -5,7 +5,7 @@ function NovelAuthor(props: { author: string }) {
   const { author } = props;
   return (
     <div>
-      <NavLink to={`author/${author.user_id}`} >{author.name}</NavLink>
+      <NavLink to={`/author/${author.user_id}`} >{author.name}</NavLink>
     </div>
   );
 }

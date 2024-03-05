@@ -728,3 +728,4 @@ export const blockBackslash = (name: string, method: any) => {
 export const setDefaultTitle = (title) => {
   document.title = title;
 };
+

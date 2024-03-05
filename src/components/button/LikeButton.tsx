@@ -53,7 +53,7 @@ const LikeButton = ({ user, novel }) => {
 
   return (
     <div className="vote">
-      <input type="checkbox" checked={isLiked} onChange={handleLikeChange} />
+      <input className=" cursor-pointer" type="checkbox" checked={isLiked} onChange={handleLikeChange} />
       <span className="pl-1">{novel.likes}</span>
     </div>
   );

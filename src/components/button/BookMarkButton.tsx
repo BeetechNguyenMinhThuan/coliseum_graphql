@@ -51,6 +51,7 @@ const BookMarkButton = ({ user, novel }) => {
         type="checkbox"
         checked={checkBookmark}
         onChange={handleBookMarksChange}
+        className="cursor-pointer"
       />
       <span className="pl-1">{novel.bookmarks} </span>
     </div>

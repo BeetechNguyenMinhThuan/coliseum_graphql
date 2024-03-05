@@ -4,6 +4,7 @@ import { TagNovel } from "components/Tag/TagNovel";
 import React, { useState } from "react";
 import { ChangeEvent, FormEvent, MouseEventHandler } from "react";
 import { useNavigate } from "react-router";
+import { LoadingSpiner } from "../Loading/LoadingSpiner";
 
 interface ISearchProps {
   filter?: {
@@ -43,13 +44,10 @@ export const Search: React.FC = (props: ISearchProps) => {
     navigate(`/search-novel?keyword=${filter?.searchValue ?? ""}`);
   };
 
-  if (loading) return "Đang load";
-  if (error) return "có lỗi";
-
   return (
     <div className="border-black-500 ">
-      <form action="" className="mt-[10px] px-[20px]">
-        <div className="flex items-center justify-between px-8">
+      <form action="" className="mt-[10px] ">
+        <div className="flex items-center justify-between ">
           <input
             type="text"
             placeholder="検索..."
@@ -73,7 +71,6 @@ export const Search: React.FC = (props: ISearchProps) => {
           </div>
         </div>
       </form>
-              
     </div>
   );
 };
