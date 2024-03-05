@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import "./index.scss";
 import { useQuery } from "@apollo/client";
 import { NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries.ts";
-import Loading, { NovelLoading } from "../Loading/Loading.tsx";
+import { NovelLoading } from "../Loading/Loading.tsx";
 
 export function RankingContainer() {
   const tabs = [

@@ -14,7 +14,7 @@ import { setDefaultTitle } from "@/utils/helper";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 const tabs = [
   "hot",
   "daily",
@@ -28,7 +28,6 @@ const tabs = [
 export default function NovelDetail() {
   setDefaultTitle("Trang cá nhân");
   const user = useAuth();
-  const navigate = useNavigate();
   const { novelId } = useParams();
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [conditionResult, setConditionResult] = useState(null);
@@ -48,7 +47,6 @@ export default function NovelDetail() {
     }
   }, [user, data, activeTab]);
 
-  if (loading) return <LoadingSpiner />;
   if (error) return "Có lỗi xảy ra";
 
   const handleRanking = (tab) => {
@@ -62,7 +60,9 @@ export default function NovelDetail() {
   return (
     <>
       {loading ? (
-        <LoadingSpiner />
+       <div className="content flex-1">
+          <LoadingSpiner/>
+       </div>
       ) : (
         <>
           {novel && (
@@ -82,7 +82,7 @@ export default function NovelDetail() {
                     <div className="flex gap-x-4">
                       <div className="flex flex-col justify-between">
                         <div className="flex-1">
-                          {activeTab ? novel?.rank[activeTab] : "123"}
+                          {activeTab ? novel?.rank[activeTab] : "Icon1"}
                         </div>
                         <div className="flex-1">Icon2</div>
                       </div>
