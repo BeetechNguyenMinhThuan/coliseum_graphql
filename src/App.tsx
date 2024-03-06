@@ -14,9 +14,8 @@ import { ToastContainer } from "react-toastify";
 import { setContext } from "@apollo/client/link/context";
 import { ACCESS_TOKEN, getItemStorage } from "@/utils/localStorageHepler.ts";
 import "react-toastify/dist/ReactToastify.css";
-import ScrollToTop from "./components/common/ScrollToTop";
 
-const endpoint = "http://localhost:5000";
+const endpoint = import.meta.env.VITE_REACT_GRAPHQL_ENDPOINT;
 
 const httpLink = new HttpLink({ uri: endpoint });
 
@@ -34,11 +33,6 @@ const authLink = setContext(async (_, { headers }) => {
     return headers;
   }
 });
-
-// const client = new ApolloClient({
-//   uri: endpoint,
-//   cache: new InMemoryCache(),
-// });
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
