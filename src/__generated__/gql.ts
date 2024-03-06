@@ -15,6 +15,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n      query Login($input: LoginInput!) {\n          login(input: $input) {\n            token\n          }\n}\n    ": types.LoginDocument,
     "\n       query VerifyToken($token: String!) {\n          verifyToken(token: $token) {\n            success\n            message\n          }\n        }\n    ": types.VerifyTokenDocument,
+    "\nquery SlideBanner($type: Int!) {\n  contentsBanner(type: $type) {\n    content_url\n    destination_url\n  }\n}\n": types.SlideBannerDocument,
+    "\nquery ContentsNoti($type: Int!) {\n  contentsNoti(type: $type) {\n    title\n    content_url\n    destination_url\n    information_type\n    content\n    publication_start_at\n    information_type\n  }\n}\n": types.ContentsNotiDocument,
+    "\nquery ContentsAdvertisement($type: Int!) {\n  contentsAdvertisement(type: $type) {\n    content_url\n    destination_url\n  }\n}": types.ContentsAdvertisementDocument,
     "\nmutation Mutation($input: NovelInput!) {\n    createNovel(input: $input) {\n      novel_id\n      novel_ulid\n      user_id\n      title\n      synopsis\n      cover_picture_url\n      foreword_url\n      afterword_url\n      setting_url\n      note_url\n      dictionary_url\n      is_anonymous\n      is_publish\n      is_ranking_visible\n      is_completed\n      is_comment\n      is_comment_publish\n      first_novel_publish_at\n      first_name_publish_at\n      first_completed_at\n      created_at\n      updated_at\n      deleted_at\n    }\n  }\n": types.MutationDocument,
     "\nmutation ToggleUserLike($novelId: Int!) {\n  toggleUserLike(novelId: $novelId) {\n    success\n    message\n    novel_id\n    likedCount\n    isFavorite\n  }\n}\n": types.ToggleUserLikeDocument,
     "\nmutation ToggleUserBookmark($novelId: Int!) {\n  toggleUserBookmark(novelId: $novelId) {\n    success\n    message\n    isBookmark\n  }\n}": types.ToggleUserBookmarkDocument,
@@ -57,6 +60,18 @@ export function gql(source: "\n      query Login($input: LoginInput!) {\n       
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n       query VerifyToken($token: String!) {\n          verifyToken(token: $token) {\n            success\n            message\n          }\n        }\n    "): (typeof documents)["\n       query VerifyToken($token: String!) {\n          verifyToken(token: $token) {\n            success\n            message\n          }\n        }\n    "];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nquery SlideBanner($type: Int!) {\n  contentsBanner(type: $type) {\n    content_url\n    destination_url\n  }\n}\n"): (typeof documents)["\nquery SlideBanner($type: Int!) {\n  contentsBanner(type: $type) {\n    content_url\n    destination_url\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nquery ContentsNoti($type: Int!) {\n  contentsNoti(type: $type) {\n    title\n    content_url\n    destination_url\n    information_type\n    content\n    publication_start_at\n    information_type\n  }\n}\n"): (typeof documents)["\nquery ContentsNoti($type: Int!) {\n  contentsNoti(type: $type) {\n    title\n    content_url\n    destination_url\n    information_type\n    content\n    publication_start_at\n    information_type\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\nquery ContentsAdvertisement($type: Int!) {\n  contentsAdvertisement(type: $type) {\n    content_url\n    destination_url\n  }\n}"): (typeof documents)["\nquery ContentsAdvertisement($type: Int!) {\n  contentsAdvertisement(type: $type) {\n    content_url\n    destination_url\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
