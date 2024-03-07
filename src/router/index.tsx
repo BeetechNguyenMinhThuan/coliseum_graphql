@@ -32,6 +32,7 @@ import Test6 from "@/pages/Test/test6";
 import { SearchNovel } from "@/pages/searchNovel/searchNovel";
 import NovelDetail from "@/pages/novelDetail/NovelDetail";
 import SlideBanner from "@/components/Content/SlideBanner";
+import { ContactForm } from "@/pages/ContactForm/ContactForm";
 
 export const router = createBrowserRouter([
   {
@@ -178,6 +179,14 @@ export const router = createBrowserRouter([
       {
         path: "testQC",
         element: <SlideBanner />,
+      },
+      {
+        path: "testQC",
+        element: <SlideBanner />,
+      },
+      {
+        path: "/contact-form",
+        element: <ContactForm />,
       },
     ],
   },
