@@ -6,8 +6,14 @@ import "./index.scss";
 import { useQuery } from "@apollo/client";
 import { NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries.ts";
 import { NovelLoading } from "../Loading/Loading.tsx";
+import { NavLink } from "react-router-dom";
+import { NovelList } from "../novel/NovelList.tsx";
 
-export function RankingContainer() {
+interface RankingProp {
+  limit: number;
+}
+export function RankingContainer(props: RankingProp) {
+  const { limit } = props;
   const tabs = [
     "",
     "hot",
@@ -24,7 +30,7 @@ export function RankingContainer() {
   const { loading, data, refetch } = useQuery(NOVELS_FILTER_BY_RANKING, {
     variables: {
       page: 1,
-      limit: 3,
+      limit: limit,
       filter: {
         searchValue: null,
       },
@@ -32,6 +38,8 @@ export function RankingContainer() {
     },
   });
 
+  console.log(data);
+  
   return (
     <div className="mt-5 border-2 p-2">
       <h2 className="pb-2 text-center text-2xl font-bold">評価</h2>
@@ -70,7 +78,20 @@ export function RankingContainer() {
               <NovelLoading />
             </div>
           ) : (
-            <RankingList novels={data?.getNovelsPaginate} refetch={refetch} />
+            <>
+              <NovelList novels={data?.getNovelsPaginate}  />
+
+              {location.pathname !== "/newnovel" && (
+                <div className="my-3 flex justify-end">
+                  <NavLink
+                    to="/newnovel"
+                    className=" rounded-md bg-orange-500 px-4 py-2 text-white"
+                  >
+                    すべてのランキングを見る
+                  </NavLink>
+                </div>
+              )}
+            </>
           )}
         </div>
       </CSSTransition>

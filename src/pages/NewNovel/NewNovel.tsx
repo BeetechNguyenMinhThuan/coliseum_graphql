@@ -80,22 +80,19 @@ export default function NewNovel() {
     <>
       <SidebarHome />
       <div className="content flex-1">
-        {/* Novel List  */}
-        <div className="border-2 p-2">
+        {/* <div className="border-2 p-2">
           <h2 className="pb-2 text-center text-2xl font-bold">
             新しく出版された小説
           </h2>
           <NovelList novels={novels} />
         </div>
 
-        {/* list novel update */}
         <div className="border-black-500 mt-3 min-h-[188px] border-2 border-solid p-2">
           <h1 className="pb-4 pl-4 pr-4 text-center text-3xl">路張享凡喬つ</h1>
           <NovelList novels={novels} />
         </div>
-        <Advertisement>{arrAds}</Advertisement>
-        {/* list novel ranking */}
-        <RankingContainer />
+        <Advertisement>{arrAds}</Advertisement> */}
+        <RankingContainer limit={20} />
       </div>
     </>
   );

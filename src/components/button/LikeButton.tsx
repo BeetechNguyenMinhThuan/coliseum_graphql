@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE_NOVEL } from "@/graphql-client/novel/mutation.ts";
 import {
   GET_NOVELS_PAGINATE,
+  GET_NOVEL_UPDATE_OR_CREATED,
   NOVELS_FILTER_BY_RANKING,
 } from "@/graphql-client/novel/queries.ts";
 import { toast } from "react-toastify";
@@ -18,6 +19,7 @@ const LikeButton = ({ user, novel }) => {
   const [isLiked, setIsLike] = useState(false);
 
   const checkUserLike = useCallback(() => {
+    
     if (novel.user_likes) {
       const arrUserId = novel.user_likes
         .map((item) => parseInt(item.user_id))
@@ -33,6 +35,7 @@ const LikeButton = ({ user, novel }) => {
     GET_DETAIL_USER,
     NOVELS_FILTER_BY_RANKING,
     GET_NOVELS_BY_USER,
+    GET_NOVEL_UPDATE_OR_CREATED
   ];
   useEffect(() => {
     const result = checkUserLike();

@@ -1,5 +1,5 @@
 import { TOGGLE_BOOKMARKS_NOVEL } from "@/graphql-client/novel/mutation";
-import { GET_NOVELS_PAGINATE, NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries";
+import { GET_NOVELS_PAGINATE, GET_NOVEL_UPDATE_OR_CREATED, NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries";
 import { GET_DETAIL_USER, GET_NOVELS_BY_USER } from "@/graphql-client/user/queries";
 import { useMutation } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
@@ -30,6 +30,7 @@ const BookMarkButton = ({ user, novel }) => {
     GET_DETAIL_USER,
     NOVELS_FILTER_BY_RANKING,
     GET_NOVELS_BY_USER,
+    GET_NOVEL_UPDATE_OR_CREATED
   ];
 
   const handleBookMarksChange = () => {
