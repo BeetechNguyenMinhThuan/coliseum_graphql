@@ -14,7 +14,6 @@ import { ToastContainer } from "react-toastify";
 import { setContext } from "@apollo/client/link/context";
 import { ACCESS_TOKEN, getItemStorage } from "@/utils/localStorageHepler.ts";
 import "react-toastify/dist/ReactToastify.css";
-import ScrollToTop from "./components/common/ScrollToTop";
 
 const endpoint = "http://localhost:5000";
 

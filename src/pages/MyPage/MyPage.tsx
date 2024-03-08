@@ -533,7 +533,6 @@ export default function MyPage() {
         <div className="mt-10 border-b-2 pb-4">
           <Title title="日もん健滅" className="border-dashed pl-0 text-left" />
           <p className="mb-6">
-            {" "}
             春には桜の花が咲き春には桜の花が咲き
             春には桜の花が咲き春には桜の花が咲き
             春には桜の花が咲き春には桜の花が咲き
@@ -554,7 +553,6 @@ export default function MyPage() {
         <div className="mt-10 border-b-2">
           <Title title="日もん健滅" className="border-dashed pl-0 text-left" />
           <p className="mb-3">
-            {" "}
             春には桜の花が咲き春には桜の花が咲き
             春には桜の花が咲き春には桜の花が咲き
             春には桜の花が咲き春には桜の花が咲き
@@ -562,6 +560,6 @@ export default function MyPage() {
           </p>
         </div>
       </div>
-    </>
+     </>
   );
 }

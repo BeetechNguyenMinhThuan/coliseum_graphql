@@ -1,6 +1,13 @@
 import { TOGGLE_BOOKMARKS_NOVEL } from "@/graphql-client/novel/mutation";
-import { GET_NOVELS_PAGINATE, GET_NOVEL_UPDATE_OR_CREATED, NOVELS_FILTER_BY_RANKING } from "@/graphql-client/novel/queries";
-import { GET_DETAIL_USER, GET_NOVELS_BY_USER } from "@/graphql-client/user/queries";
+import {
+  GET_NOVELS_PAGINATE,
+  GET_NOVEL_UPDATE_OR_CREATED,
+  NOVELS_FILTER_BY_RANKING,
+} from "@/graphql-client/novel/queries";
+import {
+  GET_DETAIL_USER,
+  GET_NOVELS_BY_USER,
+} from "@/graphql-client/user/queries";
 import { useMutation } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -14,7 +21,9 @@ const BookMarkButton = ({ user, novel }) => {
 
   const checkUserBookMark = useCallback(() => {
     if (novel.user_bookmarks) {
-      const arrUserId = novel.user_bookmarks.map(item => parseInt(item.user_id)).filter(id => typeof id === 'number' && !isNaN(id));
+      const arrUserId = novel.user_bookmarks
+        .map((item) => parseInt(item.user_id))
+        .filter((id) => typeof id === "number" && !isNaN(id));
       return arrUserId.includes(user.id);
     }
     return false;
@@ -30,7 +39,7 @@ const BookMarkButton = ({ user, novel }) => {
     GET_DETAIL_USER,
     NOVELS_FILTER_BY_RANKING,
     GET_NOVELS_BY_USER,
-    GET_NOVEL_UPDATE_OR_CREATED
+    GET_NOVEL_UPDATE_OR_CREATED,
   ];
 
   const handleBookMarksChange = () => {
@@ -42,18 +51,26 @@ const BookMarkButton = ({ user, novel }) => {
         toast.success(toastAlert);
       },
       refetchQueries: arrQueries,
-
     });
   };
 
   return (
-    <div>
-      <input
-        type="checkbox"
-        checked={checkBookmark}
-        onChange={handleBookMarksChange}
-        className="cursor-pointer"
-      />
+    <div className="flex">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill={checkBookmark ? "#fff530e0" : "none"}
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke={checkBookmark ? "none" : "#ccc"}
+        className="h-6 w-6 cursor-pointer "
+        onClick={handleBookMarksChange}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+        />
+      </svg>
       <span className="pl-1">{novel.bookmarks} </span>
     </div>
   );

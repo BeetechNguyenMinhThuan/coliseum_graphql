@@ -1,5 +1,4 @@
 import { RankingTab } from "./RankingTab.tsx";
-import { RankingList } from "./RankingList.tsx";
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./index.scss";
@@ -14,6 +13,7 @@ interface RankingProp {
 }
 export function RankingContainer(props: RankingProp) {
   const { limit } = props;
+
   const tabs = [
     "",
     "hot",
@@ -38,16 +38,9 @@ export function RankingContainer(props: RankingProp) {
     },
   });
 
-  console.log(data);
-  
   return (
     <div className="mt-5 border-2 p-2">
       <h2 className="pb-2 text-center text-2xl font-bold">評価</h2>
-      {location.pathname === "/newnovel" ? (
-        <div className="border-black-500 mb-3 min-h-[188px] border-y-2 border-solid p-2"></div>
-      ) : (
-        ""
-      )}
       <RankingTab
         tabs={tabs}
         activeTab={activeTab}
@@ -79,12 +72,12 @@ export function RankingContainer(props: RankingProp) {
             </div>
           ) : (
             <>
-              <NovelList novels={data?.getNovelsPaginate}  />
+              <NovelList refetch={refetch} novels={data?.getNovelsPaginate} />
 
               {location.pathname !== "/newnovel" && (
                 <div className="my-3 flex justify-end">
                   <NavLink
-                    to="/newnovel"
+                    to="/newnovel#ranking-container"
                     className=" rounded-md bg-orange-500 px-4 py-2 text-white"
                   >
                     すべてのランキングを見る

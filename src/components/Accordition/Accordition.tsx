@@ -23,7 +23,6 @@ function Accordition() {
     await refetch({ page: newPage, limit: 3 });
   };
 
-  console.log(data);
 
   if (loading) return "Đang load";
   if (error) return "Có lỗi xảy ra";
@@ -70,7 +69,7 @@ function Accordition() {
                   </div>
                   <div className="flex gap-x-2">
                     <div className="flex items-center">
-                      <LikeButton user={user} novel={novel}></LikeButton>
+                      <LikeButton refetch={refetch} user={user} novel={novel}></LikeButton>
                     </div>
                     <div className="flex items-center">
                       <BookMarkButton

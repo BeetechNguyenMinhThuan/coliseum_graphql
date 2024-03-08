@@ -2,8 +2,10 @@ import { useRef } from "react";
 import { Pagination } from "../pagination/Pagination.tsx";
 import { Novel } from "./Novel.tsx";
 
-export function NovelList({ novels }) {
+export function NovelList({ novels, refetch }) {  
   const parentRef = useRef(null);
+  // console.log(refetch);
+  
   // const handlePageChange = async (newPage: number) => {
   //   const currentElement = parentRef.current;
   //   if (currentElement) {
@@ -17,7 +19,7 @@ export function NovelList({ novels }) {
   return (
     <div ref={parentRef}>
       {novels?.novels?.map((novel) => (
-        <Novel key={novel.novel_id} novel={novel} />
+        <Novel refetch= {refetch} key={novel.novel_id} novel={novel} />
       ))}
       {/* <Pagination
         totalPages={novels?.totalPages}
