@@ -11,7 +11,6 @@ const BookMarkButton = ({ user, novel, refetch }) => {
   ] = useMutation(TOGGLE_BOOKMARKS_NOVEL);
 
   const checkUserBookMark = useCallback(() => {
-    console.log(123);
     if (novel.user_bookmarks) {
       const arrUserId = novel.user_bookmarks
         .map((item) => parseInt(item.user_id))
