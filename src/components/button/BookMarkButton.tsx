@@ -1,18 +1,9 @@
-import { TOGGLE_BOOKMARKS_NOVEL } from "@/graphql-client/novel/mutation";
-import {
-  GET_NOVELS_PAGINATE,
-  GET_NOVEL_UPDATE_OR_CREATED,
-  NOVELS_FILTER_BY_RANKING,
-} from "@/graphql-client/novel/queries";
-import {
-  GET_DETAIL_USER,
-  GET_NOVELS_BY_USER,
-} from "@/graphql-client/user/queries";
+import { useState, useEffect, useCallback } from "react";
 import { useMutation } from "@apollo/client";
-import { useCallback, useEffect, useState } from "react";
+import { TOGGLE_BOOKMARKS_NOVEL } from "@/graphql-client/novel/mutation";
 import { toast } from "react-toastify";
 
-const BookMarkButton = ({ user, novel }) => {
+const BookMarkButton = ({ user, novel, refetch }) => {
   const [checkBookmark, setCheckBookmark] = useState(false);
   const [
     toggleUserBookmark,
@@ -20,6 +11,7 @@ const BookMarkButton = ({ user, novel }) => {
   ] = useMutation(TOGGLE_BOOKMARKS_NOVEL);
 
   const checkUserBookMark = useCallback(() => {
+    console.log(123);
     if (novel.user_bookmarks) {
       const arrUserId = novel.user_bookmarks
         .map((item) => parseInt(item.user_id))
@@ -30,27 +22,21 @@ const BookMarkButton = ({ user, novel }) => {
   }, [novel.user_bookmarks, user.id]);
 
   useEffect(() => {
-    const isBookMark = checkUserBookMark();
-    setCheckBookmark(isBookMark);
-  }, [checkUserBookMark, novel]);
-
-  const arrQueries = [
-    GET_NOVELS_PAGINATE,
-    GET_DETAIL_USER,
-    NOVELS_FILTER_BY_RANKING,
-    GET_NOVELS_BY_USER,
-    GET_NOVEL_UPDATE_OR_CREATED,
-  ];
+    if (dataBookMark && dataBookMark.toggleUserBookmark) {
+      const isBookmark = checkUserBookMark();
+      setCheckBookmark(isBookmark);
+      refetch();
+    }
+  }, [checkUserBookMark, dataBookMark, refetch]);
 
   const handleBookMarksChange = () => {
     toggleUserBookmark({
       variables: { novelId: novel.novel_id },
-      onCompleted: (dataBookMark) => {
-        const isBookmark = dataBookMark?.toggleUserBookmark?.isBookmark;
+      onCompleted: (data) => {
+        const isBookmark = data?.toggleUserBookmark?.isBookmark;
         const toastAlert = isBookmark ? "Đã Ghim" : "Đã hủy Ghim";
         toast.success(toastAlert);
       },
-      refetchQueries: arrQueries,
     });
   };
 

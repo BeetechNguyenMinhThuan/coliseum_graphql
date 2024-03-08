@@ -1,17 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE_NOVEL } from "@/graphql-client/novel/mutation.ts";
-import {
-  GET_NOVELS_PAGINATE,
-  GET_NOVEL_UPDATE_OR_CREATED,
-  NOVELS_FILTER_BY_RANKING,
-} from "@/graphql-client/novel/queries.ts";
 import { toast } from "react-toastify";
-import {
-  GET_DETAIL_USER,
-  GET_NOVELS_BY_USER,
-} from "@/graphql-client/user/queries";
-import { log } from "console";
 
 const LikeButton = ({ user, novel, refetch }) => {
   const [toggleUserLike, { data, loading, error }] =

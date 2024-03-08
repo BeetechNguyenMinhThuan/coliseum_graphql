@@ -23,11 +23,8 @@ interface NovelProps {
 }
 
 export function Novel(props: NovelProps) {
-  
   const { user } = useAuth();
   const { novel, isFavorite, refetch } = props;
-  console.log(refetch);
-  
   const { t } = useTranslation();
   return (
     <div className="novel-item border-t-2 border-gray-300 py-3">
@@ -52,6 +49,7 @@ export function Novel(props: NovelProps) {
                   <div>
                     <div className="vote">
                       <BookMarkButton
+                        refetch={refetch}
                         user={user}
                         novel={novel}
                       ></BookMarkButton>
