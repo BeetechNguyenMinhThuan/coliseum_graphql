@@ -13,14 +13,18 @@ import BookMarkButton from "../button/BookMarkButton.tsx";
 import "./index.scss";
 import { Link, NavLink } from "react-router-dom";
 
+interface RefetchFunction {
+  (variables?: any): void; // Định nghĩa kiểu dữ liệu của hàm refetch ở đây
+}
 interface NovelProps {
   novel: AnyObject;
   isFavorite?: boolean;
+  refetch: RefetchFunction;
 }
 
 export function Novel(props: NovelProps) {
   const { user } = useAuth();
-  const { novel, isFavorite } = props;
+  const { novel, isFavorite, refetch } = props;
   const { t } = useTranslation();
   return (
     <div className="novel-item border-t-2 border-gray-300 py-3">
@@ -39,12 +43,13 @@ export function Novel(props: NovelProps) {
                 <div className="flex gap-x-6">
                   <div>
                     <div className="vote">
-                      <LikeButton user={user} novel={novel} />
+                      <LikeButton user={user} novel={novel} refetch={refetch} />
                     </div>
                   </div>
                   <div>
                     <div className="vote">
                       <BookMarkButton
+                        refetch={refetch}
                         user={user}
                         novel={novel}
                       ></BookMarkButton>

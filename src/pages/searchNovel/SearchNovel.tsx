@@ -26,13 +26,13 @@ export function SearchNovel() {
   const { loading, error, data, refetch } = useQuery(GET_NOVELS_PAGINATE, {
     variables: {
       page: 1,
-      limit: 2,
+      limit: 5,
       filter: { searchValue: test },
     },
   });
 
   const handlePageChange = async (newPage: number) => {
-    await refetch({ page: newPage, limit: 2 });
+    await refetch({ page: newPage, limit: 5,  filter: { searchValue: test } });
   };
 
   if (error) return `Error! ${error.message}`;
@@ -49,7 +49,7 @@ export function SearchNovel() {
             ) : (
               <>
                 <span>
-                  <span>  Kết quả tìm kiếm :</span>
+                  <span> Kết quả tìm kiếm :</span>
                   <span> {data?.getNovelsPaginate?.totalItems}</span>
                 </span>
                 {data?.getNovelsPaginate?.novels?.map((novel) => (

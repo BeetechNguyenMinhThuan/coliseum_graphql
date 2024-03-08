@@ -42,8 +42,8 @@ export default function NovelDetail() {
 
   useEffect(() => {
     if (user && data) {
-      const isOwner = user.userId == data?.novel?.user.user_id;
-      setConditionResult(isOwner ? 1 : user.isAuth ? 2 : null);
+      const isOwner = user.userId == data?.novel?.user?.user_id;
+      setConditionResult(isOwner ? 1 : user?.isAuth ? 2 : null);
     }
   }, [user, data, activeTab]);
 
@@ -51,6 +51,7 @@ export default function NovelDetail() {
 
   const handleRanking = (tab) => {
     setActiveTab(tab);
+    console.log(tab);
     novelDetail({
       variables: { novelId: parseInt(novelId), type: tab },
     });
@@ -59,15 +60,16 @@ export default function NovelDetail() {
 
   return (
     <>
+      <SidebarHome />
+
       {loading ? (
-       <div className="content flex-1">
-          <LoadingSpiner/>
-       </div>
+        <div className="content flex-1">
+          <LoadingSpiner />
+        </div>
       ) : (
         <>
           {novel && (
             <>
-              <SidebarHome />
               <div className="content flex-1">
                 {conditionResult == 1 && (
                   <div className="my-3 ">
@@ -90,7 +92,7 @@ export default function NovelDetail() {
                         <div className="flex h-fit basis-[230px] gap-x-4">
                           {/* <NovelStatus novelItem={novel}></NovelStatus> */}
                           <div className="novel-image-wrap flex flex-col">
-                            <NovelAvatar image={novel.cover_picture_url} />
+                            <NovelAvatar image={novel?.cover_picture_url} />
 
                             {/* <NovelIconTournament type="球球球ム" /> */}
                           </div>
@@ -101,16 +103,16 @@ export default function NovelDetail() {
                           to={`/novel/${novel.novel_id}`}
                           className="flex justify-center "
                         >
-                          <NovelTitle title={novel.title} />
+                          <NovelTitle title={novel?.title} />
                         </NavLink>
                         <div className="flex justify-between border-b-2 border-dashed">
-                          <NovelAuthor author={novel.user ?? ""} />
+                          <NovelAuthor author={novel?.user ?? ""} />
                         </div>
                         <div className="flex flex-col gap-4 py-3">
                           <div className="flex ">
                             <div className="flex-1">EpisodeCount</div>
                             <div className="flex-1">
-                              {novel?.episodes.length}
+                              {novel?.episodes?.length}
                             </div>
                           </div>
                           <div className="flex ">
@@ -154,7 +156,7 @@ export default function NovelDetail() {
                     <ul className="flex flex-wrap items-center gap-x-4 pt-2">
                       {novel?.tags.map((tag) => (
                         <TagNovel>
-                          <li>{tag.tag}</li>
+                          <li>{tag?.tag}</li>
                         </TagNovel>
                       ))}
                     </ul>

@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 export const Banner = () => {
-  const arrImage: Array<String> = [
+  const arrImage: Array<string> = [
     "thumbnail1.jpg",
     "thumbnail-la-gi-1.jpg",
     "yellow-color-halftone-youtube-thumbnail-background_562076-95.avif",

@@ -151,3 +151,47 @@ query Novel($novelId: Int!, $type: String) {
   }
 }
 `);
+
+export const GET_NOVEL_UPDATE_OR_CREATED = gql(`
+query novelCreateOrUpdate($type: Int) {
+  novels(type: $type) {
+    novels {
+     novel_id
+      novel_ulid
+      title
+      synopsis
+      cover_picture_url
+      user_uuid
+      author
+      user {
+        name
+        user_id
+      }
+      is_publish
+      is_ranking_visible
+      first_novel_publish_at
+      max_updated_at
+      episode_count
+      likes
+      
+      bookmarks
+      comments
+      is_completed
+      user_likes {
+        user_id
+      }
+      user_bookmarks {
+        user_id
+      }
+      created_at
+      updated_at
+      badges {
+        badges_name
+      }
+      tags {
+        tag
+      }  
+    }
+}
+}
+`);
