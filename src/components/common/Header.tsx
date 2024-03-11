@@ -176,6 +176,9 @@ export function Header() {
               <NavLink to="/add-chapter">Add Chapter</NavLink>
             </li>
             <li>
+              <NavLink to="/reader-novel">ReaderNovel</NavLink>
+            </li>
+            <li>
               <Link
                 to="coliseum_noti"
                 spy={true}

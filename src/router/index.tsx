@@ -33,6 +33,7 @@ import { SearchNovel } from "@/pages/searchNovel/searchNovel";
 import NovelDetail from "@/pages/novelDetail/NovelDetail";
 import SlideBanner from "@/components/Content/SlideBanner";
 import { ContactForm } from "@/pages/ContactForm/ContactForm";
+import { ReaderNovel } from "@/pages/ReaderNovel/ReaderNovel";
 
 export const router = createBrowserRouter([
   {
@@ -187,6 +188,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact-form",
         element: <ContactForm />,
+      },
+      {
+        path: "/reader-novel",
+        element: <ReaderNovel />,
       },
     ],
   },
