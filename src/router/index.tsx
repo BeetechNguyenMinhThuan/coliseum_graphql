@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import NotFoundPage from "@/pages/Error/NotFoundPage.tsx";
-import Home from "@/pages/home/Home";
+import Home from "@/pages/home/Home.tsx";
 import { Coliseum } from "@/pages/Coliseum/Coliseum.tsx";
 import { Tournament } from "@/pages/Tournament/Tournament.tsx";
 import { Author } from "@/pages/Author/Author.tsx";
@@ -28,8 +28,7 @@ import { Login, MyPage, Register } from "@/router/pages";
 import { checkAuthLoader, checkAuthLoginLoader } from "@/utils/auth";
 import UserManual from "@/pages/userManual/UserManual";
 import RootLayout from "@/pages/layout/RootLayout";
-import Test6 from "@/pages/Test/test6";
-import { SearchNovel } from "@/pages/searchNovel/searchNovel";
+import { SearchNovel } from "@/pages/searchNovel/searchNovel.tsx";
 import NovelDetail from "@/pages/novelDetail/NovelDetail";
 import SlideBanner from "@/components/Content/SlideBanner";
 import { ContactForm } from "@/pages/ContactForm/ContactForm";
@@ -164,10 +163,6 @@ export const router = createBrowserRouter([
       {
         path: "logout",
         action: logoutAction,
-      },
-      {
-        path: "/test6",
-        element: <Test6 />,
       },
       {
         path: "/search-novel",
