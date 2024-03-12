@@ -43,15 +43,21 @@ const BookMarkButton = ({ user, novel }) => {
   ];
 
   const handleBookMarksChange = () => {
-    toggleUserBookmark({
-      variables: { novelId: novel.novel_id },
-      onCompleted: (dataBookMark) => {
-        const isBookmark = dataBookMark?.toggleUserBookmark?.isBookmark;
-        const toastAlert = isBookmark ? "Đã Ghim" : "Đã hủy Ghim";
-        toast.success(toastAlert);
-      },
-      refetchQueries: arrQueries,
-    });
+    console.log(user);
+
+    if (Object.keys(user).length > 0) {
+      toggleUserBookmark({
+        variables: { novelId: novel.novel_id },
+        onCompleted: (dataBookMark) => {
+          const isBookmark = dataBookMark?.toggleUserBookmark?.isBookmark;
+          const toastAlert = isBookmark ? "Đã Ghim" : "Đã hủy Ghim";
+          toast.success(toastAlert);
+        },
+        refetchQueries: arrQueries,
+      });
+    } else {
+      toast.error("Vui lòng đăng nhập");
+    }
   };
 
   return (

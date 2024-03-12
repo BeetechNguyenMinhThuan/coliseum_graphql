@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useMutation } from "@apollo/client";
+import {  useMutation } from "@apollo/client";
 import { TOGGLE_LIKE_NOVEL } from "@/graphql-client/novel/mutation.ts";
 import {
   GET_NOVELS_PAGINATE,
@@ -11,7 +11,6 @@ import {
   GET_DETAIL_USER,
   GET_NOVELS_BY_USER,
 } from "@/graphql-client/user/queries";
-import { log } from "console";
 
 const LikeButton = ({ user, novel }) => {
   const [toggleUserLike, { data, loading, error }] =
@@ -42,15 +41,19 @@ const LikeButton = ({ user, novel }) => {
   }, [checkUserLike, data?.toggleUserLike?.isFavorite]);
 
   const handleLikeChange = () => {
-    toggleUserLike({
-      variables: { novelId: novel.novel_id },
-      onCompleted: (data) => {
-        const isFavorite = data?.toggleUserLike?.isFavorite;
-        const toastAlert = isFavorite ? "Đã Like" : "Đã hủy like";
-        toast.success(toastAlert);
-      },
-      refetchQueries: arrQueries,
-    });
+    if (Object.keys(user).length > 0) {
+      toggleUserLike({
+        variables: { novelId: novel.novel_id },
+        onCompleted: (data) => {
+          const isFavorite = data?.toggleUserLike?.isFavorite;
+          const toastAlert = isFavorite ? "Đã Like" : "Đã hủy like";
+          toast.success(toastAlert);
+        },
+        refetchQueries: arrQueries,
+      });
+    } else {
+      toast.error("Vui lòng đăng nhập");
+    }
   };
 
   return (
