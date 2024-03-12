@@ -60,9 +60,9 @@ export default function NovelDetail() {
   return (
     <>
       {loading ? (
-       <div className="content flex-1">
-          <LoadingSpiner/>
-       </div>
+        <div className="content flex-1">
+          <LoadingSpiner />
+        </div>
       ) : (
         <>
           {novel && (
@@ -215,7 +215,10 @@ export default function NovelDetail() {
                               </div>
                               {conditionResult == 1 && (
                                 <>
-                                  <NavLink className="flex-1 " to="/">
+                                  <NavLink
+                                    className="flex-1 "
+                                    to={`episode/${episode?.episode_id}`}
+                                  >
                                     エピソ
                                   </NavLink>
                                 </>

@@ -185,7 +185,7 @@ export const router = createBrowserRouter([
         element: <ContactForm />,
       },
       {
-        path: "/reader-novel",
+        path: "novel/:novel_id/episode/:episode_id",
         element: <ReaderNovel />,
       },
     ],

@@ -68,6 +68,20 @@ export type EpisodeInput = {
   publish_at?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+export type EpisodePagination = {
+  __typename?: 'EpisodePagination';
+  currentPage?: Maybe<Scalars['Int']['output']>;
+  episodes?: Maybe<Array<Episode>>;
+  totalItems?: Maybe<Scalars['Int']['output']>;
+  totalPages?: Maybe<Scalars['Int']['output']>;
+};
+
+export type EpisodeResponse = {
+  __typename?: 'EpisodeResponse';
+  episode?: Maybe<Episode>;
+  totalEpisodes?: Maybe<Scalars['Int']['output']>;
+};
+
 export type Event = {
   __typename?: 'Event';
   created_at?: Maybe<Scalars['DateTime']['output']>;
@@ -756,8 +770,8 @@ export type Query = {
   contentsAdvertisement?: Maybe<Array<Maybe<Content>>>;
   contentsBanner?: Maybe<Array<Maybe<Content>>>;
   contentsNoti?: Maybe<Array<Maybe<Content>>>;
-  episode?: Maybe<Episode>;
-  episodes?: Maybe<Array<Maybe<Episode>>>;
+  episode?: Maybe<EpisodeResponse>;
+  episodes?: Maybe<EpisodePagination>;
   event?: Maybe<Event>;
   events?: Maybe<Array<Maybe<Event>>>;
   getAllMatches?: Maybe<Array<Maybe<Match>>>;
@@ -807,7 +821,18 @@ export type QueryContentsNotiArgs = {
 
 
 export type QueryEpisodeArgs = {
-  episode_id: Scalars['Int']['input'];
+  episodeId: Scalars['Int']['input'];
+  novelId: Scalars['Int']['input'];
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryEpisodesArgs = {
+  episodeId?: InputMaybe<Scalars['Int']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  novelId: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1105,6 +1130,16 @@ export type ContentsAdvertisementQueryVariables = Exact<{
 
 export type ContentsAdvertisementQuery = { __typename?: 'Query', contentsAdvertisement?: Array<{ __typename?: 'Content', content_url?: string | null, destination_url?: string | null } | null> | null };
 
+export type EpisodesQueryVariables = Exact<{
+  novelId: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  episodeId?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type EpisodesQuery = { __typename?: 'Query', episodes?: { __typename?: 'EpisodePagination', totalItems?: number | null, totalPages?: number | null, currentPage?: number | null, episodes?: Array<{ __typename?: 'Episode', episode_id?: number | null, episode_ulid?: string | null, episode_title?: string | null, episode_type?: number | null, order?: number | null, episode_url?: string | null, is_publish?: boolean | null, publish_at?: any | null, first_novel_publish_at?: any | null, created_at?: any | null, updated_at?: any | null, deleted_at?: any | null }> | null } | null };
+
 export type MutationMutationVariables = Exact<{
   input: NovelInput;
 }>;
@@ -1253,6 +1288,7 @@ export const VerifyTokenDocument = {"kind":"Document","definitions":[{"kind":"Op
 export const SlideBannerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SlideBanner"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contentsBanner"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content_url"}},{"kind":"Field","name":{"kind":"Name","value":"destination_url"}}]}}]}}]} as unknown as DocumentNode<SlideBannerQuery, SlideBannerQueryVariables>;
 export const ContentsNotiDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ContentsNoti"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contentsNoti"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content_url"}},{"kind":"Field","name":{"kind":"Name","value":"destination_url"}},{"kind":"Field","name":{"kind":"Name","value":"information_type"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"publication_start_at"}},{"kind":"Field","name":{"kind":"Name","value":"information_type"}}]}}]}}]} as unknown as DocumentNode<ContentsNotiQuery, ContentsNotiQueryVariables>;
 export const ContentsAdvertisementDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ContentsAdvertisement"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contentsAdvertisement"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content_url"}},{"kind":"Field","name":{"kind":"Name","value":"destination_url"}}]}}]}}]} as unknown as DocumentNode<ContentsAdvertisementQuery, ContentsAdvertisementQueryVariables>;
+export const EpisodesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Episodes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"novelId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"episodeId"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episodes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"novelId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"novelId"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"episodeId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"episodeId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episode_id"}},{"kind":"Field","name":{"kind":"Name","value":"episode_ulid"}},{"kind":"Field","name":{"kind":"Name","value":"episode_title"}},{"kind":"Field","name":{"kind":"Name","value":"episode_type"}},{"kind":"Field","name":{"kind":"Name","value":"order"}},{"kind":"Field","name":{"kind":"Name","value":"episode_url"}},{"kind":"Field","name":{"kind":"Name","value":"is_publish"}},{"kind":"Field","name":{"kind":"Name","value":"publish_at"}},{"kind":"Field","name":{"kind":"Name","value":"first_novel_publish_at"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"deleted_at"}}]}},{"kind":"Field","name":{"kind":"Name","value":"totalItems"}},{"kind":"Field","name":{"kind":"Name","value":"totalPages"}},{"kind":"Field","name":{"kind":"Name","value":"currentPage"}}]}}]}}]} as unknown as DocumentNode<EpisodesQuery, EpisodesQueryVariables>;
 export const MutationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Mutation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NovelInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createNovel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"novel_id"}},{"kind":"Field","name":{"kind":"Name","value":"novel_ulid"}},{"kind":"Field","name":{"kind":"Name","value":"user_id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"synopsis"}},{"kind":"Field","name":{"kind":"Name","value":"cover_picture_url"}},{"kind":"Field","name":{"kind":"Name","value":"foreword_url"}},{"kind":"Field","name":{"kind":"Name","value":"afterword_url"}},{"kind":"Field","name":{"kind":"Name","value":"setting_url"}},{"kind":"Field","name":{"kind":"Name","value":"note_url"}},{"kind":"Field","name":{"kind":"Name","value":"dictionary_url"}},{"kind":"Field","name":{"kind":"Name","value":"is_anonymous"}},{"kind":"Field","name":{"kind":"Name","value":"is_publish"}},{"kind":"Field","name":{"kind":"Name","value":"is_ranking_visible"}},{"kind":"Field","name":{"kind":"Name","value":"is_completed"}},{"kind":"Field","name":{"kind":"Name","value":"is_comment"}},{"kind":"Field","name":{"kind":"Name","value":"is_comment_publish"}},{"kind":"Field","name":{"kind":"Name","value":"first_novel_publish_at"}},{"kind":"Field","name":{"kind":"Name","value":"first_name_publish_at"}},{"kind":"Field","name":{"kind":"Name","value":"first_completed_at"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"deleted_at"}}]}}]}}]} as unknown as DocumentNode<MutationMutation, MutationMutationVariables>;
 export const ToggleUserLikeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ToggleUserLike"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"novelId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"toggleUserLike"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"novelId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"novelId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"novel_id"}},{"kind":"Field","name":{"kind":"Name","value":"likedCount"}},{"kind":"Field","name":{"kind":"Name","value":"isFavorite"}}]}}]}}]} as unknown as DocumentNode<ToggleUserLikeMutation, ToggleUserLikeMutationVariables>;
 export const ToggleUserBookmarkDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ToggleUserBookmark"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"novelId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"toggleUserBookmark"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"novelId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"novelId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"isBookmark"}}]}}]}}]} as unknown as DocumentNode<ToggleUserBookmarkMutation, ToggleUserBookmarkMutationVariables>;

@@ -139,7 +139,7 @@ export function Header() {
             <li>
               <NavLink to="/">Thông báo</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/tournament-board">Tournament Board</NavLink>
             </li>
             <li>
@@ -191,7 +191,7 @@ export function Header() {
             </li>
             <li>
               <NavLink to="/test5">Tourament</NavLink>
-            </li>
+            </li> */}
             
             {/* <li>
               <NavLink to="/protection-policy">ProtectionPolicy</NavLink>
