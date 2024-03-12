@@ -3,8 +3,7 @@ import { Advertisement } from "components/Advertisement/Advertisement.tsx";
 import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
-import { useMutation, useQuery } from "@apollo/client";
-import { EXPORT_CSV_MUTATION } from "@/graphql-client/round/mutations.ts";
+import {  useQuery } from "@apollo/client";
 import { setDefaultTitle } from "@/utils/helper.ts";
 // import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 // import { NovelList } from "@/components/novel";
@@ -12,12 +11,13 @@ import { setDefaultTitle } from "@/utils/helper.ts";
 import { Search } from "@/components/Search/Search";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
 import { useEffect, useRef } from "react";
-import "./index.scss"
+import "./index.scss";
 import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 import { NovelCreatedNew } from "@/components/novel/NovelCreatedNew";
+import { NovelUpdatedNew } from "@/components/novel/NovelUpdatedNew";
 const Home = () => {
-  setDefaultTitle("Trang chủ")
-  const parentRef = useRef(null)
+  setDefaultTitle("Trang chủ");
+  const parentRef = useRef(null);
   const { t } = useTranslation();
   // const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
   // const handleExportCSV = async () => {
@@ -35,7 +35,7 @@ const Home = () => {
   //   }
   // };
 
-  const { loading, error, data, refetch } = useQuery(GET_NOVELS_PAGINATE, {
+  const { loading, error, data } = useQuery(GET_NOVELS_PAGINATE, {
     variables: {
       page: 1,
       limit: 5,
@@ -48,9 +48,9 @@ const Home = () => {
   useEffect(() => {
     console.log("Data changed:", data);
   }, [data]);
-  if (loading) return <LoadingSpiner/>  ;
+  if (loading) return <LoadingSpiner />;
   if (error) return "Có lỗi xảy ra";
- 
+
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
@@ -102,7 +102,7 @@ const Home = () => {
   return (
     <>
       <SidebarHome />
-      
+
       <div className="content flex-1">
         {/* <ButtonCommon type="button" onClick={handleExportCSV}>
           Export CSV
@@ -144,16 +144,21 @@ const Home = () => {
         <Search />
 
         {/* Novel List  */}
-        <div className="border-2 p-2"  ref={parentRef}>
+        <div className="border-2 p-2" ref={parentRef}>
           {/* <h2 className="pb-2 text-center text-2xl font-bold">
             新しく出版された小説
           </h2> */}
           {/* <NovelList novels={data?.getNovelsPaginate} refetch={refetch }  /> */}
           <div>
-             <h2 className="pb-2  text-xl font-semibold border-b-2">
-            Tác phẩm mới update
-          </h2>
-          <NovelCreatedNew/>
+            <h2 className="pb-2 text-xl font-semibold ">Tác phẩm mới đăng</h2>
+            <NovelCreatedNew />
+          </div>
+
+          <div className="mt-4">
+            <h2 className="pb-2  text-xl font-semibold ">
+              Tác phẩm mới update
+            </h2>
+            <NovelUpdatedNew />
           </div>
         </div>
 
