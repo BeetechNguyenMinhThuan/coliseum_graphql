@@ -16,12 +16,11 @@ import { Link, NavLink } from "react-router-dom";
 interface NovelProps {
   novel: AnyObject;
   isFavorite?: boolean;
-  queries
 }
 
 export function Novel(props: NovelProps) {
   const { user } = useAuth();
-  const { novel, isFavorite, queries } = props;
+  const { novel, isFavorite } = props;
   const { t } = useTranslation();
   return (
     <div className="novel-item border-t-2 border-gray-300 py-3">
@@ -40,7 +39,7 @@ export function Novel(props: NovelProps) {
                 <div className="flex gap-x-6">
                   <div>
                     <div className="vote">
-                      <LikeButton user={user} novel={novel} queries={queries} />
+                      <LikeButton user={user} novel={novel} />
                     </div>
                   </div>
                   <div>

@@ -1,13 +1,14 @@
 import { GET_EPISODE } from "@/graphql-client/episode/queries";
 import useAuth from "@/hooks/useAuth";
+import { setDefaultTitle } from "@/utils/helper";
 import { useQuery } from "@apollo/client";
 import { useRef, useState, useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export function ReaderNovel() {
+  setDefaultTitle("Trang đọc truyện");
   const user = useAuth();
   const { novel_id, episode_id } = useParams();
-  const [episodeId, setEpisodeId] = useState(episode_id);
 
   const [checkRotation, setCheckRotation] = useState(false);
   const contentRef = useRef();
@@ -24,7 +25,7 @@ export function ReaderNovel() {
     setCheckRotation(!checkRotation);
   };
 
-  const { loading, data, error, refetch } = useQuery(GET_EPISODE, {
+  const { data, refetch } = useQuery(GET_EPISODE, {
     variables: {
       novelId: parseInt(novel_id),
       episodeId: episode_id ? parseInt(episode_id) : null,
@@ -32,25 +33,14 @@ export function ReaderNovel() {
     },
   });
 
-  const handlePrevChapter = async () => {
+  const handleChapterChange = async (direction) => {
     await refetch({
-      novelId:  parseInt(novel_id),
-      episodeId: null,
-      page:  data?.episodes?.currentPage ? data?.episodes?.currentPage - 1 : null,
-      limit: 1,
-    });
-  };
-
-  const handleNextChapter = () => {
-    refetch({
       novelId: parseInt(novel_id),
       episodeId: null,
-      page: data?.episodes?.currentPage ? data?.episodes?.currentPage + 1 : null,
+      page: data?.episodes?.currentPage + direction,
       limit: 1,
     });
   };
-
-  console.log(data);
 
   return (
     <div className="flex h-[700px] w-full flex-col ">
@@ -75,7 +65,7 @@ export function ReaderNovel() {
           style={checkRotation ? { width: `${wi}px`, height: `${he}px` } : {}}
         >
           <div>
-            EPISODE TITLE{" "}
+            EPISODE TITLE
             {data && data?.episodes?.episodes?.[0]["episode_title"]}
           </div>
           <div
@@ -88,21 +78,24 @@ export function ReaderNovel() {
       <div className="my-2 flex justify-between">
         <button
           disabled={data?.episodes?.currentPage === 1 ? true : false}
-          className="rounded border border-blue-500 bg-transparent px-4 py-2 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
-          onClick={handlePrevChapter}
+          className={`rounded border border-blue-500 bg-transparent px-4 py-2 font-semibold text-blue-700  ${data?.episodes?.currentPage === 1 ? "border-gray-500 text-gray-700" : "hover:border-transparent hover:bg-blue-500 hover:text-white"} `}
+          onClick={() => handleChapterChange(-1)}
         >
-          Giảm
+          Tập trước
         </button>
+        <span>
+          {data?.episodes?.currentPage}/{data?.episodes?.totalPages}
+        </span>
         <button
           disabled={
             data?.episodes?.currentPage === data?.episodes?.totalPages
               ? true
               : false
           }
-          className="  rounded border border-blue-500 bg-transparent px-4 py-2 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"
-          onClick={handleNextChapter}
+          className={`rounded border  bg-transparent px-4 py-2 font-semibold   ${data?.episodes?.currentPage === data?.episodes?.totalPages ? "border-gray-500 text-gray-700" : "border-blue-500 text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white"} `}
+          onClick={() => handleChapterChange(1)}
         >
-          Tăng
+          Tập kế tiếp
         </button>
       </div>
     </div>

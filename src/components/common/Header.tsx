@@ -1,11 +1,10 @@
 import { Fragment, useRef, useState } from "react";
 import { Form, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Link, animateScroll as scroll } from "react-scroll";
+import {  animateScroll as scroll } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
-import Search from "../Search/Search";
 
 export function Header() {
   const location = useLocation();

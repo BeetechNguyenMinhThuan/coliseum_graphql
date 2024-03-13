@@ -8,13 +8,20 @@ import { TagNovel } from "@/components/Tag/TagNovel";
 import NovelAuthor from "@/components/novel/NovelAuthor";
 import NovelAvatar from "@/components/novel/NovelAvatar";
 import NovelTitle from "@/components/novel/NovelTitle";
+import { POST_COMMENT } from "@/graphql-client/comment/mutation";
 import { GET_DETAIL_NOVEL } from "@/graphql-client/novel/queries";
 import useAuth from "@/hooks/useAuth";
 import { setDefaultTitle } from "@/utils/helper";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { DevTool } from "@hookform/devtools";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { NavLink, useParams } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { toast } from "react-toastify";
+
 const tabs = [
   "hot",
   "daily",
@@ -26,11 +33,44 @@ const tabs = [
 ];
 
 export default function NovelDetail() {
-  setDefaultTitle("Trang cá nhân");
+  setDefaultTitle("Trang chi tiết tác phẩm");
   const user = useAuth();
   const { novelId } = useParams();
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [conditionResult, setConditionResult] = useState(null);
+
+  const schema = yup.object({
+    content_comment: yup
+      .string()
+      .max(2048,"*2048 文字を超えて入力しないでください*")
+      .required("*コメント内容を入力してください*"),
+  });
+  const [
+    postComment,
+    { data: dataComment, loading: loadingComment, error: errorComment },
+  ] = useMutation(POST_COMMENT);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    setValue,
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const handlePostComment = (dataComment) => {
+    postComment({
+      variables: {
+        userId: parseInt(user.userId),
+        novelId: parseInt(novelId),
+        comment: dataComment?.content_comment,
+      },
+      onCompleted: () => {
+        toast.success("コメントが投稿されました");
+        setValue("content_comment", "");
+      }
+    });
+  };
 
   const [novelDetail, { loading, error, data }] =
     useLazyQuery(GET_DETAIL_NOVEL);
@@ -101,16 +141,16 @@ export default function NovelDetail() {
                           to={`/novel/${novel.novel_id}`}
                           className="flex justify-center "
                         >
-                          <NovelTitle title={novel.title} />
+                          <NovelTitle title={novel?.title} />
                         </NavLink>
                         <div className="flex justify-between border-b-2 border-dashed">
-                          <NovelAuthor author={novel.user ?? ""} />
+                          <NovelAuthor author={novel?.user} />
                         </div>
                         <div className="flex flex-col gap-4 py-3">
                           <div className="flex ">
                             <div className="flex-1">EpisodeCount</div>
                             <div className="flex-1">
-                              {novel?.episodes.length}
+                              {novel?.episodes?.length}
                             </div>
                           </div>
                           <div className="flex ">
@@ -154,7 +194,7 @@ export default function NovelDetail() {
                     <ul className="flex flex-wrap items-center gap-x-4 pt-2">
                       {novel?.tags.map((tag) => (
                         <TagNovel>
-                          <li>{tag.tag}</li>
+                          <li>{tag?.tag}</li>
                         </TagNovel>
                       ))}
                     </ul>
@@ -231,13 +271,36 @@ export default function NovelDetail() {
                       )}
                     </div>
                   </div>
-                  <div className="novel-item-bottom"></div>
+                  <div className="novel-item-comment">
+                  {errors && errors.content_comment && (
+                        <p className="text-red-500">
+                          {errors.content_comment.message}
+                        </p>
+                      )}
+                    <form onSubmit={handleSubmit(handlePostComment)}>
+                      <div className="form-control my-3 ">
+                        <textarea
+                          className="h-44 w-full border-2 p-2 outline-none"
+                          placeholder="Nội dung comment"
+                          {...register("content_comment")}
+                          onChange={(e) =>
+                            setValue(e.target.name, e.target.value)
+                          }
+                        />
+                      </div>
+                     
+                      <button className="border-2 px-3 py-1" type="submit">
+                        Comment
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </>
           )}
         </>
       )}
+      <DevTool control={control} />
     </>
   );
 }
