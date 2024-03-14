@@ -68,7 +68,7 @@ export default function NovelDetail() {
       onCompleted: () => {
         toast.success("コメントが投稿されました");
         setValue("content_comment", "");
-      }
+      },
     });
   };
 
@@ -271,12 +271,12 @@ export default function NovelDetail() {
                       )}
                     </div>
                   </div>
-                  <div className="novel-item-comment">
-                  {errors && errors.content_comment && (
-                        <p className="text-red-500">
-                          {errors.content_comment.message}
-                        </p>
-                      )}
+                  <div className="novel-item-comment ">
+                    {errors && errors.content_comment && (
+                      <p className="text-red-500">
+                        {errors.content_comment.message}
+                      </p>
+                    )}
                     <form onSubmit={handleSubmit(handlePostComment)}>
                       <div className="form-control my-3 ">
                         <textarea
@@ -288,7 +288,7 @@ export default function NovelDetail() {
                           }
                         />
                       </div>
-                     
+
                       <button className="border-2 px-3 py-1" type="submit">
                         Comment
                       </button>

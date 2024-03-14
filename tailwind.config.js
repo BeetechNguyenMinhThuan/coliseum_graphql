@@ -4,8 +4,20 @@ export default withMT({
   theme: {
     extend: {
       colors: {
-        primary: "#1DC071",
+        primary: "#ffffff",
         secondary: "#6F49FD",
+        color1: "#7BD3EA",
+        color2: "#FDFFAB",
+        color3: "#FAFAFA",
+        color4: "#FFCE5A",
+        color5: "#FF5A5A",
+        color6: "#FDCEDF",
+        color7: "#FFE95A",
+        color8: "#ABBDC2",
+        color9: "#9DD1FE",
+        color10: "#2CA9FC",
+        color11: "#0DC57A",
+        color12: "#FFC571",
       },
     },
   },
