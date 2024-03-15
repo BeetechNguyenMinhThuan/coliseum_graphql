@@ -6,7 +6,7 @@ interface TagProps{
 export const TagNovel = ({children}: TagProps) => {
   return (
     <span
-        className="border-2 border-gray-200 bg-transparent px-4 py-1 mr-2 last:mr-0 cursor-pointer hover:bg-gray-200"
+        className="border-[1px] border-color1 bg-transparent px-4  mr-2 last:mr-0 cursor-pointer hover:bg-color1 rounded-[6px]"
     >
         {children}
     </span>

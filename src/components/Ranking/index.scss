@@ -30,3 +30,17 @@
     opacity: 0.2;
   }
 }
+
+.tab-ranking:last-child{
+  border: none;
+}
+
+.novel-item:first-child .icon-ranking {
+background-color:#FFE95A;
+}
+.novel-item:nth-child(2) .icon-ranking {
+  background-color: #FDCEDF;
+  }
+  .novel-item:nth-child(3) .icon-ranking {
+    background-color:#FECE9F;
+    }

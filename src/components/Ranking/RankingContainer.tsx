@@ -38,13 +38,10 @@ export function RankingContainer(props: RankingProp) {
   });
 
   return (
-    <div className="mt-5 border-2 p-2">
-      <h2 className="pb-2 text-center text-2xl font-bold">評価</h2>
-      {location.pathname === "/newnovel" ? (
-        <div className="border-black-500 mb-3 min-h-[188px] border-y-2 border-solid p-2"></div>
-      ) : (
-        ""
-      )}
+    <div className="mt-4 rounded-[20px] border-2 p-4">
+      <h2 className="title border-b-2 border-dashed border-b-[#ccc] text-2xl font-semibold">
+        評価された
+      </h2>
       <RankingTab
         tabs={tabs}
         activeTab={activeTab}
@@ -76,13 +73,13 @@ export function RankingContainer(props: RankingProp) {
             </div>
           ) : (
             <>
-              <NovelList novels={data?.getNovelsPaginate} />
+              <NovelList type="ranking" novels={data?.getNovelsPaginate} />
 
               {location.pathname !== "/newnovel" && (
                 <div className="my-3 flex justify-end">
                   <NavLink
                     to="/newnovel#ranking-container"
-                    className=" rounded-md bg-orange-500 px-4 py-2 text-white"
+                    className=" bg-color2 w-full   rounded-md px-4 py-2 text-center text-xl font-bold text-black"
                   >
                     すべてのランキングを見る
                   </NavLink>

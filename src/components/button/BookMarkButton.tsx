@@ -64,10 +64,10 @@ const BookMarkButton = ({ user, novel }) => {
     <div className="flex">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill={checkBookmark ? "#fff530e0" : "none"}
+        fill={checkBookmark ? "#7BD3EA" : "none"}
         viewBox="0 0 24 24"
         strokeWidth={1.5}
-        stroke={checkBookmark ? "#fff530e0" : "#ccc"}
+        stroke={checkBookmark ? "#7BD3EA" : "#ccc"}
         className="h-6 w-6 cursor-pointer"
         onClick={handleBookMarksChange}
       >

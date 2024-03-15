@@ -22,32 +22,15 @@ export default function Layout() {
    */
   return (
     <Suspense fallback={<></>}>
-      <div id="app" className="mt-[108px]">
+      <div id="app" className="bg-[#FAFAFA]">
         <Header />
-        {(pathName == "/" ||
-          pathName == "/coliseum" ||
-          pathName == "/tournament" ||
-          pathName == "/tournament-board") && (
-          <Hero
-            title="選歳ーだ平申1ゅゆ選歳ーだ平申ゅゆ歳ーだ平申ゅゆ"
-            subtitle="選歳ーだ"
-          />
-        )}
-
-        <div>
+        {/* <div>
           {pathName !== "/author" && pathName !== "/newnovel" ? <Banner /> : ""}
-        </div>
-        <div
-          className={`main-content ${
-            pathName !== "/author" && pathName !== "/newnovel"
-              ? "mt-[20px]"
-              : " mt-[140px]"
-          }`}
-        >
-          <div className="l-container">
-            <div className="flex gap-x-3">
-              <Outlet />
-            </div>
+        </div> */}
+        <div className={`main-content `}>
+          <Outlet />
+          <div className="container">
+            <div className="flex gap-x-3"></div>
           </div>
         </div>
         <Footer />

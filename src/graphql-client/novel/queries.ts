@@ -66,7 +66,13 @@ query Query($page: Int, $limit: Int, $type: String, $filter: FilterNovel) {
       comments
       is_completed
       rank {
+        hot
+        monthly
+        quarterly
+        weekly
+        yearly
         daily
+        cumulative
       }
       user {
         user_id

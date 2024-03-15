@@ -3,13 +3,14 @@ import { useQuery } from "@apollo/client";
 import { NovelList } from "./NovelList";
 
 export function NovelCreatedNew() {
-  const { data} = useQuery(GET_NOVEL_UPDATE_OR_CREATED, {
+  const { data } = useQuery(GET_NOVEL_UPDATE_OR_CREATED, {
     variables: { type: 1 },
   });
 
   return (
-    <div>
-      <NovelList novels={data?.novels} />
+    <div className="">
+      <h2 className="title font-semibold text-2xl border-b-2 border-dashed border-b-[#ccc]">された作品</h2>
+      <NovelList type="create" novels={data?.novels} />
     </div>
   );
 }

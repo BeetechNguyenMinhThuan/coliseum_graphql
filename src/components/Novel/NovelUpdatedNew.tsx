@@ -8,5 +8,10 @@ export function NovelUpdatedNew() {
   });
   if (loading) return <div>Loading...</div>;
 
-  return <div>{data?.novels && <NovelList novels={data.novels} />}</div>;
+  return (
+    <div className="">
+      <h2 className="title text-2xl font-semibold border-b-2 border-dashed border-b-[#ccc]">された作品</h2>
+      {data?.novels && <NovelList type="update" novels={data.novels} />}
+    </div>
+  );
 }
