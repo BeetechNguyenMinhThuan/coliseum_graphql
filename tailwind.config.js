@@ -18,6 +18,7 @@ export default withMT({
         color10: "#2CA9FC",
         color11: "#0DC57A",
         color12: "#FFC571",
+        color13: "#2CA9FD",
       },
     },
   },

@@ -60,10 +60,10 @@ const LikeButton = ({ user, novel }) => {
     <div className="vote flex">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill={isLiked ? "red" : "none"}
+        fill={isLiked ? "#F45A5A" : "none"}
         viewBox="0 0 24 24"
         stroke-width="1.5"
-        stroke={isLiked ? "red" : "#ccc"}
+        stroke={isLiked ? "#F45A5A" : "#ccc"}
         className="h-6 w-6 cursor-pointer"
         onClick={handleLikeChange}
       >

@@ -34,61 +34,91 @@ function Accordition() {
     setIsOpenArray(newIsOpenArray);
   };
   return (
-    <>
-      {data?.getNovelsByAuthor?.novels.map((novel, index) => (
+    <div className="border-2 bg-color3 p-4">
+      <h3 className="border-b-2 border-dashed border-gray-500 text-2xl font-bold">
+        室芸
+      </h3>
+      {data?.getNovelsByAuthor?.novels?.map((novel, index) => (
         <div className="border-b-2 py-2">
-          <div className="flex">
-            <ButtonCommon
+          <div className="flex gap-x-3">
+            <button
+              type="button"
               onClick={() => toggleAccordion(index)}
-              className="border-none "
+              className="h-fit rounded-full border-none bg-white p-0.5"
             >
-              <IoTriangle
-                className={`transition-transform duration-500 ${isOpenArray[index] ? "rotate-180" : "rotate-90"}`}
-              />
-            </ButtonCommon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className={`h-5 w-5 text-center transition-transform duration-500 ${isOpenArray[index] && "rotate-90"}`}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
             <div className="flex-1 ">
-              <div className="flex gap-x-2">
-                <span className="border-2 px-2">選歳ー</span>
+              <div className="flex gap-x-3">
+                <span className="rounded-lg border-2  bg-color9 px-3">
+                  選歳歳
+                </span>
                 <h3
                   onClick={() => toggleAccordion(index)}
-                  className="font-2xl cursor-pointer font-bold"
+                  className="cursor-pointer text-2xl font-bold"
                 >
                   {novel.title}
                 </h3>
               </div>
               <div className="flex justify-between">
-                <div className="">
-                  <span>選歳ーだ平</span>
-                  <span>選歳ーだ平だ平</span>
+                <div className="flex items-center gap-x-3">
+                  <ButtonCommon
+                    className="bg-color13 my-3 rounded-lg text-white"
+                    type="button"
+                  >
+                    選歳1ーだ平だ平だ平
+                  </ButtonCommon>
+                  <span className="text-color5">選歳ーだ平だ平</span>
                 </div>
-                <div className="flex gap-x-5">
+                <div className="flex items-center gap-x-5">
                   <div className="flex items-center gap-x-2">
                     <span>だ平</span>
-                    <span className="flex h-[30px] w-[30px] items-center justify-center border-2 p-1">
-                      9
-                    </span>
+                    <span className="font-bold">9</span>
                   </div>
                   <div className="flex gap-x-2">
-                    <div className="flex items-center">
-                      <LikeButton user={user} novel={novel}></LikeButton>
-                    </div>
                     <div className="flex items-center">
                       <BookMarkButton
                         user={user}
                         novel={novel}
                       ></BookMarkButton>
                     </div>
+                    <div className="flex items-center">
+                      <LikeButton user={user} novel={novel}></LikeButton>
+                    </div>
                   </div>
-                  <button className="border-2 px-3">申ゅゆ選歳ゆ選歳</button>
+                  <ButtonCommon
+                    type="button"
+                    className="h-fit rounded-lg bg-color8 px-3 text-white"
+                  >
+                    申ゅゆ選歳ゆ選歳
+                  </ButtonCommon>
                 </div>
               </div>
-              {/* <div className="mt-3 flex justify-between">
-                {novel?.novel_tag?.map(((tag,index) => (
-                    <TagNovel>{tag?.tag}</TagNovel>
-                ))
+              {novel.tags && novel.tags.length > 0 && (
+                <div className="novel-item-bottom my-2 border-t-2 border-dashed">
+                  <div className="flex flex-wrap items-center gap-x-4 pt-2">
+                    {novel.tags.map((tag) => (
+                      <TagNovel className="rounded-lg px-5 py-0">
+                        {tag?.tag}
+                      </TagNovel>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-                )}
-              </div> */}
               <div
                 className={`mt-3 grid overflow-hidden text-sm transition-all duration-500 ease-in-out ${
                   isOpenArray[index]
@@ -97,47 +127,89 @@ function Accordition() {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <div className="flex gap-x-12">
-                    <div className="flex basis-[150px] flex-col gap-y-2">
-                      <div className="h-[200px] w-full">
+                  <div className="flex gap-x-8">
+                    <div className="flex basis-[185px] flex-col gap-y-2">
+                      <div className="h-[222px] w-full">
                         <img
                           className="h-full w-full object-cover"
-                          src="/assets/thumbnail-la-gi.png"
+                          src="https://image.cdn2.seaart.ai/static/82cf0712367108660c5339a4897a728e/20230615/c1131a19f98853f516c3279429df1a4d_low.webp"
                           alt=""
                         />
                       </div>
-                      <div className="border-2 text-center">ゅゆ選歳ーだ</div>
-                      <div className="border-2 text-center">ゅゆ選歳ーだ</div>
-                      <div className="border-2 text-center">ゅゆ選歳ーだ</div>
+                      <div className="rounded-md border-2 border-gray-300 text-center text-[16px]">
+                        ゅゆ選歳ーだ
+                      </div>
+                      <div className="rounded-md border-2 border-gray-300 text-center text-[16px]">
+                        ゅゆ選歳ーだ
+                      </div>
+                      <div className="rounded-md border-2 border-gray-300 text-center text-[16px]">
+                        ゅゆ選歳ーだ
+                      </div>
                     </div>
                     <div className="flex flex-1 flex-col">
-                      <div className="border-b-2 py-2">
-                        <div className="flex items-center gap-x-2 border-b-2 border-dashed">
-                          <span>選歳ー</span>
-                          <h3 className="text-2xl">
-                            ゅゆ選歳ーだゅゆ選歳ーだゅゆ選歳ーだ
+                      <div className="border-b-2 border-dashed py-2">
+                        <div className="flex items-center gap-x-5">
+                          <span className="rounded-lg border-2 bg-color9 px-4 py-1">
+                            選歳歳
+                          </span>
+                          <h3 className="cursor-pointer text-2xl font-bold">
+                            歳歳歳
+                          </h3>
+                          <h3 className="cursor-pointer text-2xl font-bold">
+                            Tên tiểu thuyết 1
                           </h3>
                         </div>
                         <div className="mt-2">
                           <ul className="flex items-center justify-end gap-x-2">
-                            <li className="border-2 px-4">ゆ選歳</li>
-                            <li className="border-2 px-4">ゆ選歳</li>
-                            <li className="border-2 px-4">ゆ選歳</li>
+                            <li className="rounded-lg border-2 px-4 ">
+                              ゆ選歳
+                            </li>
+                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
+                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
                           </ul>
                         </div>
                       </div>
-                      <div className="border-b-2 py-2">
-                        <div className="flex items-center gap-x-2 border-b-2 border-dashed">
-                          <span>選歳ー</span>
-                          <h3 className="text-2xl">
-                            ゅゆ選歳ーだゅゆ選歳ーだゅゆ選歳ーだ
+                      <div className="border-b-2 border-dashed py-2">
+                        <div className="flex items-center gap-x-5">
+                          <span className="rounded-lg border-2 bg-color9 px-4 py-1">
+                            選歳歳
+                          </span>
+                          <h3 className="cursor-pointer text-2xl font-bold">
+                            歳歳歳
+                          </h3>
+                          <h3 className="cursor-pointer text-2xl font-bold">
+                            Tên tiểu thuyết 1
                           </h3>
                         </div>
                         <div className="mt-2">
                           <ul className="flex items-center justify-end gap-x-2">
-                            <li className="border-2 px-4">ゆ選歳</li>
-                            <li className="border-2 px-4">ゆ選歳</li>
-                            <li className="border-2 px-4">ゆ選歳</li>
+                            <li className="rounded-lg border-2 px-4 ">
+                              ゆ選歳
+                            </li>
+                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
+                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="border-b-2 border-dashed py-2">
+                        <div className="flex items-center gap-x-5">
+                          <span className="rounded-lg border-2 bg-color9 px-4 py-1">
+                            選歳歳
+                          </span>
+                          <h3 className="cursor-pointer text-2xl font-bold">
+                            歳歳歳
+                          </h3>
+                          <h3 className="cursor-pointer text-2xl font-bold">
+                            Tên tiểu thuyết 1
+                          </h3>
+                        </div>
+                        <div className="mt-2">
+                          <ul className="flex items-center justify-end gap-x-2">
+                            <li className="rounded-lg border-2 px-4 ">
+                              ゆ選歳
+                            </li>
+                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
+                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
                           </ul>
                         </div>
                       </div>
@@ -153,7 +225,7 @@ function Accordition() {
         totalPages={data?.getNovelsByAuthor?.totalPages}
         onPageChange={handlePageChange}
       />
-    </>
+    </div>
   );
 }
 
