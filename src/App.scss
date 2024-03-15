@@ -114,8 +114,9 @@
   }
 
   .image-ads {
-    height: 300px;
-    width: 300px;
+    height: 165px;
+    width: 250px;
+    object-fit: cover;
   }
 
   .progressbar-one {
@@ -144,7 +145,7 @@
     border-style: solid;
     border-width: 2px 2px 0 0;
     width: 221px;
-    right:149px;
+    right: 149px;
     position: absolute;
     transform: translateY(0px) translateX(369px) rotate3d(1, 0, 0, 180deg);
     height: 15px;
@@ -156,7 +157,7 @@
     border-style: solid;
     border-width: 2px 2px 0 0;
     width: 221px;
-    right: 148px;;
+    right: 148px;
     position: absolute;
     transform: translateY(12px) translateX(369px);
     height: 15px;

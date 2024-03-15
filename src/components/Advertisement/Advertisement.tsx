@@ -1,8 +1,15 @@
-export const Advertisement = ({ children }: any) => {
+import classNames from "@/utils/classNames";
+
+interface AdvertisementProps {
+  advertisement: string[];
+  className?: string;
+}
+export const Advertisement = (props: AdvertisementProps) => {
+  const { advertisement, className = "" } = props;
   return (
     <section>
-      <div className="mb-[30px] mt-[30px] flex gap-20">
-        {children?.map((image: String, index: number) => (
+      <div className={classNames("flex gap-7", className)}>
+        {advertisement?.map((image: string, index: number) => (
           <div key={index}>
             <img
               className="image-ads"

@@ -11,12 +11,14 @@ import {
   GET_DETAIL_USER,
   GET_NOVELS_BY_USER,
 } from "@/graphql-client/user/queries";
+import { useLocation } from "react-router-dom";
 
 const LikeButton = ({ user, novel }) => {
   const [toggleUserLike, { data, loading, error }] =
     useMutation(TOGGLE_LIKE_NOVEL);
   const [isLiked, setIsLike] = useState(false);
 
+  const location = useLocation();
   const checkUserLike = useCallback(() => {
     if (novel.user_likes) {
       const arrUserId = novel.user_likes
@@ -32,9 +34,13 @@ const LikeButton = ({ user, novel }) => {
     GET_NOVELS_PAGINATE,
     GET_DETAIL_USER,
     NOVELS_FILTER_BY_RANKING,
-    GET_NOVELS_BY_USER,
     GET_NOVEL_UPDATE_OR_CREATED,
   ];
+
+  if (location.pathname.includes("/author")) {
+    arrQueries.push(GET_NOVELS_BY_USER);
+  }
+
   useEffect(() => {
     const result = checkUserLike();
     setIsLike(result);
