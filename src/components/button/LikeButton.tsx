@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {  useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE_NOVEL } from "@/graphql-client/novel/mutation.ts";
 import {
   GET_NOVELS_PAGINATE,

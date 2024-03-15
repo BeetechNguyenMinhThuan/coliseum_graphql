@@ -26,11 +26,11 @@ export function RankingTab({
 
   return (
     <div>
-      <ul className="mb-2 flex justify-between">
+      <ul className="mb-2 flex justify-between mt-3">
         {tabs.map((tab, index) => (
           <li
             key={index}
-            className={`cursor-pointer border-2 px-7 hover:bg-gray-200 ${activeTab === tab ? "bg-gray-200" : ""}`}
+            className={`tab-ranking border-r-2 border-gray-200 cursor-pointer py-1 px-7 hover:text-color5 ${activeTab === tab ? "text-color5" : ""}`}
             onClick={() => handleSwitchRanking(tab)}
           >
             <span>{tab}</span>

@@ -15,6 +15,7 @@ import "./index.scss";
 import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 import { NovelCreatedNew } from "@/components/novel/NovelCreatedNew";
 import { NovelUpdatedNew } from "@/components/novel/NovelUpdatedNew";
+import Hero from "@/components/common/Hero";
 const Home = () => {
   setDefaultTitle("Trang chủ");
   const parentRef = useRef(null);
@@ -101,32 +102,35 @@ const Home = () => {
   ];
   return (
     <>
+    <Hero>
+    <img src="/public/assets/logoColiseum.png" alt="" />
+          <div className="px-8">
+          <h1 className="title text-center text-3xl font-extrabold mb-6">
+            作家の遊び場
+          </h1>
+          <p className="mb-4 font-medium">
+            誰もが自分の作品でトーナメントで優勝し、偉大な作家になることを目指します
+            彼らは武器として書き、トーナメントで試合に勝つことでチャンピオンシップを目指しました。
+            デュエル（2024 年春頃にリリース予定の機能）とランキングの向
+            アプリケーションサイト。
+          </p>
+          <p className="font-medium">
+            作者が楽しめる」をコンセプトに、作品のクオリティと期待感だけを武器に作品を審査する。
+            読者に「この 2
+            つの作品のうちどちらが好きですか?」を選択させることで価格を設定します。
+            ' 私たちはまだいるのに
+            私たちは方法を見つけましたが、評価対象となった作品に焦点を当てないフォーマットを探していました。
+            最高の評価。
+          </p>
+          </div>
+    </Hero>
+    <div className="container mx-auto bg-white p-8 mt-16">
+    <div className="flex gap-x-3">
       <SidebarHome />
-
       <div className="content flex-1">
-        {/* <ButtonCommon type="button" onClick={handleExportCSV}>
-          Export CSV
-        </ButtonCommon> */}
-        {/* Bungo Coliseum tournament  */}
-        {/* <div className="border-black-500 min-h-[188px] border-2 border-solid p-2">
-          <div className="text-center text-3xl font-bold">
-            球ムヘマタ碁投ヘツ座性スイオ千夜チ港需チ緒動
-          </div>
-          <div className="px-2 py-5 sm:ml-[10px] md:ml-[30px]">
-            <p>
-              定倫テチヤ権占じぴ選株れねド疑後各す
-              <br />
-              よトぎ必身べさゆむ害受フラヤヌ書彼づぴか円破進るわび竹略キノモ居大でぶ答刊じぽよれ表美包孤湖すまゃよ
-              <br />
-              透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語14拒ノカニ生人むびこ北読列トろけち。
-              <br />
-              握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
-            </p>
-          </div>
-        </div> */}
-        {/* <Element
+        <div
           name="coliseum_noti"
-          className="border-black-500  min-h-[188px] border-2 border-solid p-2"
+          className="border-black-500  min-h-[188px] border-2 border-solid p-2 rounded-[30px]"
         >
           <div className="element text-center text-3xl font-bold">お知らせ</div>
           <div className="px-2 py-5 sm:ml-[10px] md:ml-[30px]">
@@ -140,24 +144,16 @@ const Home = () => {
               握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
             </p>
           </div>
-        </Element> */}
+        </div>
         <Search />
-
         {/* Novel List  */}
-        <div className="border-2 p-2" ref={parentRef}>
-          {/* <h2 className="pb-2 text-center text-2xl font-bold">
-            新しく出版された小説
-          </h2> */}
-          {/* <NovelList novels={data?.getNovelsPaginate} refetch={refetch }  /> */}
-          <div>
-            <h2 className="pb-2 text-xl font-semibold ">Tác phẩm mới đăng</h2>
+        <div className="" ref={parentRef}>
+          <div className="mt-4 rounded-[20px] border-2 p-4">
+  
             <NovelCreatedNew />
           </div>
 
-          <div className="mt-4">
-            <h2 className="pb-2  text-xl font-semibold ">
-              Tác phẩm mới update
-            </h2>
+          <div className="mt-4 rounded-[20px] border-2 p-4">
             <NovelUpdatedNew />
           </div>
         </div>
@@ -166,6 +162,8 @@ const Home = () => {
         <Advertisement>{arrAds}</Advertisement>
         <CategoryList categories={categories}></CategoryList>
       </div>
+    </div>
+    </div>
     </>
   );
 };

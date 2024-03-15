@@ -45,24 +45,39 @@ export const Search: React.FC = (props: ISearchProps) => {
   };
 
   return (
-    <div className="border-black-500 ">
+    <div className="border-black-500 p-4 ">
+      <span className="title text-xl font-bold">作品を探す</span>
       <form action="" className="mt-[10px] ">
         <div className="flex items-center justify-between ">
           <input
             type="text"
-            placeholder="検索..."
+            placeholder="作者名、更新日、ジャンル、タグ、作品名"
             value={filter?.searchValue ?? ""}
             onChange={handleChange}
-            className="flex-grow  border-2 border-gray-200 p-2 outline-none"
+            className="flex-grow  rounded-l-[10px] border-2 border-r-0 border-gray-200 p-2 outline-none"
           />
           <button
             onClick={(e) => handleSearch(e)}
-            className=" border-2 border-yellow-500 bg-yellow-400 px-4 py-2 text-white hover:bg-yellow-300"
+            className=" bg-color2 border-2 border-gray-200 px-4 py-2 text-black hover:bg-yellow-300 w-[150px] flex justify-around rounded-r-[10px]"
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#FDFFAB"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
             検索
           </button>
         </div>
-        <div className="px-[10px] py-[10px]">
+        <div className="py-[10px]">
           <div className="flex items-center">
             <label className="mr-2">公式タグ:</label>
             {data?.getAllOfficialTags?.map((tag) => (

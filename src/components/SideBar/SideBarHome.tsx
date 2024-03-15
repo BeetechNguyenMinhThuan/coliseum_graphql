@@ -1,83 +1,26 @@
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function SidebarHome() {
-    return (
-        <div className='coli-sidebar'>
-            <ul className='flex flex-col'>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>Home</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>議会の規則</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>参加者のリスト</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>トーナメント表</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>ユーザーマニュアル</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>カードが注目を集める</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <div className="">
-                            <p>カードが注目を集める</p>
-                            <span>VS</span>
-                            <p>カードが注目を集める</p>
-                        </div>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <div className="">
-                            <p>カードが注目を集める</p>
-                            <span>VS</span>
-                            <p>カードが注目を集める</p>
-                        </div>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <h3>バトルロイヤル機能</h3>
-                        <span>2024 バトルロイヤル機能</span>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <h3>バトルロイヤル機能</h3>
-                        <span>2024 バトルロイヤル機能</span>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <h3>バトルロイヤル機能</h3>
-                        <span>2024 バトルロイヤル機能</span>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-            </ul>
-        </div>
-    );
-};
-
+  return (
+    <div className="coli-sidebar flex flex-col py-4">
+      <div className="flex">
+        <span className="col-1 block font-semibold">
+          豊後アリーナ 小
+          <span className="block text-sm font-normal">説投稿サイトへ行く</span>
+        </span>
+        <a
+          href=""
+          className="bg-color2 col-1 flex items-center rounded-[6px] border-2 px-4 py-1"
+        >
+          今ららから
+        </a>
+      </div>
+      <ul className="my-6">
+        <li className="mt-6 border-2 rounded-[10px] py-3 px-4 hover:bg-color2 cursor-pointer ">Chi tiết giải đấu</li>
+        <li className="mt-6 border-2 rounded-[10px] py-3 px-4 hover:bg-color2 cursor-pointer ">Danh sách người tham gia</li>
+        <li className="mt-6 border-2 rounded-[10px] py-3 px-4 hover:bg-color2 cursor-pointer ">Tourament</li>
+        <li className="mt-6 border-2 rounded-[10px] py-3 px-4 hover:bg-color2 cursor-pointer ">初心者向けガイ</li>
+      </ul>
+    </div>
+  );
+}
