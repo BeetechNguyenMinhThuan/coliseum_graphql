@@ -76,10 +76,6 @@ export const router = createBrowserRouter([
         element: <NewNovel />,
       },
       {
-        path: "tournament-board",
-        element: <TournamentBoard />,
-      },
-      {
         path: "test-coli",
         element: <Test />,
       },
@@ -192,6 +188,10 @@ export const router = createBrowserRouter([
       {
         path: "/tourament",
         element: <Tournament />,
+      },
+      {
+        path: "/tourament-board",
+        element: <TournamentBoard />,
       },
     ],
   },

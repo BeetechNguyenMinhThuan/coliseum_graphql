@@ -12,6 +12,8 @@ export function Header() {
   const headerRef = useRef();
   const { t, i18n } = useTranslation();
 
+  let isHeaderSpecial = false;
+  
   const [currentLanguage, setCurrentLanguage] = useState(
     localStorage.getItem("current_language") || "ja",
   );
@@ -23,6 +25,7 @@ export function Header() {
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
+  
 
   const [checkScroll, setScroll] = useState(false);
 

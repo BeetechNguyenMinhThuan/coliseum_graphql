@@ -1,115 +1,138 @@
 import useAuth from "@/hooks/useAuth.tsx";
 
 import { NavLink } from "react-router-dom";
-export function SideBarMyPage({user}) {
+import ButtonCommon from "../button/ButtonCommon";
+import { Advertisement } from "../Advertisement";
+const arrAds = [
+  "s-l1200.webp",
+  "coke-print-ad.jpg",
+  "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
+];
+export function SideBarMyPage({ user }) {
   return (
-    <div className="coli-sidebar flex-grow-0 basis-[270px]">
+    <div className="coli-sidebar flex-grow-0 basis-[250px]">
       <ul className="flex flex-col">
-        <li className="border-2 p-5 flex flex-col ">
-          <div className="mx-auto h-40 w-40 border-2">
-           <img  className="w-full h-full" src={user.avatar} alt="" />
+        <li className="flex flex-col p-5">
+          <div className="mx-auto h-[180px] w-40 border-2">
+            <img
+              className="h-full w-full object-cover"
+              src={user.avatar}
+              alt=""
+            />
           </div>
-          
-          <span className="text-center font-bold my-3" >ID: {user.id}</span>
+          <span className="my-3 text-center font-bold">ID: {user.id}</span>
         </li>
-        <li className="border-2 p-5">
-          <div className="mx-auto border-2 px-5 py-2">
-            <h3 className="border-b-2 pb-3 text-center text-2xl font-bold">
-              議会
-            </h3>
-            <ul className="leading-9">
-              <NavLink to={"/edit-profile"}>ドーつ室芸設束ごイぐ</NavLink>
-              <NavLink to={"/edit-profile"}>ドーつ室芸設束ごイぐ</NavLink>
-              <NavLink to={"/edit-profile"}>ドーつ室芸設束ごイぐ</NavLink>
-              <NavLink to={"/edit-profile"}>ドーつ室芸設束ごイぐ</NavLink>
+        <li className="p-3">
+          <div className="mx-auto py-2">
+            <h3 className="mb-5 border-b-2 text-2xl font-bold">室芸設束</h3>
+            <ul className="flex flex-col gap-y-6 leading-9">
+              <NavLink className="font-bold" to={"/edit-profile"}>
+                ドーつ室芸設束ごイぐ
+              </NavLink>
+              <NavLink className="font-bold" to={"/edit-profile"}>
+                ドーつ室芸設束ごイぐ
+              </NavLink>
+              <NavLink className="font-bold" to={"/edit-profile"}>
+                ドーつ室芸設束ごイぐ
+              </NavLink>
+              <NavLink className="font-bold" to={"/edit-profile"}>
+                ドーつ室芸設束ごイぐ
+              </NavLink>
             </ul>
           </div>
         </li>
-        <li className="border-2 p-5 text-center">
-          <div className="border-b-2 border-black text-center">要チ玲尽</div>
-          <div className="w-full border-b-2 border-black py-3">
-            <p className="rounded-lg border-2 border-black">要チ玲尽む起</p>
-          </div>
-          <div className="w-full border-b-2 border-black py-3">
-            要チ玲尽む起
-          </div>
-          <ul className="w-full">
-            <li className="border-b-2 border-dashed py-3">享凡喬つ</li>
-            <li className="border-b-2 border-dashed py-3">享凡喬つ</li>
-            <li className="py-3">享凡喬つ</li>
+        <li className="mb-5 border-2 bg-color3 p-3">
+          <h3 className="mb-2 text-2xl font-bold">設束</h3>
+          <ButtonCommon
+            type="button"
+            className="w-full rounded-lg border-2 bg-color2 text-2xl font-bold"
+          >
+            室芸設束ごイ
+          </ButtonCommon>
+        </li>
+        <li className="mb-5 border-2 bg-color3">
+          <h3 className="mb-2 pl-3 pt-3 text-2xl font-bold">設束</h3>
+          <hr className="border-gray-700" />
+          <ul className="flex flex-col gap-y-5 p-3">
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイイイ束
+            </li>
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイごイイイ束
+            </li>
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイごイイイ束
+            </li>
           </ul>
         </li>
-        <li className="border-2 p-5 text-center">
-          <h3 className="border-b-2 border-dashed pb-3 text-center text-xl font-bold">
-            地ぽへ根性
+        <li className="mb-5 border-2 bg-color3">
+          <h3 className="mb-2 pl-3 pt-3 text-2xl font-bold">
+            設束設束設束設束
           </h3>
-          <div className="border-b-2 border-dashed py-3">
-            <div className="flex justify-center gap-7">
-              <p className="mb-2">2023-11-30</p>
-              <p className="border-2 pl-2 pr-2">最ム選歳ーだ</p>
-            </div>
-            <NavLink className="text-left" to="/sidebar">
-              平申ゅゆ給論互更テルフ
-            </NavLink>
-          </div>
-          <div className="pt-3">
-            <div className="flex justify-center gap-7">
-              <p className="mb-2">2023-11-30</p>
-              <p className="border-2 pl-2 pr-2">最ム選歳ーだ</p>
-            </div>
-            <NavLink className="text-left" to="/sidebar">
-              平申ゅゆ給論互更テルフ
-            </NavLink>
-          </div>
-        </li>
-        <li className="border-2 p-5 text-center">
-          <h3 className="border-b-2 pb-3 text-center text-2xl font-bold">
-            議会
-          </h3>
-          <div className="border-b-2 border-dashed py-3">
-            <NavLink className="text-left" to="/sidebar">
-              平申ゅゆ給論互更テルフ
-            </NavLink>
-          </div>
-          <div className="pt-3">
-            <NavLink className="text-left" to="/sidebar">
-              平申ゅゆ給論互更テルフ
-            </NavLink>
-          </div>
-        </li>
-        <li className="border-2 p-5 text-center">
-          <h3 className="border-b-2 pb-3 text-center text-2xl font-bold">
-            議会
-          </h3>
-          <div className="border-b-2 border-dashed py-3">
-            <NavLink className="text-left" to="/sidebar">
-              平申ゅゆ給論互更テルフ
-            </NavLink>
-          </div>
-          <div className="pt-3">
-            <NavLink className="text-left" to="/sidebar">
-              平申ゅゆ給論互更テルフ
-            </NavLink>
-          </div>
-        </li>
-        {/* logout */}
-        <li className="border-2 p-5 text-center">
-          <NavLink to="/sidebar" className="font-bold">
-            Logout
-          </NavLink>
-        </li>
-        {/* leave group */}
-        <li className="border-2 p-5 text-center">
-          <NavLink to="/sidebar" className="font-bold">
-            Leave group
-          </NavLink>
-        </li>
-        <li className="border-2 p-5 text-center">
-          <ul>
-            <li className="mb-2 border-2 p-4">平申</li>
-            <li className="mb-2 border-2 p-4">平申</li>
-            <li className="border-2 p-4">平申</li>
+          <hr className="border-gray-700" />
+          <ul className="flex flex-col gap-y-5 p-3">
+            <li className="border-b-2 border-dashed pb-3">
+              <div className="mb-2 flex justify-between">
+                <span>2023-11-30</span>
+                <span className="rounded-lg bg-color5 px-4 text-white">
+                  室芸設束
+                </span>
+              </div>
+              室芸設束ごイ 室芸設束ご束ご!
+            </li>
+            <li className="border-b-2 border-dashed pb-3">
+              <div className="mb-2 flex justify-between">
+                <span>2023-11-30</span>
+                <span className="rounded-lg bg-color11 px-4 text-white">
+                  室芸設束
+                </span>
+              </div>
+              室芸設束ごイ 室芸設束ご束ご!
+            </li>
           </ul>
+        </li>
+
+        <li className="mb-5 border-2 bg-color3">
+          <h3 className="mb-2 pl-3 pt-3 text-2xl font-bold">設束</h3>
+          <hr className="border-gray-700" />
+          <ul className="flex flex-col gap-y-5 p-3">
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイイイ束
+            </li>
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイごイイイ束
+            </li>
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイごイイイ束
+            </li>
+          </ul>
+        </li>
+        <li className="mb-5 border-2 bg-color3">
+          <h3 className="mb-2 pl-3 pt-3 text-2xl font-bold">設束</h3>
+          <hr className="border-gray-700" />
+          <ul className="flex flex-col gap-y-5 p-3">
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイイイ束
+            </li>
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイごイイイ束
+            </li>
+            <li className="border-b-2 border-dashed pb-3">
+              {" "}
+              室芸設束ごイ 室芸設束ごイごイイイ束
+            </li>
+          </ul>
+        </li>
+        <li className="">
+          <Advertisement className="flex-col" advertisement={arrAds}></Advertisement>
         </li>
       </ul>
     </div>

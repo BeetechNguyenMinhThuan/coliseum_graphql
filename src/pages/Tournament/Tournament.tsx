@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { SideBarTournament } from "../../components/SideBar/SideBarTournament.tsx";
+import { Advertisement } from "components/Advertisement";
 import Hero from "@/components/common/Hero.tsx";
-import "./index.scss";
+import { Banner } from "@/components/Banner/Banner.tsx";
+
 export function Tournament() {
   const { t } = useTranslation();
   const arrAds = [
@@ -13,7 +15,7 @@ export function Tournament() {
   return (
     <>
       <Hero>
-        <img src="/public/assets/logoColiseum.png" alt="" />
+        <img src="/assets/logoColiseum.png" alt="" />
         <div className="px-8">
           <h1 className="title mb-6 text-center text-3xl font-extrabold">
             作家の遊び場
@@ -34,225 +36,107 @@ export function Tournament() {
           </p>
         </div>
       </Hero>
-      <div className="container mx-auto mt-16 bg-white p-8">
+      <div className="container mx-auto">
+        <Banner />
+      </div>
+      <div className="container mx-auto bg-white p-8">
         <div className="flex gap-x-3">
           <SideBarTournament />
-          <div className="content ">
-            <div className="flex flex-1">
-              <div className="tourament-tab flex gap-1"></div>
-              <div className="tourament-tab flex gap-1"></div>
-              <div className="tourament-tab flex gap-1"></div>
-              <div className="tourament-tab flex gap-1"></div>
-            </div>
-            <div className=" mt-10 flex flex-col ">
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 1</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
+          <div className="flex-1">
+            <div className="mb-10 border-2 p-8">
+              <h2 className="text-3xl font-bold ">
+                球ムヘマタ碁投ヘツ座性スイオ千夜チ港需チ緒動
+              </h2>
+              <div className="border-b-2 py-4">
+                <p>
+                  定倫テチヤ権占じぴ選株れねド疑後各す
+                  <br />
+                  よトぎ必身べさゆむ害受フラヤヌ書彼づぴか円破進るわび竹略キノモ居大でぶ答刊じぽよれ表美包孤湖すまゃよ
+                  <br />
+                  透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語14拒ノカニ生人むびこ北読列トろけち。
+                  <br />
+                  握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
+                </p>
               </div>
-
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 2</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 3</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 4</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 5</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 6</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 7</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="match flex mb-8">
-                <div className="match-name flex w-[46px] items-center justify-center rounded-l-[26px] bg-black">
-                  <span className="text-white">Trận 8</span>
-                </div>
-                <div className="match-item">
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2  p-4">
-                      <span>123</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                  <div className="match-player relative flex items-center">
-                    <div className="name-player h-[62px] w-[390px] border-2 border-t-0  p-4">
-                      <span>456</span>
-                    </div>
-                    <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  </div>
-                </div>
-                <div className=" winner-match relative flex items-center">
-                  <div className="line relative h-[1px] w-[50px] bg-black"></div>
-                  <div className="name-player h-[62px] w-[390px] border-2  p-4 rounded-l-[10px]">
-                    <span>456</span>
-                  </div>
-                </div>
+              <div className="py-3">
+                よトぎ必身べさゆむ害受フラヤヌ書彼づぴか円破進るわび竹略キノモ居大でぶ答刊じぽよれ表美包孤湖すまゃよ
+                透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語14拒ノカニ生人むびこ北読列トろけち。
+                握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
+                よトぎ必身べさゆむ害受フラヤヌ書彼づぴか円破進るわび竹略キノモ居大でぶ答刊じぽよれ表美包孤湖すまゃよ
+                透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語14拒ノカニ生人むびこ北読列トろけち。
+                握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
               </div>
             </div>
+
+            <div
+              className="relative mt-5 h-[570px] border-2 bg-[url('/assets/coli3.jpg')] bg-no-repeat "
+              style={{ backgroundSize: "100% 100%" }}
+            >
+              <div className="mx-auto mt-5 h-[75px] w-[213px] rounded-2xl border-[3px] border-black bg-white">
+                <h3 className=" flex h-full items-center justify-center text-5xl font-bold">
+                  番1ホル
+                </h3>
+              </div>
+              <div className="player-1 absolute left-[13%] top-[25%] inline-block h-[277px] w-[245px] rounded-lg bg-white p-3">
+                <div className="avatar h-[175px] ">
+                  <img
+                    src="/assets/coli4.jpg"
+                    className="h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                </div>
+                <h3 className="mt-2 text-center text-2xl font-bold">
+                  見つけましましましました
+                </h3>
+              </div>
+              <div className="player-1 absolute right-[13%] top-[25%] inline-block h-[277px] w-[245px] rounded-lg bg-white p-3">
+                <div className="avatar h-[175px] ">
+                  <img
+                    src="/assets/coli5.jpg"
+                    className="h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                </div>
+                <h3 className="mt-2 text-center text-2xl font-bold">
+                  見つけましましましました
+                </h3>
+              </div>
+            </div>
+            <div
+              className="relative mt-5 h-[570px] border-2 bg-[url('/assets/coli3.jpg')] bg-no-repeat "
+              style={{ backgroundSize: "100% 100%" }}
+            >
+              <div className="mx-auto mt-5 h-[75px] w-[213px] rounded-2xl border-[3px] border-black bg-white">
+                <h3 className=" flex h-full items-center justify-center text-5xl font-bold">
+                  番1ホル
+                </h3>
+              </div>
+              <div className="player-1 absolute left-[13%] top-[25%] inline-block h-[277px] w-[245px] rounded-lg bg-white p-3">
+                <div className="avatar h-[175px] ">
+                  <img
+                    src="/assets/coli4.jpg"
+                    className="h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                </div>
+                <h3 className="mt-2 text-center text-2xl font-bold">
+                  見つけましましましました
+                </h3>
+              </div>
+              <div className="player-1 absolute right-[13%] top-[25%] inline-block h-[277px] w-[245px] rounded-lg bg-white p-3">
+                <div className="avatar h-[175px] ">
+                  <img
+                    src="/assets/coli5.jpg"
+                    className="h-full rounded-lg object-cover"
+                    alt=""
+                  />
+                </div>
+                <h3 className="mt-2 text-center text-2xl font-bold">
+                  見つけましましましました
+                </h3>
+              </div>
+            </div>
+            <Advertisement>{arrAds}</Advertisement>
           </div>
         </div>
       </div>

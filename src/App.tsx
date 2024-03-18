@@ -50,7 +50,9 @@ function App() {
       <ThemeProvider>
         <I18nextProvider i18n={i18n}>
           <ApolloProvider client={client}>
-            <RouterProvider router={router} />
+            <ThemeProvider>
+              <RouterProvider router={router} />
+            </ThemeProvider>
             <ToastContainer />
           </ApolloProvider>
         </I18nextProvider>

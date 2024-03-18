@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {  useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE_NOVEL } from "@/graphql-client/novel/mutation.ts";
 import {
   GET_NOVELS_PAGINATE,
@@ -11,12 +11,14 @@ import {
   GET_DETAIL_USER,
   GET_NOVELS_BY_USER,
 } from "@/graphql-client/user/queries";
+import { useLocation } from "react-router-dom";
 
 const LikeButton = ({ user, novel }) => {
   const [toggleUserLike, { data, loading, error }] =
     useMutation(TOGGLE_LIKE_NOVEL);
   const [isLiked, setIsLike] = useState(false);
 
+  const location = useLocation();
   const checkUserLike = useCallback(() => {
     if (novel.user_likes) {
       const arrUserId = novel.user_likes
@@ -32,9 +34,13 @@ const LikeButton = ({ user, novel }) => {
     GET_NOVELS_PAGINATE,
     GET_DETAIL_USER,
     NOVELS_FILTER_BY_RANKING,
-    GET_NOVELS_BY_USER,
     GET_NOVEL_UPDATE_OR_CREATED,
   ];
+
+  if (location.pathname.includes("/author")) {
+    arrQueries.push(GET_NOVELS_BY_USER);
+  }
+
   useEffect(() => {
     const result = checkUserLike();
     setIsLike(result);
@@ -60,10 +66,10 @@ const LikeButton = ({ user, novel }) => {
     <div className="vote flex">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill={isLiked ? "#FF5A5A" : "none"}
+        fill={isLiked ? "#F45A5A" : "none"}
         viewBox="0 0 24 24"
         stroke-width="1.5"
-        stroke={isLiked ? "#FF5A5A" : "#ccc"}
+        stroke={isLiked ? "#F45A5A" : "#ccc"}
         className="h-6 w-6 cursor-pointer"
         onClick={handleLikeChange}
       >

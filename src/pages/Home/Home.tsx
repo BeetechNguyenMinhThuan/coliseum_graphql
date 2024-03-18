@@ -16,6 +16,7 @@ import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 import { NovelCreatedNew } from "@/components/novel/NovelCreatedNew";
 import { NovelUpdatedNew } from "@/components/novel/NovelUpdatedNew";
 import Hero from "@/components/common/Hero";
+import { Banner } from "@/components/Banner";
 const Home = () => {
   setDefaultTitle("Trang chủ");
   const parentRef = useRef(null);
@@ -103,7 +104,7 @@ const Home = () => {
   return (
     <>
     <Hero>
-    <img src="/public/assets/logoColiseum.png" alt="" />
+    <img src="/assets/logoColiseum.png" alt="" />
           <div className="px-8">
           <h1 className="title text-center text-3xl font-extrabold mb-6">
             作家の遊び場
@@ -125,6 +126,7 @@ const Home = () => {
           </div>
     </Hero>
     <div className="container mx-auto bg-white p-8 mt-16">
+    <Banner/>
     <div className="flex gap-x-3">
       <SidebarHome />
       <div className="content flex-1">
