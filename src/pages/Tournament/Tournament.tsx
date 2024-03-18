@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 import { SideBarTournament } from "../../components/SideBar/SideBarTournament.tsx";
 import { Advertisement } from "components/Advertisement";
 import Hero from "@/components/common/Hero.tsx";

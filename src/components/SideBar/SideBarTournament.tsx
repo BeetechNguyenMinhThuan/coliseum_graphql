@@ -1,83 +1,84 @@
-import {NavLink} from "react-router-dom";
-
 export function SideBarTournament() {
-    return (
-        <div className='coli-sidebar'>
-            <ul className='flex flex-col'>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>Tournament</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>議会の規則</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>参加者のリスト</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>トーナメント表</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>ユーザーマニュアル</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>カードが注目を集める</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <div className="">
-                            <p>カードが注目を集める</p>
-                            <span>VS</span>
-                            <p>カードが注目を集める</p>
-                        </div>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <div className="">
-                            <p>カードが注目を集める</p>
-                            <span>VS</span>
-                            <p>カードが注目を集める</p>
-                        </div>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <h3>バトルロイヤル機能</h3>
-                        <span>2024 バトルロイヤル機能</span>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <h3>バトルロイヤル機能</h3>
-                        <span>2024 バトルロイヤル機能</span>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>
-                        <h3>バトルロイヤル機能</h3>
-                        <span>2024 バトルロイヤル機能</span>
-                    </NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-                <li className='border-2 p-5 text-center'>
-                    <NavLink to='/sidebar'>広告</NavLink>
-                </li>
-            </ul>
-        </div>
-    );
-};
+  return (
+    <div className="coli-sidebar flex  flex-col px-4">
+      <ul className="">
+        <li className=" cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2 ">
+          Chi tiết giải đấu
+        </li>
+        <li className="mt-6 cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2 ">
+          Danh sách người tham gia
+        </li>
+        <li className="mt-6 cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2 ">
+          Tourament
+        </li>
+        <li className="mt-6 cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2 ">
+          初心者向けガイ
+        </li>
+      </ul>
+      <img
+        className="ads mt-6 h-[168px]"
+        src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/10/hinh-nen-den-buon-6.jpg"
+        alt=""
+      />
+      <div className="sate mt-6">
+        <h2 className="title border-b-2 py-3 text-xl font-bold">スステージ</h2>
+        <ul>
+          <li className="mt-6 cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2 ">
+            Giai đoạn 1
+          </li>
+          <li className="mt-6 cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2 ">
+            Giai đoạn 1
+          </li>
+          <li className="mt-6 cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2 ">
+            Giai đoạn 1
+          </li>
+          <li className="mt-6 cursor-pointer border-2 border-white px-4 py-3 hover:rounded-[10px] hover:border-gray-300 hover:bg-color2">
+            Giai đoạn 1
+          </li>
+        </ul>
+      </div>
 
+      <div className="new-novels rounded-t-[10px]  border-2 pb-4">
+        <div className="title flex justify-between  border-b-2 px-4  py-3">
+          <h2 className="text-xl font-bold ">新製品</h2>
+          <div>ICON</div>
+        </div>
+
+        <div className="">
+          <div className="novel-name flex justify-between border-b-2  border-dashed px-4  py-3 ">
+            新製品新製品
+          </div>
+          <div className="novel-name flex justify-between border-b-2  border-dashed px-4  py-3 ">
+            新製品新製品
+          </div>
+          <div className="novel-name flex justify-between border-b-2  border-dashed px-4  py-3 ">
+            新製品新製品
+          </div>
+          <div className="novel-name flex justify-between border-b-2  border-dashed px-4  py-3 ">
+            新製品新製品
+          </div>
+          <div className="novel-name flex justify-between  px-4  pt-3 ">
+            新製品新製品
+          </div>
+        </div>
+      </div>
+
+
+      <div className="udpate-novels rounded-t-[10px]  border-2 pb-4 mt-6">
+        <div className="title flex justify-between  border-b-2 px-4  py-3">
+          <h2 className="text-xl font-bold ">新製品</h2>
+          <div>ICON</div>
+        </div>
+
+        <div className="">
+          <div className="novel-name flex justify-between border-b-2  border-dashed px-4  py-3 ">
+            新製品新製品
+          </div>
+          <div className="novel-name flex justify-between  px-4  pt-3 ">
+            新製品新製品
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

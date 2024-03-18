@@ -26,16 +26,30 @@ export function Header() {
     scroll.scrollToTop();
   };
   
-  if(location.pathname !== "/home")
+
+  const [checkScroll, setScroll] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 500) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header
-      ref={headerRef}
-      className={`left-0 right-0 top-0 z-10 fixed`}
-    >
+    <header ref={headerRef} className={`${checkScroll ? "sticky" : ""} left-0 right-0 top-0 z-10`}>
       <div className="container mx-auto">
-      <div
-          className={` rounded-t-[40px] bg-white px-8 pb-2  border-b-2 border-b-[#ccc] `}
+        <div
+          className={` rounded-t-[40px] border-b-2 border-b-[#ccc] bg-white  px-8 pb-2 `}
         >
           <div className="header-top mb-4 flex h-[58px] justify-between">
             <div className="header-top-logo flex h-full w-[225px] items-end justify-start">
@@ -45,7 +59,7 @@ export function Header() {
                 alt=""
               />
             </div>
-            <div className="header-top-center bg-color1 h-[48px] flex-1">
+            <div className="header-top-center h-[48px] flex-1 bg-color1">
               <div className="flex h-full items-center justify-center gap-x-6 ">
                 {user.isAuth ? (
                   <>
@@ -118,8 +132,8 @@ export function Header() {
                     to="/"
                     className={({ isActive }) =>
                       isActive
-                        ? "bg-color2 rounded px-3 py-1"
-                        : "hover:bg-color2 rounded px-3 py-1"
+                        ? "rounded bg-color2 px-3 py-1"
+                        : "rounded px-3 py-1 hover:bg-color2"
                     }
                   >
                     Trang chủ
@@ -135,8 +149,8 @@ export function Header() {
                         to="/mypage"
                         className={({ isActive }) =>
                           isActive
-                            ? "bg-color2 rounded px-3 py-1"
-                            : "hover:bg-color2 rounded px-3 py-1"
+                            ? "rounded bg-color2 px-3 py-1"
+                            : "rounded px-3 py-1 hover:bg-color2"
                         }
                       >
                         MyPage
@@ -147,8 +161,8 @@ export function Header() {
                         to="/search-novel"
                         className={({ isActive }) =>
                           isActive
-                            ? "bg-color2 rounded px-3 py-1"
-                            : "hover:bg-color2 rounded px-3 py-1"
+                            ? "rounded bg-color2 px-3 py-1"
+                            : "rounded px-3 py-1 hover:bg-color2"
                         }
                       >
                         SearchNovel
@@ -161,8 +175,8 @@ export function Header() {
                     to="/coliseum"
                     className={({ isActive }) =>
                       isActive
-                        ? "bg-color2 rounded px-3 py-1"
-                        : "hover:bg-color2 rounded px-3 py-1"
+                        ? "rounded bg-color2 px-3 py-1"
+                        : "rounded px-3 py-1 hover:bg-color2"
                     }
                   >
                     Coliseum
@@ -170,7 +184,7 @@ export function Header() {
                 </li>
                 <li>
                   <a
-                    className="hover:bg-color2 rounded px-3 py-1"
+                    className="rounded px-3 py-1 hover:bg-color2"
                     href="https://www.bungo-coliseum.jp/creation"
                     target="blank"
                   >
@@ -179,7 +193,7 @@ export function Header() {
                 </li>
                 <li>
                   <a
-                    className="hover:bg-color2 rounded px-3 py-1"
+                    className="rounded px-3 py-1 hover:bg-color2"
                     href="https://www.bungo-coliseum.jp/recommend"
                     target="blank"
                   >
@@ -191,8 +205,8 @@ export function Header() {
                     to="/newnovel"
                     className={({ isActive }) =>
                       isActive
-                        ? "bg-color2 rounded px-3 py-1"
-                        : "hover:bg-color2 rounded px-3 py-1"
+                        ? "rounded bg-color2 px-3 py-1"
+                        : "rounded px-3 py-1 hover:bg-color2"
                     }
                   >
                     New Novel
@@ -203,8 +217,8 @@ export function Header() {
                     to="/use-regulations"
                     className={({ isActive }) =>
                       isActive
-                        ? "bg-color2 rounded px-3 py-1"
-                        : "hover:bg-color2 rounded px-3 py-1"
+                        ? "rounded bg-color2 px-3 py-1"
+                        : "rounded px-3 py-1 hover:bg-color2"
                     }
                   >
                     useRegulations
@@ -215,13 +229,16 @@ export function Header() {
                     to="/123"
                     className={({ isActive }) =>
                       isActive
-                        ? "bg-color2 rounded px-3 py-1"
-                        : "hover:bg-color2 rounded px-3 py-1"
+                        ? "rounded bg-color2 px-3 py-1"
+                        : "rounded px-3 py-1 hover:bg-color2"
                     }
                   >
                     Thông báo
                   </NavLink>
                 </li>
+                <li>
+              <NavLink to="/tourament">Tourament</NavLink>
+            </li> 
                 {/* <li>
               <NavLink to="/tournament-board">Tournament Board</NavLink>
             </li>
@@ -272,9 +289,7 @@ export function Header() {
                 お知らせ
               </Link>
             </li>
-            <li>
-              <NavLink to="/test5">Tourament</NavLink>
-            </li> */}
+          
 
                 {/* <li>
               <NavLink to="/protection-policy">ProtectionPolicy</NavLink>
