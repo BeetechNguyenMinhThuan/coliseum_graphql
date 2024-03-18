@@ -18,23 +18,30 @@ export default function NewNovel() {
 
   return (
     <>
-      <SidebarHome />
-      <div className="content flex-1">
-        <div className="border-2 p-2">
-          <div>
-            <h2 className="pb-2 text-xl font-semibold ">Tác phẩm mới đăng</h2>
-            <NovelCreatedNew />
-          </div>
+      <div className="container mx-auto mt-16 bg-white p-8">
+        <div className="flex gap-x-3">
+          <SidebarHome />
 
-          <div className="mt-4">
-            <h2 className="pb-2  text-xl font-semibold ">
-              Tác phẩm mới update
-            </h2>
-            <NovelUpdatedNew />
+          <div className="content flex-1">
+            <div className="">
+              <div>
+                <h2 className="pb-2 text-xl font-semibold ">
+                  Tác phẩm mới đăng
+                </h2>
+                <NovelCreatedNew />
+              </div>
+
+              <div className="mt-4">
+                <h2 className="pb-2  text-xl font-semibold ">
+                  Tác phẩm mới update
+                </h2>
+                <NovelUpdatedNew />
+              </div>
+            </div>
+            <div id="ranking-container">
+              <RankingContainer limit={20} />
+            </div>
           </div>
-        </div>
-        <div id="ranking-container">
-          <RankingContainer limit={20} />
         </div>
       </div>
     </>

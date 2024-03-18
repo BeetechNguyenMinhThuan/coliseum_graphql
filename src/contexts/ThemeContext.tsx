@@ -1,8 +1,14 @@
 // ThemeContext.js
 import { createContext, useState } from "react";
 
-const ThemeContext = createContext({});
+export const ThemeContext = createContext({});
 
-export const ThemeProvider = ({ children }) => {
-  return <ThemeContext.Provider value={{}}>{children}</ThemeContext.Provider>;
+export const LayoutProvider = ({ children }) => {
+  const [heightHero, setHeightHero] = useState(null);
+
+  return (
+    <ThemeContext.Provider value={{ heightHero, setHeightHero }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };

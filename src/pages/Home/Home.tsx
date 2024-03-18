@@ -3,23 +3,29 @@ import { Advertisement } from "components/Advertisement/Advertisement.tsx";
 import { CategoryList } from "components/Category";
 import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
-import {  useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { setDefaultTitle } from "@/utils/helper.ts";
 // import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 // import { NovelList } from "@/components/novel";
 // import { Element } from "react-scroll";
 import { Search } from "@/components/Search/Search";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "./index.scss";
 import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 import { NovelCreatedNew } from "@/components/novel/NovelCreatedNew";
 import { NovelUpdatedNew } from "@/components/novel/NovelUpdatedNew";
 import Hero from "@/components/common/Hero";
+import { useOutletContext } from "react-router-dom";
 import { Banner } from "@/components/Banner";
+import { ThemeContext } from "@/contexts/ThemeContext";
 const Home = () => {
   setDefaultTitle("Trang chủ");
   const parentRef = useRef(null);
+  const heroRef = useRef(null);
+
+  const { setHeightHero } = useContext(ThemeContext);
+
   const { t } = useTranslation();
   // const [exportCSVMutation] = useMutation(EXPORT_CSV_MUTATION);
   // const handleExportCSV = async () => {
@@ -48,9 +54,9 @@ const Home = () => {
     },
   });
   useEffect(() => {
-    console.log("Data changed:", data);
-  }, [data]);
-  if (loading) return <LoadingSpiner />;
+    setHeightHero(heroRef?.current?.getBoundingClientRect().height);
+  }, []);
+
   if (error) return "Có lỗi xảy ra";
 
   const arrAds = [
@@ -103,69 +109,73 @@ const Home = () => {
   ];
   return (
     <>
-    <Hero>
-    <img src="/assets/logoColiseum.png" alt="" />
+      <div ref={heroRef}>
+        <Hero>
+          <img src="/assets/logoColiseum.png" alt="" />
           <div className="px-8">
-          <h1 className="title text-center text-3xl font-extrabold mb-6">
-            作家の遊び場
-          </h1>
-          <p className="mb-4 font-medium">
-            誰もが自分の作品でトーナメントで優勝し、偉大な作家になることを目指します
-            彼らは武器として書き、トーナメントで試合に勝つことでチャンピオンシップを目指しました。
-            デュエル（2024 年春頃にリリース予定の機能）とランキングの向
-            アプリケーションサイト。
-          </p>
-          <p className="font-medium">
-            作者が楽しめる」をコンセプトに、作品のクオリティと期待感だけを武器に作品を審査する。
-            読者に「この 2
-            つの作品のうちどちらが好きですか?」を選択させることで価格を設定します。
-            ' 私たちはまだいるのに
-            私たちは方法を見つけましたが、評価対象となった作品に焦点を当てないフォーマットを探していました。
-            最高の評価。
-          </p>
-          </div>
-    </Hero>
-    <div className="container mx-auto bg-white p-8 mt-16">
-    <Banner/>
-    <div className="flex gap-x-3">
-      <SidebarHome />
-      <div className="content flex-1">
-        <div
-          name="coliseum_noti"
-          className="border-black-500  min-h-[188px] border-2 border-solid p-2 rounded-[30px]"
-        >
-          <div className="element text-center text-3xl font-bold">お知らせ</div>
-          <div className="px-2 py-5 sm:ml-[10px] md:ml-[30px]">
-            <p>
-              定倫テチヤ権占じぴ選株れねド疑後各す
-              <br />
-              よトぎ必身べさゆむ害受フラヤヌ書彼づぴか円破進るわび竹略キノモ居大でぶ答刊じぽよれ表美包孤湖すまゃよ
-              <br />
-              透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語14拒ノカニ生人むびこ北読列トろけち。
-              <br />
-              握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
+            <h1 className="title mb-6 text-center text-3xl font-extrabold">
+              作家の遊び場
+            </h1>
+            <p className="mb-4 font-medium">
+              誰もが自分の作品でトーナメントで優勝し、偉大な作家になることを目指します
+              彼らは武器として書き、トーナメントで試合に勝つことでチャンピオンシップを目指しました。
+              デュエル（2024 年春頃にリリース予定の機能）とランキングの向
+              アプリケーションサイト。
+            </p>
+            <p className="font-medium">
+              作者が楽しめる」をコンセプトに、作品のクオリティと期待感だけを武器に作品を審査する。
+              読者に「この 2
+              つの作品のうちどちらが好きですか?」を選択させることで価格を設定します。
+              ' 私たちはまだいるのに
+              私たちは方法を見つけましたが、評価対象となった作品に焦点を当てないフォーマットを探していました。
+              最高の評価。
             </p>
           </div>
-        </div>
-        <Search />
-        {/* Novel List  */}
-        <div className="" ref={parentRef}>
-          <div className="mt-4 rounded-[20px] border-2 p-4">
-  
-            <NovelCreatedNew />
-          </div>
-
-          <div className="mt-4 rounded-[20px] border-2 p-4">
-            <NovelUpdatedNew />
-          </div>
-        </div>
-
-        <RankingContainer limit={5} />
-        <Advertisement>{arrAds}</Advertisement>
-        <CategoryList categories={categories}></CategoryList>
+        </Hero>
       </div>
-    </div>
-    </div>
+
+      <div className="container mx-auto mt-16 bg-white p-8">
+        <Banner />
+        <div className="flex gap-x-3">
+          <SidebarHome />
+          {loading ? (
+            <LoadingSpiner />
+          ) : (
+            <div className="content flex-1">
+              <div
+                name="coliseum_noti"
+                className="border-black-500  min-h-[188px] rounded-[30px] border-2 border-solid p-2"
+              >
+                <div className="element text-center text-3xl font-bold">
+                  お知らせ
+                </div>
+                <div className="px-2 py-5 sm:ml-[10px] md:ml-[30px]">
+                  <p>
+                    定倫テチヤ権占じぴ選株れねド疑後各す
+                    <br />
+                    よトぎ必身べさゆむ害受フラヤヌ書彼づぴか円破進るわび竹略キノモ居大でぶ答刊じぽよれ表美包孤湖すまゃよ
+                    <br />
+                    透ロ校数ナ舎会シ打彼優フヌヒ調26空製ケフエヨ毎逆由クじ語14拒ノカニ生人むびこ北読列トろけち。
+                    <br />
+                    握ふトり出時ごラじ入68情ユ勝古げ海成ぞ近討イリえま波見ねはせ止賞ヤウ根1井供り央編アハユマ請家96石アヨソ象樹めぎーリ。
+                  </p>
+                </div>
+              </div>
+              <Search />
+              {/* Novel List  */}
+              <div className="" ref={parentRef}>
+                <NovelCreatedNew />
+
+                <NovelUpdatedNew />
+              </div>
+
+              <RankingContainer limit={5} />
+              <Advertisement>{arrAds}</Advertisement>
+              <CategoryList categories={categories}></CategoryList>
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 };

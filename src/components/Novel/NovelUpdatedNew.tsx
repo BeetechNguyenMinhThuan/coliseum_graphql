@@ -9,9 +9,11 @@ export function NovelUpdatedNew() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    <div className="mt-4 rounded-[20px] border-2 p-4">
     <div className="">
       <h2 className="title text-2xl font-semibold border-b-2 border-dashed border-b-[#ccc]">された作品</h2>
       {data?.novels && <NovelList type="update" novels={data.novels} />}
     </div>
+          </div>
   );
 }

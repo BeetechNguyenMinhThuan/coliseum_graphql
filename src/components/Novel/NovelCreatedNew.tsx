@@ -8,9 +8,11 @@ export function NovelCreatedNew() {
   });
 
   return (
+    <div className="mt-4 rounded-[20px] border-2 p-4">
     <div className="">
       <h2 className="title font-semibold text-2xl border-b-2 border-dashed border-b-[#ccc]">された作品</h2>
       <NovelList type="create" novels={data?.novels} />
+    </div>
     </div>
   );
 }

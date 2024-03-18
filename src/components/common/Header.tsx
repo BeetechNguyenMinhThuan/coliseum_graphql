@@ -1,19 +1,21 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Form, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { animateScroll as scroll } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
-import ButtonCommon from "@/components/button/ButtonCommon.tsx";
+import { ThemeContext } from "@/contexts/ThemeContext";
 
 export function Header() {
   const location = useLocation();
   const user = useAuth();
   const headerRef = useRef();
   const { t, i18n } = useTranslation();
+  const { heightHero } = useContext(ThemeContext);
+console.log(heightHero);
 
   let isHeaderSpecial = false;
-  
+
   const [currentLanguage, setCurrentLanguage] = useState(
     localStorage.getItem("current_language") || "ja",
   );
@@ -25,12 +27,11 @@ export function Header() {
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
-  
 
   const [checkScroll, setScroll] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 500) {
+    if (window.scrollY > heightHero) {
       setScroll(true);
     } else {
       setScroll(false);
@@ -43,13 +44,19 @@ export function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [heightHero]);
 
   return (
-    <header ref={headerRef} className={`${checkScroll ? "sticky" : ""} left-0 right-0 top-0 z-10`}>
+    <header
+      ref={headerRef}
+      className={`${checkScroll ? "fixed " : "absolute"} left-0 right-0 top-0  z-[999] `}
+    >
       <div className="container mx-auto">
         <div
-          className={` rounded-t-[40px] border-b-2 border-b-[#ccc] bg-white  px-8 pb-2 `}
+          className={` ${checkScroll ? " border-b-2 border-b-[#ccc] bg-white " : "bg-color1 bg-opacity-40 px-8 pb-2"} rounded-t-[40px]   `}
+          style={{
+            backgroundColor: "",
+          }}
         >
           <div className="header-top mb-4 flex h-[58px] justify-between">
             <div className="header-top-logo flex h-full w-[225px] items-end justify-start">
@@ -237,8 +244,13 @@ export function Header() {
                   </NavLink>
                 </li>
                 <li>
-              <NavLink to="/tourament">Tourament</NavLink>
-            </li> 
+                  <li>
+                    <NavLink to="/tourament">Tourament</NavLink>
+                  </li>
+                </li>
+                <li>
+                  <NavLink to="/tourament-board">TouramentBoard</NavLink>
+                </li>
                 {/* <li>
               <NavLink to="/tournament-board">Tournament Board</NavLink>
             </li>

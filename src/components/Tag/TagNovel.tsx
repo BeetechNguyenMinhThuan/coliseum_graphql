@@ -10,7 +10,7 @@ export const TagNovel = (props: TagProps) => {
   return (
     <span
       className={classNames(
-        "mr-2 cursor-pointer border-2 border-gray-200 bg-transparent px-4 py-1 last:mr-0 hover:bg-gray-200",
+        "mr-2 cursor-pointer border-[1px] border-color1 bg-transparent px-4 last:mr-0 hover:bg-color1 rounded-[8px] ",
         className,
       )}
     >

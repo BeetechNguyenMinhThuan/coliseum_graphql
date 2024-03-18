@@ -42,7 +42,7 @@ export default function NovelDetail() {
   const schema = yup.object({
     content_comment: yup
       .string()
-      .max(2048,"*2048 文字を超えて入力しないでください*")
+      .max(2048, "*2048 文字を超えて入力しないでください*")
       .required("*コメント内容を入力してください*"),
   });
   const [
@@ -107,192 +107,199 @@ export default function NovelDetail() {
         <>
           {novel && (
             <>
-              <SidebarHome />
-              <div className="content flex-1">
-                {conditionResult == 1 && (
-                  <div className="my-3 ">
-                    <NavLink className="border-2 p-2" to="/">
-                      Sửa tác phẩm
-                    </NavLink>
-                  </div>
-                )}
-
-                <div className="novel-item border-t-2 border-gray-300 py-3">
-                  <div className="novel-item-top">
-                    <div className="flex gap-x-4">
-                      <div className="flex flex-col justify-between">
-                        <div className="flex-1">
-                          {activeTab ? novel?.rank[activeTab] : "Icon1"}
-                        </div>
-                        <div className="flex-1">Icon2</div>
-                      </div>
-                      <div className="novel-left">
-                        <div className="flex h-fit basis-[230px] gap-x-4">
-                          {/* <NovelStatus novelItem={novel}></NovelStatus> */}
-                          <div className="novel-image-wrap flex flex-col">
-                            <NovelAvatar image={novel.cover_picture_url} />
-
-                            {/* <NovelIconTournament type="球球球ム" /> */}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="novel-right flex-1">
-                        <NavLink
-                          to={`/novel/${novel.novel_id}`}
-                          className="flex justify-center "
-                        >
-                          <NovelTitle title={novel?.title} />
+              <div className="container mx-auto mt-16 bg-white p-8">
+                <div className="flex gap-x-3">
+                  {" "}
+                  <SidebarHome />
+                  <div className="content flex-1">
+                    {conditionResult == 1 && (
+                      <div className="my-3 ">
+                        <NavLink className="border-2 p-2" to="/">
+                          Sửa tác phẩm
                         </NavLink>
-                        <div className="flex justify-between border-b-2 border-dashed">
-                          <NovelAuthor author={novel?.user} />
-                        </div>
-                        <div className="flex flex-col gap-4 py-3">
-                          <div className="flex ">
-                            <div className="flex-1">EpisodeCount</div>
+                      </div>
+                    )}
+
+                    <div className="novel-item border-t-2 border-gray-300 py-3">
+                      <div className="novel-item-top">
+                        <div className="flex gap-x-4">
+                          <div className="flex flex-col justify-between">
                             <div className="flex-1">
-                              {novel?.episodes?.length}
+                              {activeTab ? novel?.rank[activeTab] : "Icon1"}
+                            </div>
+                            <div className="flex-1">Icon2</div>
+                          </div>
+                          <div className="novel-left">
+                            <div className="flex h-fit basis-[230px] gap-x-4">
+                              {/* <NovelStatus novelItem={novel}></NovelStatus> */}
+                              <div className="novel-image-wrap flex flex-col">
+                                <NovelAvatar image={novel.cover_picture_url} />
+
+                                {/* <NovelIconTournament type="球球球ム" /> */}
+                              </div>
                             </div>
                           </div>
-                          <div className="flex ">
-                            <div className="flex-1">WordCount</div>
-                            <div className="flex-1">100</div>
-                          </div>
-                          {conditionResult && (
-                            <>
+                          <div className="novel-right flex-1">
+                            <NavLink
+                              to={`/novel/${novel.novel_id}`}
+                              className="flex justify-center "
+                            >
+                              <NovelTitle title={novel?.title} />
+                            </NavLink>
+                            <div className="flex justify-between border-b-2 border-dashed">
+                              <NovelAuthor author={novel?.user} />
+                            </div>
+                            <div className="flex flex-col gap-4 py-3">
                               <div className="flex ">
-                                <div className="flex-1">Comment</div>
+                                <div className="flex-1">EpisodeCount</div>
+                                <div className="flex-1">
+                                  {novel?.episodes?.length}
+                                </div>
+                              </div>
+                              <div className="flex ">
+                                <div className="flex-1">WordCount</div>
                                 <div className="flex-1">100</div>
                               </div>
-                              <div className="flex ">
-                                <div className="flex-1">TotalLike</div>
-                                <div className="flex-1">{novel.likes}</div>
-                              </div>
-                              <div className="flex ">
-                                <div className="flex-1">TotalBookMarks</div>
-                                <div className="flex-1">{novel.bookmarks}</div>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <ul className="my-2 flex justify-between">
-                        {tabs.map((tab, index) => (
-                          <li
-                            key={index}
-                            className={`cursor-pointer border-2 px-7 hover:bg-gray-200 ${activeTab === tab ? "bg-gray-200" : ""}`}
-                            onClick={() => handleRanking(tab)}
-                          >
-                            <span>{tab}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="novel-item-bottom my-2 border-t-2 border-dashed">
-                    <ul className="flex flex-wrap items-center gap-x-4 pt-2">
-                      {novel?.tags.map((tag) => (
-                        <TagNovel>
-                          <li>{tag?.tag}</li>
-                        </TagNovel>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <ul className="flex flex-wrap items-center gap-x-4 pt-2">
-                      {novel?.badges.map((badges, index) => (
-                        <li
-                          className="mr-2 cursor-pointer border-2 border-gray-200 bg-transparent px-4 py-1 last:mr-0 hover:bg-gray-200"
-                          key={index}
-                        >
-                          {" "}
-                          {badges?.badges_name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="my-3">EVENET_1_URRL</div>
-                  <div>
-                    <label htmlFor="">Tóm tắt</label>
-                    <p>{novel.synopsis}</p>
-                  </div>
-
-                  <div className="my-3">
-                    <div className="flex gap-6">
-                      <label className="text-lg font-bold " htmlFor="">
-                        エピソード (Tập phim)
-                      </label>
-                      {conditionResult == 1 && (
-                        <>
-                          <NavLink className="text-lg font-bold " to="/">
-                            エピソードを追加する(Thêm tập)
-                          </NavLink>
-                          <NavLink className="text-lg font-bold " to="/">
-                            章を管理する( Quản lí chương)
-                          </NavLink>
-                        </>
-                      )}
-                    </div>
-                    <div className="py-4">
-                      {novel.episodes ? (
-                        <>
-                          {novel.episodes.map((episode, index) => (
-                            <div className="mb-4 flex gap-28 border-b-2">
-                              <div className="flex-1">{index + 1}</div>
-                              <div className="flex-1">
-                                {episode?.episode_title}
-                              </div>
-                              <div className="flex-1">
-                                {episode?.first_novel_publish_at >
-                                episode?.updated_at
-                                  ? moment(
-                                      episode?.first_novel_publish_at,
-                                    ).format("Y-MM-DD HH:MM:ss")
-                                  : moment(episode?.updated_at).format(
-                                      "Y-MM-DD HH:MM:ss",
-                                    )}
-                              </div>
-                              {conditionResult == 1 && (
+                              {conditionResult && (
                                 <>
-                                  <NavLink
-                                    className="flex-1 "
-                                    to={`episode/${episode?.episode_id}`}
-                                  >
-                                    エピソ
-                                  </NavLink>
+                                  <div className="flex ">
+                                    <div className="flex-1">Comment</div>
+                                    <div className="flex-1">100</div>
+                                  </div>
+                                  <div className="flex ">
+                                    <div className="flex-1">TotalLike</div>
+                                    <div className="flex-1">{novel.likes}</div>
+                                  </div>
+                                  <div className="flex ">
+                                    <div className="flex-1">TotalBookMarks</div>
+                                    <div className="flex-1">
+                                      {novel.bookmarks}
+                                    </div>
+                                  </div>
                                 </>
                               )}
                             </div>
+                          </div>
+                        </div>
+                        <div>
+                          <ul className="my-2 flex justify-between">
+                            {tabs.map((tab, index) => (
+                              <li
+                                key={index}
+                                className={`cursor-pointer border-2 px-7 hover:bg-gray-200 ${activeTab === tab ? "bg-gray-200" : ""}`}
+                                onClick={() => handleRanking(tab)}
+                              >
+                                <span>{tab}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="novel-item-bottom my-2 border-t-2 border-dashed">
+                        <ul className="flex flex-wrap items-center gap-x-4 pt-2">
+                          {novel?.tags.map((tag) => (
+                            <TagNovel>
+                              <li>{tag?.tag}</li>
+                            </TagNovel>
                           ))}
-                        </>
-                      ) : (
-                        " Không có tập nào"
-                      )}
-                    </div>
-                  </div>
-                  <div className="novel-item-comment ">
-                    {errors && errors.content_comment && (
-                      <p className="text-red-500">
-                        {errors.content_comment.message}
-                      </p>
-                    )}
-                    <form onSubmit={handleSubmit(handlePostComment)}>
-                      <div className="form-control my-3 ">
-                        <textarea
-                          className="h-44 w-full border-2 p-2 outline-none"
-                          placeholder="Nội dung comment"
-                          {...register("content_comment")}
-                          onChange={(e) =>
-                            setValue(e.target.name, e.target.value)
-                          }
-                        />
+                        </ul>
+                      </div>
+                      <div>
+                        <ul className="flex flex-wrap items-center gap-x-4 pt-2">
+                          {novel?.badges.map((badges, index) => (
+                            <li
+                              className="mr-2 cursor-pointer border-2 border-gray-200 bg-transparent px-4 py-1 last:mr-0 hover:bg-gray-200"
+                              key={index}
+                            >
+                              {" "}
+                              {badges?.badges_name}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="my-3">EVENET_1_URRL</div>
+                      <div>
+                        <label htmlFor="">Tóm tắt</label>
+                        <p>{novel.synopsis}</p>
                       </div>
 
-                      <button className="border-2 px-3 py-1" type="submit">
-                        Comment
-                      </button>
-                    </form>
+                      <div className="my-3">
+                        <div className="flex gap-6">
+                          <label className="text-lg font-bold " htmlFor="">
+                            エピソード (Tập phim)
+                          </label>
+                          {conditionResult == 1 && (
+                            <>
+                              <NavLink className="text-lg font-bold " to="/">
+                                エピソードを追加する(Thêm tập)
+                              </NavLink>
+                              <NavLink className="text-lg font-bold " to="/">
+                                章を管理する( Quản lí chương)
+                              </NavLink>
+                            </>
+                          )}
+                        </div>
+                        <div className="py-4">
+                          {novel.episodes ? (
+                            <>
+                              {novel.episodes.map((episode, index) => (
+                                <div className="mb-4 flex gap-28 border-b-2">
+                                  <div className="flex-1">{index + 1}</div>
+                                  <div className="flex-1">
+                                    {episode?.episode_title}
+                                  </div>
+                                  <div className="flex-1">
+                                    {episode?.first_novel_publish_at >
+                                    episode?.updated_at
+                                      ? moment(
+                                          episode?.first_novel_publish_at,
+                                        ).format("Y-MM-DD HH:MM:ss")
+                                      : moment(episode?.updated_at).format(
+                                          "Y-MM-DD HH:MM:ss",
+                                        )}
+                                  </div>
+                                  {conditionResult == 1 && (
+                                    <>
+                                      <NavLink
+                                        className="flex-1 "
+                                        to={`episode/${episode?.episode_id}`}
+                                      >
+                                        エピソ
+                                      </NavLink>
+                                    </>
+                                  )}
+                                </div>
+                              ))}
+                            </>
+                          ) : (
+                            " Không có tập nào"
+                          )}
+                        </div>
+                      </div>
+                      <div className="novel-item-comment ">
+                        {errors && errors.content_comment && (
+                          <p className="text-red-500">
+                            {errors.content_comment.message}
+                          </p>
+                        )}
+                        <form onSubmit={handleSubmit(handlePostComment)}>
+                          <div className="form-control my-3 ">
+                            <textarea
+                              className="h-44 w-full border-2 p-2 outline-none"
+                              placeholder="Nội dung comment"
+                              {...register("content_comment")}
+                              onChange={(e) =>
+                                setValue(e.target.name, e.target.value)
+                              }
+                            />
+                          </div>
+
+                          <button className="border-2 px-3 py-1" type="submit">
+                            Comment
+                          </button>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
