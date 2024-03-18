@@ -5,7 +5,6 @@ import { Coliseum } from "@/pages/Coliseum/Coliseum.tsx";
 import { Tournament } from "@/pages/Tournament/Tournament.tsx";
 import { Author } from "@/pages/Author/Author.tsx";
 import NewNovel from "@/pages/NewNovel/NewNovel.tsx";
-import { TournamentBoard } from "@/pages/TournamentBoard/TournamentBoard.tsx";
 import { Test } from "@/pages/Test/Test.tsx";
 import Test2 from "@/pages/Test/Test2.tsx";
 import Test3 from "@/pages/Test/Test3.tsx";
@@ -33,6 +32,7 @@ import NovelDetail from "@/pages/novelDetail/NovelDetail";
 import SlideBanner from "@/components/Content/SlideBanner";
 import { ContactForm } from "@/pages/ContactForm/ContactForm";
 import { ReaderNovel } from "@/pages/ReaderNovel/ReaderNovel";
+import { TournamentBoard } from "@/pages/Tournament/TouramentBoard";
 
 export const router = createBrowserRouter([
   {
