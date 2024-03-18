@@ -1,0 +1,79 @@
+.tourament-tab {
+  width: 200px;
+  height: 30px;
+  background-color: #d2dbde;
+  position: relative;
+}
+.tourament-tab:before {
+  content: "";
+  width: 197px;
+  height: 27px;
+  background: #fafafa;
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+.tourament-tab {
+  clip-path: polygon(86% 0, 100% 50%, 86% 100%, 0% 100%, 14% 50%, 0% 0%);
+}
+.tourament-tab:before {
+  clip-path: polygon(86% 0, 100% 50%, 86% 100%, 0% 100%, 14% 50%, 0% 0%);
+}
+
+.match {
+  position: relative;
+  .match-item {
+    z-index: 2;
+    .match-player {
+      &:first-child {
+        .name-player {
+          border-top-left-radius: 6px;
+          background-color: #fdffab;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0px;
+            width: 1px;
+            background-color: black;
+            height: 50%;
+            top: 50%;
+          }
+        }
+        border-top-left-radius: 8px;
+      }
+      &:last-child {
+        .name-player {
+          border-bottom-left-radius: 6px;
+          background-color: #fafafa;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0px;
+            width: 1px;
+            background-color: black;
+            height: 50%;
+            bottom: 50%;
+          }
+        }
+        border-bottom-left-radius: 8px;
+      }
+    }
+  }
+  .match-name {
+    z-index: 1;
+    position: relative;
+    left: 10px;
+    span {
+      display: inline-block;
+      writing-mode: vertical-rl; /* vertical right-to-left */
+    }
+  }
+  .winner-match {
+    .name-player {
+      background-color: #fdffab;
+    }
+  }
+}

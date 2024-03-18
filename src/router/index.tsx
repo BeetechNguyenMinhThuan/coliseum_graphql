@@ -189,6 +189,10 @@ export const router = createBrowserRouter([
         path: "novel/:novel_id/episode/:episode_id",
         element: <ReaderNovel />,
       },
+      {
+        path: "/tourament",
+        element: <Tournament />,
+      },
     ],
   },
 ]);
