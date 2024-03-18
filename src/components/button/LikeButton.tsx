@@ -37,7 +37,7 @@ const LikeButton = ({ user, novel }) => {
     GET_NOVEL_UPDATE_OR_CREATED,
   ];
 
-  if (location.pathname.includes("/author")) {
+  if (location.pathname.includes("/author") || location.pathname.includes("/mypage")) {
     arrQueries.push(GET_NOVELS_BY_USER);
   }
 
