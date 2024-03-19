@@ -33,6 +33,36 @@ import SlideBanner from "@/components/Content/SlideBanner";
 import { ContactForm } from "@/pages/ContactForm/ContactForm";
 import { ReaderNovel } from "@/pages/ReaderNovel/ReaderNovel";
 import { TournamentBoard } from "@/pages/Tournament/TouramentBoard";
+import {
+  ROUTE_ADD_CHAPTER,
+  ROUTE_ADD_NOVEL,
+  ROUTE_ADS,
+  ROUTE_AUTHOR,
+  ROUTE_AUTHOR_JOIN_TOURAMENT,
+  ROUTE_COLISEUM,
+  ROUTE_COMMENT,
+  ROUTE_CONTACT_FORM,
+  ROUTE_FANPAGE,
+  ROUTE_HALL_TOURAMENT,
+  ROUTE_HOME,
+  ROUTE_LOGIN,
+  ROUTE_LOGOUT,
+  ROUTE_MYPAGE,
+  ROUTE_NEW_NOVEL,
+  ROUTE_NOVEL_DETAIL,
+  ROUTE_PROTECTION_POLIcy,
+  ROUTE_READ_NOVEL,
+  ROUTE_RECRUITMENT,
+  ROUTE_REGISTER,
+  ROUTE_RESULT_TOURAMENT,
+  ROUTE_SEARCH_NOVEL,
+  ROUTE_TOP_COMMENT,
+  ROUTE_TOP_TOURAMENT,
+  ROUTE_TOURAMENT,
+  ROUTE_TOURAMENT_BOARD,
+  ROUTE_USE_REGISTRATION,
+  ROUTE_USER_MANUAL,
+} from "@/constants/nameRoute";
 
 export const router = createBrowserRouter([
   {
@@ -42,20 +72,20 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        path: "/",
+        path: ROUTE_HOME,
         element: <Home />,
       },
       {
-        path: "coliseum",
+        path: ROUTE_COLISEUM,
         element: <Coliseum />,
       },
       {
-        path: "tournament",
+        path: ROUTE_TOURAMENT,
         element: <Tournament />,
       },
 
       {
-        path: "author/:userId",
+        path: ROUTE_AUTHOR,
         element: <Author />,
       },
       {
@@ -63,16 +93,16 @@ export const router = createBrowserRouter([
         element: <Test4 />,
       },
       {
-        path: "mypage",
+        path: ROUTE_MYPAGE,
         element: <MyPage />,
         loader: checkAuthLoader,
       },
       {
-        path: "mypage/add-novel",
+        path: ROUTE_ADD_NOVEL,
         element: <AddNovel />,
       },
       {
-        path: "newnovel",
+        path: ROUTE_NEW_NOVEL,
         element: <NewNovel />,
       },
       {
@@ -92,48 +122,48 @@ export const router = createBrowserRouter([
         element: <Test4 />,
       },
       {
-        path: "author-join-tourament",
+        path: ROUTE_AUTHOR_JOIN_TOURAMENT,
         element: <AuthorJoinTourament />,
       },
       {
-        path: "result-tourament",
+        path: ROUTE_RESULT_TOURAMENT,
         element: <ResultTourament />,
       },
       {
-        path: "hall-tourament",
+        path: ROUTE_HALL_TOURAMENT,
         element: <HallTourament />,
       },
       {
-        path: "fan-page",
+        path: ROUTE_FANPAGE,
         element: <FanPage />,
       },
       {
-        path: "user-manual",
+        path: ROUTE_USER_MANUAL,
         element: <UserManual />,
       },
       {
-        path: "top-comment",
+        path: ROUTE_TOP_COMMENT,
         element: <TopComment />,
       },
       {
-        path: "comment",
+        path: ROUTE_COMMENT,
         element: <Comment />,
       },
       {
-        path: "recruitment",
+        path: ROUTE_RECRUITMENT,
         element: <Recruitment />,
       },
       {
-        path: "top-tourament",
+        path: ROUTE_TOP_TOURAMENT,
         element: <TopTourament />,
       },
       {
-        path: "login",
+        path: ROUTE_LOGIN,
         element: <Login />,
         loader: checkAuthLoginLoader,
       },
       {
-        path: "register",
+        path: ROUTE_REGISTER,
         element: <Register />,
         loader: checkAuthLoginLoader,
       },
@@ -142,11 +172,11 @@ export const router = createBrowserRouter([
         element: <Test5 />,
       },
       {
-        path: "/use-regulations",
+        path: ROUTE_USE_REGISTRATION,
         element: <UseRegulations />,
       },
       {
-        path: "/protection-policy",
+        path: ROUTE_PROTECTION_POLIcy,
         element: <ProtectionPolicy />,
       },
       {
@@ -154,23 +184,23 @@ export const router = createBrowserRouter([
         element: <AddNovel />,
       },
       {
-        path: "add-chapter",
+        path: ROUTE_ADD_CHAPTER,
         element: <AddChapter />,
       },
       {
-        path: "logout",
+        path: ROUTE_LOGOUT,
         action: logoutAction,
       },
       {
-        path: "/search-novel",
+        path: ROUTE_SEARCH_NOVEL,
         element: <SearchNovel />,
       },
       {
-        path: "novel/:novelId",
+        path: ROUTE_NOVEL_DETAIL,
         element: <NovelDetail />,
       },
       {
-        path: "testQC",
+        path: ROUTE_ADS,
         element: <SlideBanner />,
       },
       {
@@ -178,11 +208,11 @@ export const router = createBrowserRouter([
         element: <SlideBanner />,
       },
       {
-        path: "/contact-form",
+        path: ROUTE_CONTACT_FORM,
         element: <ContactForm />,
       },
       {
-        path: "novel/:novel_id/episode/:episode_id",
+        path: ROUTE_READ_NOVEL,
         element: <ReaderNovel />,
       },
       {
@@ -190,7 +220,7 @@ export const router = createBrowserRouter([
         element: <Tournament />,
       },
       {
-        path: "/tourament-board",
+        path: ROUTE_TOURAMENT_BOARD,
         element: <TournamentBoard />,
       },
     ],

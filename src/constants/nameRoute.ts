@@ -1,0 +1,30 @@
+export const ROUTE_HOME = "/";
+export const ROUTE_COLISEUM = "/coliseum";
+export const ROUTE_TOURAMENT = "/tournament";
+export const ROUTE_AUTHOR = "/author/:userId";
+export const ROUTE_MYPAGE = "/mypage";
+export const ROUTE_ADD_NOVEL = "/mypage/add-novel";
+export const ROUTE_NEW_NOVEL = "/newnovel";
+export const ROUTE_AUTHOR_JOIN_TOURAMENT = "/author-join-tourament";
+export const ROUTE_RESULT_TOURAMENT = "/result-tourament";
+export const ROUTE_HALL_TOURAMENT = "/hall-tourament";
+export const ROUTE_FANPAGE = "/fan-page";
+export const ROUTE_USER_MANUAL = "/user-manual";
+export const ROUTE_TOP_COMMENT = "/top-comment";
+export const ROUTE_COMMENT = "/comment";
+export const ROUTE_RECRUITMENT = '/recruitment'
+export const ROUTE_TOP_TOURAMENT = '/top-tourament'
+export const ROUTE_LOGIN= '/login'
+export const ROUTE_REGISTER = "/register"
+export const ROUTE_USE_REGISTRATION = "/use-regulations"
+export const ROUTE_PROTECTION_POLIcy = "/protection-policy"
+export const ROUTE_ADD_CHAPTER = "/add-chapter"
+export const ROUTE_LOGOUT = "/logout"
+export const ROUTE_SEARCH_NOVEL = "/search-novel"
+export const ROUTE_NOVEL_DETAIL = "/novel/:novelId"
+export const ROUTE_ADS = "/testQC"
+export const ROUTE_CONTACT_FORM = "/contact-form"
+export const ROUTE_READ_NOVEL = "/novel/:novel_id/episode/:episode_id "
+export const ROUTE_TOURAMENT_BOARD = "/tourament-board"
+
+

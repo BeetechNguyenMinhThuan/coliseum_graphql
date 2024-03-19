@@ -4,29 +4,17 @@ import { IoTriangle } from "react-icons/io5";
 import { TagNovel } from "../Tag/TagNovel.tsx";
 import { useQuery } from "@apollo/client";
 import useAuth from "@/hooks/useAuth.tsx";
-import { GET_NOVELS_BY_USER } from "@/graphql-client/user/queries.ts";
 import LikeButton from "../button/LikeButton.tsx";
 import BookMarkButton from "../button/BookMarkButton.tsx";
 import { Pagination } from "../pagination/Pagination.tsx";
 
-function Accordition() {
-  const [isOpen, setIsOpen] = useState(false);
+function Accordition({data, refetch}) {
   const { user } = useAuth();
 
   const [isOpenArray, setIsOpenArray] = useState([]);
-
-  const { loading, error, data, refetch } = useQuery(GET_NOVELS_BY_USER, {
-    variables: { userId: parseInt(user.id), page: 1, limit: 3 },
-  });
-
   const handlePageChange = async (newPage: number) => {
     await refetch({ page: newPage, limit: 3 });
   };
-
-  console.log(data);
-
-  if (loading) return "Đang load";
-  if (error) return "Có lỗi xảy ra";
 
   const toggleAccordion = (index) => {
     const newIsOpenArray = [...isOpenArray];
@@ -76,7 +64,7 @@ function Accordition() {
               <div className="flex justify-between">
                 <div className="flex items-center gap-x-3">
                   <ButtonCommon
-                    className="bg-color13 my-3 rounded-lg text-white"
+                    className="bg-color13 my-3 rounded-lg text-white border-0 "
                     type="button"
                   >
                     選歳1ーだ平だ平だ平
@@ -101,7 +89,7 @@ function Accordition() {
                   </div>
                   <ButtonCommon
                     type="button"
-                    className="h-fit rounded-lg bg-color8 px-3 text-white"
+                    className="h-fit rounded-lg bg-color8 px-3 text-white border-0"
                   >
                     申ゅゆ選歳ゆ選歳
                   </ButtonCommon>
@@ -132,87 +120,48 @@ function Accordition() {
                       <div className="h-[222px] w-full">
                         <img
                           className="h-full w-full object-cover"
-                          src="https://image.cdn2.seaart.ai/static/82cf0712367108660c5339a4897a728e/20230615/c1131a19f98853f516c3279429df1a4d_low.webp"
+                          src={novel?.cover_picture_url}
                           alt=""
                         />
                       </div>
-                      <div className="rounded-md border-2 border-gray-300 text-center text-[16px]">
-                        ゅゆ選歳ーだ
+                      <div className="rounded-md border-2 border-gray-300 text-center text-[14px] py-1">
+                       Thêm tập mới
                       </div>
-                      <div className="rounded-md border-2 border-gray-300 text-center text-[16px]">
-                        ゅゆ選歳ーだ
+                      <div className="rounded-md border-2 border-gray-300 text-center text-[14px] py-1">
+                       Chỉnh sửa 
                       </div>
-                      <div className="rounded-md border-2 border-gray-300 text-center text-[16px]">
-                        ゅゆ選歳ーだ
+                      <div className="rounded-md border-2 border-gray-300 text-center text-[14px] py-1">
+                        Xóa công việc
                       </div>
                     </div>
                     <div className="flex flex-1 flex-col">
-                      <div className="border-b-2 border-dashed py-2">
+                    {novel?.episodes && (
+                      novel.episodes.map((episode,index) => (
+                        <div className="border-b-2 border-dashed py-2">
                         <div className="flex items-center gap-x-5">
                           <span className="rounded-lg border-2 bg-color9 px-4 py-1">
-                            選歳歳
+                           {episode?.is_publish ? "Đang mở" : "Đang đón"}
                           </span>
                           <h3 className="cursor-pointer text-2xl font-bold">
-                            歳歳歳
+                            Tập {index +1}
                           </h3>
                           <h3 className="cursor-pointer text-2xl font-bold">
-                            Tên tiểu thuyết 1
+                            {episode?.episode_title}
                           </h3>
                         </div>
                         <div className="mt-2">
                           <ul className="flex items-center justify-end gap-x-2">
-                            <li className="rounded-lg border-2 px-4 ">
-                              ゆ選歳
+                            <li className="rounded-lg border-2 px-4 py-1">
+                              Chỉnh sửa
                             </li>
-                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
-                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
+                            <li className="rounded-lg border-2 px-4  py-1">Priveate</li>
+                            <li className="rounded-lg border-2 px-4  py-1">Xóa</li>
                           </ul>
                         </div>
                       </div>
-                      <div className="border-b-2 border-dashed py-2">
-                        <div className="flex items-center gap-x-5">
-                          <span className="rounded-lg border-2 bg-color9 px-4 py-1">
-                            選歳歳
-                          </span>
-                          <h3 className="cursor-pointer text-2xl font-bold">
-                            歳歳歳
-                          </h3>
-                          <h3 className="cursor-pointer text-2xl font-bold">
-                            Tên tiểu thuyết 1
-                          </h3>
-                        </div>
-                        <div className="mt-2">
-                          <ul className="flex items-center justify-end gap-x-2">
-                            <li className="rounded-lg border-2 px-4 ">
-                              ゆ選歳
-                            </li>
-                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
-                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div className="border-b-2 border-dashed py-2">
-                        <div className="flex items-center gap-x-5">
-                          <span className="rounded-lg border-2 bg-color9 px-4 py-1">
-                            選歳歳
-                          </span>
-                          <h3 className="cursor-pointer text-2xl font-bold">
-                            歳歳歳
-                          </h3>
-                          <h3 className="cursor-pointer text-2xl font-bold">
-                            Tên tiểu thuyết 1
-                          </h3>
-                        </div>
-                        <div className="mt-2">
-                          <ul className="flex items-center justify-end gap-x-2">
-                            <li className="rounded-lg border-2 px-4 ">
-                              ゆ選歳
-                            </li>
-                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
-                            <li className="rounded-lg border-2 px-4">ゆ選歳</li>
-                          </ul>
-                        </div>
-                      </div>
+                      ))
+                    )}
+                      
                     </div>
                   </div>
                 </div>

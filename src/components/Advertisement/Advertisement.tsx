@@ -8,7 +8,7 @@ export const Advertisement = (props: AdvertisementProps) => {
   const { advertisement, className = "" } = props;
   return (
     <section>
-      <div className={classNames("flex gap-7", className)}>
+      <div className={classNames("flex gap-7 justify-center", className)}>
         {advertisement?.map((image: string, index: number) => (
           <div key={index}>
             <img

@@ -6,10 +6,26 @@ import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import useAuth from "@/hooks/useAuth";
 import { setDefaultTitle } from "@/utils/helper";
 import { IoTriangle } from "react-icons/io5";
+import { useQuery } from "@apollo/client";
+import { GET_DETAIL_USER} from "@/graphql-client/user/queries";
+import moment from "moment";
+import BookMarkButton from "@/components/button/BookMarkButton";
+import LikeButton from "@/components/button/LikeButton";
 
 export default function MyPage() {
   setDefaultTitle("Trang cá nhân");
   const { user } = useAuth();
+
+  const { loading, error, data, refetch } = useQuery(GET_DETAIL_USER, {
+    variables: { userId: parseInt(user.id), 
+      page: 1,
+      limit: 3,
+      pageNovelLike: 1,
+      limitNovelLike: 3 
+    },
+  });
+  console.log(data);
+  
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
@@ -62,10 +78,12 @@ export default function MyPage() {
           </div>
 
           <div>
-            <Accordition />
+            <Accordition data={data} refetch={refetch} />
           </div>
 
-          <Advertisement>{arrAds}</Advertisement>
+          <div className="my-12">
+          <Advertisement  advertisement={arrAds} ></Advertisement>
+          </div>
           <div className="border-2 bg-color3 p-4">
             <h3 className="border-b-2 border-dashed border-gray-500 text-2xl font-bold">
               室芸室芸室芸室芸
@@ -113,94 +131,82 @@ export default function MyPage() {
               </ul>
             </div>
           </div>
-          <div className="mt-10 border-2 bg-color3 p-4">
+          <div className="mt-10 border-2 rounded bg-color3 p-4">
             <h3 className="border-b-2 border-dashed border-gray-500 text-2xl font-bold">
-              室芸室芸室芸室芸
+             Tác phẩm yêu thích
             </h3>
             <div className="py-3">
-              <ul className="flex items-center justify-center gap-x-10">
+              <ul className="flex items-center  gap-x-10">
                 <li>
-                  <span>滅健滅</span>
+                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
                 </li>
+                |
                 <li>
-                  <span>滅健滅</span>
+                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
                 </li>
+                |
                 <li>
-                  <span>滅健滅</span>
+                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
                 </li>
+                |
                 <li>
-                  <span>滅健滅</span>
+                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
                 </li>
               </ul>
             </div>
             <div className="mt-2">
               <ul className="flex flex-col gap-y-2">
-                <li className="border-b-2  pb-3">
-                  <div className="border-b-2 border-dashed ">
-                    <div className="flex items-center justify-between pb-3">
-                      <h3 className="text-2xl font-bold">
-                        春には桜の花が咲き春には桜の花が咲き
-                      </h3>
-                      <ButtonCommon
-                        type="button"
-                        className="h-fit rounded-lg bg-color8 px-3 text-white"
-                      >
-                        申ゅゆ選歳ゆ選歳
-                      </ButtonCommon>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <h4>春には桜</h4>
-                      <div className="flex gap-x-6">
-                        <span>春には 2023.11.26</span>
-                        <span>春にはには 2023.12.06</span>
+                {
+                  data?.user?.novel_like && (
+                    data?.user?.novel_like?.novels.map((novel, index) => (
+                      <li className="border-b-2  pb-3">
+                      <div className="border-b-2 border-dashed ">
+                        <div className="flex items-center justify-between pb-3">
+                          <h3 className="text-2xl font-bold">
+                           {novel?.title}
+                          </h3>
+                          <ButtonCommon
+                            type="button"
+                            className="h-fit rounded-lg bg-color8 px-3 text-white"
+                          >
+                            Badges
+                          </ButtonCommon>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <h4>{novel.user?.name}</h4>
+                          <div className="flex gap-x-6">
+                            <span>春には {moment(novel?.created_at).format('Y.MM.D')}</span>
+                            <span>春にはには {moment(novel?.updated_at).format("Y.MM.D")}</span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex justify-between pt-3">
-                    <div className="flex items-center gap-x-5">
-                      <div className="flex items-center">
-                        <input
-                          id="disabled-checked-checkbox"
-                          type="checkbox"
-                          value=""
-                          className="h-5 w-5 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                        />
-                        <label
-                          htmlFor="disabled-checked-checkbox"
-                          className="ms-1 text-xl  font-medium text-gray-400 dark:text-gray-500"
-                        >
-                          0
-                        </label>
+                      <div className="flex justify-between pt-3">
+                        <div className="flex items-center gap-x-5">
+                          <div className="flex items-center">
+                            <BookMarkButton user={user} novel={novel} />
+                          </div>
+                          <div className="flex items-center">
+                           <LikeButton user={user} novel={novel}/>
+                          </div>
+                        </div>
+                        <div className="flex gap-x-3">
+                          <ButtonCommon type="button">
+                            <span className="">球ムヘマ球ム球</span>
+                            <IoTriangle
+                              className={`rotate-180 transition-transform duration-500 `}
+                            />
+                          </ButtonCommon>
+                          <ButtonCommon type="button">
+                            <MdStarRate size={"18px"} />
+                            <span className="">球ムヘマ球ム球ムヘマ球</span>
+                          </ButtonCommon>
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <input
-                          id="checked_1"
-                          type="checkbox"
-                          value=""
-                          className="h-5 w-5 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                        />
-                        <label
-                          htmlFor="checked_1"
-                          className="ms-1 text-xl  font-medium text-gray-400 dark:text-gray-500"
-                        >
-                          6
-                        </label>
-                      </div>
-                    </div>
-                    <div className="flex gap-x-3">
-                      <ButtonCommon type="button">
-                        <span className="">球ムヘマ球ム球</span>
-                        <IoTriangle
-                          className={`rotate-180 transition-transform duration-500 `}
-                        />
-                      </ButtonCommon>
-                      <ButtonCommon type="button">
-                        <MdStarRate size={"18px"} />
-                        <span className="">球ムヘマ球ム球ムヘマ球</span>
-                      </ButtonCommon>
-                    </div>
-                  </div>
-                </li>
+                    </li>
+                    ))
+                  ) 
+                }
+               
               </ul>
             </div>
           </div>

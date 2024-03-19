@@ -12,35 +12,34 @@ import { Advertisement } from "components/Advertisement";
 import ButtonCommon from "@/components/button/ButtonCommon.tsx";
 import { Novel, NovelList } from "../../components/novel";
 import { useQuery } from "@apollo/client";
-import { GET_NOVELS_BY_USER } from "@/graphql-client/user/queries";
 import { setDefaultTitle } from "@/utils/helper";
 import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 
 export function Author() {
   setDefaultTitle("Trang tác giả");
-  const { t } = useTranslation();
-  const arrAds = [
-    "s-l1200.webp",
-    "coke-print-ad.jpg",
-    "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
-  ];
-  let { userId } = useParams();
+  // const { t } = useTranslation();
+  // const arrAds = [
+  //   "s-l1200.webp",
+  //   "coke-print-ad.jpg",
+  //   "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
+  // ];
+  // let { userId } = useParams();
 
-  const {
-    loading,
-    error,
-    data: dataNovelsByUser,
-    refetch,
-  } = useQuery(GET_NOVELS_BY_USER, {
-    variables: { userId: parseInt(userId), page: 1, limit: 3 },
-  });
+  // const {
+  //   loading,
+  //   error,
+  //   data: dataNovelsByUser,
+  //   refetch,
+  // } = useQuery(GET_NOVELS_BY_USER, {
+  //   variables: { userId: parseInt(userId), page: 1, limit: 3 },
+  // });
 
-  if (loading) return <LoadingSpiner />;
-  if (error) return "Có lỗi";
+  // if (loading) return <LoadingSpiner />;
+  // if (error) return "Có lỗi";
 
   return (
-    <>
-      <div className="container mx-auto mt-16 bg-white p-8">
+    <>123
+      {/* <div className="container mx-auto mt-16 bg-white p-8">
         <div className="flex gap-x-3">
           <SideBarAuthor />
           <div className="content flex-1">
@@ -112,7 +111,7 @@ export function Author() {
             <Advertisement>{arrAds}</Advertisement>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

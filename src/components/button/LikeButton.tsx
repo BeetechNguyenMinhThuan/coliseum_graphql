@@ -9,7 +9,6 @@ import {
 import { toast } from "react-toastify";
 import {
   GET_DETAIL_USER,
-  GET_NOVELS_BY_USER,
 } from "@/graphql-client/user/queries";
 import { useLocation } from "react-router-dom";
 
@@ -23,7 +22,9 @@ const LikeButton = ({ user, novel }) => {
     if (novel.user_likes) {
       const arrUserId = novel.user_likes
         .map((item) => parseInt(item.user_id))
-        .filter((id) => typeof id === "number" && !isNaN(id));
+        .filter((id) =>  !isNaN(id));
+        console.log(arrUserId.includes(user.id));
+        
       return arrUserId.includes(user.id);
     }
     return false;
@@ -37,9 +38,9 @@ const LikeButton = ({ user, novel }) => {
     GET_NOVEL_UPDATE_OR_CREATED,
   ];
 
-  if (location.pathname.includes("/author") || location.pathname.includes("/mypage")) {
-    arrQueries.push(GET_NOVELS_BY_USER);
-  }
+  // if (location.pathname.includes("/author") || location.pathname.includes("/mypage")) {
+  //   arrQueries.push(GET_NOVELS_BY_USER);
+  // }
 
   useEffect(() => {
     const result = checkUserLike();

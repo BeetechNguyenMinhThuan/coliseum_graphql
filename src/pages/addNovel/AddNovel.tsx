@@ -191,7 +191,7 @@ function AddNovel() {
             </ButtonCommon>
           </form>
         </div>
-        <Advertisement>{arrAds}</Advertisement>
+        <Advertisement advertisement={arrAds}></Advertisement>
       </div>
     </>
   );

@@ -6,7 +6,6 @@ import {
 } from "@/graphql-client/novel/queries";
 import {
   GET_DETAIL_USER,
-  GET_NOVELS_BY_USER,
 } from "@/graphql-client/user/queries";
 import { useMutation } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
@@ -23,7 +22,7 @@ const BookMarkButton = ({ user, novel }) => {
     if (novel.user_bookmarks) {
       const arrUserId = novel.user_bookmarks
         .map((item) => parseInt(item.user_id))
-        .filter((id) => typeof id === "number" && !isNaN(id));
+        .filter((id) =>  !isNaN(id));
       return arrUserId.includes(user.id);
     }
     return false;
@@ -38,13 +37,10 @@ const BookMarkButton = ({ user, novel }) => {
     GET_NOVELS_PAGINATE,
     GET_DETAIL_USER,
     NOVELS_FILTER_BY_RANKING,
-    GET_NOVELS_BY_USER,
     GET_NOVEL_UPDATE_OR_CREATED,
   ];
 
   const handleBookMarksChange = () => {
-    console.log(user);
-
     if (Object.keys(user).length > 0) {
       toggleUserBookmark({
         variables: { novelId: novel.novel_id },

@@ -12,18 +12,17 @@ export function Header() {
   const headerRef = useRef();
   const { t, i18n } = useTranslation();
   const { heightHero } = useContext(ThemeContext);
-console.log(heightHero);
 
-  let isHeaderSpecial = false;
+  // let isHeaderSpecial = false;
 
-  const [currentLanguage, setCurrentLanguage] = useState(
-    localStorage.getItem("current_language") || "ja",
-  );
-  const handleChangeLanguage = async (lang: string) => {
-    setCurrentLanguage(lang);
-    await i18n.changeLanguage(lang);
-    localStorage.setItem("current_language", lang);
-  };
+  // const [currentLanguage, setCurrentLanguage] = useState(
+  //   localStorage.getItem("current_language") || "ja",
+  // );
+  // const handleChangeLanguage = async (lang: string) => {
+  //   setCurrentLanguage(lang);
+  //   await i18n.changeLanguage(lang);
+  //   localStorage.setItem("current_language", lang);
+  // };
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
