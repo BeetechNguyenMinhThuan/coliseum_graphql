@@ -30,7 +30,7 @@ export function Header() {
   const [checkScroll, setScroll] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > heightHero) {
+    if (window.scrollY > heightHero + headerRef.current.getBoundingClientRect().height) {
       setScroll(true);
     } else {
       setScroll(false);

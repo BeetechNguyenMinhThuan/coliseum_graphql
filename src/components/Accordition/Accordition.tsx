@@ -16,6 +16,8 @@ function Accordition({data, refetch}) {
     await refetch({ page: newPage, limit: 3 });
   };
 
+  console.log(data?.user?.novelsPaginate.novels    );
+  
   const toggleAccordion = (index) => {
     const newIsOpenArray = [...isOpenArray];
     newIsOpenArray[index] = !newIsOpenArray[index];
@@ -26,7 +28,7 @@ function Accordition({data, refetch}) {
       <h3 className="border-b-2 border-dashed border-gray-500 text-2xl font-bold">
         室芸
       </h3>
-      {data?.getNovelsByAuthor?.novels?.map((novel, index) => (
+      {data?.user?.novelsPaginate.novels?.map((novel, index) => (
         <div className="border-b-2 py-2">
           <div className="flex gap-x-3">
             <button
