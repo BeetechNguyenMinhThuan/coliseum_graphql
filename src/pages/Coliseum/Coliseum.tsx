@@ -15,6 +15,7 @@ export function Coliseum() {
     "coke-print-ad.jpg",
     "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
   ];
+  
   return (
     <>
       <Hero>

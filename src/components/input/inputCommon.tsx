@@ -29,6 +29,7 @@ function InputCommon(props: InputCommonProps) {
     defaultValue: "",
   });
   return (
+    <>
     <div className="relative">
       <input
         {...field}
@@ -42,14 +43,10 @@ function InputCommon(props: InputCommonProps) {
           className,
         )}
       />
-      {error && <p className="text-red-500">{error}</p>}
-
-      {children && (
-        <span className="absolute left-[63%] top-1.5 cursor-pointer select-none">
-          {children}
-        </span>
-      )}
+      {children && <>{children}</>}
     </div>
+      {error && <p className="text-red-500">{error}</p>}
+    </>
   );
 }
 

@@ -5,8 +5,21 @@ import { animateScroll as scroll } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
 import { ThemeContext } from "@/contexts/ThemeContext";
-
+import {
+  Button,
+  Dialog,
+  Card,
+  CardBody,
+  CardFooter,
+  Typography,
+  Input,
+  Checkbox,
+} from "@material-tailwind/react";
+import LoginModal from "@/pages/auth/login/LoginModal";
 export function Header() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
+
   const location = useLocation();
   const user = useAuth();
   const headerRef = useRef();
@@ -30,12 +43,16 @@ export function Header() {
   const [checkScroll, setScroll] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > heightHero + headerRef.current.getBoundingClientRect().height) {
+    if (
+      window.scrollY >
+      heightHero + headerRef.current.getBoundingClientRect().height
+    ) {
       setScroll(true);
     } else {
       setScroll(false);
     }
   };
+  const path = ["/", "/coliseum","/tourament"];
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -48,11 +65,11 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className={`${checkScroll ? "fixed " : "absolute"} left-0 right-0 top-0  z-[999] `}
+      className={` ${path.includes(location.pathname) && checkScroll ? "fixed" : !path.includes(location.pathname) ? "sticky" : "absolute"} left-0 right-0 top-0 z-[999] `}
     >
       <div className="container mx-auto">
         <div
-          className={` ${checkScroll ? " border-b-2 border-b-[#ccc] bg-white " : "bg-color1 bg-opacity-40 px-8 pb-2"} rounded-t-[40px]   `}
+          className={` ${path.includes(location.pathname) && !checkScroll ? " bg-color1 bg-opacity-40 px-8 pb-2  " : " border-b-2 border-b-[#ccc] bg-white"} rounded-t-[40px]   `}
           style={{
             backgroundColor: "",
           }}
@@ -88,7 +105,10 @@ export function Header() {
                 ) : (
                   <>
                     <div>
-                      <NavLink to="/login">サインイン</NavLink>
+                      <span className="cursor-pointer" onClick={handleOpen}>
+                        サインイン
+                      </span>
+                      <LoginModal open={open} handleOpen={handleOpen} />
                     </div>
                     <span>|</span>
                     <div>

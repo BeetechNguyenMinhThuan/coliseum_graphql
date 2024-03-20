@@ -14,32 +14,34 @@ import { Novel, NovelList } from "../../components/novel";
 import { useQuery } from "@apollo/client";
 import { setDefaultTitle } from "@/utils/helper";
 import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
+import { GET_DETAIL_USER } from "@/graphql-client/user/queries";
 
 export function Author() {
   setDefaultTitle("Trang tác giả");
-  // const { t } = useTranslation();
-  // const arrAds = [
-  //   "s-l1200.webp",
-  //   "coke-print-ad.jpg",
-  //   "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
-  // ];
-  // let { userId } = useParams();
+  const { t } = useTranslation();
+  const arrAds = [
+    "s-l1200.webp",
+    "coke-print-ad.jpg",
+    "7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
+  ];
+  let { userId } = useParams();
 
-  // const {
-  //   loading,
-  //   error,
-  //   data: dataNovelsByUser,
-  //   refetch,
-  // } = useQuery(GET_NOVELS_BY_USER, {
-  //   variables: { userId: parseInt(userId), page: 1, limit: 3 },
-  // });
+  const { loading, error, data, refetch } = useQuery(GET_DETAIL_USER, {
 
-  // if (loading) return <LoadingSpiner />;
-  // if (error) return "Có lỗi";
+    variables: { userId: parseInt(userId), 
+      page: 1,
+      limit: 3,
+      pageNovelLike: 1,
+      limitNovelLike: 3 
+    },
+  });
+  
+  if (loading) return <LoadingSpiner />;
+  if (error) return "Có lỗi";
 
   return (
-    <>123
-      {/* <div className="container mx-auto mt-16 bg-white p-8">
+    <>
+      <div className="container mx-auto mt-16 bg-white p-8">
         <div className="flex gap-x-3">
           <SideBarAuthor />
           <div className="content flex-1">
@@ -47,7 +49,7 @@ export function Author() {
               <div className="px-7">
                 <div className="flex justify-between pb-2 pt-5">
                   <Link to="rule" className="text-2xl font-bold">
-                    {dataNovelsByUser?.user?.name}
+                    {data?.user?.name}
                   </Link>
                   <div>
                     <ButtonCommon type="button">
@@ -102,16 +104,17 @@ export function Author() {
               </div>
               <div className="mt-5">
                 <NovelList
-                  novels={dataNovelsByUser?.getNovelsByAuthor}
-                  refetch={refetch}
+                  novels={data?.user?.novelsPaginate}
+                  type=""
+                  // refetch={refetch}
                 />
               </div>
             </div>
 
-            <Advertisement>{arrAds}</Advertisement>
+            <Advertisement advertisement={arrAds}></Advertisement>
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }

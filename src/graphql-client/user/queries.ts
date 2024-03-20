@@ -40,6 +40,7 @@ query User(
 ) {
   user(userId: $userId) {
     user_id
+    name
     novelsPaginate(limit: $limit, page: $page, userId: $userId) {
       novels {
         novel_id
@@ -61,6 +62,10 @@ query User(
           created_at
           updated_at
           publish_at
+        }
+        tags {
+          tag_id
+          tag
         }
       }
       totalItems
@@ -97,6 +102,10 @@ query User(
           created_at
           updated_at
           publish_at
+        }
+        tags {
+          tag_id
+          tag
         }
       }
     }

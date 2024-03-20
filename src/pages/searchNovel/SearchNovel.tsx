@@ -6,17 +6,26 @@ import Search from "@/components/Search/Search";
 import { useQuery } from "@apollo/client";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
 import { Pagination } from "@/components/pagination/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setDefaultTitle } from "@/utils/helper";
 import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
+import { useLocation } from "react-router-dom";
 
 export function SearchNovel() {
   setDefaultTitle("Trang tìm kiếm");
   const { t } = useTranslation();
   const urlParams = new URLSearchParams(window.location.search);
-  const keyword = urlParams.get("keyword");
-  const [test, setTest] = useState(keyword);
+  const location = useLocation();
+  console.log(location);
+  
+  const tagName = urlParams.get("tagName");
+console.log(urlParams.get('tagName'));
 
+  const [params, setParams] = useState({
+    keyword: urlParams.get("keyword"),
+    tagName: tagName  ,
+  });
+  
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
@@ -27,7 +36,7 @@ export function SearchNovel() {
     variables: {
       page: 1,
       limit: 2,
-      filter: { searchValue: test },
+      filter: { searchValue: params.keyword, tagName: params.tagName },
     },
   });
 
@@ -44,7 +53,7 @@ export function SearchNovel() {
           <SideBarColiseum />
           <div className="content flex-1">
             <div className="border-black-500 min-h-[500px] border-2 border-l-0 border-solid p-2">
-              <Search setTest={setTest} />
+              <Search setParams={setParams} />
               <div className="my-3 px-2 ">
                 {loading ? (
                   <LoadingSpiner />

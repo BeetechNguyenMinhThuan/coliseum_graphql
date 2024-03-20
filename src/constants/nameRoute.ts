@@ -24,7 +24,7 @@ export const ROUTE_SEARCH_NOVEL = "/search-novel"
 export const ROUTE_NOVEL_DETAIL = "/novel/:novelId"
 export const ROUTE_ADS = "/testQC"
 export const ROUTE_CONTACT_FORM = "/contact-form"
-export const ROUTE_READ_NOVEL = "/novel/:novel_id/episode/:episode_id "
+export const ROUTE_READ_NOVEL = "/novel/:novel_id/episode/:episode_id"
 export const ROUTE_TOURAMENT_BOARD = "/tourament-board"
 
 

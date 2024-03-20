@@ -1,7 +1,7 @@
 import { GET_OFFICIAL_TAGS } from "@/graphql-client/tags/queries";
 import { useQuery } from "@apollo/client";
 import { TagNovel } from "components/Tag/TagNovel";
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ChangeEvent, FormEvent, MouseEventHandler } from "react";
 import { useNavigate } from "react-router";
 import { LoadingSpiner } from "../Loading/LoadingSpiner";
@@ -14,34 +14,46 @@ interface ISearchProps {
   handleSearch?: (
     e: FormEvent<HTMLFormElement> | MouseEventHandler<HTMLButtonElement>,
   ) => void;
-  setTest?: (value: string) => void;
 }
 
 export const Search: React.FC = (props: ISearchProps) => {
-  const { setTest } = props;
+  const { setParams } = props;
   const navigate = useNavigate();
   const { loading, error, data } = useQuery(GET_OFFICIAL_TAGS);
   const urlParams = new URLSearchParams(window.location.search);
 
   const keyword = urlParams.get("keyword");
+  const tagName = urlParams.get("tagName");
+
   const [filter, setFilter] = useState({
     searchValue: keyword,
+    tagName: tagName ,
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilter({ ...filter, searchValue: event.target.value });
+    setFilter({
+      ...filter,
+      searchValue: event.target.value,
+      tagName: filter.tagName,
+    });
   };
-
+  console.log(filter);
+  
   const handleSearch = (
     e: FormEvent<HTMLFormElement> | MouseEventHandler<HTMLButtonElement>,
   ) => {
     if ("preventDefault" in e) {
       e.preventDefault();
     }
-    if (setTest) {
-      setTest(filter?.searchValue ?? "");
+    if (setParams) {
+      setParams({
+        keyword: filter.searchValue,
+        tagName: filter.tagName,
+      });
     }
-    navigate(`/search-novel?keyword=${filter?.searchValue ?? ""}`);
+    navigate(
+      `/search-novel?keyword=${filter?.searchValue ?? ""}&tagName=${filter.tagName ?? ""}`,
+    );
   };
 
   return (
@@ -58,7 +70,7 @@ export const Search: React.FC = (props: ISearchProps) => {
           />
           <button
             onClick={(e) => handleSearch(e)}
-            className=" bg-color2 border-2 border-gray-200 px-4 py-2 text-black hover:bg-yellow-300 w-[150px] flex justify-around rounded-r-[10px]"
+            className=" flex w-[150px] justify-around rounded-r-[10px] border-2 border-gray-200 bg-color2 px-4 py-2 text-black hover:bg-yellow-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -74,14 +86,16 @@ export const Search: React.FC = (props: ISearchProps) => {
                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
               />
             </svg>
-            検索
+            Tìm kiếm
           </button>
         </div>
         <div className="py-[10px]">
           <div className="flex items-center">
             <label className="mr-2">公式タグ:</label>
             {data?.getAllOfficialTags?.map((tag) => (
-              <TagNovel key={tag?.tag_id}>{tag?.tag}</TagNovel>
+              <div onClick={() => setFilter({ ...filter, tagName: tag?.tag })}>
+                <TagNovel tag={tag}></TagNovel>
+              </div>
             ))}
           </div>
         </div>
