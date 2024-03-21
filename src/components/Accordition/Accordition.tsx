@@ -16,8 +16,6 @@ function Accordition({data, refetch}) {
     await refetch({ page: newPage, limit: 3 });
   };
 
-  console.log(data?.user?.novelsPaginate.novels    );
-  
   const toggleAccordion = (index) => {
     const newIsOpenArray = [...isOpenArray];
     newIsOpenArray[index] = !newIsOpenArray[index];
@@ -101,9 +99,7 @@ function Accordition({data, refetch}) {
                 <div className="novel-item-bottom my-2 border-t-2 border-dashed">
                   <div className="flex flex-wrap items-center gap-x-4 pt-2">
                     {novel.tags.map((tag) => (
-                      <TagNovel className="rounded-lg px-5 py-0">
-                        {tag?.tag}
-                      </TagNovel>
+                      <TagNovel tag={tag}></TagNovel>
                     ))}
                   </div>
                 </div>

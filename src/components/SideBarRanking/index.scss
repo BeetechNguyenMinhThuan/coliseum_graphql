@@ -1,0 +1,22 @@
+.ranking-list-enter {
+  opacity: 0;
+}
+
+.ranking-list-enter-active {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.ranking-list-exit-active {
+  opacity: 0;
+}
+
+.novel-item:first-child .icon-ranking {
+  background-color: #ffe95a;
+}
+.novel-item:nth-child(2) .icon-ranking {
+  background-color: #fdcedf;
+}
+.novel-item:nth-child(3) .icon-ranking {
+  background-color: #fece9f;
+}

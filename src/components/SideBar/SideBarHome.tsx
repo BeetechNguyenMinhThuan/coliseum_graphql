@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { SideBarRanking } from "../SideBarRanking/SideBarRanking";
 
 export function SidebarHome() {
   return (
@@ -21,6 +22,9 @@ export function SidebarHome() {
         <li className="mt-6 border-2 rounded-[10px] py-3 px-4 hover:bg-color2 cursor-pointer ">Tourament</li>
         <li className="mt-6 border-2 rounded-[10px] py-3 px-4 hover:bg-color2 cursor-pointer ">初心者向けガイ</li>
       </ul>
+      <div>
+        <SideBarRanking></SideBarRanking>
+      </div>
     </div>
   );
 }

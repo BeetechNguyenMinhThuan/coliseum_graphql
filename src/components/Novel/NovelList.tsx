@@ -15,7 +15,7 @@ export function NovelList({ novels, type}) {
   // };
 
   return (
-    <div className="" ref={parentRef}>
+    <div className="novel-list" ref={parentRef}>
       {novels?.novels?.map((novel,index) => (
         <Novel rank={index+1} type={type} key={novel.novel_id} novel={novel} />
       ))}

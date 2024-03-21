@@ -74,7 +74,6 @@ export function RankingContainer(props: RankingProp) {
           ) : (
             <>
               <NovelList type="ranking" novels={data?.getNovelsPaginate} />
-
               {location.pathname !== "/newnovel" && (
                 <div className="my-3 flex justify-end">
                   <NavLink

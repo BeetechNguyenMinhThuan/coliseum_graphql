@@ -108,7 +108,7 @@ export function Novel(props: NovelProps) {
       <div className="novel-item-bottom my-2 border-t-2 border-dashed">
         <ul className="flex flex-wrap items-center gap-x-4 pt-2">
           {novel.tags.map((tag) => (
-            <TagNovel key={tag?.tag_id}>{tag?.tag}</TagNovel>
+            <TagNovel tag={tag}></TagNovel>
           ))}
         </ul>
       </div>

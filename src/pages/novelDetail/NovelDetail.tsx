@@ -40,7 +40,7 @@ export default function NovelDetail() {
   const [conditionResult, setConditionResult] = useState(null);
 
   const schema = yup.object({
-    content_comment: yup
+    content_comment: yup  
       .string()
       .max(2048, "*2048 文字を超えて入力しないでください*")
       .required("*コメント内容を入力してください*"),
@@ -198,9 +198,7 @@ export default function NovelDetail() {
                       <div className="novel-item-bottom my-2 border-t-2 border-dashed">
                         <ul className="flex flex-wrap items-center gap-x-4 pt-2">
                           {novel?.tags.map((tag) => (
-                            <TagNovel>
-                              <li>{tag?.tag}</li>
-                            </TagNovel>
+                            <TagNovel tag={tag}></TagNovel>
                           ))}
                         </ul>
                       </div>

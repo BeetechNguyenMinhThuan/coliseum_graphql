@@ -22,11 +22,9 @@ export const TagNovel = (props: TagProps) => {
   const urlParams = new URLSearchParams(window.location.search);
   const keyword = urlParams.get("keyword");
   const handleFilter = () => {
-    const url =  `/search-novel?keyword=${keyword ?? ""}&tagName=${tag?.tag ?? ""}`
-    navigate(url)
-    // navigate(
-    //   `/search-novel?keyword=${keyword ?? ""}&tagName=${tag?.tag ?? ""}`,
-    // );
+    navigate(
+      `/search-novel?keyword=${keyword ?? ""}&tagName=${tag?.tag ?? ""}`,
+    );
   };
   return (
     <span

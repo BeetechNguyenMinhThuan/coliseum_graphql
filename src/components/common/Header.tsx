@@ -5,16 +5,6 @@ import { animateScroll as scroll } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
 import { ThemeContext } from "@/contexts/ThemeContext";
-import {
-  Button,
-  Dialog,
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-  Input,
-  Checkbox,
-} from "@material-tailwind/react";
 import LoginModal from "@/pages/auth/login/LoginModal";
 export function Header() {
   const [open, setOpen] = useState(false);

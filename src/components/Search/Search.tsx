@@ -14,20 +14,33 @@ interface ISearchProps {
   handleSearch?: (
     e: FormEvent<HTMLFormElement> | MouseEventHandler<HTMLButtonElement>,
   ) => void;
+  refetchSearch?: (keyword: string, tag: string) => void;
 }
 
 export const Search: React.FC = (props: ISearchProps) => {
-  const { setParams } = props;
+  const { setParams, refetchSearch } = props;
   const navigate = useNavigate();
-  const { loading, error, data } = useQuery(GET_OFFICIAL_TAGS);
-  const urlParams = new URLSearchParams(window.location.search);
+  const { data } = useQuery(GET_OFFICIAL_TAGS);
 
-  const keyword = urlParams.get("keyword");
-  const tagName = urlParams.get("tagName");
+  const url = window.location.href;
+  const newUrl = url.split("?")[1];
+
+  function splitStringToObject(urlParamsString: string) {
+    return urlParamsString.split("&").reduce((acc, pair) => {
+      const [key, value] = pair.split("=");
+      acc[key] = value;
+      return acc;
+    }, {});
+  }
+
+  let resultObject = {};
+  if (newUrl) {
+    resultObject = splitStringToObject(newUrl);
+  }
 
   const [filter, setFilter] = useState({
-    searchValue: keyword,
-    tagName: tagName ,
+    searchValue: resultObject["keyword"],
+    tagName: resultObject["tagName"],
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -37,8 +50,7 @@ export const Search: React.FC = (props: ISearchProps) => {
       tagName: filter.tagName,
     });
   };
-  console.log(filter);
-  
+
   const handleSearch = (
     e: FormEvent<HTMLFormElement> | MouseEventHandler<HTMLButtonElement>,
   ) => {
@@ -56,6 +68,23 @@ export const Search: React.FC = (props: ISearchProps) => {
     );
   };
 
+  const handleTag = async (tag) => {
+    setFilter({ ...filter, tagName: tag?.tag });
+    if (refetchSearch) {
+      await refetchSearch(filter.searchValue, tag?.tag);
+    }
+  };
+
+  const resetForm = async () => {
+    setFilter({
+      searchValue: "",
+      tagName: "",
+    });
+    if (refetchSearch) {
+      await refetchSearch("", "");
+      navigate(`/search-novel?keyword=&tagName=`);
+    }
+  };
   return (
     <div className="border-black-500 p-4 ">
       <span className="title text-xl font-bold">作品を探す</span>
@@ -90,16 +119,22 @@ export const Search: React.FC = (props: ISearchProps) => {
           </button>
         </div>
         <div className="py-[10px]">
-          <div className="flex items-center">
+          <div className="flex items-center gap-x-4">
             <label className="mr-2">公式タグ:</label>
             {data?.getAllOfficialTags?.map((tag) => (
-              <div onClick={() => setFilter({ ...filter, tagName: tag?.tag })}>
+              <div className="" onClick={() => handleTag(tag)}>
                 <TagNovel tag={tag}></TagNovel>
               </div>
             ))}
           </div>
         </div>
       </form>
+      <button
+        onClick={resetForm}
+        className="rounded-[8px] border-2 p-1 px-2 hover:bg-color1"
+      >
+        Làm mới
+      </button>
     </div>
   );
 };
