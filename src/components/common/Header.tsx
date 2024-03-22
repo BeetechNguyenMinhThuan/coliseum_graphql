@@ -42,7 +42,7 @@ export function Header() {
       setScroll(false);
     }
   };
-  const path = ["/", "/coliseum","/tourament"];
+  const path = ["/", "/coliseum", "/tourament"];
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -187,18 +187,6 @@ export function Header() {
                   </Fragment>
                 )}
                 <li>
-                  <NavLink
-                    to="/coliseum"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "rounded bg-color2 px-3 py-1"
-                        : "rounded px-3 py-1 hover:bg-color2"
-                    }
-                  >
-                    Coliseum
-                  </NavLink>
-                </li>
-                <li>
                   <a
                     className="rounded px-3 py-1 hover:bg-color2"
                     href="https://www.bungo-coliseum.jp/creation"
@@ -226,30 +214,6 @@ export function Header() {
                     }
                   >
                     New Novel
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/use-regulations"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "rounded bg-color2 px-3 py-1"
-                        : "rounded px-3 py-1 hover:bg-color2"
-                    }
-                  >
-                    useRegulations
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/123"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "rounded bg-color2 px-3 py-1"
-                        : "rounded px-3 py-1 hover:bg-color2"
-                    }
-                  >
-                    Thông báo
                   </NavLink>
                 </li>
                 <li>

@@ -5,9 +5,6 @@ import { SidebarHome } from "components/SideBar/SideBarHome.tsx";
 import { RankingContainer } from "components/Ranking/RankingContainer.tsx";
 import { useQuery } from "@apollo/client";
 import { setDefaultTitle } from "@/utils/helper.ts";
-// import ButtonCommon from "@/components/button/ButtonCommon.tsx";
-// import { NovelList } from "@/components/novel";
-// import { Element } from "react-scroll";
 import { Search } from "@/components/Search/Search";
 import { GET_NOVELS_PAGINATE } from "@/graphql-client/novel/queries";
 import { useContext, useEffect, useRef } from "react";
@@ -16,7 +13,6 @@ import { LoadingSpiner } from "@/components/Loading/LoadingSpiner";
 import { NovelCreatedNew } from "@/components/novel/NovelCreatedNew";
 import { NovelUpdatedNew } from "@/components/novel/NovelUpdatedNew";
 import Hero from "@/components/common/Hero";
-import { useOutletContext } from "react-router-dom";
 import { Banner } from "@/components/Banner";
 import { ThemeContext } from "@/contexts/ThemeContext";
 const Home = () => {
