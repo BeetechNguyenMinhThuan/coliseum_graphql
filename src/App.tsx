@@ -15,6 +15,7 @@ import { setContext } from "@apollo/client/link/context";
 import { ACCESS_TOKEN, getItemStorage } from "@/utils/localStorageHepler.ts";
 import "react-toastify/dist/ReactToastify.css";
 import { LayoutProvider } from "./contexts/ThemeContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const endpoint = import.meta.env.VITE_REACT_GRAPHQL_ENDPOINT;
 
@@ -52,7 +53,9 @@ function App() {
         <I18nextProvider i18n={i18n}>
           <ApolloProvider client={client}>
             <LayoutProvider>
-              <RouterProvider router={router} />
+              <AuthProvider>
+                <RouterProvider router={router} />
+              </AuthProvider>
             </LayoutProvider>
             <ToastContainer />
           </ApolloProvider>

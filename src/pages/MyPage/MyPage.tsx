@@ -7,7 +7,7 @@ import useAuth from "@/hooks/useAuth";
 import { setDefaultTitle } from "@/utils/helper";
 import { IoTriangle } from "react-icons/io5";
 import { useQuery } from "@apollo/client";
-import { GET_DETAIL_USER} from "@/graphql-client/user/queries";
+import { GET_DETAIL_USER } from "@/graphql-client/user/queries";
 import moment from "moment";
 import BookMarkButton from "@/components/button/BookMarkButton";
 import LikeButton from "@/components/button/LikeButton";
@@ -17,15 +17,16 @@ export default function MyPage() {
   const { user } = useAuth();
 
   const { loading, error, data, refetch } = useQuery(GET_DETAIL_USER, {
-    variables: { userId: parseInt(user.id), 
+    variables: {
+      userId: parseInt(user.id),
       page: 1,
       limit: 3,
       pageNovelLike: 1,
-      limitNovelLike: 3 
+      limitNovelLike: 3,
     },
   });
   console.log(data);
-  
+
   const arrAds = [
     "s-l1200.webp",
     "coke-print-ad.jpg",
@@ -82,7 +83,7 @@ export default function MyPage() {
           </div>
 
           <div className="my-12">
-          <Advertisement  advertisement={arrAds} ></Advertisement>
+            <Advertisement advertisement={arrAds}></Advertisement>
           </div>
           <div className="border-2 bg-color3 p-4">
             <h3 className="border-b-2 border-dashed border-gray-500 text-2xl font-bold">
@@ -131,40 +132,45 @@ export default function MyPage() {
               </ul>
             </div>
           </div>
-          <div className="mt-10 border-2 rounded bg-color3 p-4">
+          <div className="mt-10 rounded border-2 bg-color3 p-4">
             <h3 className="border-b-2 border-dashed border-gray-500 text-2xl font-bold">
-             Tác phẩm yêu thích
+              Tác phẩm yêu thích
             </h3>
             <div className="py-3">
               <ul className="flex items-center  gap-x-10">
                 <li>
-                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
+                  <span className="cursor-pointer hover:text-color5">
+                    滅健滅
+                  </span>
                 </li>
                 |
                 <li>
-                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
+                  <span className="cursor-pointer hover:text-color5">
+                    滅健滅
+                  </span>
                 </li>
                 |
                 <li>
-                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
+                  <span className="cursor-pointer hover:text-color5">
+                    滅健滅
+                  </span>
                 </li>
                 |
                 <li>
-                  <span className="hover:text-color5 cursor-pointer">滅健滅</span>
+                  <span className="cursor-pointer hover:text-color5">
+                    滅健滅
+                  </span>
                 </li>
               </ul>
             </div>
             <div className="mt-2">
               <ul className="flex flex-col gap-y-2">
-                {
-                  data?.user?.novel_like && (
-                    data?.user?.novel_like?.novels.map((novel, index) => (
-                      <li className="border-b-2  pb-3">
+                {data?.user?.novel_like &&
+                  data?.user?.novel_like?.novels.map((novel, index) => (
+                    <li className="border-b-2  pb-3">
                       <div className="border-b-2 border-dashed ">
                         <div className="flex items-center justify-between pb-3">
-                          <h3 className="text-2xl font-bold">
-                           {novel?.title}
-                          </h3>
+                          <h3 className="text-2xl font-bold">{novel?.title}</h3>
                           <ButtonCommon
                             type="button"
                             className="h-fit rounded-lg bg-color8 px-3 text-white"
@@ -175,8 +181,14 @@ export default function MyPage() {
                         <div className="flex items-center justify-between">
                           <h4>{novel.user?.name}</h4>
                           <div className="flex gap-x-6">
-                            <span>春には {moment(novel?.created_at).format('Y.MM.D')}</span>
-                            <span>春にはには {moment(novel?.updated_at).format("Y.MM.D")}</span>
+                            <span>
+                              春には{" "}
+                              {moment(novel?.created_at).format("Y.MM.D")}
+                            </span>
+                            <span>
+                              春にはには{" "}
+                              {moment(novel?.updated_at).format("Y.MM.D")}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -186,7 +198,7 @@ export default function MyPage() {
                             <BookMarkButton user={user} novel={novel} />
                           </div>
                           <div className="flex items-center">
-                           <LikeButton user={user} novel={novel}/>
+                            <LikeButton user={user} novel={novel} />
                           </div>
                         </div>
                         <div className="flex gap-x-3">
@@ -203,10 +215,7 @@ export default function MyPage() {
                         </div>
                       </div>
                     </li>
-                    ))
-                  ) 
-                }
-               
+                  ))}
               </ul>
             </div>
           </div>

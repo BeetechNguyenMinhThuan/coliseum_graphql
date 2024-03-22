@@ -1,23 +1,25 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
-import { Form, NavLink, useLocation } from "react-router-dom";
+import { Form, NavLink, useLocation,useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { animateScroll as scroll } from "react-scroll";
 import Breadcrumbs from "@/components/common/Breadcrumbs.tsx";
 import useAuth from "@/hooks/useAuth.tsx";
 import { ThemeContext } from "@/contexts/ThemeContext";
 import LoginModal from "@/pages/auth/login/LoginModal";
+import { AuthContext } from "@/contexts/AuthContext";
 export function Header() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
-
   const location = useLocation();
-  const user = useAuth();
+  // const user = useAuth();
+  // console.log(user);
+  
   const headerRef = useRef();
   const { t, i18n } = useTranslation();
   const { heightHero } = useContext(ThemeContext);
-
+  const { logout, getSession, user } = useContext(AuthContext);
+  const navigate = useNavigate();
   // let isHeaderSpecial = false;
-
   // const [currentLanguage, setCurrentLanguage] = useState(
   //   localStorage.getItem("current_language") || "ja",
   // );
@@ -52,6 +54,22 @@ export function Header() {
     };
   }, [heightHero]);
 
+  useEffect(() => {
+    const getDataUser = async () => {
+      try {
+        const data = await getSession();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDataUser();
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <header
       ref={headerRef}
@@ -74,7 +92,7 @@ export function Header() {
             </div>
             <div className="header-top-center h-[48px] flex-1 bg-color1">
               <div className="flex h-full items-center justify-center gap-x-6 ">
-                {user.isAuth ? (
+                {user ? (
                   <>
                     <div className="flex items-center">
                       <div className="avatar mx-3 h-[30px] w-[30px] overflow-hidden rounded-full border-[1px] border-black">
@@ -83,13 +101,13 @@ export function Header() {
                           alt=""
                         />
                       </div>
-                      <NavLink to="/test">{user?.user?.name}</NavLink>
+                      <NavLink to="/test">{user?.name}</NavLink>
                     </div>
                     <span>|</span>
                     <div>
-                      <Form action="/logout" method="post">
-                        <button type="submit">ログアウト</button>
-                      </Form>
+                      {/* <Form action="/logout" method="post"> */}
+                        <button onClick={handleLogout} type="submit">ログアウト</button>
+                      {/* </Form> */}
                     </div>
                   </>
                 ) : (
@@ -158,7 +176,7 @@ export function Header() {
                 {/* <li>
               <NavLink to="/tournament">Tournament</NavLink>
             </li> */}
-                {user.isAuth && (
+                {user && (
                   <Fragment>
                     <li>
                       <NavLink
@@ -218,7 +236,7 @@ export function Header() {
                 </li>
                 <li>
                   <li>
-                    <NavLink to="/tourament">Tourament</NavLink>
+                    <NavLink to="/tournament">Tourament</NavLink>
                   </li>
                 </li>
                 <li>
