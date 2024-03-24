@@ -70,7 +70,7 @@ export function SideBarRanking() {
                 <div key={index} className="flex novel-item justify-between items-center">
                   <div className="icon-ranking w-[40px] h-[40px] rounded-full flex justify-center items-center bg-color1"> {index + 1}</div>
                   <div className=""> {novel?.title}</div>
-                  <div className="arrow"> -> </div>
+                  <div className="arrow">  </div>
                 </div>
               ))}
             </div>

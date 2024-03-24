@@ -16,10 +16,10 @@ import { ACCESS_TOKEN, getItemStorage } from "@/utils/localStorageHepler.ts";
 import "react-toastify/dist/ReactToastify.css";
 import { LayoutProvider } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/AuthContext";
-
+import createUploadLink from "apollo-upload-client/createUploadLink.mjs";
 const endpoint = import.meta.env.VITE_REACT_GRAPHQL_ENDPOINT;
 
-const httpLink = new HttpLink({ uri: endpoint });
+const httpLink =  createUploadLink({ uri: endpoint });
 
 const authLink = setContext(async (_, { headers }) => {
   try {
@@ -28,6 +28,7 @@ const authLink = setContext(async (_, { headers }) => {
       headers: {
         ...headers,
         Authorization: token ? `Bearer ${token}` : "",
+        'Apollo-Require-Preflight': 'true'
       },
     };
   } catch (error) {

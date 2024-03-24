@@ -36,6 +36,7 @@ import {
   ROUTE_TOURAMENT,
   ROUTE_TOURAMENT_BOARD,
 } from "@/constants/nameRoute";
+import UploadFile from "@/pages/UploadFile";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "/test5",
         element: <Test5 />,
+      },
+      {
+        path: "/upload-file",
+        element: <UploadFile />,
       },
       {
         path: "add-novel",
